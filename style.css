@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:500');
+@import url('https://fonts.googleapis.com/css?family=Raleway:600');
 
 /**
     Tooltip code by Bootstrap: https://github.com/twbs/bootstrap/blob/v3.3.7/dist/css/bootstrap.css#L5989
@@ -24,7 +24,6 @@
     white-space: normal;
     filter: alpha(opacity=0);
     opacity: 0;
-
     line-break: auto;
 }
 .read2me-widget-player .tooltip.in {
@@ -63,8 +62,6 @@
     position: relative;
     width: 570px;
     height: 101px;
-    background-color: rgb(14, 209, 254);
-    color: rgb(244, 244, 244);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .read2me-widget-player-avatar {
@@ -84,6 +81,7 @@
     overflow-x: hidden;
     margin-right: 5px;
     z-index: 2;
+    font-weight: 600;
 }
 .read2me-widget-player-title:hover span {
     position: relative;
@@ -105,7 +103,6 @@
 .read2me-widget-player-quick-controls svg.read2me-widget-forward {
     position: relative;
     top: 2px;
-    fill: #3E8FAD;
     width: 16px;
     cursor: pointer;
 }
@@ -115,10 +112,6 @@
 .read2me-widget-player-quick-controls svg.read2me-widget-forward {
     margin-left: 22px;
 }
-.read2me-widget-player-quick-controls svg.read2me-widget-rewind:hover,
-.read2me-widget-player-quick-controls svg.read2me-widget-forward:hover {
-    fill: #F4F4F4;
-}
 /* Sliders */
 .read2me-widget-player-sliders-container {
     position: absolute;
@@ -127,30 +120,30 @@
 }
 .read2me-widget-player-sliders-container .slider-track {
     height: 2px !important;
-    background: transparent !important;
-}
-.read2me-widget-player-sliders-container .slider-selection {
-    background: rgba(255, 255, 255, 1) !important;
-}
-.read2me-widget-player-sliders-container .slider-track-high {
-    background: rgba(255, 255, 255, 0.4) !important;
 }
 .read2me-widget-player-sliders-container .slider-handle {
     width: 11px !important;
     height: 11px !important;
-    background: white !important;
     cursor: pointer;
 }
+/**
+ Scrubber container
+ */
 .read2me-widget-player-scrubber-container div:first-of-type {
     width: 280px;
     left: 142px;
 }
+/**
+Speaking rate container
+ */
 .read2me-widget-player-speaking-rate-container div:first-of-type {
     width: 72px;
 }
+/**
+The round play/pause/replay container.
+ */
 .read2me-widget-player-playback {
     border-radius: 50%;
-    background-color: white;
     width: 52px;
     height: 52px;
     position: absolute;
@@ -165,20 +158,13 @@
     top: 0;
     bottom: 0;
     margin: auto auto auto auto;
-    fill: #0ED1FE;
 }
-.read2me-widget-player-playback:hover {
-    background-color: #0ED1FE;
-}
-.read2me-widget-player-playback:hover svg {
-    fill: white;
-}
-.read2me-widget-player-playback svg.read2me-widget-player-playback-play {
+svg.read2me-widget-player-playback-play {
     left: 3px;
     width: 22px;
     height: 22px;
 }
-.read2me-widget-player-playback svg.read2me-widget-player-playback-pause {
+svg.read2me-widget-player-playback-pause {
     display: none;
     left: 1px;
     width: 16px;
@@ -189,7 +175,93 @@
     top: 52px;
     left: 455px;
 }
-.read2me-widget-player-speaking-rate-container svg {
-    fill: #3E8FAD;
+svg.read2me-widget-speaking-rate {
     width: 20px;
+}
+
+/** Blue preset **/
+.read2me-widget-player.preset-blue {
+    background-color: rgb(14, 209, 254);
+    color: rgb(244, 244, 244);
+}
+
+.read2me-widget-player.preset-blue svg.read2me-widget-rewind,
+.read2me-widget-player.preset-blue svg.read2me-widget-forward,
+.read2me-widget-player.preset-blue svg.read2me-widget-speaking-rate {
+    fill: #3E8FAD;
+}
+
+.read2me-widget-player.preset-blue svg.read2me-widget-rewind:hover,
+.read2me-widget-player.preset-blue svg.read2me-widget-forward:hover {
+    fill: #F4F4F4;
+}
+
+.read2me-widget-player.preset-blue .slider-track {
+    background: transparent !important;
+}
+.read2me-widget-player.preset-blue .slider-selection {
+    background: rgba(255, 255, 255, 1) !important;
+}
+.read2me-widget-player.preset-blue .slider-track-high {
+    background: rgba(255, 255, 255, 0.4) !important;
+}
+.read2me-widget-player.preset-blue .slider-handle {
+    background: white !important;
+}
+
+.read2me-widget-player.preset-blue .read2me-widget-player-playback {
+    background-color: white;
+}
+.read2me-widget-player.preset-blue .read2me-widget-player-playback svg {
+    fill: #0ED1FE;
+}
+.read2me-widget-player.preset-blue .read2me-widget-player-playback:hover {
+    background-color: #0ED1FE;
+}
+.read2me-widget-player.preset-blue .read2me-widget-player-playback:hover svg {
+    fill: white;
+}
+
+
+/** White preset **/
+.read2me-widget-player.preset-white {
+    background-color: rgb(248, 248, 248);
+    color: #3A3C3C;
+}
+
+.read2me-widget-player.preset-white svg.read2me-widget-rewind,
+.read2me-widget-player.preset-white svg.read2me-widget-forward,
+.read2me-widget-player.preset-white svg.read2me-widget-speaking-rate {
+    fill: #3A3C3C;
+}
+
+.read2me-widget-player.preset-white svg.read2me-widget-rewind:hover,
+.read2me-widget-player.preset-white svg.read2me-widget-forward:hover {
+    fill: #8FE3F7;
+}
+
+.read2me-widget-player.preset-white .slider-track {
+    background: transparent !important;
+}
+.read2me-widget-player.preset-white .slider-selection {
+    background: #0ED1FE !important;
+}
+.read2me-widget-player.preset-white .slider-track-high {
+    background: #DADBDB !important;
+}
+.read2me-widget-player.preset-white .slider-handle {
+    background: #0ED1FE !important;
+}
+
+.read2me-widget-player.preset-white .read2me-widget-player-playback {
+    background-color: #0ED1FE;
+}
+.read2me-widget-player.preset-white .read2me-widget-player-playback svg {
+    fill: white;
+}
+.read2me-widget-player.preset-white .read2me-widget-player-playback:hover {
+    background-color: white;
+}
+.read2me-widget-player.preset-white .read2me-widget-player-playback:hover svg {
+    fill: #0ED1FE;
 }
