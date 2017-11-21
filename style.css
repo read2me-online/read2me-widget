@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:500');
 
-/** Source: https://github.com/twbs/bootstrap/blob/v3.3.7/dist/css/bootstrap.css#L5989 */
+/**
+    Tooltip code by Bootstrap: https://github.com/twbs/bootstrap/blob/v3.3.7/dist/css/bootstrap.css#L5989
+**/
 .read2me-widget-player .tooltip {
     position: absolute;
     z-index: 1070;
