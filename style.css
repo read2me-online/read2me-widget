@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:500');
+
+/** Source: https://github.com/twbs/bootstrap/blob/v3.3.7/dist/css/bootstrap.css#L5989 */
+.read2me-widget-player .tooltip {
+    position: absolute;
+    z-index: 1070;
+    display: block;
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: left;
+    text-align: start;
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    letter-spacing: normal;
+    word-break: normal;
+    word-spacing: normal;
+    word-wrap: normal;
+    white-space: normal;
+    filter: alpha(opacity=0);
+    opacity: 0;
+
+    line-break: auto;
+}
+.read2me-widget-player .tooltip.in {
+    filter: alpha(opacity=100);
+    opacity: 1;
+}
+.read2me-widget-player .tooltip.bottom {
+    padding: 5px 0;
+    margin-top: 3px;
+}
+.read2me-widget-player .tooltip-inner {
+    max-width: 200px;
+    text-align: center;
+    background-color: #000;
+    border-radius: 4px;
+    position: relative;
+    top: -10px;
+
+    background-color: rgba(255, 255, 255, 0.7);
+    color: #3E8FAD;
+    padding: 1px 5px;
+    font-size: 11px;
+}
+.read2me-widget-player .tooltip-arrow {
+    display: none;
+}
+
+.read2me-widget-player {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+
+    margin: 30px 5px 10px 5px;
+    display: inline-block;
+    font-family: 'Raleway', sans-serif;
+    position: relative;
+    width: 570px;
+    height: 101px;
+    background-color: rgb(14, 209, 254);
+    color: rgb(244, 244, 244);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.read2me-widget-player-avatar {
+    position: absolute;
+    top: -20px;
+    left: 21px;
+    max-width: 101px;
+    max-height: 101px;
+}
+.read2me-widget-player-title {
+    position: absolute;
+    top: 25px;
+    left: 142px;
+    width: 183px;
+    font-size: 15px;
+    white-space:nowrap;
+    overflow-x: hidden;
+    margin-right: 5px;
+    z-index: 2;
+}
+.read2me-widget-player-title:hover span {
+    position: relative;
+    animation: marquee 5s linear infinite;
+}
+/* Marquee code inspired by https://codepen.io/jamesbarnett/pen/kfmKa */
+@keyframes marquee {
+    0% { left: 0; }
+    100% { left: -100%; }
+}
+/** Rewind and Forward icons */
+.read2me-widget-player-quick-controls {
+    position: absolute;
+    top: 25px;
+    left: 325px;
+    z-index: 2;
+}
+.read2me-widget-player-quick-controls svg.read2me-widget-rewind,
+.read2me-widget-player-quick-controls svg.read2me-widget-forward {
+    position: relative;
+    top: 2px;
+    fill: #3E8FAD;
+    width: 16px;
+    cursor: pointer;
+}
+.read2me-widget-player-quick-controls svg.read2me-widget-rewind {
+    margin-left: 30px;
+}
+.read2me-widget-player-quick-controls svg.read2me-widget-forward {
+    margin-left: 22px;
+}
+.read2me-widget-player-quick-controls svg.read2me-widget-rewind:hover,
+.read2me-widget-player-quick-controls svg.read2me-widget-forward:hover {
+    fill: #F4F4F4;
+}
+/* Sliders */
+.read2me-widget-player-sliders-container {
+    position: absolute;
+    top: 57px;
+    z-index: 1;
+}
+.read2me-widget-player-sliders-container .slider-track {
+    height: 2px !important;
+    background: transparent !important;
+}
+.read2me-widget-player-sliders-container .slider-selection {
+    background: rgba(255, 255, 255, 1) !important;
+}
+.read2me-widget-player-sliders-container .slider-track-high {
+    background: rgba(255, 255, 255, 0.4) !important;
+}
+.read2me-widget-player-sliders-container .slider-handle {
+    width: 11px !important;
+    height: 11px !important;
+    background: white !important;
+    cursor: pointer;
+}
+.read2me-widget-player-scrubber-container div:first-of-type {
+    width: 280px;
+    left: 142px;
+}
+.read2me-widget-player-speaking-rate-container div:first-of-type {
+    width: 72px;
+}
+.read2me-widget-player-playback {
+    border-radius: 50%;
+    background-color: white;
+    width: 52px;
+    height: 52px;
+    position: absolute;
+    right: 20px;
+    top: -26px;
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}
+.read2me-widget-player-playback svg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto auto auto auto;
+    fill: #0ED1FE;
+}
+.read2me-widget-player-playback:hover {
+    background-color: #0ED1FE;
+}
+.read2me-widget-player-playback:hover svg {
+    fill: white;
+}
+.read2me-widget-player-playback svg.read2me-widget-player-playback-play {
+    left: 3px;
+    width: 22px;
+    height: 22px;
+}
+.read2me-widget-player-playback svg.read2me-widget-player-playback-pause {
+    display: none;
+    left: 1px;
+    width: 16px;
+    height: 16px;
+}
+.read2me-widget-player-speaking-rate-container {
+    position: absolute;
+    top: 52px;
+    left: 455px;
+}
+.read2me-widget-player-speaking-rate-container svg {
+    fill: #3E8FAD;
+    width: 20px;
+}
