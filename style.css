@@ -1,5 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:600');
 
+.read2me-widget-player {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+
+    margin: 30px 5px 10px 5px;
+    display: inline-block;
+    font-family: 'Raleway', sans-serif;
+    position: relative;
+    width: 570px;
+    height: 101px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.read2me-widget-player.template {
+    display:none;
+}
+
 /**
     Tooltip code by Bootstrap: https://github.com/twbs/bootstrap/blob/v3.3.7/dist/css/bootstrap.css#L5989
 **/
@@ -51,19 +69,6 @@
     display: none;
 }
 
-.read2me-widget-player {
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-
-    margin: 30px 5px 10px 5px;
-    display: inline-block;
-    font-family: 'Raleway', sans-serif;
-    position: relative;
-    width: 570px;
-    height: 101px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
 .read2me-widget-player-avatar {
     position: absolute;
     top: -20px;
