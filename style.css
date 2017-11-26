@@ -161,14 +161,23 @@ The round play/pause/replay container.
 }
 svg.read2me-widget-player-playback-play {
     left: 3px;
+}
+svg.read2me-widget-player-playback-play,
+svg.read2me-widget-player-playback-replay {
     width: 22px;
     height: 22px;
 }
 svg.read2me-widget-player-playback-pause {
-    display: none;
     left: 1px;
     width: 16px;
     height: 16px;
+}
+svg.read2me-widget-player-playback-replay {
+    left: 0;
+}
+svg.read2me-widget-player-playback-pause,
+svg.read2me-widget-player-playback-replay {
+    display: none;
 }
 .read2me-widget-player-speaking-rate-container {
     position: absolute;
