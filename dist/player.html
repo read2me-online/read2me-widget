@@ -1,0 +1,409 @@
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Raleway:600');
+
+    /**
+    Tooltip code by Bootstrap: https://github.com/twbs/bootstrap/blob/v3.3.7/dist/css/bootstrap.css#L5989
+    **/
+    .read2me-widget-player .tooltip {
+        position: absolute;
+        z-index: 1070;
+        display: block;
+        font-family: 'Raleway', sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: normal;
+        line-height: 1.42857143;
+        text-align: left;
+        text-align: start;
+        text-decoration: none;
+        text-shadow: none;
+        text-transform: none;
+        letter-spacing: normal;
+        word-break: normal;
+        word-spacing: normal;
+        word-wrap: normal;
+        white-space: normal;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        line-break: auto;
+    }
+
+    .read2me-widget-player .tooltip.in {
+        filter: alpha(opacity=100);
+        opacity: 1;
+    }
+
+    .read2me-widget-player .tooltip.bottom {
+        padding: 5px 0;
+        margin-top: 3px;
+    }
+
+    .read2me-widget-player .tooltip-inner {
+        max-width: 200px;
+        text-align: center;
+        background-color: #000;
+        border-radius: 4px;
+        position: relative;
+        top: -10px;
+
+        background-color: rgba(255, 255, 255, 0.7);
+        color: #3E8FAD;
+        padding: 1px 5px;
+        font-size: 11px;
+    }
+
+    .read2me-widget-player .tooltip-arrow {
+        display: none;
+    }
+
+    .read2me-widget-player {
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+
+        margin: 30px 5px 10px 5px;
+        display: inline-block;
+        font-family: 'Raleway', sans-serif;
+        position: relative;
+        width: 570px;
+        height: 101px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .read2me-widget-player-avatar {
+        position: absolute;
+        top: -20px;
+        left: 21px;
+        max-width: 101px;
+        max-height: 101px;
+    }
+
+    .read2me-widget-player-title {
+        position: absolute;
+        top: 25px;
+        left: 142px;
+        width: 183px;
+        font-size: 15px;
+        white-space: nowrap;
+        overflow-x: hidden;
+        margin-right: 5px;
+        z-index: 2;
+        font-weight: 600;
+    }
+
+    .read2me-widget-player-title:hover span {
+        position: relative;
+        animation: marquee 5s linear infinite;
+    }
+
+    /* Marquee code inspired by https://codepen.io/jamesbarnett/pen/kfmKa */
+    @keyframes marquee {
+        0% {
+            left: 0;
+        }
+        100% {
+            left: -100%;
+        }
+    }
+
+    /** Rewind and Forward icons */
+    .read2me-widget-player-quick-controls {
+        position: absolute;
+        top: 25px;
+        left: 325px;
+        z-index: 2;
+    }
+
+    .read2me-widget-player-quick-controls svg.read2me-widget-rewind,
+    .read2me-widget-player-quick-controls svg.read2me-widget-forward {
+        position: relative;
+        top: 2px;
+        width: 16px;
+        cursor: pointer;
+    }
+
+    .read2me-widget-player-quick-controls svg.read2me-widget-rewind {
+        margin-left: 30px;
+    }
+
+    .read2me-widget-player-quick-controls svg.read2me-widget-forward {
+        margin-left: 22px;
+    }
+
+    /* Sliders */
+    .read2me-widget-player-sliders-container {
+        position: absolute;
+        top: 57px;
+        z-index: 1;
+    }
+
+    .read2me-widget-player-sliders-container .slider-track {
+        height: 2px !important;
+    }
+
+    .read2me-widget-player-sliders-container .slider-handle {
+        width: 11px !important;
+        height: 11px !important;
+        cursor: pointer;
+    }
+
+    /**
+    Scrubber container
+    */
+    .read2me-widget-player-scrubber-container div:first-of-type {
+        width: 280px;
+        left: 142px;
+    }
+
+    /**
+    Speaking rate container
+    */
+    .read2me-widget-player-speaking-rate-container div:first-of-type {
+        width: 72px;
+    }
+
+    /**
+    The round play/pause/replay container.
+    */
+    .read2me-widget-player-playback {
+        border-radius: 50%;
+        width: 52px;
+        height: 52px;
+        position: absolute;
+        right: 20px;
+        top: -26px;
+        box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+        cursor: pointer;
+    }
+
+    .read2me-widget-player-playback svg {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto auto auto auto;
+    }
+
+    svg.read2me-widget-player-playback-play {
+        left: 3px;
+    }
+
+    svg.read2me-widget-player-playback-play,
+    svg.read2me-widget-player-playback-replay {
+        width: 22px;
+        height: 22px;
+    }
+
+    svg.read2me-widget-player-playback-pause {
+        left: 1px;
+        width: 16px;
+        height: 16px;
+    }
+
+    svg.read2me-widget-player-playback-replay {
+        left: 0;
+    }
+
+    svg.read2me-widget-player-playback-pause,
+    svg.read2me-widget-player-playback-replay {
+        display: none;
+    }
+
+    .read2me-widget-player-speaking-rate-container {
+        position: absolute;
+        top: 52px;
+        left: 455px;
+    }
+
+    svg.read2me-widget-speaking-rate {
+        width: 20px;
+    }
+
+    /** Blue preset **/
+    .read2me-widget-player.preset-blue {
+        background-color: rgb(14, 209, 254);
+        color: rgb(244, 244, 244);
+    }
+
+    .read2me-widget-player.preset-blue svg.read2me-widget-rewind,
+    .read2me-widget-player.preset-blue svg.read2me-widget-forward,
+    .read2me-widget-player.preset-blue svg.read2me-widget-speaking-rate {
+        fill: #3E8FAD;
+    }
+
+    .read2me-widget-player.preset-blue svg.read2me-widget-rewind:hover,
+    .read2me-widget-player.preset-blue svg.read2me-widget-forward:hover {
+        fill: #F4F4F4;
+    }
+
+    .read2me-widget-player.preset-blue .slider-track {
+        background: transparent !important;
+    }
+
+    .read2me-widget-player.preset-blue .slider-selection {
+        background: rgba(255, 255, 255, 1) !important;
+    }
+
+    .read2me-widget-player.preset-blue .slider-track-high {
+        background: rgba(255, 255, 255, 0.4) !important;
+    }
+
+    .read2me-widget-player.preset-blue .slider-handle {
+        background: white !important;
+    }
+
+    .read2me-widget-player.preset-blue .read2me-widget-player-playback {
+        background-color: white;
+    }
+
+    .read2me-widget-player.preset-blue .read2me-widget-player-playback svg {
+        fill: #0ED1FE;
+    }
+
+    .read2me-widget-player.preset-blue .read2me-widget-player-playback:hover {
+        background-color: #0ED1FE;
+    }
+
+    .read2me-widget-player.preset-blue .read2me-widget-player-playback:hover svg {
+        fill: white;
+    }
+
+    /** White preset **/
+    .read2me-widget-player.preset-white {
+        background-color: rgb(248, 248, 248);
+        color: #3A3C3C;
+    }
+
+    .read2me-widget-player.preset-white svg.read2me-widget-rewind,
+    .read2me-widget-player.preset-white svg.read2me-widget-forward,
+    .read2me-widget-player.preset-white svg.read2me-widget-speaking-rate {
+        fill: #3A3C3C;
+    }
+
+    .read2me-widget-player.preset-white svg.read2me-widget-rewind:hover,
+    .read2me-widget-player.preset-white svg.read2me-widget-forward:hover {
+        fill: #8FE3F7;
+    }
+
+    .read2me-widget-player.preset-white .slider-track {
+        background: transparent !important;
+    }
+
+    .read2me-widget-player.preset-white .slider-selection {
+        background: #0ED1FE !important;
+    }
+
+    .read2me-widget-player.preset-white .slider-track-high {
+        background: #DADBDB !important;
+    }
+
+    .read2me-widget-player.preset-white .slider-handle {
+        background: #0ED1FE !important;
+    }
+
+    .read2me-widget-player.preset-white .read2me-widget-player-playback {
+        background-color: #0ED1FE;
+    }
+
+    .read2me-widget-player.preset-white .read2me-widget-player-playback svg {
+        fill: white;
+    }
+
+    .read2me-widget-player.preset-white .read2me-widget-player-playback:hover {
+        background-color: white;
+    }
+
+    .read2me-widget-player.preset-white .read2me-widget-player-playback:hover svg {
+        fill: #0ED1FE;
+    }
+
+</style>
+
+<div class="read2me-widget-player">
+    <img src="https://read2me.online/images/favicons/android-chrome-192x192.png" class="read2me-widget-player-avatar">
+    <div class="read2me-widget-player-title">
+        <span>Adventures in Thailand: Backpacking in Chiang Mai</span>
+    </div>
+    <div class="read2me-widget-player-quick-controls">
+        <svg class="read2me-widget-rewind" viewBox="0 0 24 24"
+             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+            <defs>
+                <path d="M0 0h24v24H0V0z" id="a"></path>
+            </defs>
+            <clipPath id="b">
+                <use overflow="visible" xlink:href="#a"></use>
+            </clipPath>
+            <path clip-path="url(#b)" d="M12 5V1L7 6l5 5V7c3.3 0 6 2.7 6 6s-2.7 6-6 6-6-2.7-6-6H4c0 4.4 3.6 8 8 8s8-3.6 8-8-3.6-8-8-8zm-1.1 11H10v-3.3L9 13v-.7l1.8-.6h.1V16zm4.3-1.8c0 .3 0 .6-.1.8l-.3.6s-.3.3-.5.3-.4.1-.6.1-.4 0-.6-.1-.3-.2-.5-.3-.2-.3-.3-.6-.1-.5-.1-.8v-.7c0-.3 0-.6.1-.8l.3-.6s.3-.3.5-.3.4-.1.6-.1.4 0 .6.1c.2.1.3.2.5.3s.2.3.3.6.1.5.1.8v.7zm-.9-.8v-.5s-.1-.2-.1-.3-.1-.1-.2-.2-.2-.1-.3-.1-.2 0-.3.1l-.2.2s-.1.2-.1.3v2s.1.2.1.3.1.1.2.2.2.1.3.1.2 0 .3-.1l.2-.2s.1-.2.1-.3v-1.5z"></path>
+        </svg>
+        <svg class="read2me-widget-forward"  viewBox="0 0 24 24"
+             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+            <defs>
+                <path d="M24 24H0V0h24v24z" id="a"></path>
+            </defs>
+            <clipPath id="b">
+                <use overflow="visible" xlink:href="#a"></use>
+            </clipPath>
+            <path clip-path="url(#b)" d="M4 13c0 4.4 3.6 8 8 8s8-3.6 8-8h-2c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6v4l5-5-5-5v4c-4.4 0-8 3.6-8 8zm6.8 3H10v-3.3L9 13v-.7l1.8-.6h.1V16zm4.3-1.8c0 .3 0 .6-.1.8l-.3.6s-.3.3-.5.3-.4.1-.6.1-.4 0-.6-.1-.3-.2-.5-.3-.2-.3-.3-.6-.1-.5-.1-.8v-.7c0-.3 0-.6.1-.8l.3-.6s.3-.3.5-.3.4-.1.6-.1.4 0 .6.1.3.2.5.3.2.3.3.6.1.5.1.8v.7zm-.8-.8v-.5s-.1-.2-.1-.3-.1-.1-.2-.2-.2-.1-.3-.1-.2 0-.3.1l-.2.2s-.1.2-.1.3v2s.1.2.1.3.1.1.2.2.2.1.3.1.2 0 .3-.1l.2-.2s.1-.2.1-.3v-1.5z"></path>
+        </svg>
+    </div>
+    <div class="read2me-widget-player-playback">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" class="read2me-widget-player-playback-play">
+            <path d="M10,5.251v39.497L43.572,25L10,5.251z"></path>
+        </svg>
+
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="read2me-widget-player-playback-pause">
+            <g>
+                <g>
+                    <rect x="16" width="8" height="24"></rect>
+                    <rect width="8" height="24"></rect>
+                </g>
+            </g>
+        </svg>
+
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="read2me-widget-player-playback-replay">
+            <path d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"></path>
+        </svg>
+    </div>
+    <div class="read2me-widget-player-sliders-container read2me-widget-player-scrubber-container">
+        <input class="read2me-widget-player-scrubber"
+               id="read2me-widget-scrubber-player-1" data-slider-id='read2me-widget-scrubber-player-1'
+               type="text" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="0"
+
+        >
+    </div>
+    <div class="read2me-widget-player-sliders-container read2me-widget-player-speaking-rate-container">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="read2me-widget-speaking-rate">
+            <path d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"></path>
+        </svg>
+        <input class="read2me-widget-player-speaking-rate"
+               id="read2me-widget-player-speaking-rate-1" data-slider-id='read2me-widget-player-speaking-rate-1'
+               type="text" data-slider-min="0.5" data-slider-max="1.5" data-slider-step="0.25" data-slider-value="1"
+        >
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js" integrity="sha256-ssw743RfM8cbNhwou26tmmPhiNhq3buUbRG/RevtfG4=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css" integrity="sha256-WfuSLYdzGvlsFU6ImYYSE277WsjfyU30QeGuNIjeJEI=" crossorigin="anonymous">
+
+<script>
+    var sliders = [];
+
+    sliders.push(new Slider('#read2me-widget-scrubber-player-1', {
+        tooltip_position:'bottom',
+
+        formatter: function (value) {
+            return value;
+        }
+    }));
+    sliders.push(new Slider('#read2me-widget-player-speaking-rate-1', {
+        tooltip_position:'bottom',
+
+        formatter: function (value) {
+            return value + 'x';
+        }
+    }));
+</script>
