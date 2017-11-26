@@ -7,17 +7,17 @@
     "license": "MIT License",
     "keywords": "gulp",
     "devDependencies": {
-        "gulp": "*",
-        "gulp-plumber": "*",
-        "gulp-rename": "*",
+        "gulp": "^3.9.1",
+        "gulp-browserify": "*",
+        "gulp-clean-css": "*",
+        "gulp-concat": "^2.6.1",
         "gulp-csscomb": "*",
         "gulp-csslint": "*",
-        "gulp-clean-css": "*",
-        "gulp-browserify": "*",
-        "gulp-uglify": "*",
-        "gulp-concat": "*",
-        "jshint": "*",
         "gulp-jshint": "*",
-        "gulp-minify-html": "*"
+        "gulp-minify-html": "*",
+        "gulp-plumber": "^1.1.0",
+        "gulp-rename": "*",
+        "gulp-uglify": "^3.0.0",
+        "jshint": "*"
     }
 }
