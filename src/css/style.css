@@ -1,4 +1,7 @@
+/*
 @import url('https://fonts.googleapis.com/css?family=Raleway:600');
+moved to a separate file
+*/
 
 .read2me-widget-player {
     -webkit-box-sizing: content-box;

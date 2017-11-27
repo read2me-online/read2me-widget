@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:600');
+
 /*! =======================================================
                       VERSION  10.0.0              
 ========================================================= */
@@ -205,7 +207,10 @@
     background-image: -webkit-linear-gradient(top,#8ac1ef 0,#82b3de 100%)                                    ;background-image:      -o-linear-gradient(top,#8ac1ef 0,#82b3de 100%);background-image:         linear-gradient(to bottom,#8ac1ef 0,#82b3de 100%);background-repeat: repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8ac1ef',endColorstr='#ff82b3de',GradientType=0);
 }
 
+/*
 @import url('https://fonts.googleapis.com/css?family=Raleway:600');
+moved to a separate file
+*/
 
 .read2me-widget-player
 {
