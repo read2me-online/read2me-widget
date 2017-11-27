@@ -48,7 +48,7 @@ gulp.task('js', function () {
 });
 
 gulp.task('html', function () {
-    gulp.src(['player.html'])
+    gulp.src(['src/html/**/*.html'])
         .pipe(plumber({
             handleError: function (err) {
                 console.log(err);
