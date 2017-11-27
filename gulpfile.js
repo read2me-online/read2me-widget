@@ -9,6 +9,8 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var minifyHtml = require('gulp-minify-html');
 const babel = require('gulp-babel');
+const inject = require('gulp-inject-string');
+const gulpMerge = require('gulp-merge');
 
 gulp.task('css', function () {
     gulp.src(['src/**/*.css'])
@@ -62,8 +64,27 @@ gulp.task('html', function () {
         .pipe(gulp.dest('dist/'))
 });
 
-gulp.task('default', ['js', 'css', 'html'], function () {
-    gulp.watch('src/**/*.js', ['js']);
-    gulp.watch('src/**/*.css', ['css']);
-    gulp.watch('src/**/*.html', ['html']);
+gulp.task('concatenateFiles', function() {
+    return gulpMerge(
+        gulp.src('dist/bundle.min.css')
+            .pipe(inject.wrap('<style>', '</style>')),
+
+        gulp.src('dist/bundle.min.js')
+            .pipe(inject.wrap('<script>', '</script>')),
+
+        gulp.src('dist/player.min.html')
+        )
+        .pipe(concat('widget.min.html'))
+        .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('default', ['js', 'css', 'html', 'concatenateFiles'], function () {
+    const js = 'src/**/*.js';
+    const css = 'src/**/*.js';
+    const html = 'src/**/*.js';
+
+    gulp.watch(js, ['js']);
+    gulp.watch(css, ['css']);
+    gulp.watch(html, ['html']);
+    gulp.watch([js, css, html], 'concatenateFiles');
 });
