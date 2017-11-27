@@ -98,6 +98,26 @@ gulp.task('concatenateFilesMinified', function() {
         .pipe(gulp.dest('dist/'));
 });
 
+gulp.task('compileBackendClass', function() {
+    gulp.src(['src/js/Read2MeBackend.js'])
+        .pipe(concat('read2me-backend.js'))
+        .pipe(babel({
+            presets: 'env'
+        }))
+        .pipe(plumber({
+            handleError: function (err) {
+                console.log(err);
+                this.emit('end');
+            }
+        }))
+        .pipe(gulp.dest('dist/'))
+        .pipe(rename({
+            suffix: '.min'
+        }))
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/'))
+});
+
 const js = 'src/**/*.js';
 const css = 'src/**/*.css';
 const html = 'src/**/*.html';
