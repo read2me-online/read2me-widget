@@ -230,7 +230,7 @@ moved to a separate file
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19);
 }
 
-.read2me-widget-player.template
+.read2me-widget-player.read2me-template
 {
     display: none;
 }

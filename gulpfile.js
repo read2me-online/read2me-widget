@@ -102,9 +102,7 @@ gulp.task('default', ['clean', 'js', 'css', 'html', 'concatenateFiles', 'concate
     const css = 'src/**/*.js';
     const html = 'src/**/*.js';
 
-    gulp.watch(js, ['js']);
-    gulp.watch(css, ['css']);
-    gulp.watch(html, ['html']);
-    gulp.watch([js, css, html], ['concatenateFiles']);
-    gulp.watch([js, css, html], ['concatenateFilesMinified']);
+    gulp.watch(js, ['js', 'concatenateFiles', 'concatenateFilesMinified']);
+    gulp.watch(css, ['css', 'concatenateFiles', 'concatenateFilesMinified']);
+    gulp.watch(html, ['html', 'concatenateFiles', 'concatenateFilesMinified']);
 });
