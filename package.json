@@ -28,7 +28,9 @@
         "gulp-rename": "*",
         "gulp-sequence": "^0.4.6",
         "gulp-uglify": "^3.0.0",
+        "gulp-watch": "^4.3.11",
         "jshint": "*",
+        "run-sequence": "^2.2.0",
         "uglify-js": "^3.2.0"
     },
     "dependencies": {}

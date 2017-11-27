@@ -1,5 +1,5 @@
-var gulp = require('gulp');
-var plumber = require('gulp-plumber');
+const gulp = require('gulp');
+const plumber = require('gulp-plumber');
 var rename = require('gulp-rename');
 var csslint = require('gulp-csslint');
 var cssComb = require('gulp-csscomb');
@@ -11,7 +11,8 @@ var minifyHtml = require('gulp-minify-html');
 const babel = require('gulp-babel');
 const inject = require('gulp-inject-string');
 const gulpMerge = require('gulp-merge');
-var del = require('del');
+const del = require('del');
+const runSequence = require('gulp-sequence');
 
 gulp.task('clean', function () {
     return del([
@@ -78,7 +79,7 @@ gulp.task('concatenateFiles', function() {
             .pipe(inject.wrap("\n<script>\n", "\n</script>\n\n")),
 
         gulp.src('src/html/player.html')
-    )
+        )
         .pipe(concat('widget.html'))
         .pipe(gulp.dest('dist/'));
 });
@@ -97,12 +98,13 @@ gulp.task('concatenateFilesMinified', function() {
         .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('default', ['clean', 'js', 'css', 'html', 'concatenateFiles', 'concatenateFilesMinified'], function () {
-    const js = 'src/**/*.js';
-    const css = 'src/**/*.js';
-    const html = 'src/**/*.js';
+const js = 'src/**/*.js';
+const css = 'src/**/*.css';
+const html = 'src/**/*.html';
+const all = [js, css, html];
 
-    gulp.watch(js, ['js', 'concatenateFiles', 'concatenateFilesMinified']);
-    gulp.watch(css, ['css', 'concatenateFiles', 'concatenateFilesMinified']);
-    gulp.watch(html, ['html', 'concatenateFiles', 'concatenateFilesMinified']);
+gulp.task('default', ['clean', 'js', 'css', 'html', 'concatenateFiles', 'concatenateFilesMinified'], function () {
+    gulp.watch(js, ['js']);
+    gulp.watch(css, ['css']);
+    gulp.watch(html, ['html']);
 });
