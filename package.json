@@ -17,6 +17,8 @@
         "gulp-concat-css": "^2.3.0",
         "gulp-csscomb": "*",
         "gulp-csslint": "*",
+        "gulp-inject": "^4.3.0",
+        "gulp-inline": "^0.1.3",
         "gulp-jshint": "*",
         "gulp-minify-html": "*",
         "gulp-plumber": "^1.1.0",

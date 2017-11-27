@@ -5,12 +5,10 @@ var csslint = require('gulp-csslint');
 var cssComb = require('gulp-csscomb');
 var cleanCss = require('gulp-clean-css');
 var jshint = require('gulp-jshint');
-var browserify = require('gulp-browserify');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var minifyHtml = require('gulp-minify-html');
 const babel = require('gulp-babel');
-
 
 gulp.task('css', function () {
     gulp.src(['src/**/*.css'])
@@ -26,6 +24,7 @@ gulp.task('css', function () {
         .pipe(cleanCss())
         .pipe(gulp.dest('dist/'))
 });
+
 gulp.task('js', function () {
     gulp.src(['src/js/**/*.js'])
         .pipe(concat('bundle.js'))
@@ -47,19 +46,24 @@ gulp.task('js', function () {
         .pipe(uglify())
         .pipe(gulp.dest('dist/'))
 });
+
 gulp.task('html', function () {
-    gulp.src(['player.html/**/*.html'])
+    gulp.src(['player.html'])
         .pipe(plumber({
             handleError: function (err) {
                 console.log(err);
                 this.emit('end');
             }
         }))
+        .pipe(rename({
+            suffix: '.min'
+        }))
         .pipe(minifyHtml())
-        .pipe(gulp.dest('./'))
+        .pipe(gulp.dest('dist/'))
 });
-gulp.task('default', function () {
-    gulp.watch('src/scripts/**/*.js', ['js']);
-    gulp.watch('src/styles/**/*.css', ['css']);
-    gulp.watch('player.html/**/*.html', ['html']);
+
+gulp.task('default', ['js', 'css', 'html'], function () {
+    gulp.watch('src/**/*.js', ['js']);
+    gulp.watch('src/**/*.css', ['css']);
+    gulp.watch('player.html', ['html']);
 });
