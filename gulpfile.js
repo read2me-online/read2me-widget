@@ -24,7 +24,7 @@ gulp.task('css', function () {
     gulp.src(['src/**/*.css'])
         .pipe(plumber())
         .pipe(cssComb())
-        .pipe(csslint())
+        // .pipe(csslint())
         .pipe(csslint.formatter())
         .pipe(concat('bundle.css'))
         .pipe(gulp.dest('dist/'))
@@ -122,6 +122,18 @@ const js = 'src/**/*.js';
 const css = 'src/**/*.css';
 const html = 'src/**/*.html';
 const all = [js, css, html];
+
+gulp.task('sequence', () => {
+    runSequence(['js', 'css', 'html'], ['concatenateFiles', 'concatenateFilesMinified'], () => {});
+});
+
+gulp.task('main', () => {
+    runSequence(['sequence'], () => {
+        gulp.watch(js, ['sequence']);
+        gulp.watch(css, ['sequence']);
+        gulp.watch(html, ['sequence']);
+    });
+});
 
 gulp.task('default', ['clean', 'js', 'css', 'html', 'concatenateFiles', 'concatenateFilesMinified'], function () {
     gulp.watch(js, ['js']);
