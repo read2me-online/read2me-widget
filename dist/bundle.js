@@ -220,6 +220,7 @@ var Read2MePlayerBuilder = function () {
     _createClass(Read2MePlayerBuilder, null, [{
         key: '_replaceBlueprintWithPlayer',
         value: function _replaceBlueprintWithPlayer(elem) {
+            var appId = 2; // @TODO
             var url = elem.getAttribute('data-url');
             var autoplay = elem.getAttribute('data-autoplay');
             var sections = elem.getAttribute('data-sections');
@@ -227,7 +228,7 @@ var Read2MePlayerBuilder = function () {
             var thumbnail = elem.getAttribute('data-thumbnail');
             var ignoreContentChange = elem.getAttribute('data-ignore-content-change');
 
-            new Read2MePlayer(2, url, sections, ignoreContentChange);
+            var player = new Read2MePlayer(appId, url, sections, ignoreContentChange);
         }
     }]);
 
@@ -598,3 +599,10 @@ var Read2MePlayerBuilder = function () {
         }
     }(a), d;
 });
+function Read2MeDocumentReady(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        fn();
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+}

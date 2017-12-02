@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Read2Me Widget example</title>
+</head>
+<body>
+
+<script>(function(d, t, id) {
+    if (d.getElementById(id)) return;
+    var s, r, div;
+    s = '../dist/widget.html';
+    r = new XMLHttpRequest();
+    r.open('GET', s, true);
+    r.onload = function() {
+        if (r.status >= 200 && r.status < 400) {
+            div = d.createElement(t); div.id = id;
+            div.innerHTML = r.responseText;
+            d.body.insertBefore(div, d.body.firstChild);
+        } else {
+            console.warn('Unable to fetch ' + s, r);
+        }
+    };
+    r.onerror = function() {
+        console.warn('Connection error for ' + s, r);
+    };
+    r.send();
+}(document, 'div', 'read2me-root'));</script>
+
+<div class="read2me-widget"
+     data-url="https://dev.travelling-adventures.com/articles/chiang-mai-thailand-january-2016-june-2016"
+     data-autoplay="false"
+     data-sections="['.p']"
+     data-title="Senate Republicans Pass Sweeping Tax Bill"
+     data-thumbnail="https://static01.nyt.com/images/icons/t_logo_291_black.png"
+     data-ignore-content-change="false"
+>
+</div>
+
+<p>
+    WASHINGTON — The Senate passed the most sweeping tax rewrite in decades early Saturday, with Republicans lining up
+    to approve an overhaul that will touch almost every corner of the United States economy, affecting families, small
+    business owners and multinational corporations, with the biggest benefits flowing to the highest-earning Americans.
+</p>
+<p>
+    Senators voted 51-49, as Republicans approved the nearly 500-page bill in the early morning hours after lawmakers
+    received a rewritten version, which contained significant changes from the original bill that passed two Senate
+    panels last month along party lines. The last-minute revisions prompted an outcry from Democrats, who said it was
+    impossible — and irresponsible — for lawmakers to read and digest a significant piece of legislation in such a short
+    period of time.
+</p>
+<!-- content source: https://www.nytimes.com/2017/12/01/us/politics/senate-tax-bill.html -->
+</body>
+</html>

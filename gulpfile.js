@@ -20,7 +20,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('css', function () {
-    gulp.src(['src/**/*.css'])
+    return gulp.src(['src/**/*.css'])
         .pipe(plumber())
         .pipe(cssComb())
         .pipe(csslint.formatter())
@@ -34,7 +34,7 @@ gulp.task('css', function () {
 });
 
 gulp.task('js', function () {
-    gulp.src(['src/js/**/*.js'])
+    return gulp.src(['src/js/**/*.js'])
         .pipe(concat('bundle.js'))
         .pipe(babel({
             presets: 'env'
@@ -50,9 +50,11 @@ gulp.task('js', function () {
             suffix: '.min'
         }))
         .pipe(uglify())
-        .pipe(gulp.dest('dist/'))
+        .pipe(gulp.dest('dist/'));
+});
 
-    gulp.src(['src/js/Read2MeBackend.js'])
+gulp.task('js-backend-class-only', function() {
+    return gulp.src(['src/js/Read2MeBackend.js'])
         .pipe(concat('read2me-backend.js'))
         .pipe(babel({
             presets: 'env'
@@ -72,7 +74,7 @@ gulp.task('js', function () {
 });
 
 gulp.task('html', function () {
-    gulp.src(['src/html/**/*.html'])
+    return gulp.src(['src/html/**/*.html'])
         .pipe(plumber({
             handleError: function (err) {
                 console.log(err);
@@ -119,9 +121,7 @@ const css = 'src/**/*.css';
 const html = 'src/**/*.html';
 
 gulp.task('_sequence', () => {
-    return new Promise(resolve => {
-        runSequence(['js', 'css', 'html'], ['concatenateFiles'], ['concatenateFilesMinified'], resolve);
-    });
+    runSequence(['js', 'js-backend-class-only', 'css', 'html'], ['concatenateFiles', 'concatenateFilesMinified'], () => {});
 });
 
 gulp.task('default', () => {
