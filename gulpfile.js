@@ -51,6 +51,24 @@ gulp.task('js', function () {
         }))
         .pipe(uglify())
         .pipe(gulp.dest('dist/'))
+
+    gulp.src(['src/js/Read2MeBackend.js'])
+        .pipe(concat('read2me-backend.js'))
+        .pipe(babel({
+            presets: 'env'
+        }))
+        .pipe(plumber({
+            handleError: function (err) {
+                console.log(err);
+                this.emit('end');
+            }
+        }))
+        .pipe(gulp.dest('dist/'))
+        .pipe(rename({
+            suffix: '.min'
+        }))
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/'))
 });
 
 gulp.task('html', function () {
@@ -96,44 +114,18 @@ gulp.task('concatenateFilesMinified', function() {
         .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('compileBackendClass', function() {
-    gulp.src(['src/js/Read2MeBackend.js'])
-        .pipe(concat('read2me-backend.js'))
-        .pipe(babel({
-            presets: 'env'
-        }))
-        .pipe(plumber({
-            handleError: function (err) {
-                console.log(err);
-                this.emit('end');
-            }
-        }))
-        .pipe(gulp.dest('dist/'))
-        .pipe(rename({
-            suffix: '.min'
-        }))
-        .pipe(uglify())
-        .pipe(gulp.dest('dist/'))
-});
-
 const js = 'src/**/*.js';
 const css = 'src/**/*.css';
 const html = 'src/**/*.html';
 
-gulp.task('sequence', () => {
+gulp.task('_sequence', () => {
     runSequence(['js', 'css', 'html'], ['concatenateFiles', 'concatenateFilesMinified'], () => {});
 });
 
-gulp.task('main', () => {
-    runSequence(['sequence'], () => {
-        gulp.watch(js, ['sequence']);
-        gulp.watch(css, ['sequence']);
-        gulp.watch(html, ['sequence']);
+gulp.task('default', () => {
+    runSequence(['_sequence'], () => {
+        gulp.watch(js, ['_sequence']);
+        gulp.watch(css, ['_sequence']);
+        gulp.watch(html, ['_sequence']);
     });
-});
-
-gulp.task('default', ['clean', 'js', 'css', 'html', 'concatenateFiles', 'concatenateFilesMinified'], function () {
-    gulp.watch(js, ['js']);
-    gulp.watch(css, ['css']);
-    gulp.watch(html, ['html']);
 });
