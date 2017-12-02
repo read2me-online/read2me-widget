@@ -16,6 +16,6 @@ class Read2MePlayerBuilder {
         let thumbnail = elem.getAttribute('data-thumbnail');
         let ignoreContentChange = elem.getAttribute('data-ignore-content-change');
 
-        new Read2MePlayer(2, url, sections, ignoreContentChange);
+        const player = new Read2MePlayer(2, url, sections, ignoreContentChange);
     }
 }

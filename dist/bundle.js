@@ -227,7 +227,7 @@ var Read2MePlayerBuilder = function () {
             var thumbnail = elem.getAttribute('data-thumbnail');
             var ignoreContentChange = elem.getAttribute('data-ignore-content-change');
 
-            new Read2MePlayer(2, url, sections, ignoreContentChange);
+            var player = new Read2MePlayer(2, url, sections, ignoreContentChange);
         }
     }]);
 
