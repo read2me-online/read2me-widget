@@ -124,7 +124,9 @@ const html = 'src/**/*.html';
 const all = [js, css, html];
 
 gulp.task('sequence', () => {
-    runSequence(['js', 'css', 'html'], ['concatenateFiles', 'concatenateFilesMinified'], () => {});
+    return new Promise(resolve => {
+      runSequence(['js', 'css', 'html'], ['concatenateFiles'], ['concatenateFilesMinified'], resolve);
+    });
 });
 
 gulp.task('main', () => {
