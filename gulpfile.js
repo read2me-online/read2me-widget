@@ -4,7 +4,6 @@ var rename = require('gulp-rename');
 var csslint = require('gulp-csslint');
 var cssComb = require('gulp-csscomb');
 var cleanCss = require('gulp-clean-css');
-var jshint = require('gulp-jshint'); // removed
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var minifyHtml = require('gulp-minify-html');
@@ -24,7 +23,6 @@ gulp.task('css', function () {
     gulp.src(['src/**/*.css'])
         .pipe(plumber())
         .pipe(cssComb())
-        // .pipe(csslint())
         .pipe(csslint.formatter())
         .pipe(concat('bundle.css'))
         .pipe(gulp.dest('dist/'))
@@ -121,7 +119,6 @@ gulp.task('compileBackendClass', function() {
 const js = 'src/**/*.js';
 const css = 'src/**/*.css';
 const html = 'src/**/*.html';
-const all = [js, css, html];
 
 gulp.task('sequence', () => {
     runSequence(['js', 'css', 'html'], ['concatenateFiles', 'concatenateFilesMinified'], () => {});
