@@ -812,21 +812,17 @@ var Read2MePlayerBuilder = function () {
             var thumbnail = elem.getAttribute('data-thumbnail');
             var ignoreContentChange = elem.getAttribute('data-ignore-content-change');
 
-            var playerConstructorParams = [appId, url, sections, ignoreContentChange];
-
-            var player = new (Function.prototype.bind.apply(Read2MePlayer, [null].concat(playerConstructorParams)))();
+            var player = new Read2MePlayer(appId, url, sections, ignoreContentChange);
         }
     }]);
 
     return Read2MePlayerBuilder;
 }();
-
-Read2MeDocumentReady(function () {
-    var builder = new Read2MePlayerBuilder();
-});
 /*! =======================================================
                       VERSION  10.0.0              
 ========================================================= */
+
+
 "use strict";var _typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterator) ? function (a) {
     return typeof a === 'undefined' ? 'undefined' : _typeof2(a);
 } : function (a) {
