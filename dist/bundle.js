@@ -233,11 +233,13 @@ var Read2MePlayerBuilder = function () {
 
     return Read2MePlayerBuilder;
 }();
+
+Read2MeDocumentReady(function () {
+    var builder = new Read2MePlayerBuilder();
+});
 /*! =======================================================
                       VERSION  10.0.0              
 ========================================================= */
-
-
 "use strict";var _typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterator) ? function (a) {
     return typeof a === 'undefined' ? 'undefined' : _typeof2(a);
 } : function (a) {
@@ -598,3 +600,10 @@ var Read2MePlayerBuilder = function () {
         }
     }(a), d;
 });
+function Read2MeDocumentReady(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        fn();
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+}

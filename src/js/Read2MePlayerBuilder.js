@@ -19,3 +19,7 @@ class Read2MePlayerBuilder {
         const player = new Read2MePlayer(2, url, sections, ignoreContentChange);
     }
 }
+
+Read2MeDocumentReady(() => {
+    let builder = new Read2MePlayerBuilder();
+});
