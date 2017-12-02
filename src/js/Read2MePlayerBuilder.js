@@ -9,6 +9,7 @@ class Read2MePlayerBuilder {
     }
 
     static _replaceBlueprintWithPlayer(elem) {
+        let appId = 2; // @TODO
         let url = elem.getAttribute('data-url');
         let autoplay = elem.getAttribute('data-autoplay');
         let sections = elem.getAttribute('data-sections');
@@ -16,10 +17,6 @@ class Read2MePlayerBuilder {
         let thumbnail = elem.getAttribute('data-thumbnail');
         let ignoreContentChange = elem.getAttribute('data-ignore-content-change');
 
-        const player = new Read2MePlayer(2, url, sections, ignoreContentChange);
+        const player = new Read2MePlayer(appId, url, sections, ignoreContentChange);
     }
 }
-
-Read2MeDocumentReady(() => {
-    let builder = new Read2MePlayerBuilder();
-});

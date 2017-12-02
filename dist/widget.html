@@ -804,6 +804,7 @@ var Read2MePlayerBuilder = function () {
     _createClass(Read2MePlayerBuilder, null, [{
         key: '_replaceBlueprintWithPlayer',
         value: function _replaceBlueprintWithPlayer(elem) {
+            var appId = 2; // @TODO
             var url = elem.getAttribute('data-url');
             var autoplay = elem.getAttribute('data-autoplay');
             var sections = elem.getAttribute('data-sections');
@@ -811,7 +812,9 @@ var Read2MePlayerBuilder = function () {
             var thumbnail = elem.getAttribute('data-thumbnail');
             var ignoreContentChange = elem.getAttribute('data-ignore-content-change');
 
-            var player = new Read2MePlayer(2, url, sections, ignoreContentChange);
+            var playerConstructorParams = [appId, url, sections, ignoreContentChange];
+
+            var player = new (Function.prototype.bind.apply(Read2MePlayer, [null].concat(playerConstructorParams)))();
         }
     }]);
 

@@ -220,6 +220,7 @@ var Read2MePlayerBuilder = function () {
     _createClass(Read2MePlayerBuilder, null, [{
         key: '_replaceBlueprintWithPlayer',
         value: function _replaceBlueprintWithPlayer(elem) {
+            var appId = 2; // @TODO
             var url = elem.getAttribute('data-url');
             var autoplay = elem.getAttribute('data-autoplay');
             var sections = elem.getAttribute('data-sections');
@@ -227,19 +228,17 @@ var Read2MePlayerBuilder = function () {
             var thumbnail = elem.getAttribute('data-thumbnail');
             var ignoreContentChange = elem.getAttribute('data-ignore-content-change');
 
-            var player = new Read2MePlayer(2, url, sections, ignoreContentChange);
+            var player = new Read2MePlayer(appId, url, sections, ignoreContentChange);
         }
     }]);
 
     return Read2MePlayerBuilder;
 }();
-
-Read2MeDocumentReady(function () {
-    var builder = new Read2MePlayerBuilder();
-});
 /*! =======================================================
                       VERSION  10.0.0              
 ========================================================= */
+
+
 "use strict";var _typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterator) ? function (a) {
     return typeof a === 'undefined' ? 'undefined' : _typeof2(a);
 } : function (a) {
