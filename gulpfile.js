@@ -4,7 +4,6 @@ var rename = require('gulp-rename');
 var csslint = require('gulp-csslint');
 var cssComb = require('gulp-csscomb');
 var cleanCss = require('gulp-clean-css');
-var jshint = require('gulp-jshint'); // removed
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var minifyHtml = require('gulp-minify-html');
@@ -24,7 +23,6 @@ gulp.task('css', function () {
     gulp.src(['src/**/*.css'])
         .pipe(plumber())
         .pipe(cssComb())
-        // .pipe(csslint())
         .pipe(csslint.formatter())
         .pipe(concat('bundle.css'))
         .pipe(gulp.dest('dist/'))
@@ -38,6 +36,24 @@ gulp.task('css', function () {
 gulp.task('js', function () {
     gulp.src(['src/js/**/*.js'])
         .pipe(concat('bundle.js'))
+        .pipe(babel({
+            presets: 'env'
+        }))
+        .pipe(plumber({
+            handleError: function (err) {
+                console.log(err);
+                this.emit('end');
+            }
+        }))
+        .pipe(gulp.dest('dist/'))
+        .pipe(rename({
+            suffix: '.min'
+        }))
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/'))
+
+    gulp.src(['src/js/Read2MeBackend.js'])
+        .pipe(concat('read2me-backend.js'))
         .pipe(babel({
             presets: 'env'
         }))
@@ -98,47 +114,20 @@ gulp.task('concatenateFilesMinified', function() {
         .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('compileBackendClass', function() {
-    gulp.src(['src/js/Read2MeBackend.js'])
-        .pipe(concat('read2me-backend.js'))
-        .pipe(babel({
-            presets: 'env'
-        }))
-        .pipe(plumber({
-            handleError: function (err) {
-                console.log(err);
-                this.emit('end');
-            }
-        }))
-        .pipe(gulp.dest('dist/'))
-        .pipe(rename({
-            suffix: '.min'
-        }))
-        .pipe(uglify())
-        .pipe(gulp.dest('dist/'))
-});
-
 const js = 'src/**/*.js';
 const css = 'src/**/*.css';
 const html = 'src/**/*.html';
-const all = [js, css, html];
 
-gulp.task('sequence', () => {
+gulp.task('_sequence', () => {
     return new Promise(resolve => {
-      runSequence(['js', 'css', 'html'], ['concatenateFiles'], ['concatenateFilesMinified'], resolve);
+        runSequence(['js', 'css', 'html'], ['concatenateFiles'], ['concatenateFilesMinified'], resolve);
     });
 });
 
-gulp.task('main', () => {
-    runSequence(['sequence'], () => {
-        gulp.watch(js, ['sequence']);
-        gulp.watch(css, ['sequence']);
-        gulp.watch(html, ['sequence']);
+gulp.task('default', () => {
+    runSequence(['_sequence'], () => {
+        gulp.watch(js, ['_sequence']);
+        gulp.watch(css, ['_sequence']);
+        gulp.watch(html, ['_sequence']);
     });
-});
-
-gulp.task('default', ['clean', 'js', 'css', 'html', 'concatenateFiles', 'concatenateFilesMinified'], function () {
-    gulp.watch(js, ['js']);
-    gulp.watch(css, ['css']);
-    gulp.watch(html, ['html']);
 });
