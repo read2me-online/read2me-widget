@@ -588,6 +588,8 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Read2MeBackend = function () {
@@ -806,22 +808,60 @@ var Read2MePlayerBuilder = function () {
         value: function _replaceBlueprintWithPlayer(elem) {
             var appId = 2; // @TODO
             var url = elem.getAttribute('data-url');
-            var autoplay = elem.getAttribute('data-autoplay');
-            var sections = elem.getAttribute('data-sections');
-            var title = elem.getAttribute('data-title');
-            var thumbnail = elem.getAttribute('data-thumbnail');
+            var autoplay = elem.getAttribute('data-autoplay'); // @TODO
+            var cssSelectors = elem.getAttribute('data-css-selectors');
+            var title = elem.getAttribute('data-title'); // @TODO
+            var thumbnail = elem.getAttribute('data-thumbnail'); // @TODO
             var ignoreContentChange = elem.getAttribute('data-ignore-content-change');
 
-            if (sections) {
-                sections = sections.substring(1, sections.length - 1).split(',');
-            }
+            autoplay = this._booleanStringToBoolean(autoplay);
+            cssSelectors = this._cssSelectorsStringToArray(cssSelectors);
+            ignoreContentChange = this._booleanStringToBoolean(ignoreContentChange);
 
-            if (ignoreContentChange === 'true') ignoreContentChange = true;else if (ignoreContentChange === 'false') ignoreContentChange = false;else throw 'Unsupported value for ignoreContentChange (can be "true" or "false")';
-
-            // console.log(appId, url, autoplay, sections, title, thumbnail, ignoreContentChange);
-
-            var player = new Read2MePlayer(appId, url, sections, ignoreContentChange);
+            var player = new Read2MePlayer(appId, url, cssSelectors, ignoreContentChange);
             player.render();
+        }
+    }, {
+        key: '_cssSelectorsStringToArray',
+        value: function _cssSelectorsStringToArray(cssSelectors) {
+            var _this2 = this;
+
+            if (!cssSelectors) return;
+
+            cssSelectors = cssSelectors.substring(1, cssSelectors.length - 1).split(',');
+            cssSelectors = cssSelectors.map(function (selector) {
+                return selector.trim();
+            });
+            cssSelectors = cssSelectors.map(function (selector) {
+                return _this2._trimByChar(selector, '"');
+            });
+            cssSelectors = cssSelectors.map(function (selector) {
+                return _this2._trimByChar(selector, "'");
+            });
+
+            return cssSelectors;
+        }
+    }, {
+        key: '_booleanStringToBoolean',
+        value: function _booleanStringToBoolean(value) {
+            if (value === 'true') value = true;else if (value === 'false') value = false;else throw 'Unsupported value for ignoreContentChange (can be "true" or "false", as a string)';
+
+            return value;
+        }
+
+        // https://stackoverflow.com/a/43333491/1325575
+
+    }, {
+        key: '_trimByChar',
+        value: function _trimByChar(string, character) {
+            var first = [].concat(_toConsumableArray(string)).findIndex(function (char) {
+                return char !== character;
+            });
+            var last = [].concat(_toConsumableArray(string)).reverse().findIndex(function (char) {
+                return char !== character;
+            });
+
+            return string.substring(first, string.length - last);
         }
     }]);
 
