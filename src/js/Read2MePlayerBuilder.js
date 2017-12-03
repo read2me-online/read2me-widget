@@ -17,6 +17,24 @@ class Read2MePlayerBuilder {
         let thumbnail = elem.getAttribute('data-thumbnail');
         let ignoreContentChange = elem.getAttribute('data-ignore-content-change');
 
+        if (sections) {
+            sections = sections.substring(1, sections.length - 1).split(',');
+        }
+
+        if (ignoreContentChange === 'true')
+            ignoreContentChange = true;
+        else if (ignoreContentChange === 'false')
+            ignoreContentChange = false;
+        else
+            throw 'Unsupported value for ignoreContentChange (can be "true" or "false")';
+
+        // console.log(appId, url, autoplay, sections, title, thumbnail, ignoreContentChange);
+
         const player = new Read2MePlayer(appId, url, sections, ignoreContentChange);
+        player.render();
     }
 }
+
+Read2MeDocumentReady(() => {
+    const playerBuilder = new Read2MePlayerBuilder();
+});

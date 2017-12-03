@@ -812,17 +812,28 @@ var Read2MePlayerBuilder = function () {
             var thumbnail = elem.getAttribute('data-thumbnail');
             var ignoreContentChange = elem.getAttribute('data-ignore-content-change');
 
+            if (sections) {
+                sections = sections.substring(1, sections.length - 1).split(',');
+            }
+
+            if (ignoreContentChange === 'true') ignoreContentChange = true;else if (ignoreContentChange === 'false') ignoreContentChange = false;else throw 'Unsupported value for ignoreContentChange (can be "true" or "false")';
+
+            // console.log(appId, url, autoplay, sections, title, thumbnail, ignoreContentChange);
+
             var player = new Read2MePlayer(appId, url, sections, ignoreContentChange);
+            player.render();
         }
     }]);
 
     return Read2MePlayerBuilder;
 }();
+
+Read2MeDocumentReady(function () {
+    var playerBuilder = new Read2MePlayerBuilder();
+});
 /*! =======================================================
                       VERSION  10.0.0              
 ========================================================= */
-
-
 "use strict";var _typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterator) ? function (a) {
     return typeof a === 'undefined' ? 'undefined' : _typeof2(a);
 } : function (a) {
