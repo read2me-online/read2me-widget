@@ -36,7 +36,7 @@ const AWSOptionsDev = {
     uploadPath: 'api/widget/dev/',
     failOnError: true,
     headers: {
-        'Cache-Control': 'public, must-revalidate, proxy-revalidate, max-age=0'
+        'Cache-Control': 'max-age=0'
     }
 };
 
