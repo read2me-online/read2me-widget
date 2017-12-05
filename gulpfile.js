@@ -27,11 +27,17 @@ const AWS = {
 };
 const AWSOptions = {
     uploadPath: 'api/widget/' + version + '/',
-    failOnError: true
+    failOnError: true,
+    headers: {
+        'Cache-Control': 'max-age=63072000, public'
+    }
 };
 const AWSOptionsDev = {
     uploadPath: 'api/widget/dev/',
-    failOnError: true
+    failOnError: true,
+    headers: {
+        'Cache-Control': 'public, must-revalidate, proxy-revalidate, max-age=0'
+    }
 };
 
 const appendVersion = () => {
