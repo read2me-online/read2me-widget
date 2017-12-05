@@ -12,8 +12,68 @@ const inject = require('gulp-inject-string');
 const gulpMerge = require('gulp-merge');
 const del = require('del');
 const runSequence = require('gulp-sequence');
+const s3 = require('gulp-s3');
 
-gulp.task('clean', function () {
+const process = require('process');
+const fs = require('fs');
+const version = fs.readFileSync('./VERSION', 'utf8');
+const isDev = version.indexOf('-dev') !== -1;
+
+const AWS = {
+    "key":    process.env.AWS_ACCESS_KEY_ID,
+    "secret": process.env.AWS_SECRET_ACCESS_KEY,
+    "bucket": "s3.read2me.online",
+    "region": "eu-west-1"
+};
+const AWSOptions = {
+    uploadPath: 'api/widget/' + version + '/',
+    failOnError: true
+};
+const AWSOptionsDev = {
+    uploadPath: 'api/widget/dev/',
+    failOnError: true
+};
+
+const appendVersion = () => {
+    fs.appendFileSync('./.published', version + "\n");
+};
+
+const isVersionPublished = () => {
+    return fs.readFileSync('./.published', 'utf8').indexOf(version) !== -1;
+};
+
+gulp.task('publish', () => {
+    if (isDev) {
+        const error = new Error('VERSION is -dev, use publishDev for that, EXITING...');
+        console.error(error);
+
+        return error;
+    }
+
+    // unfortunately S3 doesn't support a IAM role or a bucket policy where
+    // one can upload, but not overwrite a file, so we have to track published
+    // versions in a local file
+    if (isVersionPublished()) {
+        const error = new Error('This version has already been published, EXITING...');
+        console.error(error);
+
+        return error;
+    }
+
+    let upload = gulp.src(['./dist/read2me-backend.js', './dist/widget.min.html'])
+        .pipe(s3(AWS, AWSOptions));
+
+    appendVersion();
+
+    return upload;
+});
+
+gulp.task('publishDev', () => {
+    return gulp.src(['./dist/read2me-backend.js', './dist/widget.min.html'])
+        .pipe(s3(AWS, AWSOptionsDev));
+});
+
+gulp.task('wipeDist', function () {
     return del([
         'dist/**/*',
     ]);
@@ -121,7 +181,11 @@ const css = 'src/**/*.css';
 const html = 'src/**/*.html';
 
 gulp.task('_sequence', () => {
-    runSequence(['js', 'js-backend-class-only', 'css', 'html'], ['concatenateFiles', 'concatenateFilesMinified'], () => {});
+    runSequence(
+        ['js', 'js-backend-class-only', 'css', 'html'],
+        ['concatenateFiles', 'concatenateFilesMinified'],
+        ['publishDev'],
+        () => {});
 });
 
 gulp.task('default', () => {
