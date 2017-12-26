@@ -1,0 +1,20 @@
+<script>(function(d, t, id) {
+    var s, r, div, c, js, h, sT, sI;
+    if (d.getElementById(id)) return;
+    div = d.createElement(t); div.id = id;
+    d.body.insertBefore(div, d.body.firstChild);
+    s = 'https://d22fip447qchhd.cloudfront.net/api/widget/dev/widget.min.html';
+    r = new XMLHttpRequest(); r.responseType = 'document'; r.open('GET', s, true);
+    r.onload = function(e) {
+        c = e.target.response.querySelector('style');
+        js = e.target.response.querySelector('script');
+        h = e.target.response.querySelector('div');
+        div.outerHTML = "";
+        div = d.createElement(t); div.id = id;
+        sT = d.createElement('script');
+        sI = d.createTextNode(js.text);
+        sT.appendChild(sI); div.appendChild(sT); div.appendChild(c); div.appendChild(h);
+        d.body.insertBefore(div, d.body.firstChild);
+    };
+    r.send();
+}(document, 'div', 'read2me-root'));</script>
