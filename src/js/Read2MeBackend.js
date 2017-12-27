@@ -1,5 +1,5 @@
 class Read2MeBackend {
-    constructor(appId, url, cssSelectors, ignoreContentChange) {
+    constructor(appId, url, cssSelectors = null, ignoreContentChange = false, requestSource = 'custom') {
         this.apiUrl = 'https://api-dev.read2me.online/convert/1.0.0/webpage/'; //@TODO change
 
         // check for illegal params
@@ -21,11 +21,15 @@ class Read2MeBackend {
         if (typeof ignoreContentChange !== 'undefined' && ignoreContentChange !== null && typeof ignoreContentChange !== 'boolean')
             throw 'Fourth param to Read2MePlayer (ignoreContentChange) can be omitted, null or a boolean.';
 
+        if (!requestSource || typeof requestSource !== 'string')
+            throw 'Fifth param to Read2MeBackend must be a string';
+
         // set params as object properties
         this.appId = appId;
         this.url = url;
         this.cssSelectors = cssSelectors;
         this.ignoreContentChange = ignoreContentChange;
+        this.requestSource = requestSource;
 
         // normalize certain params
         if (typeof this.cssSelectors === 'undefined' || this.cssSelectors === null)
@@ -43,7 +47,8 @@ class Read2MeBackend {
         return this.apiUrl +
             '?url=' + encodeURIComponent(this.url) +
             '&css_selectors=' + encodeURIComponent(this.cssSelectors.join('|')) +
-            '&ignore_content_change=' + this._getIgnoreContentChangeAsString();
+            '&ignore_content_change=' + this._getIgnoreContentChangeAsString() +
+            '&request_source' + this.requestSource;
     }
 
     get(audioFoundCallback, audioNotFoundCallback, errorCallback) {

@@ -7,7 +7,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Read2MeBackend = function () {
-    function Read2MeBackend(appId, url, cssSelectors, ignoreContentChange) {
+    function Read2MeBackend(appId, url) {
+        var cssSelectors = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+        var ignoreContentChange = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+        var requestSource = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'custom';
+
         _classCallCheck(this, Read2MeBackend);
 
         this.apiUrl = 'https://api-dev.read2me.online/convert/1.0.0/webpage/'; //@TODO change
@@ -25,11 +29,14 @@ var Read2MeBackend = function () {
 
         if (typeof ignoreContentChange !== 'undefined' && ignoreContentChange !== null && typeof ignoreContentChange !== 'boolean') throw 'Fourth param to Read2MePlayer (ignoreContentChange) can be omitted, null or a boolean.';
 
+        if (!requestSource || typeof requestSource !== 'string') throw 'Fifth param to Read2MeBackend must be a string';
+
         // set params as object properties
         this.appId = appId;
         this.url = url;
         this.cssSelectors = cssSelectors;
         this.ignoreContentChange = ignoreContentChange;
+        this.requestSource = requestSource;
 
         // normalize certain params
         if (typeof this.cssSelectors === 'undefined' || this.cssSelectors === null) this.cssSelectors = [];
@@ -45,7 +52,7 @@ var Read2MeBackend = function () {
     }, {
         key: 'getRequestUri',
         value: function getRequestUri() {
-            return this.apiUrl + '?url=' + encodeURIComponent(this.url) + '&css_selectors=' + encodeURIComponent(this.cssSelectors.join('|')) + '&ignore_content_change=' + this._getIgnoreContentChangeAsString();
+            return this.apiUrl + '?url=' + encodeURIComponent(this.url) + '&css_selectors=' + encodeURIComponent(this.cssSelectors.join('|')) + '&ignore_content_change=' + this._getIgnoreContentChangeAsString() + '&request_source' + this.requestSource;
         }
     }, {
         key: 'get',

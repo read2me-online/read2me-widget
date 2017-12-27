@@ -1,9 +1,9 @@
 class Read2MePlayer {
-    constructor(appId, url, cssSelectors, ignoreContentChange) {
+    constructor(appId, url, cssSelectors = null, ignoreContentChange = false) {
         this.eventListeners = {};
         this.audio = new Audio();
         this.isPlaying = false;
-        this.backend = new Read2MeBackend(appId, url, cssSelectors, ignoreContentChange);
+        this.backend = new Read2MeBackend(appId, url, cssSelectors, ignoreContentChange, 'widget');
     }
 
     play() {
