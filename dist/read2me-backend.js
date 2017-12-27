@@ -52,7 +52,7 @@ var Read2MeBackend = function () {
     }, {
         key: 'getRequestUri',
         value: function getRequestUri() {
-            return this.apiUrl + '?url=' + encodeURIComponent(this.url) + '&css_selectors=' + encodeURIComponent(this.cssSelectors.join('|')) + '&ignore_content_change=' + this._getIgnoreContentChangeAsString() + '&request_source' + this.requestSource;
+            return this.apiUrl + '?url=' + encodeURIComponent(this.url) + '&css_selectors=' + encodeURIComponent(this.cssSelectors.join('|')) + '&ignore_content_change=' + this._getIgnoreContentChangeAsString() + '&request_source=' + this.requestSource;
         }
     }, {
         key: 'get',

@@ -48,7 +48,7 @@ class Read2MeBackend {
             '?url=' + encodeURIComponent(this.url) +
             '&css_selectors=' + encodeURIComponent(this.cssSelectors.join('|')) +
             '&ignore_content_change=' + this._getIgnoreContentChangeAsString() +
-            '&request_source' + this.requestSource;
+            '&request_source=' + this.requestSource;
     }
 
     get(audioFoundCallback, audioNotFoundCallback, errorCallback) {
