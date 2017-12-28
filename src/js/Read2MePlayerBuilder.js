@@ -22,7 +22,7 @@ class Read2MePlayerBuilder {
         ignoreContentChange = this._booleanStringToBoolean(ignoreContentChange);
 
         const player = new Read2MePlayer(appId, url, cssSelectors, ignoreContentChange);
-        player.render();
+        player.makeApiCalls();
     }
 
     static _cssSelectorsStringToArray(cssSelectors) {

@@ -182,8 +182,8 @@ var Read2MePlayer = function () {
             delete this.eventListeners[event];
         }
     }, {
-        key: 'render',
-        value: function render() {
+        key: 'makeApiCalls',
+        value: function makeApiCalls() {
             var _this = this;
 
             this.backend.get(
@@ -245,7 +245,7 @@ var Read2MePlayerBuilder = function () {
             ignoreContentChange = this._booleanStringToBoolean(ignoreContentChange);
 
             var player = new Read2MePlayer(appId, url, cssSelectors, ignoreContentChange);
-            player.render();
+            player.makeApiCalls();
         }
     }, {
         key: '_cssSelectorsStringToArray',

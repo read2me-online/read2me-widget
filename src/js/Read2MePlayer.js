@@ -54,7 +54,7 @@ class Read2MePlayer {
         delete this.eventListeners[event];
     }
 
-    render() {
+    makeApiCalls() {
         this.backend.get(
             // success
             (response) => {
