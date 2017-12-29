@@ -3,7 +3,16 @@
  * replaces the blueprint node with the HTML audio player and makes the player's UI elements reactive.
  */
 class Read2MeWidgetPlayer {
-    constructor(Read2MeAudioController, widgetBlueprint, url, title = '', thumbnail = null, autoplay = false, playerId = 0) {
+    constructor(
+        Read2MeAudioController,
+        widgetBlueprint,
+        url,
+        title = null,
+        thumbnail = null,
+        autoplay = false,
+        playerId = 0,
+        theme = null
+    ) {
         if (Read2MeAudioController.audio instanceof Audio === false)
             throw 'Invalid first param for Read2MeWidgetPlayer';
 
@@ -16,9 +25,12 @@ class Read2MeWidgetPlayer {
         this.thumbnail = thumbnail;
         this.autoplay = autoplay;
         this.playerId = playerId;
+        this.theme = theme;
 
         this.player = Read2MeWidgetPlayer.getTemplate();
         widgetBlueprint.parentNode.replaceChild(this.player, widgetBlueprint);
+        this.setTitle();
+        this.setThumbnail();
         this.player.classList.remove('read2me-template');
         this.instantiateSliders();
     }
@@ -61,5 +73,40 @@ class Read2MeWidgetPlayer {
                 return value + 'x';
             }
         }));
+    }
+
+    setTitle() {
+        let container = this.player.querySelector('.read2me-widget-player-title span');
+        let pageTitle = Read2MeWidgetPlayer.getPageTitle();
+
+        if (this.title !== null)
+            container.textContent = this.title;
+        else if (pageTitle !== null)
+            container.textContent = pageTitle;
+    }
+
+    setThumbnail() {
+        let container = this.player.querySelector('.read2me-widget-player-thumbnail');
+        let ogImage = Read2MeWidgetPlayer.getOgImageUrl();
+        let defaultThumbnail = 'https://d22fip447qchhd.cloudfront.net/api/widget/static/images/default-thumbnail.png';
+
+        if (this.thumbnail !== null)
+            container.setAttribute('src', this.thumbnail);
+        else if (ogImage !== null)
+            container.setAttribute('src', ogImage);
+        else
+            container.setAttribute('src', defaultThumbnail);
+    }
+
+    static getPageTitle() {
+        let title = document.querySelector('title');
+
+        return title === null ? null : title.text;
+    }
+
+    static getOgImageUrl() {
+        let tag = document.querySelector("meta[property='og:image']");
+
+        return tag === null ? null : tag.getAttribute('content');
     }
 }

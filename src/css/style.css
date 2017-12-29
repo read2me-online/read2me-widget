@@ -15,6 +15,9 @@
 .read2me-widget-player.read2me-template {
     display:none;
 }
+.read2me-widget-player .hidden {
+    display:none;
+}
 
 /**
     Tooltip code by Bootstrap: https://github.com/twbs/bootstrap/blob/v3.3.7/dist/css/bootstrap.css#L5989
@@ -67,7 +70,7 @@
     display: none;
 }
 
-.read2me-widget-player-avatar {
+.read2me-widget-player-thumbnail {
     position: absolute;
     top: -20px;
     left: 21px;

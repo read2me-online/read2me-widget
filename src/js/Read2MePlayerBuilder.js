@@ -22,6 +22,7 @@ class Read2MePlayerBuilder {
         let title = elem.getAttribute('data-title'); // @TODO
         let thumbnail = elem.getAttribute('data-thumbnail'); // @TODO
         let ignoreContentChange = elem.getAttribute('data-ignore-content-change');
+        let theme = elem.getAttribute('data-player-theme');
 
         autoplay = this._booleanStringToBoolean(autoplay);
         cssSelectors = this._cssSelectorsStringToArray(cssSelectors);
@@ -38,7 +39,8 @@ class Read2MePlayerBuilder {
                     title,
                     thumbnail,
                     autoplay,
-                    this.playerInstances.length
+                    this.playerInstances.length,
+                    theme
                 )
             );
         }, () => {

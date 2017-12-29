@@ -203,6 +203,7 @@ var Read2MePlayerBuilder = function () {
             var title = elem.getAttribute('data-title'); // @TODO
             var thumbnail = elem.getAttribute('data-thumbnail'); // @TODO
             var ignoreContentChange = elem.getAttribute('data-ignore-content-change');
+            var theme = elem.getAttribute('data-player-theme');
 
             autoplay = this._booleanStringToBoolean(autoplay);
             cssSelectors = this._cssSelectorsStringToArray(cssSelectors);
@@ -211,7 +212,7 @@ var Read2MePlayerBuilder = function () {
             var backendWrapper = new Read2MeBackendWrapper(appId, url, cssSelectors, ignoreContentChange, 'widget');
             this._makeApiCalls(backendWrapper, function (responseResult) {
                 // success
-                _this2.playerInstances.push(new Read2MeWidgetPlayer(new Read2MeAudioController(responseResult.audio_url), elem, url, title, thumbnail, autoplay, _this2.playerInstances.length));
+                _this2.playerInstances.push(new Read2MeWidgetPlayer(new Read2MeAudioController(responseResult.audio_url), elem, url, title, thumbnail, autoplay, _this2.playerInstances.length, theme));
             }, function () {
                 // error
             });
@@ -302,10 +303,11 @@ Read2MeDocumentReady(function () {
 
 var Read2MeWidgetPlayer = function () {
     function Read2MeWidgetPlayer(Read2MeAudioController, widgetBlueprint, url) {
-        var title = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
+        var title = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
         var thumbnail = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
         var autoplay = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : false;
         var playerId = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0;
+        var theme = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : null;
 
         _classCallCheck(this, Read2MeWidgetPlayer);
 
@@ -320,9 +322,12 @@ var Read2MeWidgetPlayer = function () {
         this.thumbnail = thumbnail;
         this.autoplay = autoplay;
         this.playerId = playerId;
+        this.theme = theme;
 
         this.player = Read2MeWidgetPlayer.getTemplate();
         widgetBlueprint.parentNode.replaceChild(this.player, widgetBlueprint);
+        this.setTitle();
+        this.setThumbnail();
         this.player.classList.remove('read2me-template');
         this.instantiateSliders();
     }
@@ -364,10 +369,41 @@ var Read2MeWidgetPlayer = function () {
                 }
             }));
         }
+    }, {
+        key: 'setTitle',
+        value: function setTitle() {
+            var container = this.player.querySelector('.read2me-widget-player-title span');
+            var pageTitle = Read2MeWidgetPlayer.getPageTitle();
+
+            if (this.title !== null) container.textContent = this.title;else if (pageTitle !== null) container.textContent = pageTitle;
+        }
+    }, {
+        key: 'setThumbnail',
+        value: function setThumbnail() {
+            var container = this.player.querySelector('.read2me-widget-player-thumbnail');
+            var ogImage = Read2MeWidgetPlayer.getOgImageUrl();
+            var defaultThumbnail = 'https://d22fip447qchhd.cloudfront.net/api/widget/static/images/default-thumbnail.png';
+
+            if (this.thumbnail !== null) container.setAttribute('src', this.thumbnail);else if (ogImage !== null) container.setAttribute('src', ogImage);else container.setAttribute('src', defaultThumbnail);
+        }
     }], [{
         key: 'getTemplate',
         value: function getTemplate() {
             return document.querySelector('.read2me-widget-player.read2me-template').cloneNode(true);
+        }
+    }, {
+        key: 'getPageTitle',
+        value: function getPageTitle() {
+            var title = document.querySelector('title');
+
+            return title === null ? null : title.text;
+        }
+    }, {
+        key: 'getOgImageUrl',
+        value: function getOgImageUrl() {
+            var tag = document.querySelector("meta[property='og:image']");
+
+            return tag === null ? null : tag.getAttribute('content');
         }
     }]);
 
