@@ -16,8 +16,9 @@ class Read2MeWidgetPlayer {
         if (Read2MeAudioController.audio instanceof Audio === false)
             throw 'Invalid first param for Read2MeWidgetPlayer';
 
-        // internals
-        this._sliders = [];
+        // sliders
+        this.scrubber = null;
+        this.speakingRate = null;
 
         // arguments
         this.Read2MeAudioController = Read2MeAudioController;
@@ -56,33 +57,35 @@ class Read2MeWidgetPlayer {
         let newScrubberId = scrubberId + '-' + this.playerId;
         let newSpeakingRateId = speakingRateId + '-' + this.playerId;
 
-        console.log(this.Read2MeAudioController.getDuration(), Math.floor(this.Read2MeAudioController.getDuration()).toString());
-
         // append playerId to their IDs to make them unique
         let scrubber = this.player.querySelector('#' + scrubberId);
         scrubber.setAttribute('id', newScrubberId);
         scrubber.setAttribute('data-slider-id', newScrubberId);
-        scrubber.setAttribute('data-slider-max', Math.floor(this.Read2MeAudioController.getDuration()).toString());
 
         let speakingRate = this.player.querySelector('#' + speakingRateId);
         speakingRate.setAttribute('id', newSpeakingRateId);
         speakingRate.setAttribute('data-slider-id', newSpeakingRateId);
 
-        this._sliders.push(new Slider('#' + newScrubberId, {
-            tooltip_position: 'bottom',
+        this.Read2MeAudioController.audio.addEventListener('loadedmetadata', () => {
+            scrubber.classList.remove('hidden');
+            speakingRate.classList.remove('hidden');
 
-            formatter: function (value) {
-                return value;
-            }
-        }));
+            this.scrubber = new Slider('#' + newScrubberId, {
+                tooltip_position: 'bottom',
+                formatter: function (value) {
+                    return value;
+                },
+                max: Math.round(this.Read2MeAudioController.getDuration())
+            });
 
-        this._sliders.push(new Slider('#' + newSpeakingRateId, {
-            tooltip_position: 'bottom',
+            this.speakingRate = new Slider('#' + newSpeakingRateId, {
+                tooltip_position: 'bottom',
 
-            formatter: function (value) {
-                return value + 'x';
-            }
-        }));
+                formatter: function (value) {
+                    return value + 'x';
+                }
+            });
+        });
     }
 
     setTitle() {
