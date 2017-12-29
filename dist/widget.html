@@ -795,7 +795,7 @@ var Read2MePlayerBuilder = function () {
             var backendWrapper = new Read2MeBackendWrapper(appId, url, cssSelectors, ignoreContentChange, 'widget');
             this._makeApiCalls(backendWrapper, function (responseResult) {
                 // success
-                _this2.playerInstances.push(new Read2MeWidgetPlayer(new Read2MeAudioController(responseResult.audio_url), url, title, thumbnail, autoplay));
+                _this2.playerInstances.push(new Read2MeWidgetPlayer(new Read2MeAudioController(responseResult.audio_url), elem, url, title, thumbnail, autoplay));
             }, function () {
                 // error
             });
@@ -880,20 +880,36 @@ Read2MeDocumentReady(function () {
     var playerBuilder = new Read2MePlayerBuilder();
 });
 /**
- * Takes in an instance of Read2MeAudioController and blueprint properties,
- * spawns the HTML audio player and makes its UI elements reactive.
+ * Takes in an instance of Read2MeAudioController, widget blueprint node and blueprint properties,
+ * replaces the blueprint node with the HTML audio player and makes the player's UI elements reactive.
  */
 
-var Read2MeWidgetPlayer = function Read2MeWidgetPlayer(Read2MeAudioController, url, title, thumbnail, autoplay) {
-    _classCallCheck(this, Read2MeWidgetPlayer);
+var Read2MeWidgetPlayer = function () {
+    function Read2MeWidgetPlayer(Read2MeAudioController, widgetBlueprint, url, title, thumbnail, autoplay) {
+        _classCallCheck(this, Read2MeWidgetPlayer);
 
-    if (Read2MeAudioController.audio instanceof Audio === false) throw 'Invalid first param for Read2MeWidgetPlayer';
+        if (Read2MeAudioController.audio instanceof Audio === false) throw 'Invalid first param for Read2MeWidgetPlayer';
 
-    this.url = url;
-    this.title = title;
-    this.thumbnail = thumbnail;
-    this.autoplay = autoplay;
-};
+        this.url = url;
+        this.title = title;
+        this.thumbnail = thumbnail;
+        this.autoplay = autoplay;
+
+        var template = Read2MeWidgetPlayer.getTemplateClone();
+
+        widgetBlueprint.parentNode.replaceChild(template, widgetBlueprint);
+        template.classList.remove('read2me-template');
+    }
+
+    _createClass(Read2MeWidgetPlayer, null, [{
+        key: 'getTemplateClone',
+        value: function getTemplateClone() {
+            return document.querySelector('.read2me-widget-player.read2me-template').cloneNode(true);
+        }
+    }]);
+
+    return Read2MeWidgetPlayer;
+}();
 /*! =======================================================
                       VERSION  10.0.0              
 ========================================================= */

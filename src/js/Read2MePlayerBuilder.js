@@ -33,6 +33,7 @@ class Read2MePlayerBuilder {
             this.playerInstances.push(
                 new Read2MeWidgetPlayer(
                     new Read2MeAudioController(responseResult.audio_url),
+                    elem,
                     url,
                     title,
                     thumbnail,
