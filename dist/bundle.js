@@ -186,14 +186,16 @@ var Read2MePlayerBuilder = function () {
         var cssTarget = '.read2me-widget';
         var elements = document.querySelectorAll(cssTarget);
 
-        elements.forEach(function (elem, index) {
-            _this._replaceBlueprintWithPlayer(elem, index);
+        elements.forEach(function (elem) {
+            _this._replaceBlueprintWithPlayer(elem);
         });
     }
 
     _createClass(Read2MePlayerBuilder, [{
         key: '_replaceBlueprintWithPlayer',
-        value: function _replaceBlueprintWithPlayer(elem, index) {
+        value: function _replaceBlueprintWithPlayer(elem) {
+            var _this2 = this;
+
             var appId = 2; // @TODO
             var url = elem.getAttribute('data-url');
             var autoplay = elem.getAttribute('data-autoplay'); // @TODO
@@ -209,7 +211,7 @@ var Read2MePlayerBuilder = function () {
             var backendWrapper = new Read2MeBackendWrapper(appId, url, cssSelectors, ignoreContentChange, 'widget');
             this._makeApiCalls(backendWrapper, function (responseResult) {
                 // success
-                var audioController = new Read2MeAudioController(responseResult.audio_url);
+                _this2.playerInstances.push(new Read2MeWidgetPlayer(new Read2MeAudioController(responseResult.audio_url), url, title, thumbnail, autoplay));
             }, function () {
                 // error
             });
@@ -217,6 +219,8 @@ var Read2MePlayerBuilder = function () {
     }, {
         key: '_makeApiCalls',
         value: function _makeApiCalls(backendWrapper, success, error) {
+            if (backendWrapper instanceof Read2MeBackendWrapper === false) throw 'Improper usage of _makeApiCalls, first arg must be an instance of Read2MeBackendWrapper';
+
             backendWrapper.get(
             // success
             function (response) {
@@ -232,23 +236,19 @@ var Read2MePlayerBuilder = function () {
                 },
                 // failure, unable to create audio
                 function (response) {
-                    console.warn(response);
-
-                    if (typeof error === 'function') error(response);
+                    if (typeof error === 'function') error(response);else console.warn(response);
                 });
             },
 
             // error
             function (response) {
-                console.warn(response);
-
-                if (typeof error === 'function') error(response);
+                if (typeof error === 'function') error(response);else console.warn(response);
             });
         }
     }, {
         key: '_cssSelectorsStringToArray',
         value: function _cssSelectorsStringToArray(cssSelectors) {
-            var _this2 = this;
+            var _this3 = this;
 
             if (!cssSelectors) return;
 
@@ -257,10 +257,10 @@ var Read2MePlayerBuilder = function () {
                 return selector.trim();
             });
             cssSelectors = cssSelectors.map(function (selector) {
-                return _this2._trimByChar(selector, '"');
+                return _this3._trimByChar(selector, '"');
             });
             cssSelectors = cssSelectors.map(function (selector) {
-                return _this2._trimByChar(selector, "'");
+                return _this3._trimByChar(selector, "'");
             });
 
             return cssSelectors;
@@ -295,9 +295,26 @@ var Read2MePlayerBuilder = function () {
 Read2MeDocumentReady(function () {
     var playerBuilder = new Read2MePlayerBuilder();
 });
+/**
+ * Takes in an instance of Read2MeAudioController and blueprint properties,
+ * spawns the HTML audio player and makes its UI elements reactive.
+ */
+
+var Read2MeWidgetPlayer = function Read2MeWidgetPlayer(Read2MeAudioController, url, title, thumbnail, autoplay) {
+    _classCallCheck(this, Read2MeWidgetPlayer);
+
+    if (Read2MeAudioController.audio instanceof Audio === false) throw 'Invalid first param for Read2MeWidgetPlayer';
+
+    this.url = url;
+    this.title = title;
+    this.thumbnail = thumbnail;
+    this.autoplay = autoplay;
+};
 /*! =======================================================
                       VERSION  10.0.0              
 ========================================================= */
+
+
 "use strict";var _typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterator) ? function (a) {
     return typeof a === 'undefined' ? 'undefined' : _typeof2(a);
 } : function (a) {

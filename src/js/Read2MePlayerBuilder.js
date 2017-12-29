@@ -9,12 +9,12 @@ class Read2MePlayerBuilder {
         const cssTarget = '.read2me-widget';
         const elements = document.querySelectorAll(cssTarget);
 
-        elements.forEach((elem, index) => {
-            this._replaceBlueprintWithPlayer(elem, index);
+        elements.forEach((elem) => {
+            this._replaceBlueprintWithPlayer(elem);
         });
     }
 
-    _replaceBlueprintWithPlayer(elem, index) {
+    _replaceBlueprintWithPlayer(elem) {
         let appId = 2; // @TODO
         let url = elem.getAttribute('data-url');
         let autoplay = elem.getAttribute('data-autoplay'); // @TODO
@@ -27,16 +27,27 @@ class Read2MePlayerBuilder {
         cssSelectors = this._cssSelectorsStringToArray(cssSelectors);
         ignoreContentChange = this._booleanStringToBoolean(ignoreContentChange);
 
-        const backendWrapper = new Read2MeBackendWrapper(appId, url, cssSelectors, ignoreContentChange, 'widget');
+        let backendWrapper = new Read2MeBackendWrapper(appId, url, cssSelectors, ignoreContentChange, 'widget');
         this._makeApiCalls(backendWrapper, (responseResult) => {
             // success
-            const audioController = new Read2MeAudioController(responseResult.audio_url);
+            this.playerInstances.push(
+                new Read2MeWidgetPlayer(
+                    new Read2MeAudioController(responseResult.audio_url),
+                    url,
+                    title,
+                    thumbnail,
+                    autoplay
+                )
+            );
         }, () => {
             // error
         });
     }
 
     _makeApiCalls(backendWrapper, success, error) {
+        if (backendWrapper instanceof Read2MeBackendWrapper === false)
+            throw 'Improper usage of _makeApiCalls, first arg must be an instance of Read2MeBackendWrapper';
+
         backendWrapper.get(
             // success
             (response) => {
@@ -54,20 +65,20 @@ class Read2MePlayerBuilder {
                     },
                     // failure, unable to create audio
                     (response) => {
-                        console.warn(response);
-
                         if (typeof error === 'function')
                             error(response);
+                        else
+                            console.warn(response);
                     }
                 )
             },
 
             // error
             (response) => {
-                console.warn(response);
-
                 if (typeof error === 'function')
                     error(response);
+                else
+                    console.warn(response);
             }
         );
     }
