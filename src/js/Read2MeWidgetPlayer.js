@@ -30,13 +30,15 @@ class Read2MeWidgetPlayer {
         this.theme = theme;
 
         this.player = Read2MeWidgetPlayer.getTemplate();
-        widgetBlueprint.parentNode.replaceChild(this.player, widgetBlueprint);
+        widgetBlueprint.parentNode.replaceChild(this.player, this.widgetBlueprint);
+
         this.setTitle();
         this.setThumbnail();
         this.setTheme();
         this.player.classList.remove('read2me-template');
         this.instantiateSliders();
         this.handleAutoplay();
+        this.handlePlayback();
     }
 
     static getTemplate() {
@@ -123,6 +125,35 @@ class Read2MeWidgetPlayer {
                 this.player.classList.add('preset-white');
                 break;
         }
+    }
+
+    handlePlayback() {
+        let play = this.player.querySelector('.read2me-widget-player-playback-play');
+        let pause = this.player.querySelector('.read2me-widget-player-playback-pause');
+        let replay = this.player.querySelector('.read2me-widget-player-playback-replay');
+        let container = this.player.querySelector('.read2me-widget-player-playback');
+
+        container.addEventListener('click', () => {
+            if (!play.classList.contains('hidden')) {
+                this.Read2MeAudioController.play();
+                play.classList.add('hidden');
+                pause.classList.remove('hidden');
+            } else if (!pause.classList.contains('hidden')) {
+                this.Read2MeAudioController.pause();
+                play.classList.remove('hidden');
+                pause.classList.add('hidden');
+            } else {
+                this.Read2MeAudioController.replay();
+                play.classList.remove('hidden');
+                replay.classList.add('hidden');
+            }
+        });
+
+        this.Read2MeAudioController.audio.addEventListener('ended', () => {
+            play.classList.add('hidden');
+            pause.classList.add('hidden');
+            replay.classList.remove('hidden');
+        });
     }
 
     static getPageTitle() {

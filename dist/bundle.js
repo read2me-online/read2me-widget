@@ -331,13 +331,15 @@ var Read2MeWidgetPlayer = function () {
         this.theme = theme;
 
         this.player = Read2MeWidgetPlayer.getTemplate();
-        widgetBlueprint.parentNode.replaceChild(this.player, widgetBlueprint);
+        widgetBlueprint.parentNode.replaceChild(this.player, this.widgetBlueprint);
+
         this.setTitle();
         this.setThumbnail();
         this.setTheme();
         this.player.classList.remove('read2me-template');
         this.instantiateSliders();
         this.handleAutoplay();
+        this.handlePlayback();
     }
 
     _createClass(Read2MeWidgetPlayer, [{
@@ -419,6 +421,38 @@ var Read2MeWidgetPlayer = function () {
                     this.player.classList.add('preset-white');
                     break;
             }
+        }
+    }, {
+        key: 'handlePlayback',
+        value: function handlePlayback() {
+            var _this5 = this;
+
+            var play = this.player.querySelector('.read2me-widget-player-playback-play');
+            var pause = this.player.querySelector('.read2me-widget-player-playback-pause');
+            var replay = this.player.querySelector('.read2me-widget-player-playback-replay');
+            var container = this.player.querySelector('.read2me-widget-player-playback');
+
+            container.addEventListener('click', function () {
+                if (!play.classList.contains('hidden')) {
+                    _this5.Read2MeAudioController.play();
+                    play.classList.add('hidden');
+                    pause.classList.remove('hidden');
+                } else if (!pause.classList.contains('hidden')) {
+                    _this5.Read2MeAudioController.pause();
+                    play.classList.remove('hidden');
+                    pause.classList.add('hidden');
+                } else {
+                    _this5.Read2MeAudioController.replay();
+                    play.classList.remove('hidden');
+                    replay.classList.add('hidden');
+                }
+            });
+
+            this.Read2MeAudioController.audio.addEventListener('ended', function () {
+                play.classList.add('hidden');
+                pause.classList.add('hidden');
+                replay.classList.remove('hidden');
+            });
         }
     }], [{
         key: 'getTemplate',

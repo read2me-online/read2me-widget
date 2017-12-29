@@ -452,11 +452,6 @@ svg.read2me-widget-player-playback-replay
 {
     left: 0;
 }
-svg.read2me-widget-player-playback-pause,
-svg.read2me-widget-player-playback-replay
-{
-    display: none;
-}
 .read2me-widget-player-speaking-rate-container
 {
     position: absolute;
@@ -914,13 +909,15 @@ var Read2MeWidgetPlayer = function () {
         this.theme = theme;
 
         this.player = Read2MeWidgetPlayer.getTemplate();
-        widgetBlueprint.parentNode.replaceChild(this.player, widgetBlueprint);
+        widgetBlueprint.parentNode.replaceChild(this.player, this.widgetBlueprint);
+
         this.setTitle();
         this.setThumbnail();
         this.setTheme();
         this.player.classList.remove('read2me-template');
         this.instantiateSliders();
         this.handleAutoplay();
+        this.handlePlayback();
     }
 
     _createClass(Read2MeWidgetPlayer, [{
@@ -1002,6 +999,38 @@ var Read2MeWidgetPlayer = function () {
                     this.player.classList.add('preset-white');
                     break;
             }
+        }
+    }, {
+        key: 'handlePlayback',
+        value: function handlePlayback() {
+            var _this5 = this;
+
+            var play = this.player.querySelector('.read2me-widget-player-playback-play');
+            var pause = this.player.querySelector('.read2me-widget-player-playback-pause');
+            var replay = this.player.querySelector('.read2me-widget-player-playback-replay');
+            var container = this.player.querySelector('.read2me-widget-player-playback');
+
+            container.addEventListener('click', function () {
+                if (!play.classList.contains('hidden')) {
+                    _this5.Read2MeAudioController.play();
+                    play.classList.add('hidden');
+                    pause.classList.remove('hidden');
+                } else if (!pause.classList.contains('hidden')) {
+                    _this5.Read2MeAudioController.pause();
+                    play.classList.remove('hidden');
+                    pause.classList.add('hidden');
+                } else {
+                    _this5.Read2MeAudioController.replay();
+                    play.classList.remove('hidden');
+                    replay.classList.add('hidden');
+                }
+            });
+
+            this.Read2MeAudioController.audio.addEventListener('ended', function () {
+                play.classList.add('hidden');
+                pause.classList.add('hidden');
+                replay.classList.remove('hidden');
+            });
         }
     }], [{
         key: 'getTemplate',
@@ -1435,7 +1464,7 @@ function Read2MeDocumentReady(fn) {
             <path d="M10,5.251v39.497L43.572,25L10,5.251z"></path>
         </svg>
 
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="read2me-widget-player-playback-pause">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="read2me-widget-player-playback-pause hidden">
             <g>
                 <g>
                     <rect x="16" width="8" height="24"></rect>
@@ -1444,7 +1473,7 @@ function Read2MeDocumentReady(fn) {
             </g>
         </svg>
 
-        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="read2me-widget-player-playback-replay">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="read2me-widget-player-playback-replay hidden">
             <path d="M0 0h24v24H0z" fill="none"></path>
             <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"></path>
         </svg>
