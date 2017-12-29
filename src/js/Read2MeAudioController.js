@@ -1,8 +1,7 @@
 class Read2MeAudioController {
     constructor(audioFileUrl) {
-        this.audio = new Audio();
+        this.audio = new Audio(audioFileUrl);
         this.isPlaying = false;
-        this.audio.src = audioFileUrl;
     }
 
     play() {
@@ -43,5 +42,9 @@ class Read2MeAudioController {
 
     getPlaySpeed() {
         return this.audio.playbackRate;
+    }
+
+    getDuration() {
+        return this.audio.duration;
     }
 }

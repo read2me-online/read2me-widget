@@ -12,9 +12,8 @@ var Read2MeAudioController = function () {
     function Read2MeAudioController(audioFileUrl) {
         _classCallCheck(this, Read2MeAudioController);
 
-        this.audio = new Audio();
+        this.audio = new Audio(audioFileUrl);
         this.isPlaying = false;
-        this.audio.src = audioFileUrl;
     }
 
     _createClass(Read2MeAudioController, [{
@@ -65,6 +64,11 @@ var Read2MeAudioController = function () {
         key: 'getPlaySpeed',
         value: function getPlaySpeed() {
             return this.audio.playbackRate;
+        }
+    }, {
+        key: 'getDuration',
+        value: function getDuration() {
+            return this.audio.duration;
         }
     }]);
 
@@ -317,6 +321,8 @@ var Read2MeWidgetPlayer = function () {
         this._sliders = [];
 
         // arguments
+        this.Read2MeAudioController = Read2MeAudioController;
+        this.widgetBlueprint = widgetBlueprint;
         this.url = url;
         this.title = title;
         this.thumbnail = thumbnail;
@@ -328,8 +334,10 @@ var Read2MeWidgetPlayer = function () {
         widgetBlueprint.parentNode.replaceChild(this.player, widgetBlueprint);
         this.setTitle();
         this.setThumbnail();
+        this.setTheme();
         this.player.classList.remove('read2me-template');
         this.instantiateSliders();
+        this.handleAutoplay();
     }
 
     _createClass(Read2MeWidgetPlayer, [{
@@ -344,10 +352,13 @@ var Read2MeWidgetPlayer = function () {
             var newScrubberId = scrubberId + '-' + this.playerId;
             var newSpeakingRateId = speakingRateId + '-' + this.playerId;
 
+            console.log(this.Read2MeAudioController.getDuration(), Math.floor(this.Read2MeAudioController.getDuration()).toString());
+
             // append playerId to their IDs to make them unique
             var scrubber = this.player.querySelector('#' + scrubberId);
             scrubber.setAttribute('id', newScrubberId);
             scrubber.setAttribute('data-slider-id', newScrubberId);
+            scrubber.setAttribute('data-slider-max', Math.floor(this.Read2MeAudioController.getDuration()).toString());
 
             var speakingRate = this.player.querySelector('#' + speakingRateId);
             speakingRate.setAttribute('id', newSpeakingRateId);
@@ -385,6 +396,29 @@ var Read2MeWidgetPlayer = function () {
             var defaultThumbnail = 'https://d22fip447qchhd.cloudfront.net/api/widget/static/images/default-thumbnail.png';
 
             if (this.thumbnail !== null) container.setAttribute('src', this.thumbnail);else if (ogImage !== null) container.setAttribute('src', ogImage);else container.setAttribute('src', defaultThumbnail);
+        }
+    }, {
+        key: 'handleAutoplay',
+        value: function handleAutoplay() {
+            var _this4 = this;
+
+            if (!this.autoplay) return;
+
+            this.Read2MeAudioController.audio.addEventListener('canplay', function () {
+                _this4.Read2MeAudioController.audio.play();
+            });
+        }
+    }, {
+        key: 'setTheme',
+        value: function setTheme() {
+            switch (this.theme) {
+                case 'blue':
+                    this.player.classList.add('preset-blue');
+                    break;
+                case 'white':
+                    this.player.classList.add('preset-white');
+                    break;
+            }
         }
     }], [{
         key: 'getTemplate',

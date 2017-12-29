@@ -20,6 +20,8 @@ class Read2MeWidgetPlayer {
         this._sliders = [];
 
         // arguments
+        this.Read2MeAudioController = Read2MeAudioController;
+        this.widgetBlueprint = widgetBlueprint;
         this.url = url;
         this.title = title;
         this.thumbnail = thumbnail;
@@ -31,8 +33,10 @@ class Read2MeWidgetPlayer {
         widgetBlueprint.parentNode.replaceChild(this.player, widgetBlueprint);
         this.setTitle();
         this.setThumbnail();
+        this.setTheme();
         this.player.classList.remove('read2me-template');
         this.instantiateSliders();
+        this.handleAutoplay();
     }
 
     static getTemplate() {
@@ -49,10 +53,13 @@ class Read2MeWidgetPlayer {
         let newScrubberId = scrubberId + '-' + this.playerId;
         let newSpeakingRateId = speakingRateId + '-' + this.playerId;
 
+        console.log(this.Read2MeAudioController.getDuration(), Math.floor(this.Read2MeAudioController.getDuration()).toString());
+
         // append playerId to their IDs to make them unique
         let scrubber = this.player.querySelector('#' + scrubberId);
         scrubber.setAttribute('id', newScrubberId);
         scrubber.setAttribute('data-slider-id', newScrubberId);
+        scrubber.setAttribute('data-slider-max', Math.floor(this.Read2MeAudioController.getDuration()).toString());
 
         let speakingRate = this.player.querySelector('#' + speakingRateId);
         speakingRate.setAttribute('id', newSpeakingRateId);
@@ -96,6 +103,26 @@ class Read2MeWidgetPlayer {
             container.setAttribute('src', ogImage);
         else
             container.setAttribute('src', defaultThumbnail);
+    }
+
+    handleAutoplay() {
+        if (!this.autoplay)
+            return;
+
+        this.Read2MeAudioController.audio.addEventListener('canplay', () => {
+            this.Read2MeAudioController.audio.play();
+        });
+    }
+
+    setTheme() {
+        switch (this.theme) {
+            case 'blue':
+                this.player.classList.add('preset-blue');
+                break;
+            case 'white':
+                this.player.classList.add('preset-white');
+                break;
+        }
     }
 
     static getPageTitle() {
