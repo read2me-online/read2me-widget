@@ -211,7 +211,7 @@ var Read2MePlayerBuilder = function () {
             var backendWrapper = new Read2MeBackendWrapper(appId, url, cssSelectors, ignoreContentChange, 'widget');
             this._makeApiCalls(backendWrapper, function (responseResult) {
                 // success
-                _this2.playerInstances.push(new Read2MeWidgetPlayer(new Read2MeAudioController(responseResult.audio_url), elem, url, title, thumbnail, autoplay));
+                _this2.playerInstances.push(new Read2MeWidgetPlayer(new Read2MeAudioController(responseResult.audio_url), elem, url, title, thumbnail, autoplay, _this2.playerInstances.length));
             }, function () {
                 // error
             });
@@ -301,25 +301,72 @@ Read2MeDocumentReady(function () {
  */
 
 var Read2MeWidgetPlayer = function () {
-    function Read2MeWidgetPlayer(Read2MeAudioController, widgetBlueprint, url, title, thumbnail, autoplay) {
+    function Read2MeWidgetPlayer(Read2MeAudioController, widgetBlueprint, url) {
+        var title = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
+        var thumbnail = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
+        var autoplay = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : false;
+        var playerId = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0;
+
         _classCallCheck(this, Read2MeWidgetPlayer);
 
         if (Read2MeAudioController.audio instanceof Audio === false) throw 'Invalid first param for Read2MeWidgetPlayer';
 
+        // internals
+        this._sliders = [];
+
+        // arguments
         this.url = url;
         this.title = title;
         this.thumbnail = thumbnail;
         this.autoplay = autoplay;
+        this.playerId = playerId;
 
-        var template = Read2MeWidgetPlayer.getTemplateClone();
-
-        widgetBlueprint.parentNode.replaceChild(template, widgetBlueprint);
-        template.classList.remove('read2me-template');
+        this.player = Read2MeWidgetPlayer.getTemplate();
+        widgetBlueprint.parentNode.replaceChild(this.player, widgetBlueprint);
+        this.player.classList.remove('read2me-template');
+        this.instantiateSliders();
     }
 
-    _createClass(Read2MeWidgetPlayer, null, [{
-        key: 'getTemplateClone',
-        value: function getTemplateClone() {
+    _createClass(Read2MeWidgetPlayer, [{
+        key: 'instantiateSliders',
+        value: function instantiateSliders() {
+            // make ID and data-slider-id attributes unique for scrubber and speaking rate inputs
+            // scrubber's node id: #read2me-widget-scrubber-player
+            // speaking rate's node id: #read2me-widget-player-speaking-rate
+            var scrubberId = 'read2me-widget-scrubber-player';
+            var speakingRateId = 'read2me-widget-player-speaking-rate';
+
+            var newScrubberId = scrubberId + '-' + this.playerId;
+            var newSpeakingRateId = speakingRateId + '-' + this.playerId;
+
+            // append playerId to their IDs to make them unique
+            var scrubber = this.player.querySelector('#' + scrubberId);
+            scrubber.setAttribute('id', newScrubberId);
+            scrubber.setAttribute('data-slider-id', newScrubberId);
+
+            var speakingRate = this.player.querySelector('#' + speakingRateId);
+            speakingRate.setAttribute('id', newSpeakingRateId);
+            speakingRate.setAttribute('data-slider-id', newSpeakingRateId);
+
+            this._sliders.push(new Slider('#' + newScrubberId, {
+                tooltip_position: 'bottom',
+
+                formatter: function formatter(value) {
+                    return value;
+                }
+            }));
+
+            this._sliders.push(new Slider('#' + newSpeakingRateId, {
+                tooltip_position: 'bottom',
+
+                formatter: function formatter(value) {
+                    return value + 'x';
+                }
+            }));
+        }
+    }], [{
+        key: 'getTemplate',
+        value: function getTemplate() {
             return document.querySelector('.read2me-widget-player.read2me-template').cloneNode(true);
         }
     }]);

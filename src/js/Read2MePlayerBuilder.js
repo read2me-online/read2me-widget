@@ -37,7 +37,8 @@ class Read2MePlayerBuilder {
                     url,
                     title,
                     thumbnail,
-                    autoplay
+                    autoplay,
+                    this.playerInstances.length
                 )
             );
         }, () => {
