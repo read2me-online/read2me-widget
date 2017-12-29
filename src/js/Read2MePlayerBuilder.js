@@ -1,14 +1,20 @@
+/**
+ * Looks for plug n' play widget blueprints and replaces them with
+ * an actual interactive HTML player.
+ */
+
 class Read2MePlayerBuilder {
     constructor() {
+        this.playerInstances = [];
         const cssTarget = '.read2me-widget';
         const elements = document.querySelectorAll(cssTarget);
 
-        elements.forEach((elem) => {
-            Read2MePlayerBuilder._replaceBlueprintWithPlayer(elem);
+        elements.forEach((elem, index) => {
+            this._replaceBlueprintWithPlayer(elem, index);
         });
     }
 
-    static _replaceBlueprintWithPlayer(elem) {
+    _replaceBlueprintWithPlayer(elem, index) {
         let appId = 2; // @TODO
         let url = elem.getAttribute('data-url');
         let autoplay = elem.getAttribute('data-autoplay'); // @TODO
@@ -21,11 +27,52 @@ class Read2MePlayerBuilder {
         cssSelectors = this._cssSelectorsStringToArray(cssSelectors);
         ignoreContentChange = this._booleanStringToBoolean(ignoreContentChange);
 
-        const player = new Read2MePlayer(appId, url, cssSelectors, ignoreContentChange);
-        player.makeApiCalls();
+        const backendWrapper = new Read2MeBackendWrapper(appId, url, cssSelectors, ignoreContentChange, 'widget');
+        this._makeApiCalls(backendWrapper, (responseResult) => {
+            // success
+            const audioController = new Read2MeAudioController(responseResult.audio_url);
+        }, () => {
+            // error
+        });
     }
 
-    static _cssSelectorsStringToArray(cssSelectors) {
+    _makeApiCalls(backendWrapper, success, error) {
+        backendWrapper.get(
+            // success
+            (response) => {
+                if (typeof success === 'function')
+                    success(response.result);
+            },
+
+            // audio not found, create the audio
+            () => {
+                backendWrapper.create(
+                    // audio created
+                    (response) => {
+                        if (typeof success === 'function')
+                            success(response.result);
+                    },
+                    // failure, unable to create audio
+                    (response) => {
+                        console.warn(response);
+
+                        if (typeof error === 'function')
+                            error(response);
+                    }
+                )
+            },
+
+            // error
+            (response) => {
+                console.warn(response);
+
+                if (typeof error === 'function')
+                    error(response);
+            }
+        );
+    }
+
+    _cssSelectorsStringToArray(cssSelectors) {
         if (!cssSelectors)
             return;
 
@@ -37,7 +84,7 @@ class Read2MePlayerBuilder {
         return cssSelectors;
     }
 
-    static _booleanStringToBoolean(value) {
+    _booleanStringToBoolean(value) {
         if (value === 'true')
             value = true;
         else if (value === 'false')
@@ -49,7 +96,7 @@ class Read2MePlayerBuilder {
     }
 
     // https://stackoverflow.com/a/43333491/1325575
-    static _trimByChar(string, character) {
+    _trimByChar(string, character) {
         const first = [...string].findIndex(char => char !== character);
         const last = [...string].reverse().findIndex(char => char !== character);
 

@@ -8,13 +8,76 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Read2MeBackend = function () {
-    function Read2MeBackend(appId, url) {
+var Read2MeAudioController = function () {
+    function Read2MeAudioController(audioFileUrl) {
+        _classCallCheck(this, Read2MeAudioController);
+
+        this.audio = new Audio();
+        this.isPlaying = false;
+        this.audio.src = audioFileUrl;
+    }
+
+    _createClass(Read2MeAudioController, [{
+        key: 'play',
+        value: function play() {
+            this.audio.play();
+            this.isPlaying = true;
+        }
+    }, {
+        key: 'pause',
+        value: function pause() {
+            this.audio.pause();
+            this.isPlaying = false;
+        }
+    }, {
+        key: 'stop',
+        value: function stop() {
+            this.setCurrentTime(0);
+            this.isPlaying = false;
+        }
+    }, {
+        key: 'replay',
+        value: function replay() {
+            this.setCurrentTime(0);
+            this.play();
+        }
+    }, {
+        key: 'isPlaying',
+        value: function isPlaying() {
+            return this.isPlaying;
+        }
+    }, {
+        key: 'setCurrentTime',
+        value: function setCurrentTime(time) {
+            this.audio.currentTime = time;
+        }
+    }, {
+        key: 'getCurrentTime',
+        value: function getCurrentTime() {
+            return this.audio.getCurrentTime;
+        }
+    }, {
+        key: 'setPlaySpeed',
+        value: function setPlaySpeed(speed) {
+            this.audio.playbackRate = speed;
+        }
+    }, {
+        key: 'getPlaySpeed',
+        value: function getPlaySpeed() {
+            return this.audio.playbackRate;
+        }
+    }]);
+
+    return Read2MeAudioController;
+}();
+
+var Read2MeBackendWrapper = function () {
+    function Read2MeBackendWrapper(appId, url) {
         var cssSelectors = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
         var ignoreContentChange = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
         var requestSource = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'custom';
 
-        _classCallCheck(this, Read2MeBackend);
+        _classCallCheck(this, Read2MeBackendWrapper);
 
         this.apiUrl = 'https://api-dev.read2me.online/convert/1.0.0/webpage/'; //@TODO change
 
@@ -46,7 +109,7 @@ var Read2MeBackend = function () {
         if (typeof this.ignoreContentChange === 'undefined' || this.ignoreContentChange === null) this.ignoreContentChange = false;
     }
 
-    _createClass(Read2MeBackend, [{
+    _createClass(Read2MeBackendWrapper, [{
         key: '_getIgnoreContentChangeAsString',
         value: function _getIgnoreContentChangeAsString() {
             return this.ignoreContentChange ? 'true' : 'false';
@@ -106,132 +169,31 @@ var Read2MeBackend = function () {
         }
     }]);
 
-    return Read2MeBackend;
+    return Read2MeBackendWrapper;
 }();
-
-var Read2MePlayer = function () {
-    function Read2MePlayer(appId, url) {
-        var cssSelectors = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-        var ignoreContentChange = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
-
-        _classCallCheck(this, Read2MePlayer);
-
-        this.eventListeners = {};
-        this.audio = new Audio();
-        this.isPlaying = false;
-        this.backend = new Read2MeBackend(appId, url, cssSelectors, ignoreContentChange, 'widget');
-    }
-
-    _createClass(Read2MePlayer, [{
-        key: 'play',
-        value: function play() {
-            this.audio.play();
-            this.isPlaying = true;
-        }
-    }, {
-        key: 'pause',
-        value: function pause() {
-            this.audio.pause();
-            this.isPlaying = false;
-        }
-    }, {
-        key: 'stop',
-        value: function stop() {
-            this.setCurrentTime(0);
-            this.isPlaying = false;
-        }
-    }, {
-        key: 'replay',
-        value: function replay() {
-            this.setCurrentTime(0);
-            this.play();
-        }
-    }, {
-        key: 'isPlaying',
-        value: function isPlaying() {
-            return this.isPlaying;
-        }
-    }, {
-        key: 'setCurrentTime',
-        value: function setCurrentTime(time) {
-            this.audio.currentTime = time;
-        }
-    }, {
-        key: 'getCurrentTime',
-        value: function getCurrentTime() {
-            return this.audio.getCurrentTime;
-        }
-    }, {
-        key: 'setPlaySpeed',
-        value: function setPlaySpeed(speed) {
-            this.audio.playbackRate = speed;
-        }
-    }, {
-        key: 'getPlaySpeed',
-        value: function getPlaySpeed() {
-            return this.audio.playbackRate;
-        }
-    }, {
-        key: 'addEventListener',
-        value: function addEventListener(event, callback) {
-            this.eventListeners[event] = callback;
-        }
-    }, {
-        key: 'removeEventListener',
-        value: function removeEventListener(event) {
-            delete this.eventListeners[event];
-        }
-    }, {
-        key: 'makeApiCalls',
-        value: function makeApiCalls() {
-            var _this = this;
-
-            this.backend.get(
-            // success
-            function (response) {
-                _this.audio.src = response.result.audio_url;
-            },
-
-            // audio not found, create the audio
-            function () {
-                _this.backend.create(
-                // audio created
-                function (response) {
-                    _this.audio.src = response.result.audio_url;
-                },
-                // failure, unable to create audio
-                function (response) {
-                    console.warn(response);
-                });
-            },
-
-            // error
-            function (response) {
-                console.warn(response);
-            });
-
-            if (typeof this.eventListeners['ready'] === 'function') this.eventListeners['ready']();
-        }
-    }]);
-
-    return Read2MePlayer;
-}();
+/**
+ * Looks for plug n' play widget blueprints and replaces them with
+ * an actual interactive HTML player.
+ */
 
 var Read2MePlayerBuilder = function () {
     function Read2MePlayerBuilder() {
+        var _this = this;
+
         _classCallCheck(this, Read2MePlayerBuilder);
 
+        this.playerInstances = [];
         var cssTarget = '.read2me-widget';
         var elements = document.querySelectorAll(cssTarget);
 
-        elements.forEach(function (elem) {
-            Read2MePlayerBuilder._replaceBlueprintWithPlayer(elem);
+        elements.forEach(function (elem, index) {
+            _this._replaceBlueprintWithPlayer(elem, index);
         });
     }
 
-    _createClass(Read2MePlayerBuilder, null, [{
+    _createClass(Read2MePlayerBuilder, [{
         key: '_replaceBlueprintWithPlayer',
-        value: function _replaceBlueprintWithPlayer(elem) {
+        value: function _replaceBlueprintWithPlayer(elem, index) {
             var appId = 2; // @TODO
             var url = elem.getAttribute('data-url');
             var autoplay = elem.getAttribute('data-autoplay'); // @TODO
@@ -244,8 +206,44 @@ var Read2MePlayerBuilder = function () {
             cssSelectors = this._cssSelectorsStringToArray(cssSelectors);
             ignoreContentChange = this._booleanStringToBoolean(ignoreContentChange);
 
-            var player = new Read2MePlayer(appId, url, cssSelectors, ignoreContentChange);
-            player.makeApiCalls();
+            var backendWrapper = new Read2MeBackendWrapper(appId, url, cssSelectors, ignoreContentChange, 'widget');
+            this._makeApiCalls(backendWrapper, function (responseResult) {
+                // success
+                var audioController = new Read2MeAudioController(responseResult.audio_url);
+            }, function () {
+                // error
+            });
+        }
+    }, {
+        key: '_makeApiCalls',
+        value: function _makeApiCalls(backendWrapper, success, error) {
+            backendWrapper.get(
+            // success
+            function (response) {
+                if (typeof success === 'function') success(response.result);
+            },
+
+            // audio not found, create the audio
+            function () {
+                backendWrapper.create(
+                // audio created
+                function (response) {
+                    if (typeof success === 'function') success(response.result);
+                },
+                // failure, unable to create audio
+                function (response) {
+                    console.warn(response);
+
+                    if (typeof error === 'function') error(response);
+                });
+            },
+
+            // error
+            function (response) {
+                console.warn(response);
+
+                if (typeof error === 'function') error(response);
+            });
         }
     }, {
         key: '_cssSelectorsStringToArray',
