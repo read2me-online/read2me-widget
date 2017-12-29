@@ -29,6 +29,12 @@ class Read2MeAudioController {
     }
 
     setCurrentTime(time) {
+        if (time < 0)
+            time = 0;
+
+        if (time > this.getDuration())
+            time = this.getDuration();
+
         this.audio.currentTime = time;
     }
 
@@ -46,5 +52,23 @@ class Read2MeAudioController {
 
     getDuration() {
         return this.audio.duration;
+    }
+
+    rewindForXSeconds(x) {
+        let result = this.audio.currentTime - x;
+
+        if (result < 0)
+            result = 0;
+
+        this.audio.currentTime = result;
+    }
+
+    forwardForXSeconds(x) {
+        let result = this.audio.currentTime + x;
+
+        if (result > this.getDuration())
+            result = this.getDuration();
+
+        this.audio.currentTime = result;
     }
 }

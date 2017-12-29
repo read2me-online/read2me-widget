@@ -48,6 +48,10 @@ var Read2MeAudioController = function () {
     }, {
         key: 'setCurrentTime',
         value: function setCurrentTime(time) {
+            if (time < 0) time = 0;
+
+            if (time > this.getDuration()) time = this.getDuration();
+
             this.audio.currentTime = time;
         }
     }, {
@@ -69,6 +73,24 @@ var Read2MeAudioController = function () {
         key: 'getDuration',
         value: function getDuration() {
             return this.audio.duration;
+        }
+    }, {
+        key: 'rewindForXSeconds',
+        value: function rewindForXSeconds(x) {
+            var result = this.audio.currentTime - x;
+
+            if (result < 0) result = 0;
+
+            this.audio.currentTime = result;
+        }
+    }, {
+        key: 'forwardForXSeconds',
+        value: function forwardForXSeconds(x) {
+            var result = this.audio.currentTime + x;
+
+            if (result > this.getDuration()) result = this.getDuration();
+
+            this.audio.currentTime = result;
         }
     }]);
 
@@ -340,6 +362,7 @@ var Read2MeWidgetPlayer = function () {
         this.instantiateSliders();
         this.handleAutoplay();
         this.handlePlayback();
+        this.handleQuickControls();
     }
 
     _createClass(Read2MeWidgetPlayer, [{
@@ -443,8 +466,8 @@ var Read2MeWidgetPlayer = function () {
                     pause.classList.add('hidden');
                 } else {
                     _this5.Read2MeAudioController.replay();
-                    play.classList.remove('hidden');
                     replay.classList.add('hidden');
+                    pause.classList.remove('hidden');
                 }
             });
 
@@ -452,6 +475,22 @@ var Read2MeWidgetPlayer = function () {
                 play.classList.add('hidden');
                 pause.classList.add('hidden');
                 replay.classList.remove('hidden');
+            });
+        }
+    }, {
+        key: 'handleQuickControls',
+        value: function handleQuickControls() {
+            var _this6 = this;
+
+            var rewind = this.player.querySelector('.read2me-widget-rewind');
+            var forward = this.player.querySelector('.read2me-widget-forward');
+
+            rewind.addEventListener('click', function () {
+                _this6.Read2MeAudioController.rewindForXSeconds(10);
+            });
+
+            forward.addEventListener('click', function () {
+                _this6.Read2MeAudioController.forwardForXSeconds(10);
             });
         }
     }], [{

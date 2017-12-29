@@ -39,6 +39,7 @@ class Read2MeWidgetPlayer {
         this.instantiateSliders();
         this.handleAutoplay();
         this.handlePlayback();
+        this.handleQuickControls();
     }
 
     static getTemplate() {
@@ -144,8 +145,8 @@ class Read2MeWidgetPlayer {
                 pause.classList.add('hidden');
             } else {
                 this.Read2MeAudioController.replay();
-                play.classList.remove('hidden');
                 replay.classList.add('hidden');
+                pause.classList.remove('hidden');
             }
         });
 
@@ -153,6 +154,19 @@ class Read2MeWidgetPlayer {
             play.classList.add('hidden');
             pause.classList.add('hidden');
             replay.classList.remove('hidden');
+        });
+    }
+
+    handleQuickControls() {
+        let rewind = this.player.querySelector('.read2me-widget-rewind');
+        let forward = this.player.querySelector('.read2me-widget-forward');
+
+        rewind.addEventListener('click', () => {
+            this.Read2MeAudioController.rewindForXSeconds(10);
+        });
+
+        forward.addEventListener('click', () => {
+            this.Read2MeAudioController.forwardForXSeconds(10);
         });
     }
 
