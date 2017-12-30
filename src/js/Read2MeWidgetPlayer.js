@@ -14,7 +14,7 @@ class Read2MeWidgetPlayer {
         this.playerId = playerId;
         this.theme = theme;
 
-        this.player = Read2MeWidgetPlayer.getTemplate();
+        this.player = Read2MeHelpers.getWidgetTemplate();
         this.playbackContainer = this.player.querySelector('.read2me-widget-player-playback');
         this.loader = this.player.querySelector('.read2me-widget-loader');
         widgetBlueprint.parentNode.replaceChild(this.player, this.widgetBlueprint);
@@ -46,10 +46,6 @@ class Read2MeWidgetPlayer {
         this.handleSpeakingRateChange();
         this.hideLoader();
         this.removePlaybackBufferingStyles();
-    }
-
-    static getTemplate() {
-        return document.querySelector('.read2me-widget-player.read2me-template').cloneNode(true);
     }
 
     instantiateSliders() {

@@ -436,6 +436,11 @@ var Read2MeHelpers = function () {
 
             return tag === null ? null : tag.getAttribute('content');
         }
+    }, {
+        key: "getWidgetTemplate",
+        value: function getWidgetTemplate() {
+            return document.querySelector('.read2me-widget-player.read2me-template').cloneNode(true);
+        }
     }]);
 
     return Read2MeHelpers;
@@ -543,21 +548,6 @@ var Read2MeBackendWrapper = function () {
 
         this.apiUrl = 'https://api-dev.read2me.online/convert/1.0.0/webpage/'; //@TODO change
 
-        // check for illegal params
-        if (typeof appId === 'undefined') throw 'First param to Read2MePlayer must be an App Id.';
-
-        if (typeof appId !== 'number') throw 'Public API key must be a number.';
-
-        if (typeof url !== 'string') throw 'Second param to Read2MePlayer (url) must be a string.';
-
-        if (url.length === 0) throw 'url must not be empty';
-
-        if (typeof cssSelectors !== 'undefined' && cssSelectors !== null && (typeof cssSelectors === "undefined" ? "undefined" : _typeof2(cssSelectors)) !== 'object') throw 'Third param to Read2MePlayer (cssSelectors) can be omitted, null or array.';
-
-        if (typeof ignoreContentChange !== 'undefined' && ignoreContentChange !== null && typeof ignoreContentChange !== 'boolean') throw 'Fourth param to Read2MePlayer (ignoreContentChange) can be omitted, null or a boolean.';
-
-        if (!requestSource || typeof requestSource !== 'string') throw 'Fifth param to Read2MeBackend must be a string';
-
         // set params as object properties
         this.appId = appId;
         this.url = url;
@@ -565,13 +555,33 @@ var Read2MeBackendWrapper = function () {
         this.ignoreContentChange = ignoreContentChange;
         this.requestSource = requestSource;
 
-        // normalize certain params
-        if (typeof this.cssSelectors === 'undefined' || this.cssSelectors === null) this.cssSelectors = [];
-
-        if (typeof this.ignoreContentChange === 'undefined' || this.ignoreContentChange === null) this.ignoreContentChange = false;
+        this._validateParams();
+        this._normaliseParams();
     }
 
     _createClass(Read2MeBackendWrapper, [{
+        key: "_validateParams",
+        value: function _validateParams() {
+            if (typeof this.appId === 'undefined') throw 'First param to Read2MePlayer must be an App Id.';
+
+            if (typeof this.appId !== 'number') throw 'Public API key must be a number.';
+
+            if (typeof this.url !== 'string') throw 'Second param to Read2MePlayer (url) must be a string.';
+
+            if (this.url.length === 0) throw 'url must not be empty';
+
+            if (this.cssSelectors !== null && _typeof2(this.cssSelectors) !== 'object') throw 'Third param to Read2MePlayer (cssSelectors) can be null or array.';
+
+            if (typeof this.ignoreContentChange !== 'boolean') throw 'Fourth param to Read2MePlayer (ignoreContentChange) must be a boolean.';
+
+            if (typeof this.requestSource !== 'string') throw 'Fifth param to Read2MeBackend must be a string';
+        }
+    }, {
+        key: "_normaliseParams",
+        value: function _normaliseParams() {
+            if (typeof this.cssSelectors === 'undefined' || this.cssSelectors === null) this.cssSelectors = [];
+        }
+    }, {
         key: "_getIgnoreContentChangeAsString",
         value: function _getIgnoreContentChangeAsString() {
             return this.ignoreContentChange ? 'true' : 'false';
@@ -658,7 +668,7 @@ var Read2MeWidgetPlayer = function () {
         this.playerId = playerId;
         this.theme = theme;
 
-        this.player = Read2MeWidgetPlayer.getTemplate();
+        this.player = Read2MeHelpers.getWidgetTemplate();
         this.playbackContainer = this.player.querySelector('.read2me-widget-player-playback');
         this.loader = this.player.querySelector('.read2me-widget-loader');
         widgetBlueprint.parentNode.replaceChild(this.player, this.widgetBlueprint);
@@ -900,11 +910,6 @@ var Read2MeWidgetPlayer = function () {
         key: "removePlaybackBufferingStyles",
         value: function removePlaybackBufferingStyles() {
             this.playbackContainer.classList.remove('read2me-playback-buffering');
-        }
-    }], [{
-        key: "getTemplate",
-        value: function getTemplate() {
-            return document.querySelector('.read2me-widget-player.read2me-template').cloneNode(true);
         }
     }]);
 

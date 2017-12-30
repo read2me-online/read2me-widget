@@ -2,28 +2,6 @@ class Read2MeBackendWrapper {
     constructor(appId, url, cssSelectors = null, ignoreContentChange = false, requestSource = 'custom') {
         this.apiUrl = 'https://api-dev.read2me.online/convert/1.0.0/webpage/'; //@TODO change
 
-        // check for illegal params
-        if (typeof appId === 'undefined')
-            throw 'First param to Read2MePlayer must be an App Id.';
-
-        if (typeof appId !== 'number')
-            throw 'Public API key must be a number.';
-
-        if (typeof url !== 'string')
-            throw 'Second param to Read2MePlayer (url) must be a string.';
-
-        if (url.length === 0)
-            throw 'url must not be empty';
-
-        if (typeof cssSelectors !== 'undefined' && cssSelectors !== null && typeof cssSelectors !== 'object')
-            throw 'Third param to Read2MePlayer (cssSelectors) can be omitted, null or array.';
-
-        if (typeof ignoreContentChange !== 'undefined' && ignoreContentChange !== null && typeof ignoreContentChange !== 'boolean')
-            throw 'Fourth param to Read2MePlayer (ignoreContentChange) can be omitted, null or a boolean.';
-
-        if (!requestSource || typeof requestSource !== 'string')
-            throw 'Fifth param to Read2MeBackend must be a string';
-
         // set params as object properties
         this.appId = appId;
         this.url = url;
@@ -31,12 +9,36 @@ class Read2MeBackendWrapper {
         this.ignoreContentChange = ignoreContentChange;
         this.requestSource = requestSource;
 
-        // normalize certain params
+        this._validateParams();
+        this._normaliseParams();
+    }
+
+    _validateParams() {
+        if (typeof this.appId === 'undefined')
+            throw 'First param to Read2MePlayer must be an App Id.';
+
+        if (typeof this.appId !== 'number')
+            throw 'Public API key must be a number.';
+
+        if (typeof this.url !== 'string')
+            throw 'Second param to Read2MePlayer (url) must be a string.';
+
+        if (this.url.length === 0)
+            throw 'url must not be empty';
+
+        if (this.cssSelectors !== null && typeof this.cssSelectors !== 'object')
+            throw 'Third param to Read2MePlayer (cssSelectors) can be null or array.';
+
+        if (typeof this.ignoreContentChange !== 'boolean')
+            throw 'Fourth param to Read2MePlayer (ignoreContentChange) must be a boolean.';
+
+        if (typeof this.requestSource !== 'string')
+            throw 'Fifth param to Read2MeBackend must be a string';
+    }
+
+    _normaliseParams() {
         if (typeof this.cssSelectors === 'undefined' || this.cssSelectors === null)
             this.cssSelectors = [];
-
-        if (typeof this.ignoreContentChange === 'undefined' || this.ignoreContentChange === null)
-            this.ignoreContentChange = false;
     }
 
     _getIgnoreContentChangeAsString() {

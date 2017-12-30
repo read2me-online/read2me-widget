@@ -53,4 +53,8 @@ class Read2MeHelpers {
 
         return tag === null ? null : tag.getAttribute('content');
     }
+
+    static getWidgetTemplate() {
+        return document.querySelector('.read2me-widget-player.read2me-template').cloneNode(true);
+    }
 }
