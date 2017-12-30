@@ -643,3 +643,33 @@ svg.read2me-widget-speaking-rate
 {
     height: 2px;
 }
+
+.read2me-credits
+{
+    position: absolute;
+    right: 21px;
+    bottom: 5px;
+}
+.read2me-credits a
+{
+    font-size: 9px;
+
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+.read2me-widget-player.preset-white .read2me-credits a
+{
+    color: black;
+}
+.read2me-widget-player.preset-blue .read2me-credits a
+{
+    color: white;
+}
+.read2me-widget-player:hover .read2me-credits
+{
+    display: inline-block;
+}
+.read2me-widget-player .read2me-widget-player-speaking-rate-container:hover ~ .read2me-credits
+{
+    display: none;
+}
