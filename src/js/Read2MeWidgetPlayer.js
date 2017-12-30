@@ -66,27 +66,23 @@ class Read2MeWidgetPlayer {
         speakingRate.setAttribute('id', newSpeakingRateId);
         speakingRate.setAttribute('data-slider-id', newSpeakingRateId);
 
+        this.scrubber = new Slider('#' + newScrubberId, {
+            tooltip_position: 'bottom',
+            formatter: function (value) {
+                return value;
+            },
+        });
 
+        this.speakingRate = new Slider('#' + newSpeakingRateId, {
+            tooltip_position: 'bottom',
+
+            formatter: function (value) {
+                return value + 'x';
+            }
+        });
 
         this.Read2MeAudioController.audio.addEventListener('loadedmetadata', () => {
-            scrubber.classList.remove('hidden');
-            speakingRate.classList.remove('hidden');
-
-            this.scrubber = new Slider('#' + newScrubberId, {
-                tooltip_position: 'bottom',
-                formatter: function (value) {
-                    return value;
-                },
-                max: Math.round(this.Read2MeAudioController.getDuration())
-            });
-
-            this.speakingRate = new Slider('#' + newSpeakingRateId, {
-                tooltip_position: 'bottom',
-
-                formatter: function (value) {
-                    return value + 'x';
-                }
-            });
+            this.scrubber.setAttribute('max', Math.round(this.Read2MeAudioController.getDuration()));
         });
     }
 

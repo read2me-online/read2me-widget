@@ -389,25 +389,23 @@ var Read2MeWidgetPlayer = function () {
             speakingRate.setAttribute('id', newSpeakingRateId);
             speakingRate.setAttribute('data-slider-id', newSpeakingRateId);
 
+            this.scrubber = new Slider('#' + newScrubberId, {
+                tooltip_position: 'bottom',
+                formatter: function formatter(value) {
+                    return value;
+                }
+            });
+
+            this.speakingRate = new Slider('#' + newSpeakingRateId, {
+                tooltip_position: 'bottom',
+
+                formatter: function formatter(value) {
+                    return value + 'x';
+                }
+            });
+
             this.Read2MeAudioController.audio.addEventListener('loadedmetadata', function () {
-                scrubber.classList.remove('hidden');
-                speakingRate.classList.remove('hidden');
-
-                _this4.scrubber = new Slider('#' + newScrubberId, {
-                    tooltip_position: 'bottom',
-                    formatter: function formatter(value) {
-                        return value;
-                    },
-                    max: Math.round(_this4.Read2MeAudioController.getDuration())
-                });
-
-                _this4.speakingRate = new Slider('#' + newSpeakingRateId, {
-                    tooltip_position: 'bottom',
-
-                    formatter: function formatter(value) {
-                        return value + 'x';
-                    }
-                });
+                _this4.scrubber.setAttribute('max', Math.round(_this4.Read2MeAudioController.getDuration()));
             });
         }
     }, {
