@@ -66,6 +66,8 @@ class Read2MeWidgetPlayer {
         speakingRate.setAttribute('id', newSpeakingRateId);
         speakingRate.setAttribute('data-slider-id', newSpeakingRateId);
 
+
+
         this.Read2MeAudioController.audio.addEventListener('loadedmetadata', () => {
             scrubber.classList.remove('hidden');
             speakingRate.classList.remove('hidden');
