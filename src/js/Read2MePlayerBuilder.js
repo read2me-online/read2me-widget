@@ -17,10 +17,10 @@ class Read2MePlayerBuilder {
     _replaceBlueprintWithPlayer(elem) {
         let appId = 2; // @TODO
         let url = elem.getAttribute('data-url');
-        let autoplay = elem.getAttribute('data-autoplay'); // @TODO
+        let autoplay = elem.getAttribute('data-autoplay');
         let cssSelectors = elem.getAttribute('data-css-selectors');
-        let title = elem.getAttribute('data-title'); // @TODO
-        let thumbnail = elem.getAttribute('data-thumbnail'); // @TODO
+        let title = elem.getAttribute('data-title');
+        let thumbnail = elem.getAttribute('data-thumbnail');
         let ignoreContentChange = elem.getAttribute('data-ignore-content-change');
         let theme = elem.getAttribute('data-player-theme');
 

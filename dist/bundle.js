@@ -270,10 +270,10 @@ var Read2MePlayerBuilder = function () {
 
             var appId = 2; // @TODO
             var url = elem.getAttribute('data-url');
-            var autoplay = elem.getAttribute('data-autoplay'); // @TODO
+            var autoplay = elem.getAttribute('data-autoplay');
             var cssSelectors = elem.getAttribute('data-css-selectors');
-            var title = elem.getAttribute('data-title'); // @TODO
-            var thumbnail = elem.getAttribute('data-thumbnail'); // @TODO
+            var title = elem.getAttribute('data-title');
+            var thumbnail = elem.getAttribute('data-thumbnail');
             var ignoreContentChange = elem.getAttribute('data-ignore-content-change');
             var theme = elem.getAttribute('data-player-theme');
 
