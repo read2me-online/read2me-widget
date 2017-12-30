@@ -964,8 +964,6 @@ var Read2MePlayerBuilder = function () {
     }, {
         key: "_makeApiCalls",
         value: function _makeApiCalls(backendWrapper, success, error) {
-            if (backendWrapper instanceof Read2MeBackendWrapper === false) throw 'Improper usage of _makeApiCalls, first arg must be an instance of Read2MeBackendWrapper';
-
             backendWrapper.get(
             // success
             function (response) {
