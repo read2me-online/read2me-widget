@@ -23,13 +23,14 @@ var Read2MeBackendWrapper = function () {
         this.ignoreContentChange = ignoreContentChange;
         this.requestSource = requestSource;
 
-        this._validateParams();
+        this._validateRequiredParams();
+        this._validateOptionalParams();
         this._normaliseParams();
     }
 
     _createClass(Read2MeBackendWrapper, [{
-        key: '_validateParams',
-        value: function _validateParams() {
+        key: '_validateRequiredParams',
+        value: function _validateRequiredParams() {
             if (typeof this.appId === 'undefined') throw 'First param to Read2MePlayer must be an App Id.';
 
             if (typeof this.appId !== 'number') throw 'Public API key must be a number.';
@@ -37,7 +38,10 @@ var Read2MeBackendWrapper = function () {
             if (typeof this.url !== 'string') throw 'Second param to Read2MePlayer (url) must be a string.';
 
             if (this.url.length === 0) throw 'url must not be empty';
-
+        }
+    }, {
+        key: '_validateOptionalParams',
+        value: function _validateOptionalParams() {
             if (this.cssSelectors !== null && _typeof(this.cssSelectors) !== 'object') throw 'Third param to Read2MePlayer (cssSelectors) can be null or array.';
 
             if (typeof this.ignoreContentChange !== 'boolean') throw 'Fourth param to Read2MePlayer (ignoreContentChange) must be a boolean.';

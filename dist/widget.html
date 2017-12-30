@@ -1613,8 +1613,8 @@ var Read2MePlayerBuilder = function () {
             this._makeApiCalls(backendWrapper, function (responseResult) {
                 // success
                 player.finishInitialisation(new Read2MeAudioController(responseResult.audio_url), responseResult);
-            }, function () {
-                // error
+            }, function (response) {
+                console.warn(response);
             });
         }
     }, {
@@ -1623,25 +1623,23 @@ var Read2MePlayerBuilder = function () {
             backendWrapper.get(
             // success
             function (response) {
-                if (typeof success === 'function') success(response.result);
+                success(response.result);
             },
-
             // audio not found, create the audio
             function () {
                 backendWrapper.create(
                 // audio created
                 function (response) {
-                    if (typeof success === 'function') success(response.result);
+                    success(response.result);
                 },
                 // failure, unable to create audio
                 function (response) {
-                    if (typeof error === 'function') error(response);else console.warn(response);
+                    error(response);
                 });
             },
-
             // error
             function (response) {
-                if (typeof error === 'function') error(response);else console.warn(response);
+                error(response);
             });
         }
     }, {

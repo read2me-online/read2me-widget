@@ -555,13 +555,14 @@ var Read2MeBackendWrapper = function () {
         this.ignoreContentChange = ignoreContentChange;
         this.requestSource = requestSource;
 
-        this._validateParams();
+        this._validateRequiredParams();
+        this._validateOptionalParams();
         this._normaliseParams();
     }
 
     _createClass(Read2MeBackendWrapper, [{
-        key: "_validateParams",
-        value: function _validateParams() {
+        key: "_validateRequiredParams",
+        value: function _validateRequiredParams() {
             if (typeof this.appId === 'undefined') throw 'First param to Read2MePlayer must be an App Id.';
 
             if (typeof this.appId !== 'number') throw 'Public API key must be a number.';
@@ -569,7 +570,10 @@ var Read2MeBackendWrapper = function () {
             if (typeof this.url !== 'string') throw 'Second param to Read2MePlayer (url) must be a string.';
 
             if (this.url.length === 0) throw 'url must not be empty';
-
+        }
+    }, {
+        key: "_validateOptionalParams",
+        value: function _validateOptionalParams() {
             if (this.cssSelectors !== null && _typeof2(this.cssSelectors) !== 'object') throw 'Third param to Read2MePlayer (cssSelectors) can be null or array.';
 
             if (typeof this.ignoreContentChange !== 'boolean') throw 'Fourth param to Read2MePlayer (ignoreContentChange) must be a boolean.';
@@ -957,8 +961,8 @@ var Read2MePlayerBuilder = function () {
             this._makeApiCalls(backendWrapper, function (responseResult) {
                 // success
                 player.finishInitialisation(new Read2MeAudioController(responseResult.audio_url), responseResult);
-            }, function () {
-                // error
+            }, function (response) {
+                console.warn(response);
             });
         }
     }, {
@@ -967,25 +971,23 @@ var Read2MePlayerBuilder = function () {
             backendWrapper.get(
             // success
             function (response) {
-                if (typeof success === 'function') success(response.result);
+                success(response.result);
             },
-
             // audio not found, create the audio
             function () {
                 backendWrapper.create(
                 // audio created
                 function (response) {
-                    if (typeof success === 'function') success(response.result);
+                    success(response.result);
                 },
                 // failure, unable to create audio
                 function (response) {
-                    if (typeof error === 'function') error(response);else console.warn(response);
+                    error(response);
                 });
             },
-
             // error
             function (response) {
-                if (typeof error === 'function') error(response);else console.warn(response);
+                error(response);
             });
         }
     }, {

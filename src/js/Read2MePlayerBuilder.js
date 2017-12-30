@@ -34,8 +34,8 @@ class Read2MePlayerBuilder {
         this._makeApiCalls(backendWrapper, (responseResult) => {
             // success
             player.finishInitialisation(new Read2MeAudioController(responseResult.audio_url), responseResult);
-        }, () => {
-            // error
+        }, (response) => {
+            console.warn(response);
         });
     }
 
@@ -43,34 +43,24 @@ class Read2MePlayerBuilder {
         backendWrapper.get(
             // success
             (response) => {
-                if (typeof success === 'function')
-                    success(response.result);
+                success(response.result);
             },
-
             // audio not found, create the audio
             () => {
                 backendWrapper.create(
                     // audio created
                     (response) => {
-                        if (typeof success === 'function')
-                            success(response.result);
+                        success(response.result);
                     },
                     // failure, unable to create audio
                     (response) => {
-                        if (typeof error === 'function')
-                            error(response);
-                        else
-                            console.warn(response);
+                        error(response);
                     }
                 )
             },
-
             // error
             (response) => {
-                if (typeof error === 'function')
-                    error(response);
-                else
-                    console.warn(response);
+                error(response);
             }
         );
     }
