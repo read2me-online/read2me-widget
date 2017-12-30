@@ -364,6 +364,7 @@ var Read2MeWidgetPlayer = function () {
         this.handleAutoplay();
         this.handlePlayback();
         this.handleQuickControls();
+        this.handleSpeakingRateChange();
     }
 
     _createClass(Read2MeWidgetPlayer, [{
@@ -494,6 +495,15 @@ var Read2MeWidgetPlayer = function () {
 
             forward.addEventListener('click', function () {
                 _this7.Read2MeAudioController.forwardForXSeconds(10);
+            });
+        }
+    }, {
+        key: 'handleSpeakingRateChange',
+        value: function handleSpeakingRateChange() {
+            var _this8 = this;
+
+            this.speakingRate.on('change', function (values) {
+                _this8.Read2MeAudioController.setPlaySpeed(values.newValue);
             });
         }
     }], [{

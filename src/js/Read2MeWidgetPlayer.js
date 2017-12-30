@@ -41,6 +41,7 @@ class Read2MeWidgetPlayer {
         this.handleAutoplay();
         this.handlePlayback();
         this.handleQuickControls();
+        this.handleSpeakingRateChange();
     }
 
     static getTemplate() {
@@ -168,6 +169,12 @@ class Read2MeWidgetPlayer {
 
         forward.addEventListener('click', () => {
             this.Read2MeAudioController.forwardForXSeconds(10);
+        });
+    }
+
+    handleSpeakingRateChange() {
+        this.speakingRate.on('change', (values) => {
+            this.Read2MeAudioController.setPlaySpeed(values.newValue);
         });
     }
 
