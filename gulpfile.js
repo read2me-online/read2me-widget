@@ -100,7 +100,15 @@ gulp.task('css', function () {
 });
 
 gulp.task('js', function () {
-    return gulp.src(['src/js/**/*.js'])
+    // order of JS files is important
+    return gulp.src([
+        'src/js/bootstrap-slider.min.js',
+        'src/js/Read2MeHelpers.js',
+        'src/js/Read2MeAudioController.js',
+        'src/js/Read2MeBackendWrapper.js',
+        'src/js/Read2MeWidgetPlayer.js',
+        'src/js/Read2MePlayerBuilder.js',
+    ])
         .pipe(concat('bundle.js'))
         .pipe(babel({
             presets: 'env'

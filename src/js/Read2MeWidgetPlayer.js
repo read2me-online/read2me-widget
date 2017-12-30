@@ -27,6 +27,7 @@ class Read2MeWidgetPlayer {
         this.setThumbnail();
         this.setTheme();
         this.player.classList.remove('read2me-template');
+        this.instantiateSliders();
     }
 
     finishInitialisation(audioController) {
@@ -34,7 +35,7 @@ class Read2MeWidgetPlayer {
             throw 'Invalid argument for Read2MeWidgetPlayer.finishInitialisation(); must be an instance of Read2MeAudioController';
 
         this.audioController = audioController;
-        this.instantiateSliders();
+        this.configureSliders();
         this.handleAutoplay();
         this.handlePlayback();
         this.handleQuickControls();
@@ -83,7 +84,9 @@ class Read2MeWidgetPlayer {
                 return value + 'x';
             }
         });
+    }
 
+    configureSliders() {
         this.audioController.audio.addEventListener('loadedmetadata', () => {
             this.scrubber.setAttribute('max', Math.round(this.audioController.getDuration()));
         });

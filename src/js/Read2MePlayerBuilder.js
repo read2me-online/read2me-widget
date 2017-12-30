@@ -30,7 +30,6 @@ class Read2MePlayerBuilder {
 
         let backendWrapper = new Read2MeBackendWrapper(appId, url, cssSelectors, ignoreContentChange, 'widget');
         let player = new Read2MeWidgetPlayer(elem, url, title, thumbnail, autoplay, this.playerInstances.length, theme);
-        this.playerInstances.push(player);
 
         this._makeApiCalls(backendWrapper, (responseResult) => {
             // success
