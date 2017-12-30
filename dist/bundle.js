@@ -266,8 +266,6 @@ var Read2MePlayerBuilder = function () {
     _createClass(Read2MePlayerBuilder, [{
         key: '_replaceBlueprintWithPlayer',
         value: function _replaceBlueprintWithPlayer(elem) {
-            var _this2 = this;
-
             var appId = 2; // @TODO
             var url = elem.getAttribute('data-url');
             var autoplay = elem.getAttribute('data-autoplay');
@@ -282,9 +280,12 @@ var Read2MePlayerBuilder = function () {
             ignoreContentChange = this._booleanStringToBoolean(ignoreContentChange);
 
             var backendWrapper = new Read2MeBackendWrapper(appId, url, cssSelectors, ignoreContentChange, 'widget');
+            var player = new Read2MeWidgetPlayer(elem, url, title, thumbnail, autoplay, this.playerInstances.length, theme);
+            this.playerInstances.push(player);
+
             this._makeApiCalls(backendWrapper, function (responseResult) {
                 // success
-                _this2.playerInstances.push(new Read2MeWidgetPlayer(new Read2MeAudioController(responseResult.audio_url), elem, url, title, thumbnail, autoplay, _this2.playerInstances.length, theme));
+                player.finishInitialisation(new Read2MeAudioController(responseResult.audio_url));
             }, function () {
                 // error
             });
@@ -321,7 +322,7 @@ var Read2MePlayerBuilder = function () {
     }, {
         key: '_cssSelectorsStringToArray',
         value: function _cssSelectorsStringToArray(cssSelectors) {
-            var _this3 = this;
+            var _this2 = this;
 
             if (!cssSelectors) return;
 
@@ -330,10 +331,10 @@ var Read2MePlayerBuilder = function () {
                 return selector.trim();
             });
             cssSelectors = cssSelectors.map(function (selector) {
-                return _this3._trimByChar(selector, '"');
+                return _this2._trimByChar(selector, '"');
             });
             cssSelectors = cssSelectors.map(function (selector) {
-                return _this3._trimByChar(selector, "'");
+                return _this2._trimByChar(selector, "'");
             });
 
             return cssSelectors;
@@ -368,22 +369,16 @@ var Read2MePlayerBuilder = function () {
 Read2MeHelpers.documentReady(function () {
     var playerBuilder = new Read2MePlayerBuilder();
 });
-/**
- * Takes in an instance of Read2MeAudioController, widget blueprint node and blueprint properties,
- * replaces the blueprint node with the HTML audio player and makes the player's UI elements reactive.
- */
 
 var Read2MeWidgetPlayer = function () {
-    function Read2MeWidgetPlayer(Read2MeAudioController, widgetBlueprint, url) {
-        var title = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-        var thumbnail = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
-        var autoplay = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : false;
-        var playerId = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0;
-        var theme = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : null;
+    function Read2MeWidgetPlayer(widgetBlueprint, url) {
+        var title = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+        var thumbnail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+        var autoplay = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
+        var playerId = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+        var theme = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : null;
 
         _classCallCheck(this, Read2MeWidgetPlayer);
-
-        if (Read2MeAudioController.audio instanceof Audio === false) throw 'Invalid first param for Read2MeWidgetPlayer';
 
         // sliders
         this.isScrubberBeingDragged = false;
@@ -391,7 +386,6 @@ var Read2MeWidgetPlayer = function () {
         this.speakingRate = null;
 
         // arguments
-        this.Read2MeAudioController = Read2MeAudioController;
         this.widgetBlueprint = widgetBlueprint;
         this.url = url;
         this.title = title;
@@ -413,18 +407,25 @@ var Read2MeWidgetPlayer = function () {
         this.setThumbnail();
         this.setTheme();
         this.player.classList.remove('read2me-template');
-        this.instantiateSliders();
-        this.handleAutoplay();
-        this.handlePlayback();
-        this.handleQuickControls();
-        this.handleScrubber();
-        this.handleSpeakingRateChange();
     }
 
     _createClass(Read2MeWidgetPlayer, [{
+        key: 'finishInitialisation',
+        value: function finishInitialisation(audioController) {
+            if (audioController instanceof Read2MeAudioController === false) throw 'Invalid argument for Read2MeWidgetPlayer.finishInitialisation(); must be an instance of Read2MeAudioController';
+
+            this.audioController = audioController;
+            this.instantiateSliders();
+            this.handleAutoplay();
+            this.handlePlayback();
+            this.handleQuickControls();
+            this.handleScrubber();
+            this.handleSpeakingRateChange();
+        }
+    }, {
         key: 'instantiateSliders',
         value: function instantiateSliders() {
-            var _this4 = this;
+            var _this3 = this;
 
             // make ID and data-slider-id attributes unique for scrubber and speaking rate inputs
             // scrubber's node id: #read2me-widget-scrubber-player
@@ -461,8 +462,8 @@ var Read2MeWidgetPlayer = function () {
                 }
             });
 
-            this.Read2MeAudioController.audio.addEventListener('loadedmetadata', function () {
-                _this4.scrubber.setAttribute('max', Math.round(_this4.Read2MeAudioController.getDuration()));
+            this.audioController.audio.addEventListener('loadedmetadata', function () {
+                _this3.scrubber.setAttribute('max', Math.round(_this3.audioController.getDuration()));
             });
         }
     }, {
@@ -485,12 +486,12 @@ var Read2MeWidgetPlayer = function () {
     }, {
         key: 'handleAutoplay',
         value: function handleAutoplay() {
-            var _this5 = this;
+            var _this4 = this;
 
             if (!this.autoplay) return;
 
-            this.Read2MeAudioController.audio.addEventListener('canplay', function () {
-                _this5.Read2MeAudioController.audio.play();
+            this.audioController.audio.addEventListener('canplay', function () {
+                _this4.audioController.audio.play();
             });
         }
     }, {
@@ -508,25 +509,25 @@ var Read2MeWidgetPlayer = function () {
     }, {
         key: 'handlePlayback',
         value: function handlePlayback() {
-            var _this6 = this;
+            var _this5 = this;
 
             var container = this.player.querySelector('.read2me-widget-player-playback');
 
             container.addEventListener('click', function () {
-                if (_this6.isPlayButtonShown()) {
-                    _this6.Read2MeAudioController.play();
-                    _this6.displayPauseButton();
-                } else if (_this6.isPauseButtonShown()) {
-                    _this6.Read2MeAudioController.pause();
-                    _this6.displayPlayButton();
+                if (_this5.isPlayButtonShown()) {
+                    _this5.audioController.play();
+                    _this5.displayPauseButton();
+                } else if (_this5.isPauseButtonShown()) {
+                    _this5.audioController.pause();
+                    _this5.displayPlayButton();
                 } else {
-                    _this6.Read2MeAudioController.replay();
-                    _this6.displayPauseButton();
+                    _this5.audioController.replay();
+                    _this5.displayPauseButton();
                 }
             });
 
-            this.Read2MeAudioController.audio.addEventListener('ended', function () {
-                _this6.displayReplayButton();
+            this.audioController.audio.addEventListener('ended', function () {
+                _this5.displayReplayButton();
             });
         }
     }, {
@@ -568,48 +569,48 @@ var Read2MeWidgetPlayer = function () {
     }, {
         key: 'handleQuickControls',
         value: function handleQuickControls() {
-            var _this7 = this;
+            var _this6 = this;
 
             var rewind = this.player.querySelector('.read2me-widget-rewind');
             var forward = this.player.querySelector('.read2me-widget-forward');
 
             rewind.addEventListener('click', function () {
-                _this7.Read2MeAudioController.rewindForXSeconds(10);
+                _this6.audioController.rewindForXSeconds(10);
             });
 
             forward.addEventListener('click', function () {
-                _this7.Read2MeAudioController.forwardForXSeconds(10);
+                _this6.audioController.forwardForXSeconds(10);
             });
         }
     }, {
         key: 'handleScrubber',
         value: function handleScrubber() {
-            var _this8 = this;
+            var _this7 = this;
 
             this.scrubber.on('slideStart', function () {
-                _this8.isScrubberBeingDragged = true;
+                _this7.isScrubberBeingDragged = true;
             });
 
             this.scrubber.on('slideStop', function (newCurrentTime) {
-                _this8.isScrubberBeingDragged = false;
-                _this8.Read2MeAudioController.setCurrentTime(newCurrentTime);
+                _this7.isScrubberBeingDragged = false;
+                _this7.audioController.setCurrentTime(newCurrentTime);
 
-                if (_this8.isReplayButtonShown() && newCurrentTime !== _this8.Read2MeAudioController.getDuration()) _this8.displayPlayButton();
+                if (_this7.isReplayButtonShown() && newCurrentTime !== _this7.audioController.getDuration()) _this7.displayPlayButton();
             });
 
-            this.Read2MeAudioController.audio.addEventListener('timeupdate', function () {
-                if (_this8.isScrubberBeingDragged) return false;
+            this.audioController.audio.addEventListener('timeupdate', function () {
+                if (_this7.isScrubberBeingDragged) return false;
 
-                _this8.scrubber.setValue(Math.round(_this8.Read2MeAudioController.getCurrentTime()));
+                _this7.scrubber.setValue(Math.round(_this7.audioController.getCurrentTime()));
             });
         }
     }, {
         key: 'handleSpeakingRateChange',
         value: function handleSpeakingRateChange() {
-            var _this9 = this;
+            var _this8 = this;
 
             this.speakingRate.on('change', function (values) {
-                _this9.Read2MeAudioController.setPlaySpeed(values.newValue);
+                _this8.audioController.setPlaySpeed(values.newValue);
             });
         }
     }], [{

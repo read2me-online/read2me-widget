@@ -119,8 +119,8 @@ gulp.task('js', function () {
         .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('js-backend-class-only', function() {
-    return gulp.src(['src/js/Read2MeBackend.js'])
+gulp.task('backendClassOnly', function() {
+    return gulp.src(['src/js/Read2MeBackendWrapper.js'])
         .pipe(concat('read2me-backend.js'))
         .pipe(babel({
             presets: 'env'
@@ -188,7 +188,7 @@ const html = 'src/**/*.html';
 
 gulp.task('_sequence', () => {
     runSequence(
-        ['js', 'js-backend-class-only', 'css', 'html'],
+        ['js', 'backendClassOnly', 'css', 'html'],
         ['concatenateFiles', 'concatenateFilesMinified'],
         ['publishDev'],
         () => {});

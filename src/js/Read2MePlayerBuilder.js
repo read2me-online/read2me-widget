@@ -29,20 +29,12 @@ class Read2MePlayerBuilder {
         ignoreContentChange = this._booleanStringToBoolean(ignoreContentChange);
 
         let backendWrapper = new Read2MeBackendWrapper(appId, url, cssSelectors, ignoreContentChange, 'widget');
+        let player = new Read2MeWidgetPlayer(elem, url, title, thumbnail, autoplay, this.playerInstances.length, theme);
+        this.playerInstances.push(player);
+
         this._makeApiCalls(backendWrapper, (responseResult) => {
             // success
-            this.playerInstances.push(
-                new Read2MeWidgetPlayer(
-                    new Read2MeAudioController(responseResult.audio_url),
-                    elem,
-                    url,
-                    title,
-                    thumbnail,
-                    autoplay,
-                    this.playerInstances.length,
-                    theme
-                )
-            );
+            player.finishInitialisation(new Read2MeAudioController(responseResult.audio_url));
         }, () => {
             // error
         });

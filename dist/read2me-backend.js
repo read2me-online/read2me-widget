@@ -6,13 +6,13 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Read2MeBackend = function () {
-    function Read2MeBackend(appId, url) {
+var Read2MeBackendWrapper = function () {
+    function Read2MeBackendWrapper(appId, url) {
         var cssSelectors = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
         var ignoreContentChange = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
         var requestSource = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'custom';
 
-        _classCallCheck(this, Read2MeBackend);
+        _classCallCheck(this, Read2MeBackendWrapper);
 
         this.apiUrl = 'https://api-dev.read2me.online/convert/1.0.0/webpage/'; //@TODO change
 
@@ -44,7 +44,7 @@ var Read2MeBackend = function () {
         if (typeof this.ignoreContentChange === 'undefined' || this.ignoreContentChange === null) this.ignoreContentChange = false;
     }
 
-    _createClass(Read2MeBackend, [{
+    _createClass(Read2MeBackendWrapper, [{
         key: '_getIgnoreContentChangeAsString',
         value: function _getIgnoreContentChangeAsString() {
             return this.ignoreContentChange ? 'true' : 'false';
@@ -104,5 +104,5 @@ var Read2MeBackend = function () {
         }
     }]);
 
-    return Read2MeBackend;
+    return Read2MeBackendWrapper;
 }();
