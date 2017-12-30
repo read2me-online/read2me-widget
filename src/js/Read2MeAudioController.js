@@ -1,31 +1,23 @@
 class Read2MeAudioController {
     constructor(audioFileUrl) {
         this.audio = new Audio(audioFileUrl);
-        this.isPlaying = false;
     }
 
     play() {
         this.audio.play();
-        this.isPlaying = true;
     }
 
     pause() {
         this.audio.pause();
-        this.isPlaying = false;
     }
 
     stop() {
         this.setCurrentTime(0);
-        this.isPlaying = false;
     }
 
     replay() {
         this.setCurrentTime(0);
         this.play();
-    }
-
-    isPlaying() {
-        return this.isPlaying;
     }
 
     setCurrentTime(time) {
@@ -39,7 +31,7 @@ class Read2MeAudioController {
     }
 
     getCurrentTime() {
-        return this.audio.getCurrentTime;
+        return this.audio.currentTime;
     }
 
     setPlaySpeed(speed) {

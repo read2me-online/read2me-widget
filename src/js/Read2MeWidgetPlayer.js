@@ -17,6 +17,7 @@ class Read2MeWidgetPlayer {
             throw 'Invalid first param for Read2MeWidgetPlayer';
 
         // sliders
+        this.isScrubberBeingDragged = false;
         this.scrubber = null;
         this.speakingRate = null;
 
@@ -33,6 +34,12 @@ class Read2MeWidgetPlayer {
         this.player = Read2MeWidgetPlayer.getTemplate();
         widgetBlueprint.parentNode.replaceChild(this.player, this.widgetBlueprint);
 
+        // UI playback controllers
+        this.play = this.player.querySelector('.read2me-widget-player-playback-play');
+        this.pause = this.player.querySelector('.read2me-widget-player-playback-pause');
+        this.replay = this.player.querySelector('.read2me-widget-player-playback-replay');
+
+        // set the player up
         this.setTitle();
         this.setThumbnail();
         this.setTheme();
@@ -41,6 +48,7 @@ class Read2MeWidgetPlayer {
         this.handleAutoplay();
         this.handlePlayback();
         this.handleQuickControls();
+        this.handleScrubber();
         this.handleSpeakingRateChange();
     }
 
@@ -135,32 +143,54 @@ class Read2MeWidgetPlayer {
     }
 
     handlePlayback() {
-        let play = this.player.querySelector('.read2me-widget-player-playback-play');
-        let pause = this.player.querySelector('.read2me-widget-player-playback-pause');
-        let replay = this.player.querySelector('.read2me-widget-player-playback-replay');
         let container = this.player.querySelector('.read2me-widget-player-playback');
 
         container.addEventListener('click', () => {
-            if (!play.classList.contains('hidden')) {
+            if (this.isPlayButtonShown()) {
                 this.Read2MeAudioController.play();
-                play.classList.add('hidden');
-                pause.classList.remove('hidden');
-            } else if (!pause.classList.contains('hidden')) {
+                this.displayPauseButton();
+            } else if (this.isPauseButtonShown()) {
                 this.Read2MeAudioController.pause();
-                play.classList.remove('hidden');
-                pause.classList.add('hidden');
+                this.displayPlayButton();
             } else {
                 this.Read2MeAudioController.replay();
-                replay.classList.add('hidden');
-                pause.classList.remove('hidden');
+                this.displayPauseButton();
             }
         });
 
         this.Read2MeAudioController.audio.addEventListener('ended', () => {
-            play.classList.add('hidden');
-            pause.classList.add('hidden');
-            replay.classList.remove('hidden');
+            this.displayReplayButton();
         });
+    }
+
+    isPlayButtonShown() {
+        return !this.play.classList.contains('hidden');
+    }
+
+    displayPlayButton() {
+        this.play.classList.remove('hidden');
+        this.pause.classList.add('hidden');
+        this.replay.classList.add('hidden');
+    }
+
+    isPauseButtonShown() {
+        return !this.pause.classList.contains('hidden');
+    }
+
+    displayPauseButton() {
+        this.play.classList.add('hidden');
+        this.pause.classList.remove('hidden');
+        this.replay.classList.add('hidden');
+    }
+
+    isReplayButtonShown() {
+        return !this.replay.classList.contains('hidden');
+    }
+
+    displayReplayButton() {
+        this.play.classList.add('hidden');
+        this.pause.classList.add('hidden');
+        this.replay.classList.remove('hidden');
     }
 
     handleQuickControls() {
@@ -173,6 +203,27 @@ class Read2MeWidgetPlayer {
 
         forward.addEventListener('click', () => {
             this.Read2MeAudioController.forwardForXSeconds(10);
+        });
+    }
+
+    handleScrubber() {
+        this.scrubber.on('slideStart', () => {
+            this.isScrubberBeingDragged = true;
+        });
+
+        this.scrubber.on('slideStop', (newCurrentTime) => {
+            this.isScrubberBeingDragged = false;
+            this.Read2MeAudioController.setCurrentTime(newCurrentTime);
+
+            if (this.isReplayButtonShown() && newCurrentTime !== this.Read2MeAudioController.getDuration())
+                this.displayPlayButton();
+        });
+
+        this.Read2MeAudioController.audio.addEventListener('timeupdate', () => {
+            if (this.isScrubberBeingDragged)
+                return false;
+
+            this.scrubber.setValue(Math.round(this.Read2MeAudioController.getCurrentTime()));
         });
     }
 
