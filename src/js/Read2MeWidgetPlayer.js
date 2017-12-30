@@ -30,11 +30,12 @@ class Read2MeWidgetPlayer {
         this.instantiateSliders();
     }
 
-    finishInitialisation(audioController) {
+    finishInitialisation(audioController, apiResponse) {
         if (audioController instanceof Read2MeAudioController === false)
             throw 'Invalid argument for Read2MeWidgetPlayer.finishInitialisation(); must be an instance of Read2MeAudioController';
 
         this.audioController = audioController;
+        this.apiResponse = apiResponse;
         this.configureSliders();
         this.handleAutoplay();
         this.handlePlayback();
@@ -87,9 +88,8 @@ class Read2MeWidgetPlayer {
     }
 
     configureSliders() {
-        this.audioController.audio.addEventListener('loadedmetadata', () => {
-            this.scrubber.setAttribute('max', Math.round(this.audioController.getDuration()));
-        });
+        this.scrubber.setAttribute('max', this.apiResponse.audio_length_seconds);
+        this.scrubber.enable();
     }
 
     setTitle() {

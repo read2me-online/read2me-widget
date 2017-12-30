@@ -429,12 +429,24 @@ var Read2MeHelpers = function () {
 
 var Read2MeAudioController = function () {
     function Read2MeAudioController(audioFileUrl) {
+        var _this = this;
+
         _classCallCheck(this, Read2MeAudioController);
 
         this.audio = new Audio(audioFileUrl);
+        this.canPlay = false;
+
+        this.audio.addEventListener('canplay', function () {
+            _this.canPlay = true;
+        });
     }
 
     _createClass(Read2MeAudioController, [{
+        key: "isReadyToPlay",
+        value: function isReadyToPlay() {
+            return this.canPlay;
+        }
+    }, {
         key: "play",
         value: function play() {
             this.audio.play();
@@ -650,10 +662,11 @@ var Read2MeWidgetPlayer = function () {
 
     _createClass(Read2MeWidgetPlayer, [{
         key: "finishInitialisation",
-        value: function finishInitialisation(audioController) {
+        value: function finishInitialisation(audioController, apiResponse) {
             if (audioController instanceof Read2MeAudioController === false) throw 'Invalid argument for Read2MeWidgetPlayer.finishInitialisation(); must be an instance of Read2MeAudioController';
 
             this.audioController = audioController;
+            this.apiResponse = apiResponse;
             this.configureSliders();
             this.handleAutoplay();
             this.handlePlayback();
@@ -702,11 +715,8 @@ var Read2MeWidgetPlayer = function () {
     }, {
         key: "configureSliders",
         value: function configureSliders() {
-            var _this = this;
-
-            this.audioController.audio.addEventListener('loadedmetadata', function () {
-                _this.scrubber.setAttribute('max', Math.round(_this.audioController.getDuration()));
-            });
+            this.scrubber.setAttribute('max', this.apiResponse.audio_length_seconds);
+            this.scrubber.enable();
         }
     }, {
         key: "setTitle",
@@ -919,7 +929,7 @@ var Read2MePlayerBuilder = function () {
 
             this._makeApiCalls(backendWrapper, function (responseResult) {
                 // success
-                player.finishInitialisation(new Read2MeAudioController(responseResult.audio_url));
+                player.finishInitialisation(new Read2MeAudioController(responseResult.audio_url), responseResult);
             }, function () {
                 // error
             });

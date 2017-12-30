@@ -33,7 +33,7 @@ class Read2MePlayerBuilder {
 
         this._makeApiCalls(backendWrapper, (responseResult) => {
             // success
-            player.finishInitialisation(new Read2MeAudioController(responseResult.audio_url));
+            player.finishInitialisation(new Read2MeAudioController(responseResult.audio_url), responseResult);
         }, () => {
             // error
         });

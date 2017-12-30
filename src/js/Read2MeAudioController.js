@@ -1,6 +1,15 @@
 class Read2MeAudioController {
     constructor(audioFileUrl) {
         this.audio = new Audio(audioFileUrl);
+        this.canPlay = false;
+
+        this.audio.addEventListener('canplay', () => {
+            this.canPlay = true;
+        });
+    }
+
+    isReadyToPlay() {
+        return this.canPlay;
     }
 
     play() {
