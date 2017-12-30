@@ -119,6 +119,6 @@ class Read2MePlayerBuilder {
     }
 }
 
-Read2MeDocumentReady(() => {
+Read2MeHelpers.documentReady(() => {
     const playerBuilder = new Read2MePlayerBuilder();
 });

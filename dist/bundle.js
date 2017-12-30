@@ -197,6 +197,61 @@ var Read2MeBackendWrapper = function () {
 
     return Read2MeBackendWrapper;
 }();
+
+var Read2MeHelpers = function () {
+    function Read2MeHelpers() {
+        _classCallCheck(this, Read2MeHelpers);
+    }
+
+    _createClass(Read2MeHelpers, null, [{
+        key: 'documentReady',
+        value: function documentReady(fn) {
+            if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+                fn();
+            } else {
+                document.addEventListener('DOMContentLoaded', fn);
+            }
+        }
+    }, {
+        key: 'secondsToHumanReadableArray',
+        value: function secondsToHumanReadableArray(durationInSeconds) {
+            var hours = void 0,
+                minutes = void 0,
+                seconds = void 0;
+
+            hours = Math.floor(durationInSeconds / 3600);
+            minutes = Math.floor(durationInSeconds / 60 % 60);
+            seconds = Math.floor(durationInSeconds % 60);
+
+            return [seconds, minutes, hours];
+        }
+    }, {
+        key: 'secondsMinutesHoursToHumanReadable',
+        value: function secondsMinutesHoursToHumanReadable(seconds, minutes, hours) {
+            var res = '';
+            seconds = seconds.toString();
+            minutes = minutes.toString();
+            hours = hours.toString();
+
+            // only show hours if hours > 0
+            if (hours > 0) {
+                if (hours.length < 2) hours = '0' + hours;
+
+                res += hours + ':';
+            }
+
+            if (minutes.length < 2) minutes = '0' + minutes;
+
+            if (seconds.length < 2) seconds = '0' + seconds;
+
+            res += minutes + ':' + seconds;
+
+            return res;
+        }
+    }]);
+
+    return Read2MeHelpers;
+}();
 /**
  * Looks for plug n' play widget blueprints and replaces them with
  * an actual interactive HTML player.
@@ -319,7 +374,7 @@ var Read2MePlayerBuilder = function () {
     return Read2MePlayerBuilder;
 }();
 
-Read2MeDocumentReady(function () {
+Read2MeHelpers.documentReady(function () {
     var playerBuilder = new Read2MePlayerBuilder();
 });
 /**
@@ -392,8 +447,10 @@ var Read2MeWidgetPlayer = function () {
 
             this.scrubber = new Slider('#' + newScrubberId, {
                 tooltip_position: 'bottom',
-                formatter: function formatter(value) {
-                    return value;
+                formatter: function formatter(seconds) {
+                    var currentTimeArray = Read2MeHelpers.secondsToHumanReadableArray(seconds);
+
+                    return Read2MeHelpers.secondsMinutesHoursToHumanReadable(currentTimeArray[0], currentTimeArray[1], currentTimeArray[2]);
                 }
             });
 
@@ -894,10 +951,3 @@ var Read2MeWidgetPlayer = function () {
         }
     }(a), d;
 });
-function Read2MeDocumentReady(fn) {
-    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
-        fn();
-    } else {
-        document.addEventListener('DOMContentLoaded', fn);
-    }
-}

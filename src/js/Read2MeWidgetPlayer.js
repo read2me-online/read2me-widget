@@ -69,8 +69,12 @@ class Read2MeWidgetPlayer {
 
         this.scrubber = new Slider('#' + newScrubberId, {
             tooltip_position: 'bottom',
-            formatter: function (value) {
-                return value;
+            formatter: function (seconds) {
+                let currentTimeArray = Read2MeHelpers.secondsToHumanReadableArray(seconds);
+
+                return Read2MeHelpers.secondsMinutesHoursToHumanReadable(
+                    currentTimeArray[0], currentTimeArray[1], currentTimeArray[2]
+                );
             },
         });
 
