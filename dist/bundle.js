@@ -422,6 +422,20 @@ var Read2MeHelpers = function () {
 
             return res;
         }
+    }, {
+        key: "getPageTitle",
+        value: function getPageTitle() {
+            var title = document.querySelector('title');
+
+            return title === null ? null : title.text;
+        }
+    }, {
+        key: "getOgImageUrl",
+        value: function getOgImageUrl() {
+            var tag = document.querySelector("meta[property='og:image']");
+
+            return tag === null ? null : tag.getAttribute('content');
+        }
     }]);
 
     return Read2MeHelpers;
@@ -726,7 +740,7 @@ var Read2MeWidgetPlayer = function () {
         key: "setTitle",
         value: function setTitle() {
             var container = this.player.querySelector('.read2me-widget-player-title span');
-            var pageTitle = Read2MeWidgetPlayer.getPageTitle();
+            var pageTitle = Read2MeHelpers.getPageTitle();
 
             if (this.title !== null) container.textContent = this.title;else if (pageTitle !== null) container.textContent = pageTitle;
         }
@@ -734,7 +748,7 @@ var Read2MeWidgetPlayer = function () {
         key: "setThumbnail",
         value: function setThumbnail() {
             var container = this.player.querySelector('.read2me-widget-player-thumbnail');
-            var ogImage = Read2MeWidgetPlayer.getOgImageUrl();
+            var ogImage = Read2MeHelpers.getOgImageUrl();
             var defaultThumbnail = 'https://d22fip447qchhd.cloudfront.net/api/widget/static/images/default-thumbnail.png';
 
             if (this.thumbnail !== null) container.setAttribute('src', this.thumbnail);else if (ogImage !== null) container.setAttribute('src', ogImage);else container.setAttribute('src', defaultThumbnail);
@@ -891,20 +905,6 @@ var Read2MeWidgetPlayer = function () {
         key: "getTemplate",
         value: function getTemplate() {
             return document.querySelector('.read2me-widget-player.read2me-template').cloneNode(true);
-        }
-    }, {
-        key: "getPageTitle",
-        value: function getPageTitle() {
-            var title = document.querySelector('title');
-
-            return title === null ? null : title.text;
-        }
-    }, {
-        key: "getOgImageUrl",
-        value: function getOgImageUrl() {
-            var tag = document.querySelector("meta[property='og:image']");
-
-            return tag === null ? null : tag.getAttribute('content');
         }
     }]);
 

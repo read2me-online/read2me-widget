@@ -98,7 +98,7 @@ class Read2MeWidgetPlayer {
 
     setTitle() {
         let container = this.player.querySelector('.read2me-widget-player-title span');
-        let pageTitle = Read2MeWidgetPlayer.getPageTitle();
+        let pageTitle = Read2MeHelpers.getPageTitle();
 
         if (this.title !== null)
             container.textContent = this.title;
@@ -108,7 +108,7 @@ class Read2MeWidgetPlayer {
 
     setThumbnail() {
         let container = this.player.querySelector('.read2me-widget-player-thumbnail');
-        let ogImage = Read2MeWidgetPlayer.getOgImageUrl();
+        let ogImage = Read2MeHelpers.getOgImageUrl();
         let defaultThumbnail = 'https://d22fip447qchhd.cloudfront.net/api/widget/static/images/default-thumbnail.png';
 
         if (this.thumbnail !== null)
@@ -243,17 +243,5 @@ class Read2MeWidgetPlayer {
 
     removePlaybackBufferingStyles() {
         this.playbackContainer.classList.remove('read2me-playback-buffering');
-    }
-
-    static getPageTitle() {
-        let title = document.querySelector('title');
-
-        return title === null ? null : title.text;
-    }
-
-    static getOgImageUrl() {
-        let tag = document.querySelector("meta[property='og:image']");
-
-        return tag === null ? null : tag.getAttribute('content');
     }
 }

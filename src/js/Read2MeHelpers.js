@@ -41,4 +41,16 @@ class Read2MeHelpers {
 
         return res;
     }
+
+    static getPageTitle() {
+        let title = document.querySelector('title');
+
+        return title === null ? null : title.text;
+    }
+
+    static getOgImageUrl() {
+        let tag = document.querySelector("meta[property='og:image']");
+
+        return tag === null ? null : tag.getAttribute('content');
+    }
 }
