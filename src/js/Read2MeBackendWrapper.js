@@ -9,11 +9,12 @@ class Read2MeBackendWrapper {
         this.ignoreContentChange = ignoreContentChange;
         this.requestSource = requestSource;
 
-        this._validateParams();
+        this._validateRequiredParams();
+        this._validateOptionalParams();
         this._normaliseParams();
     }
 
-    _validateParams() {
+    _validateRequiredParams() {
         if (typeof this.appId === 'undefined')
             throw 'First param to Read2MePlayer must be an App Id.';
 
@@ -25,7 +26,9 @@ class Read2MeBackendWrapper {
 
         if (this.url.length === 0)
             throw 'url must not be empty';
+    }
 
+    _validateOptionalParams() {
         if (this.cssSelectors !== null && typeof this.cssSelectors !== 'object')
             throw 'Third param to Read2MePlayer (cssSelectors) can be null or array.';
 
