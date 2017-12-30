@@ -13,7 +13,7 @@
         "gulp": "^3.9.1",
         "gulp-babel": "^7.0.0",
         "gulp-browserify": "*",
-        "gulp-clean-css": "*",
+        "gulp-clean-css": "^3.9.2",
         "gulp-concat": "^2.6.1",
         "gulp-concat-css": "^2.3.0",
         "gulp-csscomb": "*",
@@ -21,7 +21,7 @@
         "gulp-inject": "^4.3.0",
         "gulp-inject-string": "^1.1.0",
         "gulp-inline": "^0.1.3",
-        "gulp-jshint": "*",
+        "gulp-jshint": "^2.1.0",
         "gulp-merge": "^0.1.1",
         "gulp-minify-html": "*",
         "gulp-plumber": "^1.1.0",
@@ -32,7 +32,7 @@
         "gulp-watch": "^4.3.11",
         "jshint": "*",
         "run-sequence": "^2.2.0",
-        "uglify-js": "^3.2.0"
+        "uglify-js": "^3.3.3"
     },
     "dependencies": {}
 }

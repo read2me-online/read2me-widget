@@ -645,6 +645,7 @@ var Read2MeWidgetPlayer = function () {
         this.theme = theme;
 
         this.player = Read2MeWidgetPlayer.getTemplate();
+        this.loader = this.player.querySelector('.read2me-widget-loader');
         widgetBlueprint.parentNode.replaceChild(this.player, this.widgetBlueprint);
 
         // UI playback controllers
@@ -673,6 +674,7 @@ var Read2MeWidgetPlayer = function () {
             this.handleQuickControls();
             this.handleScrubber();
             this.handleSpeakingRateChange();
+            this.hideLoader();
         }
     }, {
         key: "instantiateSliders",
@@ -768,7 +770,12 @@ var Read2MeWidgetPlayer = function () {
             container.addEventListener('click', function () {
                 if (_this3.isPlayButtonShown()) {
                     _this3.audioController.play();
+                    _this3.displayLoader();
                     _this3.displayPauseButton();
+
+                    _this3.audioController.audio.addEventListener('playing', function () {
+                        _this3.hideLoader();
+                    });
                 } else if (_this3.isPauseButtonShown()) {
                     _this3.audioController.pause();
                     _this3.displayPlayButton();
@@ -864,6 +871,16 @@ var Read2MeWidgetPlayer = function () {
             this.speakingRate.on('change', function (values) {
                 _this6.audioController.setPlaySpeed(values.newValue);
             });
+        }
+    }, {
+        key: "displayLoader",
+        value: function displayLoader() {
+            this.loader.classList.remove('hidden');
+        }
+    }, {
+        key: "hideLoader",
+        value: function hideLoader() {
+            this.loader.classList.add('hidden');
         }
     }], [{
         key: "getTemplate",

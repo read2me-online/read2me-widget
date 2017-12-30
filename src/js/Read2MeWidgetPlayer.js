@@ -15,6 +15,7 @@ class Read2MeWidgetPlayer {
         this.theme = theme;
 
         this.player = Read2MeWidgetPlayer.getTemplate();
+        this.loader = this.player.querySelector('.read2me-widget-loader');
         widgetBlueprint.parentNode.replaceChild(this.player, this.widgetBlueprint);
 
         // UI playback controllers
@@ -42,6 +43,7 @@ class Read2MeWidgetPlayer {
         this.handleQuickControls();
         this.handleScrubber();
         this.handleSpeakingRateChange();
+        this.hideLoader();
     }
 
     static getTemplate() {
@@ -141,7 +143,12 @@ class Read2MeWidgetPlayer {
         container.addEventListener('click', () => {
             if (this.isPlayButtonShown()) {
                 this.audioController.play();
+                this.displayLoader();
                 this.displayPauseButton();
+
+                this.audioController.audio.addEventListener('playing', () => {
+                    this.hideLoader();
+                });
             } else if (this.isPauseButtonShown()) {
                 this.audioController.pause();
                 this.displayPlayButton();
@@ -224,6 +231,14 @@ class Read2MeWidgetPlayer {
         this.speakingRate.on('change', (values) => {
             this.audioController.setPlaySpeed(values.newValue);
         });
+    }
+
+    displayLoader() {
+        this.loader.classList.remove('hidden');
+    }
+
+    hideLoader() {
+        this.loader.classList.add('hidden');
     }
 
     static getPageTitle() {

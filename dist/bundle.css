@@ -569,3 +569,71 @@ svg.read2me-widget-speaking-rate
 {
     fill: #0ed1fe;
 }
+
+/**
+ A great loader from https://codepen.io/brunjo/pen/XJmbNz
+ */
+.read2me-widget-loader
+{
+    position: absolute;
+    bottom: 0;
+
+    overflow: hidden;
+
+    width: 100%;
+    height: 4px;
+
+    background-color: transparent;
+}
+.read2me-widget-loader:before
+{
+    position: absolute;
+    left: -200px;
+
+    display: block;
+
+    width: 200px;
+    height: 4px;
+
+    content: '';
+    animation: read2me-widget-loading 2s linear infinite;
+
+    background-color: #3a3c3b;
+}
+
+@keyframes read2me-widget-loading
+{
+    from
+    {
+        left: -200px; width: 30%;
+    }
+    50%
+    {
+        width: 30%;
+    }
+    70%
+    {
+        width: 70%;
+    }
+    80%
+    {
+        left: 50%;
+    }
+    95%
+    {
+        left: 120%;
+    }
+    to
+    {
+        left: 100%;
+    }
+}
+
+.read2me-widget-player.preset-blue .read2me-widget-loader:before
+{
+    background-color: #3e8fad;
+}
+.read2me-widget-player.preset-white .read2me-widget-loader
+{
+    height: 2px;
+}

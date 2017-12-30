@@ -276,3 +276,41 @@ svg.read2me-widget-speaking-rate {
 .read2me-widget-player.preset-white .read2me-widget-player-playback:hover svg {
     fill: #0ED1FE;
 }
+
+/**
+ A great loader from https://codepen.io/brunjo/pen/XJmbNz
+ */
+.read2me-widget-loader {
+    position: absolute;
+    bottom: 0;
+    height: 4px;
+    width: 100%;
+    overflow: hidden;
+    background-color: transparent;
+}
+.read2me-widget-loader:before{
+    display: block;
+    position: absolute;
+    content: "";
+    left: -200px;
+    width: 200px;
+    height: 4px;
+    animation: read2me-widget-loading 2s linear infinite;
+    background-color: #3A3C3B;
+}
+
+@keyframes read2me-widget-loading {
+    from {left: -200px; width: 30%;}
+    50% {width: 30%;}
+    70% {width: 70%;}
+    80% { left: 50%;}
+    95% {left: 120%;}
+    to {left: 100%;}
+}
+
+.read2me-widget-player.preset-blue .read2me-widget-loader:before {
+    background-color: #3e8fad;
+}
+.read2me-widget-player.preset-white .read2me-widget-loader {
+    height: 2px;
+}
