@@ -218,7 +218,7 @@
     -webkit-box-sizing: content-box;
        -moz-box-sizing: content-box;
             box-sizing: content-box;
-    width: 570px;
+    min-width: 570px;
     height: 101px;
     margin: 30px 5px 10px 5px;
 

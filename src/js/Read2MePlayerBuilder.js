@@ -23,13 +23,14 @@ class Read2MePlayerBuilder {
         let thumbnail = elem.getAttribute('data-thumbnail');
         let ignoreContentChange = elem.getAttribute('data-ignore-content-change');
         let theme = elem.getAttribute('data-player-theme');
+        let width = elem.getAttribute('data-player-width');
 
         autoplay = this._booleanStringToBoolean(autoplay);
         cssSelectors = this._cssSelectorsStringToArray(cssSelectors);
         ignoreContentChange = this._booleanStringToBoolean(ignoreContentChange);
 
         let backendWrapper = new Read2MeBackendWrapper(appId, url, cssSelectors, ignoreContentChange, 'widget');
-        let player = new Read2MeWidgetPlayer(elem, url, title, thumbnail, autoplay, this.playerInstances.length, theme);
+        let player = new Read2MeWidgetPlayer(elem, url, title, thumbnail, autoplay, this.playerInstances.length, theme, width);
 
         this._makeApiCalls(backendWrapper, (responseResult) => {
             // success

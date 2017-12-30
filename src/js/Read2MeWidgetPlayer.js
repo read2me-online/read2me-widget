@@ -1,5 +1,5 @@
 class Read2MeWidgetPlayer {
-    constructor(widgetBlueprint, url, title = null, thumbnail = null, autoplay = false, playerId = 0, theme = null) {
+    constructor(widgetBlueprint, url, title = null, thumbnail = null, autoplay = false, playerId = 0, theme = null, width = null) {
         // sliders
         this.isScrubberBeingDragged = false;
         this.scrubber = null;
@@ -13,6 +13,7 @@ class Read2MeWidgetPlayer {
         this.autoplay = autoplay;
         this.playerId = playerId;
         this.theme = theme;
+        this.width = width;
 
         this.player = Read2MeHelpers.getWidgetTemplate();
         this.playbackContainer = this.player.querySelector('.read2me-widget-player-playback');
@@ -28,6 +29,7 @@ class Read2MeWidgetPlayer {
         this.setTitle();
         this.setThumbnail();
         this.setTheme();
+        this.setWidth();
         this.player.classList.remove('read2me-template');
         this.instantiateSliders();
     }
@@ -135,6 +137,13 @@ class Read2MeWidgetPlayer {
         }
     }
 
+    setWidth() {
+        if (this.width === null)
+            return;
+
+        this.player.style.width = this.width;
+    }
+
     handlePlayback() {
         this.playbackContainer.addEventListener('click', () => {
             if (this.isPlayButtonShown()) {
@@ -195,6 +204,9 @@ class Read2MeWidgetPlayer {
 
         rewind.addEventListener('click', () => {
             this.audioController.rewindForXSeconds(10);
+
+            if (this.isReplayButtonShown())
+                this.displayPlayButton();
         });
 
         forward.addEventListener('click', () => {

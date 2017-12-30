@@ -655,6 +655,7 @@ var Read2MeWidgetPlayer = function () {
         var autoplay = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
         var playerId = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
         var theme = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : null;
+        var width = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : null;
 
         _classCallCheck(this, Read2MeWidgetPlayer);
 
@@ -671,6 +672,7 @@ var Read2MeWidgetPlayer = function () {
         this.autoplay = autoplay;
         this.playerId = playerId;
         this.theme = theme;
+        this.width = width;
 
         this.player = Read2MeHelpers.getWidgetTemplate();
         this.playbackContainer = this.player.querySelector('.read2me-widget-player-playback');
@@ -686,6 +688,7 @@ var Read2MeWidgetPlayer = function () {
         this.setTitle();
         this.setThumbnail();
         this.setTheme();
+        this.setWidth();
         this.player.classList.remove('read2me-template');
         this.instantiateSliders();
     }
@@ -791,6 +794,13 @@ var Read2MeWidgetPlayer = function () {
             }
         }
     }, {
+        key: "setWidth",
+        value: function setWidth() {
+            if (this.width === null) return;
+
+            this.player.style.width = this.width;
+        }
+    }, {
         key: "handlePlayback",
         value: function handlePlayback() {
             var _this3 = this;
@@ -863,6 +873,8 @@ var Read2MeWidgetPlayer = function () {
 
             rewind.addEventListener('click', function () {
                 _this4.audioController.rewindForXSeconds(10);
+
+                if (_this4.isReplayButtonShown()) _this4.displayPlayButton();
             });
 
             forward.addEventListener('click', function () {
@@ -950,13 +962,14 @@ var Read2MePlayerBuilder = function () {
             var thumbnail = elem.getAttribute('data-thumbnail');
             var ignoreContentChange = elem.getAttribute('data-ignore-content-change');
             var theme = elem.getAttribute('data-player-theme');
+            var width = elem.getAttribute('data-player-width');
 
             autoplay = this._booleanStringToBoolean(autoplay);
             cssSelectors = this._cssSelectorsStringToArray(cssSelectors);
             ignoreContentChange = this._booleanStringToBoolean(ignoreContentChange);
 
             var backendWrapper = new Read2MeBackendWrapper(appId, url, cssSelectors, ignoreContentChange, 'widget');
-            var player = new Read2MeWidgetPlayer(elem, url, title, thumbnail, autoplay, this.playerInstances.length, theme);
+            var player = new Read2MeWidgetPlayer(elem, url, title, thumbnail, autoplay, this.playerInstances.length, theme, width);
 
             this._makeApiCalls(backendWrapper, function (responseResult) {
                 // success
