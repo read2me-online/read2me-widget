@@ -645,6 +645,7 @@ var Read2MeWidgetPlayer = function () {
         this.theme = theme;
 
         this.player = Read2MeWidgetPlayer.getTemplate();
+        this.playbackContainer = this.player.querySelector('.read2me-widget-player-playback');
         this.loader = this.player.querySelector('.read2me-widget-loader');
         widgetBlueprint.parentNode.replaceChild(this.player, this.widgetBlueprint);
 
@@ -675,6 +676,7 @@ var Read2MeWidgetPlayer = function () {
             this.handleScrubber();
             this.handleSpeakingRateChange();
             this.hideLoader();
+            this.removePlaybackBufferingStyles();
         }
     }, {
         key: "instantiateSliders",
@@ -765,9 +767,7 @@ var Read2MeWidgetPlayer = function () {
         value: function handlePlayback() {
             var _this3 = this;
 
-            var container = this.player.querySelector('.read2me-widget-player-playback');
-
-            container.addEventListener('click', function () {
+            this.playbackContainer.addEventListener('click', function () {
                 if (_this3.isPlayButtonShown()) {
                     _this3.audioController.play();
                     _this3.displayLoader();
@@ -881,6 +881,11 @@ var Read2MeWidgetPlayer = function () {
         key: "hideLoader",
         value: function hideLoader() {
             this.loader.classList.add('hidden');
+        }
+    }, {
+        key: "removePlaybackBufferingStyles",
+        value: function removePlaybackBufferingStyles() {
+            this.playbackContainer.classList.remove('read2me-playback-buffering');
         }
     }], [{
         key: "getTemplate",

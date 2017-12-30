@@ -429,6 +429,12 @@ The round play/pause/replay container.
 
     margin: auto auto auto auto;
 }
+.read2me-widget-player-playback.read2me-playback-buffering
+{
+    cursor: wait;
+
+    opacity: .5;
+}
 svg.read2me-widget-player-playback-play
 {
     left: 3px;
