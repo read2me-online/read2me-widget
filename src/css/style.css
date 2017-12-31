@@ -323,6 +323,7 @@ svg.read2me-widget-speaking-rate {
     position: absolute;
     bottom: 5px;
     right: 21px;
+    opacity: 0.5;
 }
 .read2me-credits a {
     text-decoration: none;
