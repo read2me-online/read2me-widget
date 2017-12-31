@@ -74,8 +74,8 @@
     position: absolute;
     top: -20px;
     left: 21px;
-    max-width: 101px;
-    max-height: 101px;
+    width: 101px;
+    height: 101px;
 }
 .read2me-widget-player-title {
     position: absolute;
