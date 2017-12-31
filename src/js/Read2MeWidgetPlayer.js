@@ -145,15 +145,15 @@ class Read2MeWidgetPlayer {
     }
 
     handlePlayback() {
+        this.audioController.audio.addEventListener('playing', () => {
+            this.hideLoader();
+        });
+
         this.playbackContainer.addEventListener('click', () => {
             if (this.isPlayButtonShown()) {
                 this.audioController.play();
                 this.displayLoader();
                 this.displayPauseButton();
-
-                this.audioController.audio.addEventListener('playing', () => {
-                    this.hideLoader();
-                });
             } else if (this.isPauseButtonShown()) {
                 this.audioController.pause();
                 this.displayPlayButton();
@@ -165,6 +165,10 @@ class Read2MeWidgetPlayer {
 
         this.audioController.audio.addEventListener('ended', () => {
             this.displayReplayButton();
+        });
+
+        this.audioController.audio.addEventListener('stalled', () => {
+            this.displayLoader();
         });
     }
 

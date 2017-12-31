@@ -1489,15 +1489,15 @@ var Read2MeWidgetPlayer = function () {
         value: function handlePlayback() {
             var _this3 = this;
 
+            this.audioController.audio.addEventListener('playing', function () {
+                _this3.hideLoader();
+            });
+
             this.playbackContainer.addEventListener('click', function () {
                 if (_this3.isPlayButtonShown()) {
                     _this3.audioController.play();
                     _this3.displayLoader();
                     _this3.displayPauseButton();
-
-                    _this3.audioController.audio.addEventListener('playing', function () {
-                        _this3.hideLoader();
-                    });
                 } else if (_this3.isPauseButtonShown()) {
                     _this3.audioController.pause();
                     _this3.displayPlayButton();
@@ -1509,6 +1509,10 @@ var Read2MeWidgetPlayer = function () {
 
             this.audioController.audio.addEventListener('ended', function () {
                 _this3.displayReplayButton();
+            });
+
+            this.audioController.audio.addEventListener('stalled', function () {
+                _this3.displayLoader();
             });
         }
     }, {
