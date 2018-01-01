@@ -677,6 +677,8 @@ var Read2MeWidgetPlayer = function () {
         this.player = Read2MeHelpers.getWidgetTemplate();
         this.playbackContainer = this.player.querySelector('.read2me-widget-player-playback');
         this.loader = this.player.querySelector('.read2me-widget-loader');
+        this.titleContainer = this.player.querySelector('.read2me-widget-player-title');
+        this.titleTextContainer = this.titleContainer.querySelector('span');
         widgetBlueprint.parentNode.replaceChild(this.player, this.widgetBlueprint);
 
         // UI playback controllers
@@ -708,6 +710,7 @@ var Read2MeWidgetPlayer = function () {
             this.handleSpeakingRateChange();
             this.hideLoader();
             this.removePlaybackBufferingStyles();
+            this.setMarqueeForTitle();
         }
     }, {
         key: "instantiateSliders",
@@ -756,10 +759,14 @@ var Read2MeWidgetPlayer = function () {
     }, {
         key: "setTitle",
         value: function setTitle() {
-            var container = this.player.querySelector('.read2me-widget-player-title span');
             var pageTitle = Read2MeHelpers.getPageTitle();
 
-            if (this.title !== null) container.textContent = this.title;else if (pageTitle !== null) container.textContent = pageTitle;
+            if (this.title !== null) this.titleTextContainer.textContent = this.title;else if (pageTitle !== null) this.titleTextContainer.textContent = pageTitle;
+        }
+    }, {
+        key: "setMarqueeForTitle",
+        value: function setMarqueeForTitle() {
+            if (this.titleTextContainer.offsetWidth > this.titleContainer.offsetWidth) this.titleTextContainer.classList.add('read2me-marquee');
         }
     }, {
         key: "setThumbnail",

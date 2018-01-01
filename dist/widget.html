@@ -323,11 +323,12 @@
     overflow-x: hidden;
 
     width: 183px;
+    width: calc(100% - 142px - 165px - 84px);
     margin-right: 5px;
 
     white-space: nowrap;
 }
-.read2me-widget-player-title:hover span
+.read2me-widget-player-title:hover span.read2me-marquee
 {
     position: relative;
 
@@ -351,7 +352,7 @@
     position: absolute;
     z-index: 2;
     top: 25px;
-    left: 325px;
+    right: 165px;
 }
 .read2me-widget-player-quick-controls svg.read2me-widget-rewind,
 .read2me-widget-player-quick-controls svg.read2me-widget-forward
@@ -394,7 +395,9 @@
  */
 .read2me-widget-player-scrubber-container
 {
+    /* old browsers will use the first property, newer the second */
     width: 49.12%;
+    width: calc(100% - 288px);
 }
 .read2me-widget-player-scrubber-container div:first-of-type
 {
@@ -1369,6 +1372,8 @@ var Read2MeWidgetPlayer = function () {
         this.player = Read2MeHelpers.getWidgetTemplate();
         this.playbackContainer = this.player.querySelector('.read2me-widget-player-playback');
         this.loader = this.player.querySelector('.read2me-widget-loader');
+        this.titleContainer = this.player.querySelector('.read2me-widget-player-title');
+        this.titleTextContainer = this.titleContainer.querySelector('span');
         widgetBlueprint.parentNode.replaceChild(this.player, this.widgetBlueprint);
 
         // UI playback controllers
@@ -1400,6 +1405,7 @@ var Read2MeWidgetPlayer = function () {
             this.handleSpeakingRateChange();
             this.hideLoader();
             this.removePlaybackBufferingStyles();
+            this.setMarqueeForTitle();
         }
     }, {
         key: "instantiateSliders",
@@ -1448,10 +1454,14 @@ var Read2MeWidgetPlayer = function () {
     }, {
         key: "setTitle",
         value: function setTitle() {
-            var container = this.player.querySelector('.read2me-widget-player-title span');
             var pageTitle = Read2MeHelpers.getPageTitle();
 
-            if (this.title !== null) container.textContent = this.title;else if (pageTitle !== null) container.textContent = pageTitle;
+            if (this.title !== null) this.titleTextContainer.textContent = this.title;else if (pageTitle !== null) this.titleTextContainer.textContent = pageTitle;
+        }
+    }, {
+        key: "setMarqueeForTitle",
+        value: function setMarqueeForTitle() {
+            if (this.titleTextContainer.offsetWidth > this.titleContainer.offsetWidth) this.titleTextContainer.classList.add('read2me-marquee');
         }
     }, {
         key: "setThumbnail",

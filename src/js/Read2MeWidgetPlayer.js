@@ -18,6 +18,8 @@ class Read2MeWidgetPlayer {
         this.player = Read2MeHelpers.getWidgetTemplate();
         this.playbackContainer = this.player.querySelector('.read2me-widget-player-playback');
         this.loader = this.player.querySelector('.read2me-widget-loader');
+        this.titleContainer= this.player.querySelector('.read2me-widget-player-title');
+        this.titleTextContainer = this.titleContainer.querySelector('span');
         widgetBlueprint.parentNode.replaceChild(this.player, this.widgetBlueprint);
 
         // UI playback controllers
@@ -48,6 +50,7 @@ class Read2MeWidgetPlayer {
         this.handleSpeakingRateChange();
         this.hideLoader();
         this.removePlaybackBufferingStyles();
+        this.setMarqueeForTitle();
     }
 
     instantiateSliders() {
@@ -95,13 +98,17 @@ class Read2MeWidgetPlayer {
     }
 
     setTitle() {
-        let container = this.player.querySelector('.read2me-widget-player-title span');
         let pageTitle = Read2MeHelpers.getPageTitle();
 
         if (this.title !== null)
-            container.textContent = this.title;
+            this.titleTextContainer.textContent = this.title;
         else if (pageTitle !== null)
-            container.textContent = pageTitle;
+            this.titleTextContainer.textContent = pageTitle;
+    }
+
+    setMarqueeForTitle() {
+        if (this.titleTextContainer.offsetWidth > this.titleContainer.offsetWidth)
+            this.titleTextContainer.classList.add('read2me-marquee');
     }
 
     setThumbnail() {

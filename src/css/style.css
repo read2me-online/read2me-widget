@@ -82,6 +82,7 @@
     top: 25px;
     left: 142px;
     width: 183px;
+    width: calc(100% - 142px - 165px - 84px);
     font-size: 15px;
     white-space:nowrap;
     overflow-x: hidden;
@@ -89,7 +90,7 @@
     z-index: 2;
     font-weight: 600;
 }
-.read2me-widget-player-title:hover span {
+.read2me-widget-player-title:hover span.read2me-marquee {
     position: relative;
     animation: marquee 5s linear infinite;
 }
@@ -102,7 +103,7 @@
 .read2me-widget-player-quick-controls {
     position: absolute;
     top: 25px;
-    left: 325px;
+    right: 165px;
     z-index: 2;
 }
 .read2me-widget-player-quick-controls svg.read2me-widget-rewind,
@@ -136,7 +137,9 @@
  Scrubber container
  */
 .read2me-widget-player-scrubber-container {
+    /* old browsers will use the first property, newer the second */
     width: 49.12%;
+    width: calc(100% - 288px);
 }
 .read2me-widget-player-scrubber-container div:first-of-type {
     width: 100%;
