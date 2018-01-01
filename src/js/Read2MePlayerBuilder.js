@@ -30,11 +30,14 @@ class Read2MePlayerBuilder {
         ignoreContentChange = this._booleanStringToBoolean(ignoreContentChange);
 
         let backendWrapper = new Read2MeBackendWrapper(appId, url, cssSelectors, ignoreContentChange, 'widget');
-        let player = new Read2MeWidgetPlayer(elem, url, title, thumbnail, autoplay, this.playerInstances.length, theme, width);
+        let playerId = this.playerInstances.length;
+        this.playerInstances[playerId] =
+            new Read2MeWidgetPlayer(elem, url, title, thumbnail, autoplay, playerId, theme, width);
 
         this._makeApiCalls(backendWrapper, (responseResult) => {
             // success
-            player.finishInitialisation(new Read2MeAudioController(responseResult.audio_url), responseResult);
+            this.playerInstances[playerId]
+                .finishInitialisation(new Read2MeAudioController(responseResult.audio_url), responseResult);
         }, (response) => {
             console.warn(response);
         });

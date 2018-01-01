@@ -958,6 +958,8 @@ var Read2MePlayerBuilder = function () {
     _createClass(Read2MePlayerBuilder, [{
         key: "_replaceBlueprintWithPlayer",
         value: function _replaceBlueprintWithPlayer(elem) {
+            var _this8 = this;
+
             var appId = 2; // @TODO
             var url = elem.getAttribute('data-url');
             var autoplay = elem.getAttribute('data-autoplay');
@@ -973,11 +975,12 @@ var Read2MePlayerBuilder = function () {
             ignoreContentChange = this._booleanStringToBoolean(ignoreContentChange);
 
             var backendWrapper = new Read2MeBackendWrapper(appId, url, cssSelectors, ignoreContentChange, 'widget');
-            var player = new Read2MeWidgetPlayer(elem, url, title, thumbnail, autoplay, this.playerInstances.length, theme, width);
+            var playerId = this.playerInstances.length;
+            this.playerInstances[playerId] = new Read2MeWidgetPlayer(elem, url, title, thumbnail, autoplay, playerId, theme, width);
 
             this._makeApiCalls(backendWrapper, function (responseResult) {
                 // success
-                player.finishInitialisation(new Read2MeAudioController(responseResult.audio_url), responseResult);
+                _this8.playerInstances[playerId].finishInitialisation(new Read2MeAudioController(responseResult.audio_url), responseResult);
             }, function (response) {
                 console.warn(response);
             });
@@ -1010,7 +1013,7 @@ var Read2MePlayerBuilder = function () {
     }, {
         key: "_cssSelectorsStringToArray",
         value: function _cssSelectorsStringToArray(cssSelectors) {
-            var _this8 = this;
+            var _this9 = this;
 
             if (!cssSelectors) return;
 
@@ -1019,10 +1022,10 @@ var Read2MePlayerBuilder = function () {
                 return selector.trim();
             });
             cssSelectors = cssSelectors.map(function (selector) {
-                return _this8._trimByChar(selector, '"');
+                return _this9._trimByChar(selector, '"');
             });
             cssSelectors = cssSelectors.map(function (selector) {
-                return _this8._trimByChar(selector, "'");
+                return _this9._trimByChar(selector, "'");
             });
 
             return cssSelectors;

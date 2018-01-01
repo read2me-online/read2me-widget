@@ -135,8 +135,11 @@
 /**
  Scrubber container
  */
+.read2me-widget-player-scrubber-container {
+    width: 49.12%;
+}
 .read2me-widget-player-scrubber-container div:first-of-type {
-    width: 280px;
+    width: 100%;
     left: 142px;
 }
 /**
@@ -188,7 +191,7 @@ svg.read2me-widget-player-playback-replay {
 .read2me-widget-player-speaking-rate-container {
     position: absolute;
     top: 52px;
-    left: 455px;
+    right: 21px;
 }
 svg.read2me-widget-speaking-rate {
     width: 20px;
@@ -323,12 +326,15 @@ svg.read2me-widget-speaking-rate {
     position: absolute;
     bottom: 5px;
     right: 21px;
-    opacity: 0.5;
 }
 .read2me-credits a {
     text-decoration: none;
     font-size: 9px;
     letter-spacing: 1px;
+    opacity: 0.5;
+}
+.read2me-credits a:hover {
+    opacity: 0.75;
 }
 .read2me-widget-player.preset-white .read2me-credits a {
     color: black;
