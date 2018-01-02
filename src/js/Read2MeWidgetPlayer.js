@@ -129,7 +129,8 @@ class Read2MeWidgetPlayer {
             return;
 
         this.audioController.audio.addEventListener('canplay', () => {
-            this.audioController.audio.play();
+            this.audioController.play();
+            this.displayPauseButton();
         });
     }
 

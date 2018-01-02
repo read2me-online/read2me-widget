@@ -785,7 +785,8 @@ var Read2MeWidgetPlayer = function () {
             if (!this.autoplay) return;
 
             this.audioController.audio.addEventListener('canplay', function () {
-                _this2.audioController.audio.play();
+                _this2.audioController.play();
+                _this2.displayPauseButton();
             });
         }
     }, {
