@@ -387,6 +387,16 @@ var Read2MeHelpers = function () {
             }
         }
     }, {
+        key: "getElementsWidthWithoutPadding",
+        value: function getElementsWidthWithoutPadding(elem) {
+            // based on https://stackoverflow.com/a/29881817/1325575
+            var computedStyle = getComputedStyle(elem);
+            var elementWidth = elem.clientWidth; // width with padding
+            elementWidth -= parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle.paddingRight);
+
+            return elementWidth;
+        }
+    }, {
         key: "secondsToHumanReadableArray",
         value: function secondsToHumanReadableArray(durationInSeconds) {
             var hours = void 0,
@@ -693,6 +703,7 @@ var Read2MeWidgetPlayer = function () {
         this.setWidth();
         this.player.classList.remove('read2me-template');
         this.instantiateSliders();
+        this.adjustWidth();
     }
 
     _createClass(Read2MeWidgetPlayer, [{
@@ -938,6 +949,17 @@ var Read2MeWidgetPlayer = function () {
         key: "removePlaybackBufferingStyles",
         value: function removePlaybackBufferingStyles() {
             this.playbackContainer.classList.remove('read2me-playback-buffering');
+        }
+    }, {
+        key: "adjustWidth",
+        value: function adjustWidth() {
+            var parent = this.player.parentNode;
+            var parentWidth = Read2MeHelpers.getElementsWidthWithoutPadding(parent);
+
+            if (parentWidth < 570) {
+                this.player.style['transform-origin'] = 'left';
+                this.player.style.transform = 'scale(' + parentWidth / 570 + ')';
+            }
         }
     }]);
 

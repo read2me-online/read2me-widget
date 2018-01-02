@@ -7,6 +7,15 @@ class Read2MeHelpers {
         }
     }
 
+    static getElementsWidthWithoutPadding(elem) {
+        // based on https://stackoverflow.com/a/29881817/1325575
+        let computedStyle = getComputedStyle(elem);
+        let elementWidth = elem.clientWidth;   // width with padding
+        elementWidth -= parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle.paddingRight);
+
+        return elementWidth;
+    }
+
     static secondsToHumanReadableArray(durationInSeconds) {
         let hours, minutes, seconds;
 
