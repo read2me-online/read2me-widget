@@ -15,7 +15,7 @@ class Read2MePlayerBuilder {
     }
 
     _replaceBlueprintWithPlayer(elem) {
-        let appId = 2; // @TODO
+        let appId = Number.parseInt(elem.getAttribute('data-app-id'));
         let url = elem.getAttribute('data-url');
         let autoplay = elem.getAttribute('data-autoplay');
         let cssSelectors = elem.getAttribute('data-css-selectors');

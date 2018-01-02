@@ -967,7 +967,7 @@ var Read2MePlayerBuilder = function () {
         value: function _replaceBlueprintWithPlayer(elem) {
             var _this8 = this;
 
-            var appId = 2; // @TODO
+            var appId = Number.parseInt(elem.getAttribute('data-app-id'));
             var url = elem.getAttribute('data-url');
             var autoplay = elem.getAttribute('data-autoplay');
             var cssSelectors = elem.getAttribute('data-css-selectors');
