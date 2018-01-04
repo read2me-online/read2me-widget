@@ -39,6 +39,7 @@ class Read2MePlayerBuilder {
             this.playerInstances[playerId]
                 .finishInitialisation(new Read2MeAudioController(responseResult.audio_url), responseResult);
         }, (response) => {
+            this.playerInstances[playerId].hideLoader();
             console.warn(response);
         });
     }
