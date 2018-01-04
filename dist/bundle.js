@@ -705,6 +705,7 @@ var Read2MeWidgetPlayer = function () {
         this.scalePlayerDownOnSmallScreens();
         this.wrapper.classList.remove('read2me-template');
         this.instantiateSliders();
+        this.handleViewportResize();
     }
 
     _createClass(Read2MeWidgetPlayer, [{
@@ -954,14 +955,14 @@ var Read2MeWidgetPlayer = function () {
     }, {
         key: "scalePlayerDownOnSmallScreens",
         value: function scalePlayerDownOnSmallScreens() {
-            var parent = this.player.parentNode;
+            var parent = this.wrapper.parentNode;
             var parentWidth = Read2MeHelpers.getElementsWidthWithoutPadding(parent);
 
             if (parentWidth < 570) {
-                this.player.style['transform-origin'] = 'left';
-                this.player.style.transform = 'scale(' + parentWidth / 570 + ')';
+                this.wrapper.style['transform-origin'] = 'left';
+                this.wrapper.style.transform = 'scale(' + parentWidth / 570 + ')';
             } else {
-                this.player.style.transform = '';
+                this.wrapper.style.transform = '';
             }
         }
     }, {

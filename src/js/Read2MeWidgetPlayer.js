@@ -36,6 +36,7 @@ class Read2MeWidgetPlayer {
         this.scalePlayerDownOnSmallScreens();
         this.wrapper.classList.remove('read2me-template');
         this.instantiateSliders();
+        this.handleViewportResize();
     }
 
     finishInitialisation(audioController, apiResponse) {
@@ -268,14 +269,14 @@ class Read2MeWidgetPlayer {
     }
 
     scalePlayerDownOnSmallScreens() {
-        let parent = this.player.parentNode;
+        let parent = this.wrapper.parentNode;
         let parentWidth = Read2MeHelpers.getElementsWidthWithoutPadding(parent);
 
         if (parentWidth < 570) {
-            this.player.style['transform-origin'] = 'left';
-            this.player.style.transform = 'scale(' + parentWidth / 570 + ')';
+            this.wrapper.style['transform-origin'] = 'left';
+            this.wrapper.style.transform = 'scale(' + parentWidth / 570 + ')';
         } else {
-            this.player.style.transform = '';
+            this.wrapper.style.transform = '';
         }
     }
 
