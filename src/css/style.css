@@ -7,12 +7,12 @@
     display: inline-block;
     font-family: 'Raleway', sans-serif;
     position: relative;
-    min-width: 570px;
+    width: 570px;
     height: 101px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.read2me-widget-player.read2me-template {
+.read2me-widget-wrapper.read2me-template {
     display:none;
 }
 .read2me-widget-player .hidden {

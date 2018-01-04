@@ -15,12 +15,13 @@ class Read2MeWidgetPlayer {
         this.theme = theme;
         this.width = width;
 
-        this.player = Read2MeHelpers.getWidgetTemplate();
+        this.wrapper = Read2MeHelpers.getWidgetTemplate();
+        this.player = this.wrapper.querySelector('.read2me-widget-player');
         this.playbackContainer = this.player.querySelector('.read2me-widget-player-playback');
         this.loader = this.player.querySelector('.read2me-widget-loader');
         this.titleContainer= this.player.querySelector('.read2me-widget-player-title');
         this.titleTextContainer = this.titleContainer.querySelector('span');
-        widgetBlueprint.parentNode.replaceChild(this.player, this.widgetBlueprint);
+        widgetBlueprint.parentNode.replaceChild(this.wrapper, this.widgetBlueprint);
 
         // UI playback controllers
         this.play = this.player.querySelector('.read2me-widget-player-playback-play');
@@ -32,9 +33,9 @@ class Read2MeWidgetPlayer {
         this.setThumbnail();
         this.setTheme();
         this.setWidth();
-        this.player.classList.remove('read2me-template');
+        this.scalePlayerDownOnSmallScreens();
+        this.wrapper.classList.remove('read2me-template');
         this.instantiateSliders();
-        this.adjustWidth();
     }
 
     finishInitialisation(audioController, apiResponse) {
@@ -266,13 +267,21 @@ class Read2MeWidgetPlayer {
         this.playbackContainer.classList.remove('read2me-playback-buffering');
     }
 
-    adjustWidth() {
+    scalePlayerDownOnSmallScreens() {
         let parent = this.player.parentNode;
         let parentWidth = Read2MeHelpers.getElementsWidthWithoutPadding(parent);
 
         if (parentWidth < 570) {
             this.player.style['transform-origin'] = 'left';
             this.player.style.transform = 'scale(' + parentWidth / 570 + ')';
+        } else {
+            this.player.style.transform = '';
         }
+    }
+
+    handleViewportResize() {
+        window.addEventListener('resize', () => {
+            this.scalePlayerDownOnSmallScreens();
+        });
     }
 }

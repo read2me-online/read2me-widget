@@ -64,6 +64,6 @@ class Read2MeHelpers {
     }
 
     static getWidgetTemplate() {
-        return document.querySelector('.read2me-widget-player.read2me-template').cloneNode(true);
+        return document.querySelector('.read2me-widget-wrapper.read2me-template').cloneNode(true);
     }
 }

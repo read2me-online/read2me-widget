@@ -449,7 +449,7 @@ var Read2MeHelpers = function () {
     }, {
         key: "getWidgetTemplate",
         value: function getWidgetTemplate() {
-            return document.querySelector('.read2me-widget-player.read2me-template').cloneNode(true);
+            return document.querySelector('.read2me-widget-wrapper.read2me-template').cloneNode(true);
         }
     }]);
 
@@ -684,12 +684,13 @@ var Read2MeWidgetPlayer = function () {
         this.theme = theme;
         this.width = width;
 
-        this.player = Read2MeHelpers.getWidgetTemplate();
+        this.wrapper = Read2MeHelpers.getWidgetTemplate();
+        this.player = this.wrapper.querySelector('.read2me-widget-player');
         this.playbackContainer = this.player.querySelector('.read2me-widget-player-playback');
         this.loader = this.player.querySelector('.read2me-widget-loader');
         this.titleContainer = this.player.querySelector('.read2me-widget-player-title');
         this.titleTextContainer = this.titleContainer.querySelector('span');
-        widgetBlueprint.parentNode.replaceChild(this.player, this.widgetBlueprint);
+        widgetBlueprint.parentNode.replaceChild(this.wrapper, this.widgetBlueprint);
 
         // UI playback controllers
         this.play = this.player.querySelector('.read2me-widget-player-playback-play');
@@ -701,9 +702,9 @@ var Read2MeWidgetPlayer = function () {
         this.setThumbnail();
         this.setTheme();
         this.setWidth();
-        this.player.classList.remove('read2me-template');
+        this.scalePlayerDownOnSmallScreens();
+        this.wrapper.classList.remove('read2me-template');
         this.instantiateSliders();
-        this.adjustWidth();
     }
 
     _createClass(Read2MeWidgetPlayer, [{
@@ -951,15 +952,26 @@ var Read2MeWidgetPlayer = function () {
             this.playbackContainer.classList.remove('read2me-playback-buffering');
         }
     }, {
-        key: "adjustWidth",
-        value: function adjustWidth() {
+        key: "scalePlayerDownOnSmallScreens",
+        value: function scalePlayerDownOnSmallScreens() {
             var parent = this.player.parentNode;
             var parentWidth = Read2MeHelpers.getElementsWidthWithoutPadding(parent);
 
             if (parentWidth < 570) {
                 this.player.style['transform-origin'] = 'left';
                 this.player.style.transform = 'scale(' + parentWidth / 570 + ')';
+            } else {
+                this.player.style.transform = '';
             }
+        }
+    }, {
+        key: "handleViewportResize",
+        value: function handleViewportResize() {
+            var _this7 = this;
+
+            window.addEventListener('resize', function () {
+                _this7.scalePlayerDownOnSmallScreens();
+            });
         }
     }]);
 
@@ -972,7 +984,7 @@ var Read2MeWidgetPlayer = function () {
 
 var Read2MePlayerBuilder = function () {
     function Read2MePlayerBuilder() {
-        var _this7 = this;
+        var _this8 = this;
 
         _classCallCheck(this, Read2MePlayerBuilder);
 
@@ -981,14 +993,14 @@ var Read2MePlayerBuilder = function () {
         var elements = document.querySelectorAll(cssTarget);
 
         elements.forEach(function (elem) {
-            _this7._replaceBlueprintWithPlayer(elem);
+            _this8._replaceBlueprintWithPlayer(elem);
         });
     }
 
     _createClass(Read2MePlayerBuilder, [{
         key: "_replaceBlueprintWithPlayer",
         value: function _replaceBlueprintWithPlayer(elem) {
-            var _this8 = this;
+            var _this9 = this;
 
             var appId = Number.parseInt(elem.getAttribute('data-app-id'));
             var url = elem.getAttribute('data-url');
@@ -1010,7 +1022,7 @@ var Read2MePlayerBuilder = function () {
 
             this._makeApiCalls(backendWrapper, function (responseResult) {
                 // success
-                _this8.playerInstances[playerId].finishInitialisation(new Read2MeAudioController(responseResult.audio_url), responseResult);
+                _this9.playerInstances[playerId].finishInitialisation(new Read2MeAudioController(responseResult.audio_url), responseResult);
             }, function (response) {
                 console.warn(response);
             });
@@ -1043,7 +1055,7 @@ var Read2MePlayerBuilder = function () {
     }, {
         key: "_cssSelectorsStringToArray",
         value: function _cssSelectorsStringToArray(cssSelectors) {
-            var _this9 = this;
+            var _this10 = this;
 
             if (!cssSelectors) return;
 
@@ -1052,10 +1064,10 @@ var Read2MePlayerBuilder = function () {
                 return selector.trim();
             });
             cssSelectors = cssSelectors.map(function (selector) {
-                return _this9._trimByChar(selector, '"');
+                return _this10._trimByChar(selector, '"');
             });
             cssSelectors = cssSelectors.map(function (selector) {
-                return _this9._trimByChar(selector, "'");
+                return _this10._trimByChar(selector, "'");
             });
 
             return cssSelectors;
