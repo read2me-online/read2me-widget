@@ -83,6 +83,7 @@ var Read2MeBackendWrapper = function () {
             };
 
             request.onerror = function () {
+                errorCallback();
                 console.warn('Connection to Read2Me backend API failed.');
             };
 
@@ -106,6 +107,7 @@ var Read2MeBackendWrapper = function () {
             };
 
             request.onerror = function () {
+                errorCallback();
                 console.warn('Connection to Read2Me API failed.');
             };
 
