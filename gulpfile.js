@@ -75,7 +75,7 @@ gulp.task('publish', () => {
 });
 
 gulp.task('publishDev', () => {
-    return gulp.src(['./dist/read2me-backend.js', './dist/widget.min.html'])
+    return gulp.src(['./dist/read2me-backend.js', './dist/widget.min.html', './dist/widget.html'])
         .pipe(s3(AWS, AWSOptionsDev));
 });
 
@@ -109,10 +109,10 @@ gulp.task('js', function () {
         'src/js/Read2MeWidgetPlayer.js',
         'src/js/Read2MePlayerBuilder.js',
     ])
-        .pipe(concat('bundle.js'))
         .pipe(babel({
             presets: 'env'
         }))
+        .pipe(concat('bundle.js'))
         .pipe(plumber({
             handleError: function (err) {
                 console.log(err);

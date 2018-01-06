@@ -111,6 +111,7 @@
     position: relative;
     top: 2px;
     width: 16px;
+    height: 16px;
     cursor: pointer;
 }
 .read2me-widget-player-quick-controls svg.read2me-widget-rewind {

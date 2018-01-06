@@ -32,7 +32,7 @@
         "gulp-watch": "^4.3.11",
         "jshint": "*",
         "run-sequence": "^2.2.0",
-        "uglify-js": "^3.3.3"
-    },
-    "dependencies": {}
+        "uglify-js": "^3.3.3",
+        "babel-polyfill": "^6.26.0"
+    }
 }
