@@ -66,4 +66,12 @@ class Read2MeHelpers {
     static getWidgetTemplate() {
         return document.querySelector('.read2me-widget-wrapper.read2me-template').cloneNode(true);
     }
+
+    static isIe()
+    {
+        let ua = window.navigator.userAgent;
+        let msie = ua.indexOf("MSIE ");
+
+        return msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./);
+    }
 }

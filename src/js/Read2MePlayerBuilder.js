@@ -103,5 +103,11 @@ class Read2MePlayerBuilder {
 }
 
 Read2MeHelpers.documentReady(() => {
+    if (Read2MeHelpers.isIe())
+        return false;
+
+    Read2MePolyfills.forEach();
+    Read2MePolyfills.ArrayFrom();
+    Read2MePolyfills.findIndex();
     const playerBuilder = new Read2MePlayerBuilder();
 });
