@@ -1,4 +1,7 @@
-class Read2MeWidgetPlayer {
+import Read2MeHelpers from "./Read2MeHelpers";
+import Read2MeAudioController from './Read2MeAudioController';
+
+export default class Read2MeWidgetPlayer {
     constructor(widgetBlueprint, url, title = null, thumbnail = null, autoplay = false, playerId = 0, theme = null, width = null) {
         // sliders
         this.isScrubberBeingDragged = false;

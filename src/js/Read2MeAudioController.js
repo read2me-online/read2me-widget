@@ -1,4 +1,4 @@
-class Read2MeAudioController {
+export default class Read2MeAudioController {
     constructor(audioFileUrl) {
         this.audio = new Audio(audioFileUrl);
         this.canPlay = false;

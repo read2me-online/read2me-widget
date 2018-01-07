@@ -1,9 +1,7 @@
 /**
  * All polyfills taken from MDN
  */
-class Read2MePolyfills {
-
-
+export default class Read2MePolyfills {
     static forEach() {
         if (window.NodeList && !NodeList.prototype.forEach) {
             NodeList.prototype.forEach = function (callback, thisArg) {
@@ -25,8 +23,12 @@ class Read2MePolyfills {
                 };
                 var toInteger = function (value) {
                     var number = Number(value);
-                    if (isNaN(number)) { return 0; }
-                    if (number === 0 || !isFinite(number)) { return number; }
+                    if (isNaN(number)) {
+                        return 0;
+                    }
+                    if (number === 0 || !isFinite(number)) {
+                        return number;
+                    }
                     return (number > 0 ? 1 : -1) * Math.floor(Math.abs(number));
                 };
                 var maxSafeInteger = Math.pow(2, 53) - 1;
@@ -100,7 +102,7 @@ class Read2MePolyfills {
         // https://tc39.github.io/ecma262/#sec-array.prototype.findIndex
         if (!Array.prototype.findIndex) {
             Object.defineProperty(Array.prototype, 'findIndex', {
-                value: function(predicate) {
+                value: function (predicate) {
                     // 1. Let O be ? ToObject(this value).
                     if (this == null) {
                         throw new TypeError('"this" is null or not defined');

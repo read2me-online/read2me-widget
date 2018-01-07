@@ -1,4 +1,4 @@
-class Read2MeHelpers {
+export default class Read2MeHelpers {
     static documentReady(fn) {
         if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
             fn();

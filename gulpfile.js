@@ -14,6 +14,13 @@ const del = require('del');
 const runSequence = require('gulp-sequence');
 const s3 = require('gulp-s3');
 
+var browserify  = require('browserify');
+var babelify    = require('babelify');
+var source      = require('vinyl-source-stream');
+var buffer      = require('vinyl-buffer');
+var uglify      = require('gulp-uglify');
+var sourcemaps  = require('gulp-sourcemaps');
+
 const process = require('process');
 const fs = require('fs');
 const version = fs.readFileSync('./VERSION', 'utf8');
@@ -75,7 +82,7 @@ gulp.task('publish', () => {
 });
 
 gulp.task('publishDev', () => {
-    return gulp.src(['./dist/read2me-backend.js', './dist/widget.min.html', './dist/widget.html'])
+    return gulp.src(['./dist/read2me-backend.js', './dist/widget.min.html'])
         .pipe(s3(AWS, AWSOptionsDev));
 });
 
@@ -99,35 +106,22 @@ gulp.task('css', function () {
         .pipe(gulp.dest('dist/'))
 });
 
-gulp.task('js', function () {
-    // order of JS files is important
-    return gulp.src([
-        'src/js/bootstrap-slider.min.js',
-        'src/js/Read2MeHelpers.js',
-        'src/js/Read2MeAudioController.js',
-        'src/js/Read2MeBackendWrapper.js',
-        'src/js/Read2MeWidgetPlayer.js',
-        'src/js/Read2MePlayerBuilder.js',
-    ])
-        .pipe(babel({
-            presets: 'env'
-        }))
-        .pipe(concat('bundle.js'))
-        .pipe(plumber({
-            handleError: function (err) {
-                console.log(err);
-                this.emit('end');
-            }
-        }))
+gulp.task('js', function() {
+    return gulpMerge(
+        gulp.src('node_modules/bootstrap-slider/dist//bootstrap-slider.min.js'),
+        browserify({entries: './src/js/app.js', debug: true})
+            .transform("babelify", { presets: ["env"] })
+            .bundle()
+            .pipe(source('app.js'))
+            .pipe(buffer())
+            .pipe(uglify())
+    )
+        .pipe(concat('app.min.js'))
         .pipe(gulp.dest('dist/'))
-        .pipe(rename({
-            suffix: '.min'
-        }))
-        .pipe(uglify())
-        .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('backendClassOnly', function() {
+    // @TODO prolly broken due to using modules
     return gulp.src(['src/js/Read2MeBackendWrapper.js'])
         .pipe(concat('read2me-backend.js'))
         .pipe(babel({
@@ -167,7 +161,7 @@ gulp.task('concatenateFiles', function() {
         gulp.src('dist/bundle.css')
             .pipe(inject.wrap("\n<style>\n", "\n</style>\n")),
 
-        gulp.src('dist/bundle.js')
+        gulp.src('dist/app.min.js')
             .pipe(inject.wrap("\n<script>\n", "\n</script>\n\n")),
 
         gulp.src('src/html/player.html')
@@ -181,7 +175,7 @@ gulp.task('concatenateFilesMinified', function() {
         gulp.src('dist/bundle.min.css')
             .pipe(inject.wrap('<style>', '</style>')),
 
-        gulp.src('dist/bundle.min.js')
+        gulp.src('dist/app.min.js')
             .pipe(inject.wrap('<script>', '</script>')),
 
         gulp.src('dist/player.min.html')
@@ -197,7 +191,8 @@ const html = 'src/**/*.html';
 gulp.task('_sequence', () => {
     runSequence(
         ['js', 'backendClassOnly', 'css', 'html'],
-        ['concatenateFiles', 'concatenateFilesMinified'],
+        ['concatenateFiles'],
+        ['concatenateFilesMinified'],
         ['publishDev'],
         () => {});
 });

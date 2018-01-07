@@ -8,7 +8,12 @@
     "keywords": "gulp",
     "devDependencies": {
         "babel-core": "^6.26.0",
+        "babel-polyfill": "^6.26.0",
         "babel-preset-env": "^1.6.1",
+        "babel-preset-es2015": "^6.24.1",
+        "babelify": "^8.0.0",
+        "bootstrap-slider": "^10.0.0",
+        "browserify": "^15.0.0",
         "del": "^3.0.0",
         "gulp": "^3.9.1",
         "gulp-babel": "^7.0.0",
@@ -28,11 +33,13 @@
         "gulp-rename": "*",
         "gulp-s3": "^0.11.0",
         "gulp-sequence": "^0.4.6",
+        "gulp-sourcemaps": "^2.6.3",
         "gulp-uglify": "^3.0.0",
         "gulp-watch": "^4.3.11",
         "jshint": "*",
         "run-sequence": "^2.2.0",
         "uglify-js": "^3.3.3",
-        "babel-polyfill": "^6.26.0"
+        "vinyl-buffer": "^1.0.1",
+        "vinyl-source-stream": "^2.0.0"
     }
 }

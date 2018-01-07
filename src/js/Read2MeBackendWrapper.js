@@ -1,4 +1,4 @@
-class Read2MeBackendWrapper {
+export default class Read2MeBackendWrapper {
     constructor(appId, url, cssSelectors = null, ignoreContentChange = false, requestSource = 'custom') {
         this.apiUrl = 'https://api-dev.read2me.online/convert/1.0.0/webpage/'; //@TODO change
 

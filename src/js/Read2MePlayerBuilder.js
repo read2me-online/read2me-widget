@@ -3,7 +3,11 @@
  * an actual interactive HTML player.
  */
 
-class Read2MePlayerBuilder {
+import Read2MeBackendWrapper from './Read2MeBackendWrapper'
+import Read2MeWidgetPlayer from './Read2MeWidgetPlayer';
+import Read2MeAudioController from './Read2MeAudioController';
+
+export default class Read2MePlayerBuilder {
     constructor() {
         this.playerInstances = [];
         const cssTarget = '.read2me-widget';
@@ -101,13 +105,3 @@ class Read2MePlayerBuilder {
         return string.substring(first, string.length - last);
     }
 }
-
-Read2MeHelpers.documentReady(() => {
-    if (Read2MeHelpers.isIe())
-        return false;
-
-    Read2MePolyfills.forEach();
-    Read2MePolyfills.ArrayFrom();
-    Read2MePolyfills.findIndex();
-    const playerBuilder = new Read2MePlayerBuilder();
-});
