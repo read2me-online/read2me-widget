@@ -26,8 +26,8 @@ export default class Read2MePlayerBuilder {
         let title = elem.getAttribute('data-title');
         let thumbnail = elem.getAttribute('data-thumbnail');
         let ignoreContentChange = elem.getAttribute('data-ignore-content-change');
-        let theme = elem.getAttribute('data-player-theme');
-        let width = elem.getAttribute('data-player-width');
+        let theme = elem.getAttribute('data-theme');
+        let width = elem.getAttribute('data-width');
 
         autoplay = this._booleanStringToBoolean(autoplay);
         cssSelectors = this._cssSelectorsStringToArray(cssSelectors);
