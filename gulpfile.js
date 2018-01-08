@@ -20,6 +20,7 @@ var source      = require('vinyl-source-stream');
 var buffer      = require('vinyl-buffer');
 var uglify      = require('gulp-uglify');
 var sourcemaps  = require('gulp-sourcemaps');
+var selfExecute = require('gulp-self-execute');
 
 const process = require('process');
 const fs = require('fs');
@@ -117,6 +118,7 @@ gulp.task('js', function() {
             .pipe(uglify())
     )
         .pipe(concat('app.min.js'))
+        .pipe(selfExecute())
         .pipe(gulp.dest('dist/'))
 });
 
