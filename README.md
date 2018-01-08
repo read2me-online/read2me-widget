@@ -5,9 +5,9 @@
 - easy to create your own
 - fluid - will scale down on mobile
 - adjustable width: minimum width is 570px, there is no maximum (support for percentages included)
-- supports autoplay (only works on desktop due to mobile browsers' policies)
+- supports autoplay (but can only autoplay on desktops due to mobile browsers' policies)
 - explicit or implicit title: if not set, it will use what it finds in \<title\> tag
-- explicit or implicit thumbnail: if not set, it will use what it finds in OG:Image property
+- explicit or implicit thumbnail: if not set, it will use what it finds in OG:Image property. An image with 1:1 aspect ratio is recommended. 
 
 # Browser support
 - Tested in Chrome, Firefox, Edge, Opera and Safari
