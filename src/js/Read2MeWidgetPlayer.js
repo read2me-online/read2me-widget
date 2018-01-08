@@ -141,14 +141,7 @@ export default class Read2MeWidgetPlayer {
     }
 
     setTheme() {
-        switch (this.theme) {
-            case 'blue':
-                this.player.classList.add('preset-blue');
-                break;
-            case 'white':
-                this.player.classList.add('preset-white');
-                break;
-        }
+        this.player.classList.add('preset-' + this.theme);
     }
 
     setWidth() {

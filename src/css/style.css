@@ -62,7 +62,7 @@
     top: -10px;
 
     background-color: rgba(255, 255, 255, 0.7);
-    color: #3E8FAD;
+    color: black;
     padding: 1px 5px;
     font-size: 11px;
 }
@@ -133,6 +133,7 @@
     width: 11px !important;
     height: 11px !important;
     cursor: pointer;
+    background: black !important;
 }
 /**
  Scrubber container
@@ -164,6 +165,7 @@ The round play/pause/replay container.
     top: -26px;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .2), 0 2px 10px 0 rgba(0, 0, 0, .19);
     cursor: pointer;
+    background-color: white;
 }
 .read2me-widget-player-playback svg {
     position: absolute;
@@ -243,6 +245,12 @@ svg.read2me-widget-speaking-rate {
 .read2me-widget-player.preset-blue .read2me-widget-player-playback:hover svg {
     fill: white;
 }
+.read2me-widget-player.preset-blue .read2me-credits a {
+    color: white;
+}
+.read2me-widget-player.preset-blue .tooltip-inner {
+    color: #3E8FAD;
+}
 
 
 /** White preset **/
@@ -286,6 +294,55 @@ svg.read2me-widget-speaking-rate {
 }
 .read2me-widget-player.preset-white .read2me-widget-player-playback:hover svg {
     fill: #0ED1FE;
+}
+.read2me-widget-player.preset-white .read2me-credits a {
+    color: black;
+}
+
+/** Green preset (aka read2me colors) */
+.read2me-widget-player.preset-green {
+    background-color: rgb(255, 255, 255);
+    color: #3A3C3C;
+}
+
+.read2me-widget-player.preset-green svg.read2me-widget-rewind,
+.read2me-widget-player.preset-green svg.read2me-widget-forward,
+.read2me-widget-player.preset-green svg.read2me-widget-speaking-rate {
+    fill: #3A3C3C;
+}
+
+.read2me-widget-player.preset-green svg.read2me-widget-rewind:hover,
+.read2me-widget-player.preset-green svg.read2me-widget-forward:hover {
+    fill: #8FE3F7;
+}
+
+.read2me-widget-player.preset-green .slider-track {
+    background: transparent !important;
+}
+.read2me-widget-player.preset-green .slider-selection {
+    background: #5EEAD6 !important;
+}
+.read2me-widget-player.preset-green .slider-track-high {
+    background: #DADBDB !important;
+}
+.read2me-widget-player.preset-green .slider-handle {
+    background: #5EEAD6 !important;
+}
+
+.read2me-widget-player.preset-green .read2me-widget-player-playback {
+    background-color: #5EEAD6;
+}
+.read2me-widget-player.preset-green .read2me-widget-player-playback svg {
+    fill: white;
+}
+.read2me-widget-player.preset-green .read2me-widget-player-playback:hover {
+    background-color: white;
+}
+.read2me-widget-player.preset-green .read2me-widget-player-playback:hover svg {
+    fill: #5EEAD6;
+}
+.read2me-widget-player.preset-green .read2me-credits a {
+    color: #5EEAD6;
 }
 
 /**
@@ -332,6 +389,7 @@ svg.read2me-widget-speaking-rate {
     right: 21px;
 }
 .read2me-credits a {
+    color: black;
     text-decoration: none;
     font-size: 9px;
     letter-spacing: 1px;
@@ -339,12 +397,6 @@ svg.read2me-widget-speaking-rate {
 }
 .read2me-credits a:hover {
     opacity: 0.75;
-}
-.read2me-widget-player.preset-white .read2me-credits a {
-    color: black;
-}
-.read2me-widget-player.preset-blue .read2me-credits a {
-    color: white;
 }
 .read2me-widget-player:hover .read2me-credits {
     display: inline-block;
