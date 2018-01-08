@@ -9,7 +9,7 @@
     position: relative;
     width: 570px;
     height: 101px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2), 0 3px 10px 0 rgba(0, 0, 0, .19);
 }
 
 .read2me-widget-wrapper.read2me-template {
@@ -162,7 +162,7 @@ The round play/pause/replay container.
     position: absolute;
     right: 20px;
     top: -26px;
-    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .2), 0 2px 10px 0 rgba(0, 0, 0, .19);
     cursor: pointer;
 }
 .read2me-widget-player-playback svg {

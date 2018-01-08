@@ -123,7 +123,6 @@ gulp.task('js', function() {
 });
 
 gulp.task('backendClassOnly', function() {
-    // @TODO prolly broken due to using modules
     return gulp.src(['src/js/Read2MeBackendWrapper.js'])
         .pipe(concat('read2me-backend.js'))
         .pipe(babel({
