@@ -24,6 +24,8 @@ export default class Read2MeWidgetPlayer {
         this.loader = this.player.querySelector('.read2me-widget-loader');
         this.titleContainer= this.player.querySelector('.read2me-widget-player-title');
         this.titleTextContainer = this.titleContainer.querySelector('span');
+        this.rewind = this.player.querySelector('.read2me-widget-rewind');
+        this.forward = this.player.querySelector('.read2me-widget-forward');
         widgetBlueprint.parentNode.replaceChild(this.wrapper, this.widgetBlueprint);
 
         // UI playback controllers
@@ -49,7 +51,6 @@ export default class Read2MeWidgetPlayer {
         this.audioController = audioController;
         this.apiResponse = apiResponse;
         this.configureSliders();
-        this.handleAutoplay();
         this.handlePlayback();
         this.handleQuickControls();
         this.handleScrubber();
@@ -130,16 +131,6 @@ export default class Read2MeWidgetPlayer {
             container.setAttribute('src', defaultThumbnail);
     }
 
-    handleAutoplay() {
-        if (!this.autoplay)
-            return;
-
-        this.audioController.audio.addEventListener('canplay', () => {
-            this.audioController.play();
-            this.displayPauseButton();
-        });
-    }
-
     setTheme() {
         this.player.classList.add('preset-' + this.theme);
     }
@@ -149,34 +140,6 @@ export default class Read2MeWidgetPlayer {
             return;
 
         this.player.style.width = this.width;
-    }
-
-    handlePlayback() {
-        this.audioController.audio.addEventListener('playing', () => {
-            this.hideLoader();
-        });
-
-        this.playbackContainer.addEventListener('click', () => {
-            if (this.isPlayButtonShown()) {
-                this.audioController.play();
-                this.displayLoader();
-                this.displayPauseButton();
-            } else if (this.isPauseButtonShown()) {
-                this.audioController.pause();
-                this.displayPlayButton();
-            } else {
-                this.audioController.replay();
-                this.displayPauseButton();
-            }
-        });
-
-        this.audioController.audio.addEventListener('ended', () => {
-            this.displayReplayButton();
-        });
-
-        this.audioController.audio.addEventListener('stalled', () => {
-            this.displayLoader();
-        });
     }
 
     isPlayButtonShown() {
@@ -209,18 +172,31 @@ export default class Read2MeWidgetPlayer {
         this.replay.classList.remove('hidden');
     }
 
-    handleQuickControls() {
-        let rewind = this.player.querySelector('.read2me-widget-rewind');
-        let forward = this.player.querySelector('.read2me-widget-forward');
+    handlePlayback() {
+        this.playbackContainer.addEventListener('click', () => {
+            if (this.isPlayButtonShown()) {
+                this.audioController.play();
+                this.displayLoader();
+                this.displayPauseButton();
+            } else if (this.isPauseButtonShown()) {
+                this.audioController.pause();
+                this.displayPlayButton();
+            } else {
+                this.audioController.replay();
+                this.displayPauseButton();
+            }
+        });
+    }
 
-        rewind.addEventListener('click', () => {
+    handleQuickControls() {
+        this.rewind.addEventListener('click', () => {
             this.audioController.rewindForXSeconds(10);
 
             if (this.isReplayButtonShown())
                 this.displayPlayButton();
         });
 
-        forward.addEventListener('click', () => {
+        this.forward.addEventListener('click', () => {
             this.audioController.forwardForXSeconds(10);
         });
     }
@@ -236,13 +212,6 @@ export default class Read2MeWidgetPlayer {
 
             if (this.isReplayButtonShown() && newCurrentTime !== this.audioController.getDuration())
                 this.displayPlayButton();
-        });
-
-        this.audioController.audio.addEventListener('timeupdate', () => {
-            if (this.isScrubberBeingDragged)
-                return false;
-
-            this.scrubber.setValue(Math.round(this.audioController.getCurrentTime()));
         });
     }
 

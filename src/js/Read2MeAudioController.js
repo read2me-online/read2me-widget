@@ -1,11 +1,27 @@
 export default class Read2MeAudioController {
-    constructor(audioFileUrl) {
+    /**
+     * events param is an assoc object containing event_name => array(callbacks...)
+     *
+     * @param audioFileUrl
+     * @param events
+     */
+    constructor(audioFileUrl, events) {
         this.audio = new Audio(audioFileUrl);
         this.canPlay = false;
 
         this.audio.addEventListener('canplay', () => {
             this.canPlay = true;
         });
+
+        if (typeof events === 'object') {
+            for (let eventName in events) {
+                if (events.hasOwnProperty(eventName)) {
+                    events[eventName].forEach(callback => {
+                        this.audio.addEventListener(eventName, callback);
+                    });
+                }
+            }
+        }
     }
 
     isReadyToPlay() {

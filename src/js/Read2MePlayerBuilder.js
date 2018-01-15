@@ -6,6 +6,7 @@
 import Read2MeBackendWrapper from './Read2MeBackendWrapper'
 import Read2MeWidgetPlayer from './Read2MeWidgetPlayer';
 import Read2MeAudioController from './Read2MeAudioController';
+import Read2MeAudioEvents from './Read2MeAudioEvents';
 
 export default class Read2MePlayerBuilder {
     constructor() {
@@ -41,7 +42,13 @@ export default class Read2MePlayerBuilder {
         this._makeApiCalls(backendWrapper, (responseResult) => {
             // success
             this.playerInstances[playerId]
-                .finishInitialisation(new Read2MeAudioController(responseResult.audio_url), responseResult);
+                .finishInitialisation(
+                    new Read2MeAudioController(
+                        responseResult.audio_url,
+                        new Read2MeAudioEvents(this.playerInstances[playerId]).getAll()
+                    ),
+                    responseResult
+                );
         }, (response) => {
             this.playerInstances[playerId].hideLoader();
             console.warn(response);
