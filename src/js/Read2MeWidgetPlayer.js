@@ -39,9 +39,13 @@ export default class Read2MeWidgetPlayer {
         this.setTheme();
         this.setWidth();
         this.scalePlayerDownOnSmallScreens();
-        this.wrapper.classList.remove('read2me-template');
+        this.toggleVisibility();
         this.instantiateSliders();
         this.handleViewportResize();
+    }
+
+    toggleVisibility() {
+        this.wrapper.classList.toggle('read2me-template');
     }
 
     finishInitialisation(audioController, apiResponse) {

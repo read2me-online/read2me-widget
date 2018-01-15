@@ -50,7 +50,7 @@ export default class Read2MePlayerBuilder {
                     responseResult
                 );
         }, (response) => {
-            this.playerInstances[playerId].hideLoader();
+            this.playerInstances[playerId].toggleVisibility();
             console.warn(response);
         });
     }
