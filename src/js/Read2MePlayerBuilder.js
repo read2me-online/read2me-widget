@@ -77,6 +77,14 @@ export default class Read2MePlayerBuilder {
                     },
                     // failure, unable to create audio
                     (response) => {
+                        if (typeof response.retry_in !== 'undefined') {
+                            setTimeout(() => {
+                                this._makeApiCalls(backendWrapper, success, error);
+                            }, response.retry_in * 1000);
+
+                            return;
+                        }
+
                         error(response);
                     }
                 )
