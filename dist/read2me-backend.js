@@ -69,7 +69,7 @@ var Read2MeBackendWrapper = function () {
     }, {
         key: 'getRequestUri',
         value: function getRequestUri() {
-            var voice = this.voice !== null ? encodeURIComponent(this.voice) : null;
+            var voice = this.voice !== null ? encodeURIComponent(this.voice) : '';
 
             return this.apiUrl + '?url=' + encodeURIComponent(this.url) + '&css_selectors=' + encodeURIComponent(this.cssSelectors.join('|')) + '&voice=' + voice + '&ignore_content_change=' + this._getIgnoreContentChangeAsString() + '&request_source=' + this.requestSource;
         }

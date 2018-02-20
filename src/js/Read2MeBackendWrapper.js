@@ -53,7 +53,7 @@ export default class Read2MeBackendWrapper {
     }
 
     getRequestUri() {
-        let voice = this.voice !== null ? encodeURIComponent(this.voice) : null;
+        let voice = this.voice !== null ? encodeURIComponent(this.voice) : '';
 
         return this.apiUrl +
             '?url=' + encodeURIComponent(this.url) +
