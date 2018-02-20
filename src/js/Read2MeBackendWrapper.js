@@ -1,11 +1,12 @@
 export default class Read2MeBackendWrapper {
-    constructor(appId, url, cssSelectors = null, ignoreContentChange = false, requestSource = 'custom') {
+    constructor(appId, url, cssSelectors = null, voice = null, ignoreContentChange = false, requestSource = 'custom') {
         this.apiUrl = 'https://api-dev.read2me.online/convert/1.0.0/webpage/'; //@TODO change
 
         // set params as object properties
         this.appId = appId;
         this.url = url;
         this.cssSelectors = cssSelectors;
+        this.voice = voice;
         this.ignoreContentChange = ignoreContentChange;
         this.requestSource = requestSource;
 
@@ -30,13 +31,16 @@ export default class Read2MeBackendWrapper {
 
     _validateOptionalParams() {
         if (this.cssSelectors !== null && typeof this.cssSelectors !== 'object')
-            throw 'Third param to Read2MePlayer (cssSelectors) can be null or array.';
+            throw 'Third param to Read2MePlayer (cssSelectors) must be null or array.';
+
+        if (this.voice !== null && typeof this.voice !== 'string')
+            throw 'Fourth param to Read2MePlayer(voice) must be null or string';
 
         if (typeof this.ignoreContentChange !== 'boolean')
-            throw 'Fourth param to Read2MePlayer (ignoreContentChange) must be a boolean.';
+            throw 'Fifth param to Read2MePlayer (ignoreContentChange) must be a boolean.';
 
         if (typeof this.requestSource !== 'string')
-            throw 'Fifth param to Read2MeBackend must be a string';
+            throw 'Sixth param to Read2MeBackend (requestSource) must be a string';
     }
 
     _normaliseParams() {
@@ -49,9 +53,12 @@ export default class Read2MeBackendWrapper {
     }
 
     getRequestUri() {
+        let voice = this.voice !== null ? encodeURIComponent(this.voice) : null;
+
         return this.apiUrl +
             '?url=' + encodeURIComponent(this.url) +
             '&css_selectors=' + encodeURIComponent(this.cssSelectors.join('|')) +
+            '&voice=' + voice +
             '&ignore_content_change=' + this._getIgnoreContentChangeAsString() +
             '&request_source=' + this.requestSource;
     }

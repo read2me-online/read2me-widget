@@ -74,4 +74,8 @@ export default class Read2MeHelpers {
 
         return msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./);
     }
+
+    static isPhone() {
+        return window.outerWidth < 768;
+    }
 }

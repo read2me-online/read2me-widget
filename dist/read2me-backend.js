@@ -13,8 +13,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var Read2MeBackendWrapper = function () {
     function Read2MeBackendWrapper(appId, url) {
         var cssSelectors = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-        var ignoreContentChange = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
-        var requestSource = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'custom';
+        var voice = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+        var ignoreContentChange = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
+        var requestSource = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 'custom';
 
         _classCallCheck(this, Read2MeBackendWrapper);
 
@@ -24,6 +25,7 @@ var Read2MeBackendWrapper = function () {
         this.appId = appId;
         this.url = url;
         this.cssSelectors = cssSelectors;
+        this.voice = voice;
         this.ignoreContentChange = ignoreContentChange;
         this.requestSource = requestSource;
 
@@ -46,11 +48,13 @@ var Read2MeBackendWrapper = function () {
     }, {
         key: '_validateOptionalParams',
         value: function _validateOptionalParams() {
-            if (this.cssSelectors !== null && _typeof(this.cssSelectors) !== 'object') throw 'Third param to Read2MePlayer (cssSelectors) can be null or array.';
+            if (this.cssSelectors !== null && _typeof(this.cssSelectors) !== 'object') throw 'Third param to Read2MePlayer (cssSelectors) must be null or array.';
 
-            if (typeof this.ignoreContentChange !== 'boolean') throw 'Fourth param to Read2MePlayer (ignoreContentChange) must be a boolean.';
+            if (this.voice !== null && typeof this.voice !== 'string') throw 'Fourth param to Read2MePlayer(voice) must be null or string';
 
-            if (typeof this.requestSource !== 'string') throw 'Fifth param to Read2MeBackend must be a string';
+            if (typeof this.ignoreContentChange !== 'boolean') throw 'Fifth param to Read2MePlayer (ignoreContentChange) must be a boolean.';
+
+            if (typeof this.requestSource !== 'string') throw 'Sixth param to Read2MeBackend (requestSource) must be a string';
         }
     }, {
         key: '_normaliseParams',
@@ -65,7 +69,9 @@ var Read2MeBackendWrapper = function () {
     }, {
         key: 'getRequestUri',
         value: function getRequestUri() {
-            return this.apiUrl + '?url=' + encodeURIComponent(this.url) + '&css_selectors=' + encodeURIComponent(this.cssSelectors.join('|')) + '&ignore_content_change=' + this._getIgnoreContentChangeAsString() + '&request_source=' + this.requestSource;
+            var voice = this.voice !== null ? encodeURIComponent(this.voice) : null;
+
+            return this.apiUrl + '?url=' + encodeURIComponent(this.url) + '&css_selectors=' + encodeURIComponent(this.cssSelectors.join('|')) + '&voice=' + voice + '&ignore_content_change=' + this._getIgnoreContentChangeAsString() + '&request_source=' + this.requestSource;
         }
     }, {
         key: 'get',
