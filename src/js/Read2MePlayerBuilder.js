@@ -15,6 +15,12 @@ export default class Read2MePlayerBuilder {
         const elements = document.querySelectorAll(cssTarget);
 
         elements.forEach(elem => {
+            let shouldInstantiate = elem.getAttribute('data-instantiate');
+
+            // just a validator for advanced integration
+            if (shouldInstantiate === 'false')
+                return;
+
             this._replaceBlueprintWithPlayer(elem);
         });
     }
