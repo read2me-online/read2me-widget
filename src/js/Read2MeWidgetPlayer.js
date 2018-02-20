@@ -62,6 +62,8 @@ export default class Read2MeWidgetPlayer {
         this.hideLoader();
         this.removePlaybackBufferingStyles();
         this.setMarqueeForTitle();
+
+        this.wrapper.style.height = this.player.clientHeight + 'px';
     }
 
     instantiateSliders() {
@@ -136,7 +138,8 @@ export default class Read2MeWidgetPlayer {
     }
 
     setTheme() {
-        this.player.classList.add('preset-' + this.theme);
+        if (this.theme !== null)
+            this.player.classList.add('preset-' + this.theme);
     }
 
     setWidth() {
@@ -241,11 +244,13 @@ export default class Read2MeWidgetPlayer {
         let parent = this.wrapper.parentNode;
         let parentWidth = Read2MeHelpers.getElementsWidthWithoutPadding(parent);
 
-        if (parentWidth < 570) {
-            this.wrapper.style['transform-origin'] = 'left';
-            this.wrapper.style.transform = 'scale(' + parentWidth / 570 + ')';
+        if (Read2MeHelpers.isPhone()) {
+            this.wrapper.style.width = parentWidth + 'px';
+            this.player.style.transform = 'scale(' + parentWidth / 570 + ')';
         } else {
-            this.wrapper.style.transform = '';
+            this.wrapper.style.width = '';
+            this.player.style.transform = '';
+            this.wrapper.style.height = '';
         }
     }
 

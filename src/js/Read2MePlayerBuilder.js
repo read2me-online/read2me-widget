@@ -57,6 +57,7 @@ export default class Read2MePlayerBuilder {
                     responseResult
                 );
         }, (response) => {
+            // error
             this.playerInstances[playerId].toggleVisibility();
             console.warn(response);
         });
@@ -77,6 +78,7 @@ export default class Read2MePlayerBuilder {
                     },
                     // failure, unable to create audio
                     (response) => {
+                        // retry handler
                         if (typeof response.retry_in !== 'undefined') {
                             setTimeout(() => {
                                 this._makeApiCalls(backendWrapper, success, error);
