@@ -62,8 +62,7 @@ export default class Read2MeWidgetPlayer {
         this.hideLoader();
         this.removePlaybackBufferingStyles();
         this.setMarqueeForTitle();
-
-        this.wrapper.style.height = this.player.clientHeight + 'px';
+        this.postInitialisationStyling();
     }
 
     instantiateSliders() {
@@ -250,6 +249,13 @@ export default class Read2MeWidgetPlayer {
         } else {
             this.wrapper.style.width = '';
             this.player.style.transform = '';
+        }
+    }
+
+    postInitialisationStyling() {
+        if (Read2MeHelpers.isPhone()) {
+            this.wrapper.style.height = this.player.clientHeight + 'px';
+        } else {
             this.wrapper.style.height = '';
         }
     }
@@ -257,6 +263,7 @@ export default class Read2MeWidgetPlayer {
     handleViewportResize() {
         window.addEventListener('resize', () => {
             this.scalePlayerDownOnSmallScreens();
+            this.postInitialisationStyling();
         });
     }
 }
