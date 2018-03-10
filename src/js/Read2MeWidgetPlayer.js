@@ -8,6 +8,10 @@ export default class Read2MeWidgetPlayer {
         this.scrubber = null;
         this.speakingRate = null;
 
+        // fixes #32
+        // https://github.com/NinoSkopac/read2me-widget/issues/32
+        this.clickHandlerType = 'ontouchstart' in document.documentElement ? "touchstart" : "click";
+
         // arguments
         this.widgetBlueprint = widgetBlueprint;
         this.url = url;
@@ -179,7 +183,7 @@ export default class Read2MeWidgetPlayer {
     }
 
     handlePlayback() {
-        this.playbackContainer.addEventListener('click', () => {
+        this.playbackContainer.addEventListener(this.clickHandlerType, () => {
             if (this.isPlayButtonShown()) {
                 this.audioController.play();
                 this.displayLoader();
@@ -195,14 +199,14 @@ export default class Read2MeWidgetPlayer {
     }
 
     handleQuickControls() {
-        this.rewind.addEventListener('click', () => {
+        this.rewind.addEventListener(this.clickHandlerType, () => {
             this.audioController.rewindForXSeconds(10);
 
             if (this.isReplayButtonShown())
                 this.displayPlayButton();
         });
 
-        this.forward.addEventListener('click', () => {
+        this.forward.addEventListener(this.clickHandlerType, () => {
             this.audioController.forwardForXSeconds(10);
         });
     }
