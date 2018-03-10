@@ -10,7 +10,7 @@ export default class Read2MeWidgetPlayer {
 
         // fixes #32
         // https://github.com/NinoSkopac/read2me-widget/issues/32
-        this.clickHandlerType = 'ontouchstart' in document.documentElement ? "touchstart" : "click";
+        this._setClickHandlerType();
 
         // arguments
         this.widgetBlueprint = widgetBlueprint;
@@ -48,10 +48,6 @@ export default class Read2MeWidgetPlayer {
         this.handleViewportResize();
     }
 
-    toggleVisibility() {
-        this.wrapper.classList.toggle('read2me-template');
-    }
-
     finishInitialisation(audioController, apiResponse) {
         if (audioController instanceof Read2MeAudioController === false)
             throw 'Invalid argument for Read2MeWidgetPlayer.finishInitialisation(); must be an instance of Read2MeAudioController';
@@ -67,6 +63,14 @@ export default class Read2MeWidgetPlayer {
         this.removePlaybackBufferingStyles();
         this.setMarqueeForTitle();
         this.postInitialisationStyling();
+    }
+
+    _setClickHandlerType() {
+        this.clickHandlerType = 'ontouchstart' in document.documentElement ? "touchstart" : "click";
+    }
+
+    toggleVisibility() {
+        this.wrapper.classList.toggle('read2me-template');
     }
 
     instantiateSliders() {
@@ -268,6 +272,7 @@ export default class Read2MeWidgetPlayer {
         window.addEventListener('resize', () => {
             this.scalePlayerDownOnSmallScreens();
             this.postInitialisationStyling();
+            this._setClickHandlerType();
         });
     }
 }
