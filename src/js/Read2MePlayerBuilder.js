@@ -48,14 +48,12 @@ export default class Read2MePlayerBuilder {
 
         this._makeApiCalls(backendWrapper, (responseResult) => {
             // success
-            this.playerInstances[playerId]
-                .finishInitialisation(
-                    new Read2MeAudioController(
-                        responseResult.audio_url,
-                        new Read2MeAudioEvents(this.playerInstances[playerId]).getAll()
-                    ),
-                    responseResult
-                );
+            let audioController = new Read2MeAudioController(
+                responseResult.audio_url,
+                new Read2MeAudioEvents(this.playerInstances[playerId]).getAll()
+            );
+
+            this.playerInstances[playerId].finishInitialisation(audioController, responseResult);
         }, (response) => {
             // error
             this.playerInstances[playerId].toggleVisibility();
