@@ -191,6 +191,7 @@ const html = 'src/**/*.html';
 
 gulp.task('_sequence', () => {
     runSequence(
+        ['wipeDist'],
         ['js', 'backendClassOnly', 'css', 'html'],
         ['concatenateFiles'],
         ['concatenateFilesMinified'],
