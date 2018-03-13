@@ -229,9 +229,14 @@
 {
     display: none;
 }
-.read2me-widget-player .hidden
+.read2me-widget-wrapper.hidden,
+.read2me-widget-wrapper .hidden
 {
     display: none;
+}
+.read2me-widget-wrapper
+{
+    height: 141px;
 }
 
 /**

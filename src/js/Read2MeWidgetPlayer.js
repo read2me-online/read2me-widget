@@ -7,6 +7,7 @@ export default class Read2MeWidgetPlayer {
         this.isScrubberBeingDragged = false;
         this.scrubber = null;
         this.speakingRate = null;
+        this.scale = 1;
 
         // fixes #32
         // https://github.com/NinoSkopac/read2me-widget/issues/32
@@ -248,29 +249,41 @@ export default class Read2MeWidgetPlayer {
     }
 
     scalePlayerDownOnSmallScreens() {
-        let parent = this.wrapper.parentNode;
-        let parentWidth = Read2MeHelpers.getElementsWidthWithoutPadding(parent);
-
         if (Read2MeHelpers.isPhone()) {
+            let parent = this.wrapper.parentNode;
+            let parentWidth = Read2MeHelpers.getElementsWidthWithoutPadding(parent);
+            this.scale = parentWidth / 570;
+
             this.wrapper.style.width = parentWidth + 'px';
-            this.player.style.transform = 'scale(' + parentWidth / 570 + ')';
+            this.player.style.transform = 'scale(' + this.scale + ')';
         } else {
+            this.scale = 1;
+
             this.wrapper.style.width = '';
             this.player.style.transform = '';
         }
     }
 
     postInitialisationStyling() {
-        if (Read2MeHelpers.isPhone()) {
-            this.wrapper.style.height = this.player.clientHeight + 'px';
-        } else {
-            this.wrapper.style.height = '';
-        }
+        let playerHeight = this.player.getBoundingClientRect().height;
+        let marginsSize = 40 * this.scale;
+
+        let extraSpacingOnMobile;
+
+        if (Read2MeHelpers.isPhone())
+            extraSpacingOnMobile = 10;
+        else
+            extraSpacingOnMobile = 0;
+
+        this.wrapper.style.height = (playerHeight + marginsSize + extraSpacingOnMobile) + 'px';
     }
 
     handleViewportResize() {
         window.addEventListener('resize', () => {
+            Read2MeHelpers.hideAllWidgets();
             this.scalePlayerDownOnSmallScreens();
+            Read2MeHelpers.showAllWidgets();
+
             this.postInitialisationStyling();
             this._setClickHandlerType();
         });

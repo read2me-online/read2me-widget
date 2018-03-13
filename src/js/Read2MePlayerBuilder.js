@@ -7,14 +7,13 @@ import Read2MeBackendWrapper from './Read2MeBackendWrapper'
 import Read2MeWidgetPlayer from './Read2MeWidgetPlayer';
 import Read2MeAudioController from './Read2MeAudioController';
 import Read2MeAudioEvents from './Read2MeAudioEvents';
+import Read2MeHelpers from "./Read2MeHelpers";
 
 export default class Read2MePlayerBuilder {
     constructor() {
         this.playerInstances = [];
-        const cssTarget = '.read2me-widget';
-        const elements = document.querySelectorAll(cssTarget);
 
-        elements.forEach(elem => {
+        Read2MeHelpers.callbackForAllBlueprints(elem => {
             let shouldInstantiate = elem.getAttribute('data-instantiate');
 
             // just a validator for advanced integration
