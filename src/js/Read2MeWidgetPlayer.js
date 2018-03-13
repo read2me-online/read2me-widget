@@ -252,15 +252,17 @@ export default class Read2MeWidgetPlayer {
         if (Read2MeHelpers.isPhone()) {
             let parent = this.wrapper.parentNode;
             let parentWidth = Read2MeHelpers.getElementsWidthWithoutPadding(parent);
-            this.scale = parentWidth / 570;
+            this.scale = parentWidth / (570 + 10); // player width is 570px and there are two 5px side margins
 
             this.wrapper.style.width = parentWidth + 'px';
             this.player.style.transform = 'scale(' + this.scale + ')';
+            this.player.style['margin-left'] = 5 * this.scale + 'px';
         } else {
             this.scale = 1;
 
             this.wrapper.style.width = '';
             this.player.style.transform = '';
+            this.player.style['margin-left'] = '';
         }
     }
 
