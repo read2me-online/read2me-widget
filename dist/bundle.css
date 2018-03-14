@@ -888,6 +888,7 @@ svg.read2me-widget-speaking-rate
 {
     position: absolute;
     z-index: 999;
+    top: 26px;
     right: -20px;
     /*
         link colors are the same as widget text color
@@ -896,9 +897,9 @@ svg.read2me-widget-speaking-rate
 
     display: none;
 
-    min-width: 180px;
+    min-width: 170px;
 
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,.2);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2), 0 3px 10px 0 rgba(0, 0, 0, .19);
 }
 .read2me-dropdown ul
 {
@@ -916,11 +917,11 @@ svg.read2me-widget-speaking-rate
 }
 .read2me-dropdown li a
 {
-    font-size: 10px;
+    font-size: 9px;
 
     display: block;
 
-    padding: 10px;
+    padding: 6px;
 
     text-decoration: none;
 }
@@ -937,7 +938,7 @@ svg.read2me-widget-speaking-rate
 .read2me-dropdown svg
 {
     position: relative;
-    top: 3px;
+    top: 2.5px;
 }
 
 /** scale the player down for phone */

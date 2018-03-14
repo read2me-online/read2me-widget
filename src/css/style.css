@@ -516,9 +516,10 @@ svg.read2me-widget-speaking-rate {
     */
     display: none;
     position: absolute;
+    top: 26px;
     right: -20px;
-    min-width: 180px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    min-width: 170px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2), 0 3px 10px 0 rgba(0, 0, 0, .19);
     z-index: 999;
 }
 .read2me-dropdown ul {
@@ -533,8 +534,8 @@ svg.read2me-widget-speaking-rate {
 }
 .read2me-dropdown li a {
     display: block;
-    padding: 10px;
-    font-size: 10px;
+    padding: 6px;
+    font-size: 9px;
     text-decoration: none;
 }
 .read2me-menu:hover .read2me-dropdown {
@@ -546,7 +547,7 @@ svg.read2me-widget-speaking-rate {
 }
 .read2me-dropdown svg {
     position: relative;
-    top: 3px;
+    top: 2.5px;
 }
 
 /** scale the player down for phone */
