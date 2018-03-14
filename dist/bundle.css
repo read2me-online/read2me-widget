@@ -536,7 +536,7 @@ svg.read2me-widget-speaking-rate
 {
     fill: white;
 }
-.read2me-widget-player.preset-blue .read2me-credits a
+.read2me-widget-player.preset-blue .read2me-menu > svg
 {
     color: white;
 }
@@ -599,7 +599,7 @@ svg.read2me-widget-speaking-rate
 {
     fill: #0ed1fe;
 }
-.read2me-widget-player.preset-white .read2me-credits a
+.read2me-widget-player.preset-white .read2me-menu > svg
 {
     color: black;
 }
@@ -657,7 +657,7 @@ svg.read2me-widget-speaking-rate
 {
     fill: #5eead6;
 }
-.read2me-widget-player.preset-green .read2me-credits a
+.read2me-widget-player.preset-green .read2me-menu > svg
 {
     color: #5eead6;
 }
@@ -730,13 +730,15 @@ svg.read2me-widget-speaking-rate
     height: 2px;
 }
 
-.read2me-credits
+.read2me-menu
 {
     position: absolute;
     right: 21px;
-    bottom: 5px;
+    bottom: -5px;
+
+    cursor: pointer;
 }
-.read2me-credits a
+.read2me-menu > svg
 {
     font-size: 9px;
 
@@ -746,15 +748,15 @@ svg.read2me-widget-speaking-rate
     opacity: .5;
     color: black;
 }
-.read2me-credits a:hover
+.read2me-menu > svg:hover
 {
     opacity: .75;
 }
-.read2me-widget-player:hover .read2me-credits
+.read2me-widget-player:hover .read2me-menu
 {
     display: inline-block;
 }
-.read2me-widget-player .read2me-widget-player-speaking-rate-container:hover ~ .read2me-credits
+.read2me-widget-player .read2me-widget-player-speaking-rate-container:hover ~ .read2me-menu
 {
     display: none;
 }
@@ -772,5 +774,9 @@ svg.read2me-widget-speaking-rate
         margin-left: 0;
 
         transform-origin: top left;
+    }
+    .read2me-menu
+    {
+        display: none !important;
     }
 }

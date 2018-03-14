@@ -249,7 +249,7 @@ svg.read2me-widget-speaking-rate {
 .read2me-widget-player.preset-blue .read2me-widget-player-playback:hover svg {
     fill: white;
 }
-.read2me-widget-player.preset-blue .read2me-credits a {
+.read2me-widget-player.preset-blue .read2me-menu > svg {
     color: white;
 }
 .read2me-widget-player.preset-blue .tooltip-inner {
@@ -299,7 +299,7 @@ svg.read2me-widget-speaking-rate {
 .read2me-widget-player.preset-white .read2me-widget-player-playback:hover svg {
     fill: #0ED1FE;
 }
-.read2me-widget-player.preset-white .read2me-credits a {
+.read2me-widget-player.preset-white .read2me-menu > svg {
     color: black;
 }
 
@@ -345,7 +345,7 @@ svg.read2me-widget-speaking-rate {
 .read2me-widget-player.preset-green .read2me-widget-player-playback:hover svg {
     fill: #5EEAD6;
 }
-.read2me-widget-player.preset-green .read2me-credits a {
+.read2me-widget-player.preset-green .read2me-menu > svg {
     color: #5EEAD6;
 }
 
@@ -387,25 +387,26 @@ svg.read2me-widget-speaking-rate {
     height: 2px;
 }
 
-.read2me-credits {
+.read2me-menu {
     position: absolute;
-    bottom: 5px;
+    bottom: -5px;
     right: 21px;
+    cursor: pointer;
 }
-.read2me-credits a {
+.read2me-menu > svg {
     color: black;
     text-decoration: none;
     font-size: 9px;
     letter-spacing: 1px;
     opacity: 0.5;
 }
-.read2me-credits a:hover {
+.read2me-menu > svg:hover {
     opacity: 0.75;
 }
-.read2me-widget-player:hover .read2me-credits {
+.read2me-widget-player:hover .read2me-menu {
     display: inline-block;
 }
-.read2me-widget-player .read2me-widget-player-speaking-rate-container:hover ~ .read2me-credits {
+.read2me-widget-player .read2me-widget-player-speaking-rate-container:hover ~ .read2me-menu {
     display: none;
 }
 
@@ -418,5 +419,8 @@ svg.read2me-widget-speaking-rate {
         transform-origin: top left;
         margin-left: 0;
         margin-right: 0;
+    }
+    .read2me-menu {
+        display: none !important;
     }
 }
