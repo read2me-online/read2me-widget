@@ -150,7 +150,9 @@ export default class Read2MeWidgetPlayer {
     }
 
     setTheme() {
-        if (this.theme !== null)
+        if (this.theme === null)
+            this.player.classList.add('preset-white');
+        else
             this.player.classList.add('preset-' + this.theme);
     }
 
