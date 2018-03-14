@@ -545,6 +545,22 @@ svg.read2me-widget-speaking-rate
 {
     height: 4px;
 }
+.read2me-widget-player.preset-white .read2me-dropdown a
+{
+    color: rgb(33,37,41);
+}
+.read2me-widget-player.preset-white .read2me-dropdown a:hover
+{
+    color: rgba(33,37,41,.6);
+}
+.read2me-widget-player.preset-white .read2me-dropdown svg
+{
+    fill: rgb(33,37,41);
+}
+.read2me-widget-player.preset-white .read2me-dropdown li:hover svg
+{
+    fill: rgba(33,37,41,.6);
+}
 
 /** Blue preset **/
 .read2me-widget-player.preset-blue,
@@ -607,6 +623,27 @@ svg.read2me-widget-speaking-rate
 .read2me-widget-player.preset-blue .tooltip-inner
 {
     color: #3e8fad;
+}
+.read2me-widget-player.preset-blue .read2me-dropdown a
+{
+    color: #fff;
+}
+.read2me-widget-player.preset-blue .read2me-dropdown a:hover
+{
+    color: #0ed1fe;
+    background-color: #fff;
+}
+.read2me-widget-player.preset-blue .read2me-widget-loader:before
+{
+    background-color: #3e8fad;
+}
+.read2me-widget-player.preset-blue .read2me-dropdown svg
+{
+    fill: #fff;
+}
+.read2me-widget-player.preset-blue .read2me-dropdown li:hover svg
+{
+    fill: #0ed1fe;
 }
 
 
@@ -672,6 +709,18 @@ svg.read2me-widget-speaking-rate
 {
     height: 2px;
 }
+.read2me-widget-player.preset-gray .read2me-dropdown a
+{
+    color: #3a3c3c;
+}
+.read2me-widget-player.preset-gray .read2me-dropdown a:hover
+{
+    background-color: #fff;
+}
+.read2me-widget-player.preset-gray .read2me-dropdown svg
+{
+    fill: #3a3c3c;
+}
 
 /** Green preset (aka read2me colors) */
 .read2me-widget-player.preset-green,
@@ -731,6 +780,24 @@ svg.read2me-widget-speaking-rate
 {
     color: #5eead6;
 }
+.read2me-widget-player.preset-green .read2me-dropdown a
+{
+    color: #3a3c3c;
+}
+.read2me-widget-player.preset-green .read2me-dropdown a:hover
+{
+    color: #fff;
+    background-color: #5eead6;
+}
+.read2me-widget-player.preset-green .read2me-dropdown svg
+{
+    fill: #3a3c3c;
+}
+.read2me-widget-player.preset-green .read2me-dropdown li:hover svg
+{
+    fill: #fff;
+}
+
 
 /**
  A great loader from https://codepen.io/brunjo/pen/XJmbNz
@@ -791,28 +858,19 @@ svg.read2me-widget-speaking-rate
     }
 }
 
-.read2me-widget-player.preset-blue .read2me-widget-loader:before
-{
-    background-color: #3e8fad;
-}
-
 .read2me-menu
 {
     position: absolute;
     right: 21px;
     bottom: -5px;
 
+    display: none;
+
     cursor: pointer;
 }
 .read2me-menu > svg
 {
-    font-size: 9px;
-
-    text-decoration: none;
-    letter-spacing: 1px;
-
-    opacity: .5;
-    color: black;
+    opacity: .25;
 }
 .read2me-menu > svg:hover
 {
@@ -838,24 +896,48 @@ svg.read2me-widget-speaking-rate
 
     display: none;
 
-    min-width: 160px;
+    min-width: 180px;
 
     box-shadow: 0 8px 16px 0 rgba(0,0,0,.2);
 }
-.read2me-dropdown a
+.read2me-dropdown ul
 {
-    font-size: 12px;
+    margin: 0;
+    padding: 0;
+}
+.read2me-dropdown li
+{
+    display: block;
+
+    margin: 0;
+    padding: 0;
+
+    text-align: right;
+}
+.read2me-dropdown li a
+{
+    font-size: 10px;
 
     display: block;
 
     padding: 10px;
 
-    text-align: right;
     text-decoration: none;
 }
 .read2me-menu:hover .read2me-dropdown
 {
     display: block;
+}
+.read2me-dropdown a svg
+{
+    position: relative;
+
+    margin-left: 5px;
+}
+.read2me-dropdown svg
+{
+    position: relative;
+    top: 3px;
 }
 
 /** scale the player down for phone */
