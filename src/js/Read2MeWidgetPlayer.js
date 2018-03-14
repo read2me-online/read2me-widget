@@ -47,11 +47,15 @@ export default class Read2MeWidgetPlayer {
         this.toggleVisibility();
         this.instantiateSliders();
         this.handleViewportResize();
+
+        setTimeout(() => {
+            this.setWrapperHeight();
+        }, 50);
     }
 
     finishInitialisation(audioController, apiResponse) {
         if (audioController instanceof Read2MeAudioController === false)
-            throw 'Invalid argument for Read2MeWidgetPlayer.finishInitialisation(); must be an instance of Read2MeAudioController';
+            throw new Error('Invalid argument for Read2MeWidgetPlayer.finishInitialisation(); must be an instance of Read2MeAudioController');
 
         this.audioController = audioController;
         this.apiResponse = apiResponse;
@@ -63,7 +67,7 @@ export default class Read2MeWidgetPlayer {
         this.hideLoader();
         this.removePlaybackBufferingStyles();
         this.setMarqueeForTitle();
-        this.postInitialisationStyling();
+        this.setWrapperHeight();
     }
 
     _setClickHandlerType() {
@@ -250,8 +254,7 @@ export default class Read2MeWidgetPlayer {
 
     scalePlayerDownOnSmallScreens() {
         if (Read2MeHelpers.isPhone()) {
-            let parent = this.wrapper.parentNode;
-            let parentWidth = Read2MeHelpers.getElementsWidthWithoutPadding(parent);
+            let parentWidth = Read2MeHelpers.getElementsWidthWithoutPadding(this.wrapper.parentNode);
             this.scale = parentWidth / (570 + 10); // player width is 570px and there are two 5px side margins
 
             this.wrapper.style.width = parentWidth + 'px';
@@ -266,16 +269,10 @@ export default class Read2MeWidgetPlayer {
         }
     }
 
-    postInitialisationStyling() {
+    setWrapperHeight() {
         let playerHeight = this.player.getBoundingClientRect().height;
         let marginsSize = 40 * this.scale;
-
-        let extraSpacingOnMobile;
-
-        if (Read2MeHelpers.isPhone())
-            extraSpacingOnMobile = 10;
-        else
-            extraSpacingOnMobile = 0;
+        let extraSpacingOnMobile = Read2MeHelpers.isPhone() ? 10 : 0;
 
         this.wrapper.style.height = (playerHeight + marginsSize + extraSpacingOnMobile) + 'px';
     }
@@ -286,7 +283,7 @@ export default class Read2MeWidgetPlayer {
             this.scalePlayerDownOnSmallScreens();
             Read2MeHelpers.showAllWidgets();
 
-            this.postInitialisationStyling();
+            this.setWrapperHeight();
             this._setClickHandlerType();
         });
     }
