@@ -266,7 +266,14 @@ export default class Read2MeWidgetPlayer {
 
     handleDropdownBindings() {
         this.displayAnalyticsLink.addEventListener('click', () => {
-
+            this.backendWrapper.getAnalytics(
+                (response) => {
+                    // success
+                },
+                (response) => {
+                    // error
+                }
+            );
         });
 
         this.refreshContentLink.addEventListener('click', () => {
