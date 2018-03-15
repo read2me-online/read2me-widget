@@ -485,7 +485,8 @@ svg.read2me-widget-speaking-rate
 
 /** White preset **/
 .read2me-widget-player.preset-white,
-.read2me-widget-player.preset-white .read2me-dropdown
+.read2me-widget-player.preset-white .read2me-dropdown li,
+.read2me-widget-player.preset-white .read2me-dropdown-clip
 {
     color: #212529;
     background-color: rgb(255, 255, 255);
@@ -564,7 +565,8 @@ svg.read2me-widget-speaking-rate
 
 /** Blue preset **/
 .read2me-widget-player.preset-blue,
-.read2me-widget-player.preset-blue .read2me-dropdown
+.read2me-widget-player.preset-blue .read2me-dropdown li,
+.read2me-widget-player.preset-blue .read2me-dropdown-clip
 {
     color: rgb(244, 244, 244);
     background-color: rgb(14, 209, 254);
@@ -649,7 +651,8 @@ svg.read2me-widget-speaking-rate
 
 /** Gray preset **/
 .read2me-widget-player.preset-gray,
-.read2me-widget-player.preset-gray .read2me-dropdown
+.read2me-widget-player.preset-gray .read2me-dropdown li,
+.read2me-widget-player.preset-gray .read2me-dropdown-clip
 {
     color: #3a3c3c;
     background-color: rgb(248, 248, 248);
@@ -724,7 +727,8 @@ svg.read2me-widget-speaking-rate
 
 /** Green preset (aka read2me colors) */
 .read2me-widget-player.preset-green,
-.read2me-widget-player.preset-green .read2me-dropdown
+.read2me-widget-player.preset-green .read2me-dropdown li,
+.read2me-widget-player.preset-green .read2me-dropdown-clip
 {
     color: #3a3c3c;
     background-color: rgb(255, 255, 255);
@@ -888,7 +892,7 @@ svg.read2me-widget-speaking-rate
 {
     position: absolute;
     z-index: 999;
-    top: 26px;
+    top: 30px;
     right: -20px;
     /*
         link colors are the same as widget text color
@@ -899,7 +903,7 @@ svg.read2me-widget-speaking-rate
 
     min-width: 170px;
 
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2), 0 3px 10px 0 rgba(0, 0, 0, .19);
+    background: transparent;
 }
 .read2me-dropdown ul
 {
@@ -914,6 +918,8 @@ svg.read2me-widget-speaking-rate
     padding: 0;
 
     text-align: right;
+
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2), 0 3px 10px 0 rgba(0, 0, 0, .19);
 }
 .read2me-dropdown li a
 {
@@ -939,6 +945,25 @@ svg.read2me-widget-speaking-rate
 {
     position: relative;
     top: 2.5px;
+}
+.read2me-dropdown-clip-container
+{
+    padding-top: 5px;
+
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+.read2me-dropdown-clip
+{
+    position: relative;
+    right: -119px;
+
+    display: block;
+
+    width: 35px;
+    height: 15px;
+
+    clip-path: polygon(100% 100%, 50% 3%, 0 100%);
 }
 
 /** scale the player down for phone */
