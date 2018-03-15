@@ -8,6 +8,7 @@ export default class Read2MeWidgetPlayer {
         this.scrubber = null;
         this.speakingRate = null;
         this.scale = 1;
+        this.listeningSessionId = Read2MeHelpers.getRandom4ByteUnsignedInt();
 
         // fixes #32
         // https://github.com/NinoSkopac/read2me-widget/issues/32

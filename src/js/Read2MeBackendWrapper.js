@@ -1,6 +1,6 @@
 export default class Read2MeBackendWrapper {
     constructor(appId, url, cssSelectors = null, voice = null, ignoreContentChange = false, requestSource = 'custom') {
-        this.apiUrl = 'https://api-dev.read2me.online/convert/1.0.0/webpage/'; //@TODO change
+        this.apiUrl = Read2MeBackendWrapper.getBaseUrl();
 
         // set params as object properties
         this.appId = appId;
@@ -13,6 +13,10 @@ export default class Read2MeBackendWrapper {
         this._validateRequiredParams();
         this._validateOptionalParams();
         this._normaliseParams();
+    }
+
+    static getBaseUrl() {
+        return 'https://api-dev.read2me.online/convert/1.0.0/webpage/'; //@TODO change
     }
 
     _validateRequiredParams() {
@@ -108,6 +112,24 @@ export default class Read2MeBackendWrapper {
             console.warn('Connection to Read2Me API failed.');
         };
 
+        request.send();
+    }
+
+    static sendAnalytics(audioId, currentPlaybackTime, audioDuration, listeningSessionId) {
+        const interval = 15;
+        currentPlaybackTime = Math.round(currentPlaybackTime);
+        audioDuration = Math.round(audioDuration);
+
+        if (currentPlaybackTime % interval !== 0 && currentPlaybackTime !== audioDuration)
+            return;
+
+        let requestUri = Read2MeBackendWrapper.getBaseUrl() + 'analytics/?' +
+            'aid=' + audioId +
+            '&pt=' + currentPlaybackTime +
+            '&lsid=' + listeningSessionId;
+
+        const request = new XMLHttpRequest();
+        request.open('POST', requestUri, true);
         request.send();
     }
 }

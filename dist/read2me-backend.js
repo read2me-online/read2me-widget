@@ -19,7 +19,7 @@ var Read2MeBackendWrapper = function () {
 
         _classCallCheck(this, Read2MeBackendWrapper);
 
-        this.apiUrl = 'https://api-dev.read2me.online/convert/1.0.0/webpage/'; //@TODO change
+        this.apiUrl = Read2MeBackendWrapper.getBaseUrl();
 
         // set params as object properties
         this.appId = appId;
@@ -121,6 +121,26 @@ var Read2MeBackendWrapper = function () {
                 console.warn('Connection to Read2Me API failed.');
             };
 
+            request.send();
+        }
+    }], [{
+        key: 'getBaseUrl',
+        value: function getBaseUrl() {
+            return 'https://api-dev.read2me.online/convert/1.0.0/webpage/'; //@TODO change
+        }
+    }, {
+        key: 'sendAnalytics',
+        value: function sendAnalytics(audioId, currentPlaybackTime, audioDuration, listeningSessionId) {
+            var interval = 15;
+            currentPlaybackTime = Math.round(currentPlaybackTime);
+            audioDuration = Math.round(audioDuration);
+
+            if (currentPlaybackTime % interval !== 0 && currentPlaybackTime !== audioDuration) return;
+
+            var requestUri = Read2MeBackendWrapper.getBaseUrl() + 'analytics/?' + 'aid=' + audioId + '&pt=' + currentPlaybackTime + '&lsid=' + listeningSessionId;
+
+            var request = new XMLHttpRequest();
+            request.open('POST', requestUri, true);
             request.send();
         }
     }]);
