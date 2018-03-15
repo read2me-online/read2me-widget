@@ -115,6 +115,55 @@ export default class Read2MeBackendWrapper {
         request.send();
     }
 
+    deleteCache(successCallback, errorCallback) {
+        let requestUrl = this.apiUrl + 'cache/?' +
+            'url=' + encodeURIComponent(this.url);
+
+        const request = new XMLHttpRequest();
+        request.open('DELETE', requestUrl, true);
+        request.setRequestHeader('X-App-Id', this.appId);
+
+        request.onload = function() {
+            const response = JSON.parse(request.responseText);
+
+            if (request.status >= 200 && request.status < 400) {
+                successCallback(response);
+            } else {
+                errorCallback(response);
+            }
+        };
+
+        request.onerror = function() {
+            errorCallback();
+            console.warn('Connection to Read2Me API failed.');
+        };
+
+        request.send();
+    }
+
+    refreshCreate(audioCreatedCallback, errorCallback) {
+        this.deleteCache(
+            (response) => {
+                // cache invalidation - success
+                this.create(
+                    (response) => {
+                        // audio created - success
+                        audioCreatedCallback(response);
+
+                    },
+                    (response) => {
+                        // audio not created - error
+                        errorCallback(response);
+                    }
+                )
+            },
+            (response) => {
+                // cache not invalidated - error
+                errorCallback(response);
+            }
+        );
+    }
+
     static sendAnalytics(audioId, currentPlaybackTime, audioDuration, listeningSessionId) {
         const interval = 15;
         currentPlaybackTime = Math.round(currentPlaybackTime);

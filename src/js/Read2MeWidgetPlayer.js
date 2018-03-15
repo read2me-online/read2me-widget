@@ -1,5 +1,7 @@
 import Read2MeHelpers from "./Read2MeHelpers";
 import Read2MeAudioController from './Read2MeAudioController';
+import Read2MeBackendWrapper from "./Read2MeBackendWrapper";
+import Read2MeAudioEvents from "./Read2MeAudioEvents";
 
 export default class Read2MeWidgetPlayer {
     constructor(widgetBlueprint, url, title = null, thumbnail = null, autoplay = false, playerId = 0, theme = null, width = null) {
@@ -32,6 +34,8 @@ export default class Read2MeWidgetPlayer {
         this.titleTextContainer = this.titleContainer.querySelector('span');
         this.rewind = this.player.querySelector('.read2me-widget-rewind');
         this.forward = this.player.querySelector('.read2me-widget-forward');
+        this.displayAnalyticsLink = this.player.querySelector('.read2me-dropdown-analytics');
+        this.refreshContentLink = this.player.querySelector('.read2me-dropdown-refresh');
         widgetBlueprint.parentNode.replaceChild(this.wrapper, this.widgetBlueprint);
 
         // UI playback controllers
@@ -54,17 +58,22 @@ export default class Read2MeWidgetPlayer {
         }, 50);
     }
 
-    finishInitialisation(audioController, apiResponse) {
+    finishInitialisation(audioController, backendWrapper, apiResponse) {
         if (audioController instanceof Read2MeAudioController === false)
-            throw new Error('Invalid argument for Read2MeWidgetPlayer.finishInitialisation(); must be an instance of Read2MeAudioController');
+            throw new Error('Invalid first argument for Read2MeWidgetPlayer.finishInitialisation(); must be an instance of Read2MeAudioController');
+
+        if (backendWrapper instanceof Read2MeBackendWrapper === false)
+            throw new Error('Invalid second argument for Read2MeWidgetPlayer.finishInitialisation(); must be an instance of Read2MeBackendWrapper');
 
         this.audioController = audioController;
+        this.backendWrapper = backendWrapper;
         this.apiResponse = apiResponse;
         this.configureSliders();
         this.handlePlayback();
         this.handleQuickControls();
         this.handleScrubber();
         this.handleSpeakingRateChange();
+        this.handleDropdownBindings();
         this.hideLoader();
         this.removePlaybackBufferingStyles();
         this.setMarqueeForTitle();
@@ -253,6 +262,33 @@ export default class Read2MeWidgetPlayer {
 
     removePlaybackBufferingStyles() {
         this.playbackContainer.classList.remove('read2me-playback-buffering');
+    }
+
+    handleDropdownBindings() {
+        this.displayAnalyticsLink.addEventListener('click', () => {
+
+        });
+
+        this.refreshContentLink.addEventListener('click', () => {
+            this.displayLoader();
+
+            this.backendWrapper.refreshCreate(
+                (response) => {
+                    // cache invalidated and audio created
+                    let events = new Read2MeAudioEvents(this).getAll();
+
+                    this.apiResponse = response.result;
+                    this.audioController = new Read2MeAudioController(this.apiResponse.audio_url, events);
+                    this.configureSliders();
+                    // loader will be hidden automatically by audio canplay event
+                },
+                (response) => {
+                    // error
+                    this.hideLoader();
+                    console.warn(response);
+                }
+            );
+        });
     }
 
     scalePlayerDownOnSmallScreens() {

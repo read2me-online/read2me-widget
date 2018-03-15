@@ -123,6 +123,51 @@ var Read2MeBackendWrapper = function () {
 
             request.send();
         }
+    }, {
+        key: 'deleteCache',
+        value: function deleteCache(successCallback, errorCallback) {
+            var requestUrl = this.apiUrl + 'cache/?' + 'url=' + encodeURIComponent(this.url);
+
+            var request = new XMLHttpRequest();
+            request.open('DELETE', requestUrl, true);
+            request.setRequestHeader('X-App-Id', this.appId);
+
+            request.onload = function () {
+                var response = JSON.parse(request.responseText);
+
+                if (request.status >= 200 && request.status < 400) {
+                    successCallback(response);
+                } else {
+                    errorCallback(response);
+                }
+            };
+
+            request.onerror = function () {
+                errorCallback();
+                console.warn('Connection to Read2Me API failed.');
+            };
+
+            request.send();
+        }
+    }, {
+        key: 'refreshCreate',
+        value: function refreshCreate(audioCreatedCallback, errorCallback) {
+            var _this = this;
+
+            this.deleteCache(function (response) {
+                // cache invalidation - success
+                _this.create(function (response) {
+                    // audio created - success
+                    audioCreatedCallback(response);
+                }, function (response) {
+                    // audio not created - error
+                    errorCallback(response);
+                });
+            }, function (response) {
+                // cache not invalidated - error
+                errorCallback(response);
+            });
+        }
     }], [{
         key: 'getBaseUrl',
         value: function getBaseUrl() {

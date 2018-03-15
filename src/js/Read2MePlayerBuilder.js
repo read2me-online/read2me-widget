@@ -52,7 +52,7 @@ export default class Read2MePlayerBuilder {
                 new Read2MeAudioEvents(this.playerInstances[playerId]).getAll()
             );
 
-            this.playerInstances[playerId].finishInitialisation(audioController, responseResult);
+            this.playerInstances[playerId].finishInitialisation(audioController, backendWrapper, responseResult);
         }, (response) => {
             // error
             this.playerInstances[playerId].toggleVisibility();
