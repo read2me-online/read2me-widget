@@ -899,9 +899,11 @@ svg.read2me-widget-speaking-rate
         background color is the same as widget background color
     */
 
-    display: none;
+    visibility: hidden;
 
     min-width: 170px;
+
+    transition: visibility .25s;
 
     background: transparent;
 }
@@ -931,9 +933,15 @@ svg.read2me-widget-speaking-rate
 
     text-decoration: none;
 }
-.read2me-menu:hover .read2me-dropdown
+.read2me-dropdown-trigger:focus
 {
-    display: block;
+    pointer-events: none;
+}
+.read2me-dropdown-trigger:focus + .read2me-dropdown
+{
+    visibility: visible;
+
+    pointer-events: auto;
 }
 .read2me-dropdown a svg
 {

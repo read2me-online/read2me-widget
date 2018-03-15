@@ -518,13 +518,14 @@ svg.read2me-widget-speaking-rate {
         link colors are the same as widget text color
         background color is the same as widget background color
     */
-    display: none;
+    visibility: hidden;
     position: absolute;
     top: 30px;
     right: -20px;
     min-width: 170px;
     background: transparent;
     z-index: 999;
+    transition: visibility 0.25s;
 }
 .read2me-dropdown ul {
     padding: 0;
@@ -543,8 +544,12 @@ svg.read2me-widget-speaking-rate {
     font-size: 9px;
     text-decoration: none;
 }
-.read2me-menu:hover .read2me-dropdown {
-    display: block;
+.read2me-dropdown-trigger:focus {
+    pointer-events: none;
+}
+.read2me-dropdown-trigger:focus + .read2me-dropdown {
+    visibility: visible;
+    pointer-events: auto;
 }
 .read2me-dropdown a svg {
     position: relative;
