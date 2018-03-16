@@ -545,6 +545,7 @@ svg.read2me-widget-speaking-rate {
     text-decoration: none;
 }
 .read2me-dropdown-trigger:focus {
+    outline: none;
     pointer-events: none;
 }
 .read2me-dropdown-trigger:focus + .read2me-dropdown {

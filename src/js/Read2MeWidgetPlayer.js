@@ -51,11 +51,8 @@ export default class Read2MeWidgetPlayer {
         this.scalePlayerDownOnSmallScreens();
         this.toggleVisibility();
         this.instantiateSliders();
+        this._setTentativeWrapperHeight();
         this.handleViewportResize();
-
-        setTimeout(() => {
-            this.setWrapperHeight();
-        }, 50);
     }
 
     finishInitialisation(audioController, backendWrapper, apiResponse) {
@@ -82,6 +79,13 @@ export default class Read2MeWidgetPlayer {
 
     _setClickHandlerType() {
         this.clickHandlerType = 'ontouchstart' in document.documentElement ? "touchstart" : "click";
+    }
+
+    _setTentativeWrapperHeight() {
+        let containerWidth = Read2MeHelpers.getElementsWidthWithoutPadding(this.wrapper.parentNode);
+        let tentativeWrapperHeight = Math.round(containerWidth / 3.7);
+
+        this.wrapper.style.height = tentativeWrapperHeight + 'px';
     }
 
     toggleVisibility() {
