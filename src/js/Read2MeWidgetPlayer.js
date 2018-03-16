@@ -82,6 +82,9 @@ export default class Read2MeWidgetPlayer {
     }
 
     _setTentativeWrapperHeight() {
+        if (!Read2MeHelpers.isPhone())
+            return;
+
         let containerWidth = Read2MeHelpers.getElementsWidthWithoutPadding(this.wrapper.parentNode);
         let tentativeWrapperHeight = Math.round(containerWidth / 3.7);
 
@@ -320,9 +323,12 @@ export default class Read2MeWidgetPlayer {
     }
 
     setWrapperHeight() {
+        if (!Read2MeHelpers.isPhone())
+            return;
+
         let playerHeight = this.player.getBoundingClientRect().height;
         let marginsSize = 40 * this.scale;
-        let extraSpacingOnMobile = Read2MeHelpers.isPhone() ? 10 : 0;
+        let extraSpacingOnMobile = 10;
 
         this.wrapper.style.height = (playerHeight + marginsSize + extraSpacingOnMobile) + 'px';
     }
