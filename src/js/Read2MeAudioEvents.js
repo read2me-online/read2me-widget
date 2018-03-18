@@ -1,4 +1,4 @@
-import Read2MeBackendWrapper from "./Read2MeBackendWrapper";
+import Read2MeAnalyticsBackendWrapper from "./Read2MeAnalyticsBackendWrapper";
 
 export default class Read2MeAudioEvents {
     constructor(widgetPlayerInstance) {
@@ -98,7 +98,7 @@ export default class Read2MeAudioEvents {
     }
 
     _sendAnalytics() {
-        Read2MeBackendWrapper.sendAnalytics(
+        Read2MeAnalyticsBackendWrapper.sendAnalytics(
             this.widgetPlayerInstance.apiResponse.id,
             this.widgetPlayerInstance.audioController.audio.currentTime,
             this.widgetPlayerInstance.audioController.audio.duration,

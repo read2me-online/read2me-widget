@@ -2,6 +2,7 @@ import Read2MeHelpers from "./Read2MeHelpers";
 import Read2MeAudioController from './Read2MeAudioController';
 import Read2MeBackendWrapper from "./Read2MeBackendWrapper";
 import Read2MeAudioEvents from "./Read2MeAudioEvents";
+import Read2MeAnalyticsBackendWrapper from "./Read2MeAnalyticsBackendWrapper";
 
 export default class Read2MeWidgetPlayer {
     constructor(widgetBlueprint, url, title = null, thumbnail = null, autoplay = false, playerId = 0, theme = null, width = null) {
@@ -273,7 +274,8 @@ export default class Read2MeWidgetPlayer {
 
     handleDropdownBindings() {
         this.displayAnalyticsLink.addEventListener('click', () => {
-            this.backendWrapper.getAnalytics(
+            Read2MeAnalyticsBackendWrapper.getAnalytics(
+                this.apiResponse.id,
                 (response) => {
                     // success
                 },

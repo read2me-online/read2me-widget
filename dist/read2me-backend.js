@@ -168,51 +168,10 @@ var Read2MeBackendWrapper = function () {
                 errorCallback(response);
             });
         }
-    }, {
-        key: 'getAnalytics',
-        value: function getAnalytics(successCallback, errorCallback) {
-            var requestUrl = this.apiUrl + 'analytics/?' + 'url=' + encodeURIComponent(this.url) + '&css_selectors=' + encodeURIComponent(this.cssSelectors.join('|'));
-
-            var request = new XMLHttpRequest();
-            request.open('GET', requestUrl, true);
-            request.setRequestHeader('X-App-Id', this.appId);
-
-            request.onload = function () {
-                var response = JSON.parse(request.responseText);
-
-                if (request.status >= 200 && request.status < 400) {
-                    successCallback(response);
-                } else {
-                    errorCallback(response);
-                }
-            };
-
-            request.onerror = function () {
-                errorCallback();
-                console.warn('Connection to Read2Me API failed.');
-            };
-
-            request.send();
-        }
     }], [{
         key: 'getBaseUrl',
         value: function getBaseUrl() {
             return 'https://api-dev.read2me.online/convert/1.0.0/webpage/'; //@TODO change
-        }
-    }, {
-        key: 'sendAnalytics',
-        value: function sendAnalytics(audioId, currentPlaybackTime, audioDuration, listeningSessionId) {
-            var interval = 15;
-            currentPlaybackTime = Math.round(currentPlaybackTime);
-            audioDuration = Math.round(audioDuration);
-
-            if (currentPlaybackTime % interval !== 0 && currentPlaybackTime !== audioDuration) return;
-
-            var requestUri = Read2MeBackendWrapper.getBaseUrl() + 'analytics/?' + 'aid=' + audioId + '&pt=' + currentPlaybackTime + '&lsid=' + listeningSessionId;
-
-            var request = new XMLHttpRequest();
-            request.open('POST', requestUri, true);
-            request.send();
         }
     }]);
 
