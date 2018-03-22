@@ -518,6 +518,7 @@ svg.read2me-widget-speaking-rate {
         link colors are the same as widget text color
         background color is the same as widget background color
     */
+    opacity: 0;
     visibility: hidden;
     position: absolute;
     top: 30px;
@@ -549,6 +550,7 @@ svg.read2me-widget-speaking-rate {
     pointer-events: none;
 }
 .read2me-dropdown-trigger:focus + .read2me-dropdown {
+    opacity: 1;
     visibility: visible;
     pointer-events: auto;
 }

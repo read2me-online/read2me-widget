@@ -894,17 +894,18 @@ svg.read2me-widget-speaking-rate
     z-index: 999;
     top: 30px;
     right: -20px;
-    /*
-        link colors are the same as widget text color
-        background color is the same as widget background color
-    */
 
     visibility: hidden;
 
     min-width: 170px;
 
     transition: visibility .25s;
+    /*
+        link colors are the same as widget text color
+        background color is the same as widget background color
+    */
 
+    opacity: 0;
     background: transparent;
 }
 .read2me-dropdown ul
@@ -944,6 +945,8 @@ svg.read2me-widget-speaking-rate
     visibility: visible;
 
     pointer-events: auto;
+
+    opacity: 1;
 }
 .read2me-dropdown a svg
 {
