@@ -251,11 +251,16 @@
 {
     position: relative;
 
-    perspective: 570px;
+            perspective: 570px;
+       -moz-perspective: 570px;
+    -webkit-perspective: 570px;
 }
 .read2me-widget-wrapper.read2me-analytics-view .read2me-flipper
 {
-    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+       -moz-transform: rotateY(180deg);
+        -ms-transform: rotateY(180deg);
+            transform: rotateY(180deg);
 }
 .read2me-flipper
 {
@@ -273,7 +278,10 @@
 .read2me-widget-player,
 .read2me-analytics
 {
-    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+       -moz-backface-visibility: hidden;
+        -ms-backface-visibility: hidden;
+            backface-visibility: hidden;
 }
 /* front */
 .read2me-widget-player
@@ -286,7 +294,10 @@
     right: 0;
     left: auto;
 
-    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+       -moz-transform: rotateY(180deg);
+        -ms-transform: rotateY(180deg);
+            transform: rotateY(180deg);
 }
 
 /**
@@ -949,7 +960,11 @@ svg.read2me-widget-speaking-rate
 
     min-width: 170px;
 
-    transition: visibility .25s;
+    -webkit-transition: all .25s ease-out;
+       -moz-transition: all .25s ease-out ;
+        -ms-transition: all .25s ease-out ;
+         -o-transition: all .25s ease-out ;
+            transition: all .25s ease-out ;
     /*
         link colors are the same as widget text color
         background color is the same as widget background color

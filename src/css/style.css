@@ -31,10 +31,15 @@
 /* 3D rules */
 .read2me-widget-wrapper {
     perspective: 570px;
+    -moz-perspective: 570px;
+    -webkit-perspective: 570px;
     position: relative;
 }
 .read2me-widget-wrapper.read2me-analytics-view .read2me-flipper {
     transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
 }
 .read2me-flipper {
     height: 141px;
@@ -47,6 +52,9 @@
 }
 .read2me-widget-player,
 .read2me-analytics {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
     backface-visibility: hidden;
 }
 /* front */
@@ -56,6 +64,9 @@
 /* back */
 .read2me-analytics {
     transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
     left: auto;
     right: 0;
 }
@@ -563,7 +574,11 @@ svg.read2me-widget-speaking-rate {
     min-width: 170px;
     background: transparent;
     z-index: 999;
-    transition: visibility 0.25s;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out ;
+    -ms-transition: all 0.25s ease-out ;
+    -o-transition: all 0.25s ease-out ;
+    transition: all 0.25s ease-out ;
 }
 .read2me-dropdown ul {
     padding: 0;
