@@ -36,10 +36,10 @@
     position: relative;
 }
 .read2me-widget-wrapper.read2me-analytics-view .read2me-flipper {
-    transform: rotateY(180deg);
-    -moz-transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
-    -ms-transform: rotateY(180deg);
+    transform: translateX( -100% ) rotateY( -180deg );
+    -moz-transform: translateX( -100% ) rotateY( -180deg );
+    -webkit-transform: translateX( -100% ) rotateY( -180deg );
+    -ms-transform: translateX( -100% ) rotateY( -180deg );
 }
 .read2me-flipper {
     height: 141px;
@@ -48,6 +48,7 @@
     -moz-transform-style: preserve-3d;
     -ms-transform-style: preserve-3d;
     transform-style: preserve-3d;
+    transform-origin: right center;
     position: relative;
 }
 .read2me-widget-player,
