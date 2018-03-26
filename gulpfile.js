@@ -30,8 +30,8 @@ const isDev = version.indexOf('-dev') !== -1;
 const AWS = {
     "key":    process.env.AWS_ACCESS_KEY_ID,
     "secret": process.env.AWS_SECRET_ACCESS_KEY,
-    "bucket": "s3.read2me.online",
-    "region": "eu-west-1"
+    "bucket": "s3-sg.read2me.online", // s3.read2me.online, s3-sg.read2me.online for SEA
+    "region": "ap-southeast-1" // eu-west-1 for EU, ap-southeast-1 for SEA
 };
 const AWSOptions = {
     uploadPath: 'api/widget/' + version + '/',

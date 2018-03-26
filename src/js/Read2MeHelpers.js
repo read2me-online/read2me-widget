@@ -110,4 +110,29 @@ export default class Read2MeHelpers {
 
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
+
+    static loadJs(url, callback) {
+        let script = document.createElement('script');
+        script.onload = function () {
+            if (callback === 'function')
+                callback();
+        };
+        script.src = url;
+
+        document.head.appendChild(script);
+    }
+
+    static loadCss(url, id) {
+        if (document.getElementById(id)) // already inserted
+            return;
+
+        let head  = document.getElementsByTagName('head')[0];
+        let link  = document.createElement('link');
+        link.id   = id;
+        link.rel  = 'stylesheet';
+        link.type = 'text/css';
+        link.href = url;
+        link.media = 'all';
+        head.appendChild(link);
+    }
 }

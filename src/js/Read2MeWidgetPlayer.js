@@ -11,6 +11,7 @@ export default class Read2MeWidgetPlayer {
         this.scrubber = null;
         this.speakingRate = null;
         this.scale = 1;
+        this.highchart = null;
 
         // fixes #32
         // https://github.com/NinoSkopac/read2me-widget/issues/32
@@ -285,15 +286,66 @@ export default class Read2MeWidgetPlayer {
         });
 
         this.displayAnalyticsLink.addEventListener('click', () => {
-            this.wrapper.classList.add('read2me-analytics-view');
+            this.displayLoader();
+
+            // load Highcharts if doesn't already exist
+            if (typeof Highcharts === 'undefined') {
+                Read2MeHelpers.loadJs('https://code.highcharts.com/6.0/highcharts.js');
+            }
+
+            // load flags
+            Read2MeHelpers.loadCss('https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css');
 
             Read2MeAnalyticsBackendWrapper.getAnalytics(
                 this.apiResponse.id,
                 (response) => {
                     // success
+                    this.wrapper.classList.add('read2me-analytics-view'); // do the flip
+                    this.hideLoader();
+
+                    // keys are duration, values are counts
+                    let playbackCountPerSecond = response.result.playback_count_per_second;
+                    let durationAxis = Object.keys(playbackCountPerSecond).map(Number);
+                    let countValues = Object.values(playbackCountPerSecond);
+
+                    console.log(durationAxis, countValues);
+
+                    this.highchart = Highcharts.chart(this.analytics.querySelector('.read2me-highcharts'), {
+                        title: {
+                            text: null
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        xAxis: {
+                            title: {
+                                text: null
+                            },
+                            min: 0.5,
+                            max: durationAxis.length - 1.5,
+                            startOnTick: false,
+                            endOnTick: false,
+                            categories: durationAxis
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Playback count'
+                            }
+                        },
+                        series: [{
+                            data: countValues,
+                            type: 'areaspline'
+                        }],
+                        tooltip: {
+                            formatter: function() {
+                                return 'Time: ' + this.x + 's<br />Amount of people listened: ' + this.y;
+                            }
+                        }
+                    });
                 },
                 (response) => {
                     // error
+                    this.hideLoader();
                 }
             );
         });
