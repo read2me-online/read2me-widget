@@ -279,6 +279,8 @@ export default class Read2MeWidgetPlayer {
 
     handleDropdownBindings() {
         this.displayAnalyticsLink.addEventListener('click', () => {
+            this.wrapper.classList.add('read2me-analytics-view');
+
             Read2MeAnalyticsBackendWrapper.getAnalytics(
                 this.apiResponse.id,
                 (response) => {
@@ -324,6 +326,7 @@ export default class Read2MeWidgetPlayer {
             this.scale = 1;
 
             this.wrapper.style.width = '';
+            this.wrapper.style.height = '141px';
             this.player.style.transform = '';
             this.player.style['margin-left'] = '';
         }
