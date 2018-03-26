@@ -552,8 +552,15 @@ svg.read2me-widget-speaking-rate {
 .read2me-menu > svg {
     opacity: 0.25;
 }
-.read2me-menu > svg:hover {
+.read2me-menu > svg:hover,
+.read2me-analytics .read2me-menu:hover {
     opacity: 0.75;
+}
+.read2me-analytics .read2me-menu {
+    display: inline-block;
+    bottom: 5px;
+    opacity: 0.5;
+    font-size: 12px;
 }
 .read2me-widget-player:hover .read2me-menu {
     display: inline-block;

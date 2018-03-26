@@ -937,9 +937,20 @@ svg.read2me-widget-speaking-rate
 {
     opacity: .25;
 }
-.read2me-menu > svg:hover
+.read2me-menu > svg:hover,
+.read2me-analytics .read2me-menu:hover
 {
     opacity: .75;
+}
+.read2me-analytics .read2me-menu
+{
+    font-size: 12px;
+
+    bottom: 5px;
+
+    display: inline-block;
+
+    opacity: .5;
 }
 .read2me-widget-player:hover .read2me-menu
 {

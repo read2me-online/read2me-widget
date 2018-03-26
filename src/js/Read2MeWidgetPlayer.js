@@ -28,6 +28,7 @@ export default class Read2MeWidgetPlayer {
 
         this.wrapper = Read2MeHelpers.getWidgetTemplate();
         this.player = this.wrapper.querySelector('.read2me-widget-player');
+        this.analytics = this.wrapper.querySelector('.read2me-analytics');
         this.playbackContainer = this.player.querySelector('.read2me-widget-player-playback');
         this.loader = this.player.querySelector('.read2me-widget-loader');
         this.titleContainer= this.player.querySelector('.read2me-widget-player-title');
@@ -35,6 +36,7 @@ export default class Read2MeWidgetPlayer {
         this.rewind = this.player.querySelector('.read2me-widget-rewind');
         this.forward = this.player.querySelector('.read2me-widget-forward');
         this.displayAnalyticsLink = this.player.querySelector('.read2me-dropdown-analytics');
+        this.closeAnalyticsLink = this.analytics.querySelector('.read2me-analytics-close');
         this.refreshContentLink = this.player.querySelector('.read2me-dropdown-refresh');
         widgetBlueprint.parentNode.replaceChild(this.wrapper, this.widgetBlueprint);
 
@@ -278,6 +280,10 @@ export default class Read2MeWidgetPlayer {
     }
 
     handleDropdownBindings() {
+        this.closeAnalyticsLink.addEventListener('click', () => {
+            this.wrapper.classList.remove('read2me-analytics-view');
+        });
+
         this.displayAnalyticsLink.addEventListener('click', () => {
             this.wrapper.classList.add('read2me-analytics-view');
 
