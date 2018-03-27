@@ -117,6 +117,7 @@ export default class Read2MeHelpers {
             if (callback === 'function')
                 callback();
         };
+        script.async = false;
         script.src = url;
 
         document.head.appendChild(script);
@@ -134,5 +135,70 @@ export default class Read2MeHelpers {
         link.href = url;
         link.media = 'all';
         head.appendChild(link);
+    }
+
+    static getInterestDistributionHighchart(playbackCountOverTime, container) {
+        let durationAxis = Object.keys(playbackCountOverTime).map(Number);
+        let countValues = Object.values(playbackCountOverTime);
+
+        return Highcharts.chart(container, {
+            title: {
+                text: null
+            },
+            legend: {
+                enabled: false
+            },
+            xAxis: {
+                title: {
+                    text: null
+                },
+                min: 0.5,
+                max: durationAxis.length - 1.5,
+                startOnTick: false,
+                endOnTick: false,
+                lineWidth: 0,
+                minorGridLineWidth: 0,
+                lineColor: 'transparent',
+                labels: {
+                    enabled: false
+                },
+                minorTickLength: 0,
+                tickLength: 0,
+                categories: durationAxis
+            },
+            yAxis: {
+                title: {
+                    text: null
+                },
+                lineWidth: 0,
+                minorGridLineWidth: 0,
+                lineColor: 'transparent',
+                labels: {
+                    enabled: false
+                },
+                minorTickLength: 0,
+                tickLength: 0,
+                gridLineColor: 'transparent'
+            },
+            series: [{
+                data: countValues,
+                type: 'areaspline'
+            }],
+            tooltip: {
+                formatter: function() {
+                    return 'Time: ' + this.x + 's<br />Amount of people listened: ' + this.y;
+                }
+            },
+            chart: {
+                marginTop: 0,
+                spacingBottom: 0,
+                marginLeft: 0,
+                spacingLeft: 0,
+                marginRight: 0,
+                style: {
+                    fontFamily: 'Raleway'
+                }
+            }
+        });
     }
 }

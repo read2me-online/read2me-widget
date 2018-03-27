@@ -37,7 +37,7 @@ export default class Read2MeWidgetPlayer {
         this.rewind = this.player.querySelector('.read2me-widget-rewind');
         this.forward = this.player.querySelector('.read2me-widget-forward');
         this.displayAnalyticsLink = this.player.querySelector('.read2me-dropdown-analytics');
-        this.closeAnalyticsLink = this.analytics.querySelector('.read2me-analytics-close');
+        this.closeAnalyticsLink = this.analytics.querySelector('.read2me-analytics-menu-close');
         this.refreshContentLink = this.player.querySelector('.read2me-dropdown-refresh');
         widgetBlueprint.parentNode.replaceChild(this.wrapper, this.widgetBlueprint);
 
@@ -79,6 +79,7 @@ export default class Read2MeWidgetPlayer {
         this.removePlaybackBufferingStyles();
         this.setMarqueeForTitle();
         this.setWrapperHeight();
+        this.handleAnalyticsMenuBindings();
     }
 
     _setListeningSessionId() {
@@ -281,11 +282,13 @@ export default class Read2MeWidgetPlayer {
     }
 
     handleDropdownBindings() {
-        this.closeAnalyticsLink.addEventListener('click', () => {
-            this.wrapper.classList.remove('read2me-analytics-view');
-        });
-
         this.displayAnalyticsLink.addEventListener('click', () => {
+            if (this.highchart !== null) {
+                this.wrapper.classList.add('read2me-analytics-view');
+
+                return;
+            }
+
             this.displayLoader();
 
             // load Highcharts if doesn't already exist
@@ -303,45 +306,12 @@ export default class Read2MeWidgetPlayer {
                     this.wrapper.classList.add('read2me-analytics-view'); // do the flip
                     this.hideLoader();
 
-                    // keys are duration, values are counts
-                    let playbackCountPerSecond = response.result.playback_count_per_second;
-                    let durationAxis = Object.keys(playbackCountPerSecond).map(Number);
-                    let countValues = Object.values(playbackCountPerSecond);
+                    // keys are time, values are counts
+                    let playbackCountOverTime = response.result.playback_count_per_second;
 
-                    console.log(durationAxis, countValues);
-
-                    this.highchart = Highcharts.chart(this.analytics.querySelector('.read2me-highcharts'), {
-                        title: {
-                            text: null
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        xAxis: {
-                            title: {
-                                text: null
-                            },
-                            min: 0.5,
-                            max: durationAxis.length - 1.5,
-                            startOnTick: false,
-                            endOnTick: false,
-                            categories: durationAxis
-                        },
-                        yAxis: {
-                            title: {
-                                text: 'Playback count'
-                            }
-                        },
-                        series: [{
-                            data: countValues,
-                            type: 'areaspline'
-                        }],
-                        tooltip: {
-                            formatter: function() {
-                                return 'Time: ' + this.x + 's<br />Amount of people listened: ' + this.y;
-                            }
-                        }
-                    });
+                    this.highchart = Read2MeHelpers.getInterestDistributionHighchart(
+                        playbackCountOverTime, this.analytics.querySelector('.read2me-highcharts')
+                    );
                 },
                 (response) => {
                     // error
@@ -369,6 +339,31 @@ export default class Read2MeWidgetPlayer {
                     console.warn(response);
                 }
             );
+        });
+    }
+
+    handleAnalyticsMenuBindings() {
+        let menuSlide1 = this.analytics.querySelector('.read2me-analytics-menu-slide1'); // trigger for playback & geo
+        let menuSlide2 = this.analytics.querySelector('.read2me-analytics-menu-slide2'); // trigger for interest graph
+        let slide1 = this.analytics.querySelector('.read2me-analytics-slide1'); // playback & geo slide
+        let slide2 = this.analytics.querySelector('.read2me-analytics-slide2'); // interest graph slide
+
+        menuSlide1.addEventListener('click', () => {
+            // display interest graph
+            slide2.classList.remove('read2me-analytics-slide2-visible');
+            menuSlide1.classList.add('hidden');
+            menuSlide2.classList.remove('hidden');
+        });
+
+        menuSlide2.addEventListener('click', () => {
+            // display playback and geo
+            slide2.classList.add('read2me-analytics-slide2-visible');
+            menuSlide2.classList.add('hidden');
+            menuSlide1.classList.remove('hidden');
+        });
+
+        this.closeAnalyticsLink.addEventListener('click', () => {
+            this.wrapper.classList.remove('read2me-analytics-view');
         });
     }
 
