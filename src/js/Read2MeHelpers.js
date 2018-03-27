@@ -137,9 +137,9 @@ export default class Read2MeHelpers {
         head.appendChild(link);
     }
 
-    static getInterestDistributionHighchart(playbackCountOverTime, container) {
-        let durationAxis = Object.keys(playbackCountOverTime).map(Number);
-        let countValues = Object.values(playbackCountOverTime);
+    static getInterestDistributionHighchart(result, container) {
+        let durationAxis = Object.keys(result.playback_count_per_second).map(Number);
+        let countValues = Object.values(result.playback_count_per_second);
 
         return Highcharts.chart(container, {
             title: {
@@ -186,7 +186,13 @@ export default class Read2MeHelpers {
             }],
             tooltip: {
                 formatter: function() {
-                    return 'Time: ' + this.x + 's<br />Amount of people listened: ' + this.y;
+                    let index = this.point.index;
+                    let tooltipData = result.playback_count_per_second_human_readable[index];
+                    let count = tooltipData['count'];
+                    let secondsToArray = Read2MeHelpers.secondsToHumanReadableArray(this.x);
+                    let timeScrubberFormat = Read2MeHelpers.secondsMinutesHoursToHumanReadable(...secondsToArray);
+                    
+                    return 'Time: ' + timeScrubberFormat + '<br />Amount of people listened: ' + count;
                 }
             },
             chart: {

@@ -306,11 +306,8 @@ export default class Read2MeWidgetPlayer {
                     this.wrapper.classList.add('read2me-analytics-view'); // do the flip
                     this.hideLoader();
 
-                    // keys are time, values are counts
-                    let playbackCountOverTime = response.result.playback_count_per_second;
-
                     this.highchart = Read2MeHelpers.getInterestDistributionHighchart(
-                        playbackCountOverTime, this.analytics.querySelector('.read2me-highcharts')
+                        response.result, this.analytics.querySelector('.read2me-highcharts')
                     );
 
                     let playbackCountContainer = this.analytics.
