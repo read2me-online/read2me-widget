@@ -114,10 +114,9 @@ export default class Read2MeHelpers {
     static loadJs(url, callback) {
         let script = document.createElement('script');
         script.onload = function () {
-            if (callback === 'function')
+            if (typeof callback === 'function')
                 callback();
         };
-        script.async = false;
         script.src = url;
 
         document.head.appendChild(script);

@@ -12,6 +12,8 @@ export default class Read2MeWidgetPlayer {
         this.speakingRate = null;
         this.scale = 1;
         this.highchart = null;
+        this.isHighchartsJsLoaded = false;
+        this._highchartsLibraryWaiter = null;
 
         // fixes #32
         // https://github.com/NinoSkopac/read2me-widget/issues/32
@@ -293,7 +295,11 @@ export default class Read2MeWidgetPlayer {
 
             // load Highcharts if doesn't already exist
             if (typeof Highcharts === 'undefined') {
-                Read2MeHelpers.loadJs('https://code.highcharts.com/6.0/highcharts.js');
+                Read2MeHelpers.loadJs('https://code.highcharts.com/6.0/highcharts.js', () => {
+                    this.isHighchartsJsLoaded = true;
+                });
+            } else {
+                this.isHighchartsJsLoaded = true;
             }
 
             // load flags
@@ -303,36 +309,14 @@ export default class Read2MeWidgetPlayer {
                 this.apiResponse.id,
                 (response) => {
                     // success
-                    this.wrapper.classList.add('read2me-analytics-view'); // do the flip
-                    this.hideLoader();
-
-                    this.highchart = Read2MeHelpers.getInterestDistributionHighchart(
-                        response.result, this.analytics.querySelector('.read2me-highcharts')
-                    );
-
-                    let playbackCountContainer = this.analytics.
-                        querySelector('.read2me-analytics-playback-count .read2me-analytics-playback-value');
-                    playbackCountContainer.textContent = response.result.playback_count_human_readable;
-
-                    let playbackDurationContainer = this.analytics.
-                        querySelector('.read2me-analytics-playback-duration .read2me-analytics-playback-value');
-                    playbackDurationContainer.textContent = response.result.listening_time_human_readable;
-
-                    let countriesContainer = this.analytics.querySelector('.read2me-analytics-countries');
-                    let countries = response.result.country_frequency_human_readable;
-
-                    Object.keys(countries).forEach(key => {
-                        let countryIso = key.toLowerCase();
-                        let count = countries[key];
-                        let container = this.analytics.querySelector('.read2me-analytics-country.hidden').cloneNode(true);
-
-                        container.querySelector('.flag-icon').classList.add('flag-icon-' + countryIso);
-                        container.querySelector('.read2me-analytics-country-playbacks').textContent = count;
-                        container.setAttribute('title', key);
-                        container.classList.remove('hidden');
-
-                        countriesContainer.appendChild(container);
-                    });
+                    this._highchartsLibraryWaiter = setInterval(() => {
+                        if (this.isHighchartsJsLoaded) {
+                            this.wrapper.classList.add('read2me-analytics-view'); // do the flip
+                            this.hideLoader();
+                            this.instantiateAnalytics(response.result);
+                            clearInterval(this._highchartsLibraryWaiter);
+                        }
+                    }, 50);
                 },
                 (response) => {
                     // error
@@ -360,6 +344,36 @@ export default class Read2MeWidgetPlayer {
                     console.warn(response);
                 }
             );
+        });
+    }
+
+    instantiateAnalytics(result) {
+        this.highchart = Read2MeHelpers.getInterestDistributionHighchart(
+            result, this.analytics.querySelector('.read2me-highcharts')
+        );
+
+        let playbackCountContainer = this.analytics.
+        querySelector('.read2me-analytics-playback-count .read2me-analytics-playback-value');
+        playbackCountContainer.textContent = result.playback_count_human_readable;
+
+        let playbackDurationContainer = this.analytics.
+        querySelector('.read2me-analytics-playback-duration .read2me-analytics-playback-value');
+        playbackDurationContainer.textContent = result.listening_time_human_readable;
+
+        let countriesContainer = this.analytics.querySelector('.read2me-analytics-countries');
+        let countries = result.country_frequency_human_readable;
+
+        Object.keys(countries).forEach(key => {
+            let countryIso = key.toLowerCase();
+            let count = countries[key];
+            let container = this.analytics.querySelector('.read2me-analytics-country.hidden').cloneNode(true);
+
+            container.querySelector('.flag-icon').classList.add('flag-icon-' + countryIso);
+            container.querySelector('.read2me-analytics-country-playbacks').textContent = count;
+            container.setAttribute('title', key);
+            container.classList.remove('hidden');
+
+            countriesContainer.appendChild(container);
         });
     }
 
