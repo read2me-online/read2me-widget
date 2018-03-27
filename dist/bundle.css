@@ -1214,6 +1214,8 @@ svg.read2me-widget-speaking-rate
 
     width: 100%;
     height: 100%;
+
+    opacity: .75;
 }
 .read2me-highcharts .highcharts-credits
 {

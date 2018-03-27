@@ -328,6 +328,7 @@ export default class Read2MeWidgetPlayer {
 
                         container.querySelector('.flag-icon').classList.add('flag-icon-' + countryIso);
                         container.querySelector('.read2me-analytics-country-playbacks').textContent = count;
+                        container.setAttribute('title', key);
                         container.classList.remove('hidden');
 
                         countriesContainer.appendChild(container);

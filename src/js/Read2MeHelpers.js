@@ -204,7 +204,8 @@ export default class Read2MeHelpers {
                 style: {
                     fontFamily: 'Raleway'
                 }
-            }
+            },
+            colors: ['rgb(0,0,0)']
         });
     }
 }
