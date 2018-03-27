@@ -688,6 +688,46 @@ svg.read2me-widget-speaking-rate {
 .read2me-analytics-slide2.read2me-analytics-slide2-visible {
     margin-top: 0;
 }
+.read2me-analytics-playback,
+.read2me-analytics-countries {
+    display: inline-block;
+    padding: 5px 10px 0 10px;
+}
+.read2me-analytics-playback {
+    width: 190px;
+    font-size: 12px;
+    float: left;
+}
+.read2me-analytics-countries {
+    width: 380px;
+    height: 77px;
+}
+.read2me-analytics-countries .flag-icon {
+    font-size: 36px;
+    display: block;
+}
+.read2me-analytics-country {
+    width: 90px;
+    display: inline-block;
+    height: 100%;
+}
+.read2me-analytics-playback-heading,
+.read2me-analytics-playback-value {
+    display: block;
+}
+.read2me-analytics-playback-heading {
+    height: 14px;
+}
+.read2me-analytics-playback-count {
+    margin-bottom: 8px;
+}
+.read2me-analytics-country-playbacks {
+    display: block;
+    padding-left: 16px;
+    font-size: 13px;
+    opacity: 0.7;
+    padding-top: 5px;
+}
 
 /** highchart */
 .read2me-highcharts {
