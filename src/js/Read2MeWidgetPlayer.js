@@ -312,6 +312,29 @@ export default class Read2MeWidgetPlayer {
                     this.highchart = Read2MeHelpers.getInterestDistributionHighchart(
                         playbackCountOverTime, this.analytics.querySelector('.read2me-highcharts')
                     );
+
+                    let playbackCountContainer = this.analytics.
+                        querySelector('.read2me-analytics-playback-count .read2me-analytics-playback-value');
+                    playbackCountContainer.textContent = response.result.playback_count; // @TODO replace with formatted
+
+                    let playbackDurationContainer = this.analytics.
+                        querySelector('.read2me-analytics-playback-duration .read2me-analytics-playback-value');
+                    playbackDurationContainer.textContent = response.result.listening_time_human_readable;
+
+                    let countriesContainer = this.analytics.querySelector('.read2me-analytics-countries');
+                    let countries = response.result.country_frequency;
+
+                    Object.keys(countries).forEach(key => {
+                        let countryIso = key.toLowerCase();
+                        let count = countries[key];
+                        let container = this.analytics.querySelector('.read2me-analytics-country.hidden').cloneNode(true);
+
+                        container.querySelector('.flag-icon').classList.add('flag-icon-' + countryIso);
+                        container.querySelector('.read2me-analytics-country-playbacks').textContent = count;
+                        container.classList.remove('hidden');
+
+                        countriesContainer.appendChild(container);
+                    });
                 },
                 (response) => {
                     // error
