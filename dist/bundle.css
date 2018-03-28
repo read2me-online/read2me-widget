@@ -1271,7 +1271,15 @@ svg.read2me-player-speaking-rate
 }
 .read2me-phone-stage1
 {
-    margin-bottom: 17px;
+    transition: all .6s ease-in-out;
+}
+.read2me-phone-stage1.read2me-phone-stage1-inactive
+{
+    margin-top: -67px;
+}
+.read2me-phone-stage2
+{
+    margin-top: 17px;
 }
 .read2me-phone-stage1,
 .read2me-phone-stage2
@@ -1290,6 +1298,8 @@ svg.read2me-player-speaking-rate
     height: 33px;
     margin-right: 17px;
 
+    cursor: pointer;
+
     border: 1px solid black;
     border-radius: 50%;
 }
@@ -1301,11 +1311,51 @@ svg.read2me-player-speaking-rate
 
     display: block;
 }
-.read2me-phone-title
+.read2me-phone-title-container
+{
+    display: inline-block;
+
+    letter-spacing: 1px;
+}
+.read2me-phone-title-container strong
+{
+    font-weight: 600;
+}
+.read2me-phone-title-container > div
 {
     display: inline-block;
 }
-.read2me-phone-title strong
+
+.read2me-loading-dots:after
 {
-    font-weight: 600;
+    content: ' .';
+    animation: dots 1s steps(5, end) infinite;
+}
+
+@keyframes dots
+{
+    0%,
+    20%
+    {
+        color: rgba(0, 0, 0, 0);
+        text-shadow: .25em 0 0 rgba(0, 0, 0, 0),
+        .5em 0 0 rgba(0, 0, 0, 0);
+    }
+    40%
+    {
+        color: #000;
+        text-shadow: .25em 0 0 rgba(0, 0, 0, 0),
+        .5em 0 0 rgba(0, 0, 0, 0);
+    }
+    60%
+    {
+        text-shadow: .25em 0 0 #000,
+        .5em 0 0 rgba(0, 0, 0, 0);
+    }
+    80%,
+    100%
+    {
+        text-shadow: .25em 0 0 #000,
+        .5em 0 0 #000;
+    }
 }

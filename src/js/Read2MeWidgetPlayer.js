@@ -12,6 +12,7 @@ export default class Read2MeWidgetPlayer {
         this.speakingRate = null;
         this.highchart = null;
         this.isHighchartsJsLoaded = false;
+        this.isPhoneLoadingInitiated = false;
         this._highchartsLibraryWaiter = null;
 
         // fixes #32
@@ -42,10 +43,13 @@ export default class Read2MeWidgetPlayer {
         this.refreshContentLink = this.player.querySelector('.read2me-dropdown-refresh');
         widgetBlueprint.parentNode.replaceChild(this.wrapper, this.widgetBlueprint);
 
-        // UI playback controllers
+        // UI playback controllers for tablet and desktop
         this.play = this.player.querySelector('.read2me-player-playback-play');
         this.pause = this.player.querySelector('.read2me-player-playback-pause');
         this.replay = this.player.querySelector('.read2me-player-playback-replay');
+
+        // phone UI playback controlls
+        this.phoneStage1 = this.wrapper.querySelector('.read2me-phone-stage1');
 
         // set the player up
         this.setTitle();
@@ -221,6 +225,18 @@ export default class Read2MeWidgetPlayer {
                 this.audioController.replay();
                 this.displayPauseButton();
             }
+        });
+
+        this.phoneStage1.addEventListener(this.clickHandlerType, () => {
+            if (this.isPhoneLoadingInitiated)
+                return false;
+
+            this.isPhoneLoadingInitiated = true;
+            this.wrapper.querySelector('.read2me-phone-title').classList.add('hidden');
+            this.wrapper.querySelector('.read2me-phone-title-loading').classList.remove('hidden');
+            this.wrapper.querySelector('.read2me-loading-dots').classList.remove('hidden');
+
+            this.audioController.play();
         });
     }
 

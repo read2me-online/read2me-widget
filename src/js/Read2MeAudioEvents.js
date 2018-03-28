@@ -21,6 +21,7 @@ export default class Read2MeAudioEvents {
         }
 
         events.canplay.push(this.canPlay());
+        events.canplay.push(this.canPlayPhone());
         events.playing.push(this.playingHideLoader());
         events.playing.push(this.startReportingAnalytics());
         events.pause.push(this.stopReportingAnalytics());
@@ -35,6 +36,13 @@ export default class Read2MeAudioEvents {
     canPlay() {
         return () => {
             this.widgetPlayerInstance.hideLoader();
+        };
+    }
+
+    canPlayPhone() {
+        return () => {
+            this.widgetPlayerInstance.wrapper.
+                querySelector('.read2me-phone-stage1').classList.add('read2me-phone-stage1-inactive');
         };
     }
 
