@@ -51,18 +51,6 @@ export default class Read2MeHelpers {
         return res;
     }
 
-    static hideAllWidgets() {
-        document.querySelectorAll('.read2me-widget-wrapper').forEach(elem => {
-            elem.classList.add('hidden');
-        });
-    }
-
-    static showAllWidgets() {
-        document.querySelectorAll('.read2me-widget-wrapper').forEach(elem => {
-            elem.classList.remove('hidden');
-        });
-    }
-
     static getAllBlueprints() {
         return document.querySelectorAll('.read2me-widget');
     }

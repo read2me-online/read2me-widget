@@ -10,7 +10,6 @@ export default class Read2MeWidgetPlayer {
         this.isScrubberBeingDragged = false;
         this.scrubber = null;
         this.speakingRate = null;
-        this.scale = 1;
         this.highchart = null;
         this.isHighchartsJsLoaded = false;
         this._highchartsLibraryWaiter = null;
@@ -53,10 +52,8 @@ export default class Read2MeWidgetPlayer {
         this.setThumbnail();
         this.setTheme();
         this.setWidth();
-        this.scalePlayerDownOnSmallScreens();
         this.toggleVisibility();
         this.instantiateSliders();
-        this._setTentativeWrapperHeight();
         this.handleViewportResize();
         this._setListeningSessionId();
     }
@@ -80,7 +77,6 @@ export default class Read2MeWidgetPlayer {
         this.hideLoader();
         this.removePlaybackBufferingStyles();
         this.setMarqueeForTitle();
-        this.setWrapperHeight();
         this.handleAnalyticsMenuBindings();
     }
 
@@ -90,16 +86,6 @@ export default class Read2MeWidgetPlayer {
 
     _setClickHandlerType() {
         this.clickHandlerType = 'ontouchstart' in document.documentElement ? "touchstart" : "click";
-    }
-
-    _setTentativeWrapperHeight() {
-        if (!Read2MeHelpers.isPhone())
-            return;
-
-        let containerWidth = Read2MeHelpers.getElementsWidthWithoutPadding(this.wrapper.parentNode);
-        let tentativeWrapperHeight = Math.round(containerWidth / 3.7);
-
-        this.wrapper.style.height = tentativeWrapperHeight + 'px';
     }
 
     toggleVisibility() {
@@ -319,7 +305,7 @@ export default class Read2MeWidgetPlayer {
                     }, 50);
                 },
                 (response) => {
-                    // error
+                    // error - don't display analytics page, just hide the loader
                     this.hideLoader();
                 }
             );
@@ -402,42 +388,8 @@ export default class Read2MeWidgetPlayer {
         });
     }
 
-    scalePlayerDownOnSmallScreens() {
-        if (Read2MeHelpers.isPhone()) {
-            let parentWidth = Read2MeHelpers.getElementsWidthWithoutPadding(this.wrapper.parentNode);
-            this.scale = parentWidth / (570 + 10); // player width is 570px and there are two 5px side margins
-
-            this.wrapper.style.width = parentWidth + 'px';
-            this.player.style.transform = 'scale(' + this.scale + ')';
-            this.player.style['margin-left'] = 5 * this.scale + 'px';
-        } else {
-            this.scale = 1;
-
-            this.wrapper.style.width = '';
-            this.wrapper.style.height = '141px';
-            this.player.style.transform = '';
-            this.player.style['margin-left'] = '';
-        }
-    }
-
-    setWrapperHeight() {
-        if (!Read2MeHelpers.isPhone())
-            return;
-
-        let playerHeight = this.player.getBoundingClientRect().height;
-        let marginsSize = 40 * this.scale;
-        let extraSpacingOnMobile = 10;
-
-        this.wrapper.style.height = (playerHeight + marginsSize + extraSpacingOnMobile) + 'px';
-    }
-
     handleViewportResize() {
         window.addEventListener('resize', () => {
-            Read2MeHelpers.hideAllWidgets();
-            this.scalePlayerDownOnSmallScreens();
-            Read2MeHelpers.showAllWidgets();
-
-            this.setWrapperHeight();
             this._setClickHandlerType();
         });
     }

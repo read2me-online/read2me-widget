@@ -751,18 +751,3 @@ svg.read2me-widget-speaking-rate {
 .read2me-highcharts .highcharts-credits {
     display: none;
 }
-
-/** scale the player down for phone */
-@media (max-width: 768px) {
-    .read2me-widget-wrapper {
-        overflow: hidden;
-    }
-    .read2me-widget-player {
-        transform-origin: top left;
-        margin-left: 0;
-        margin-right: 0;
-    }
-    .read2me-menu {
-        display: none !important;
-    }
-}
