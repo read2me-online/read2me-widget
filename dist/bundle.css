@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:600');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,600');
 
 /*! =======================================================
                       VERSION  10.0.0              
@@ -216,13 +216,18 @@
 {
     display: none !important;
 }
-.read2me-widget-wrapper
-{
-    height: 141px;
-}
 .read2me-widget-wrapper:focus-within
 {
     z-index: 999;
+}
+.read2me-widget-wrapper,
+.read2me-phone-ui
+{
+    display: block;
+
+    width: 100%;
+    height: 86px;
+    margin: 10px 0 10px 0;
 }
 
 .read2me-phone-ui
@@ -236,6 +241,13 @@
 }
 @media (min-width: 768px)
 {
+    .read2me-widget-wrapper
+    {
+        display: inline-block;
+
+        width: 580px;
+        height: 147px;
+    }
     .read2me-tablet-ui,
     .read2me-desktop-ui
     {
@@ -1247,5 +1259,53 @@ svg.read2me-player-speaking-rate
 /* MOBILE UI */
 .read2me-phone-ui
 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+
+    overflow: hidden;
+
     padding: 17px;
+
+    border: 1px solid #eee;
+}
+.read2me-phone-stage1
+{
+    margin-bottom: 17px;
+}
+.read2me-phone-stage1,
+.read2me-phone-stage2
+{
+    display: flex;
+
+    height: 100%;
+
+    align-items: center;
+}
+.read2me-phone-play-container
+{
+    display: inline-block;
+
+    width: 33px;
+    height: 33px;
+    margin-right: 17px;
+
+    border: 1px solid black;
+    border-radius: 50%;
+}
+.read2me-phone-play
+{
+    position: relative;
+    top: 7px;
+    left: 8px;
+
+    display: block;
+}
+.read2me-phone-title
+{
+    display: inline-block;
+}
+.read2me-phone-title strong
+{
+    font-weight: 600;
 }

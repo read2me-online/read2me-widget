@@ -5,11 +5,15 @@
 .read2me-widget-wrapper .hidden {
     display:none !important;
 }
-.read2me-widget-wrapper {
-    height: 141px;
-}
 .read2me-widget-wrapper:focus-within {
     z-index: 999;
+}
+.read2me-widget-wrapper,
+.read2me-phone-ui {
+    display:block;
+    width: 100%;
+    height: 86px;
+    margin: 10px 0 10px 0;
 }
 
 .read2me-phone-ui {
@@ -20,6 +24,11 @@
     display: none;
 }
 @media (min-width: 768px) {
+    .read2me-widget-wrapper {
+        display:inline-block;
+        width: 580px;
+        height: 147px;
+    }
     .read2me-tablet-ui,
     .read2me-desktop-ui {
         display: inline-block;
@@ -772,4 +781,38 @@ svg.read2me-player-speaking-rate {
 /* MOBILE UI */
 .read2me-phone-ui {
     padding: 17px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Raleway', sans-serif;
+}
+.read2me-phone-stage1 {
+    margin-bottom: 17px;
+}
+.read2me-phone-stage1,
+.read2me-phone-stage2 {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.read2me-phone-play-container {
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    border: 1px solid black;
+    display: inline-block;
+    margin-right: 17px;
+}
+.read2me-phone-play {
+    display: block;
+    position: relative;
+    left: 8px;
+    top: 7px;
+}
+.read2me-phone-title {
+    display: inline-block;
+}
+.read2me-phone-title strong {
+    font-weight: 600;
 }
