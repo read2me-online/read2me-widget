@@ -768,3 +768,8 @@ svg.read2me-widget-speaking-rate {
 .read2me-highcharts .highcharts-credits {
     display: none;
 }
+
+/* MOBILE UI */
+.read2me-phone-ui {
+    padding: 17px;
+}

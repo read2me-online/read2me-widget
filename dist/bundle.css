@@ -1243,3 +1243,9 @@ svg.read2me-widget-speaking-rate
 {
     display: none;
 }
+
+/* MOBILE UI */
+.read2me-phone-ui
+{
+    padding: 17px;
+}

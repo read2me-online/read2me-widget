@@ -53,7 +53,7 @@ export default class Read2MeWidgetPlayer {
         this.setTheme();
         this.setWidth();
         this.toggleVisibility();
-        this.instantiateSliders();
+        this.instantiateSlidersForTabletDesktop();
         this.handleViewportResize();
         this._setListeningSessionId();
     }
@@ -92,7 +92,7 @@ export default class Read2MeWidgetPlayer {
         this.wrapper.classList.toggle('read2me-template');
     }
 
-    instantiateSliders() {
+    instantiateSlidersForTabletDesktop() {
         // make ID and data-slider-id attributes unique for scrubber and speaking rate inputs
         // scrubber's node id: #read2me-widget-scrubber-player
         // speaking rate's node id: #read2me-widget-player-speaking-rate
