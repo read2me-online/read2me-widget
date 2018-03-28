@@ -180,6 +180,7 @@
     <div class="read2me-phone-ui">
         <div class="read2me-phone-stage1">
             <div class="read2me-phone-play-container">
+                <!-- play -->
                 <svg style="width: 18px; height: 18px;"
                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" class="read2me-phone-play">
                     <path d="M10,5.251v39.497L43.572,25L10,5.251z"></path>
@@ -189,15 +190,15 @@
                 <div class="read2me-phone-title">
                     <strong>Listen</strong> to the article
                 </div>
-                <div class="read2me-phone-title-loading hidden">
-                    <strong>Loading</strong> audio<span class="read2me-loading-dots hidden"></span>
+                <div class="read2me-phone-title-loading">
+                    <strong>Loading</strong> audio<span class="read2me-loading-dots"></span>
                 </div>
             </div>
         </div>
         <div class="read2me-phone-stage2">
             <div class="read2me-phone-playback">
                 <!-- rewind -->
-                <svg style="width: 16px; height: 16px;" viewBox="0 0 24 24" class="hidden"
+                <svg style="width: 33px; height: 33px;" viewBox="0 0 24 24"
                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
                     <defs>
@@ -210,16 +211,18 @@
                           d="M12 5V1L7 6l5 5V7c3.3 0 6 2.7 6 6s-2.7 6-6 6-6-2.7-6-6H4c0 4.4 3.6 8 8 8s8-3.6 8-8-3.6-8-8-8zm-1.1 11H10v-3.3L9 13v-.7l1.8-.6h.1V16zm4.3-1.8c0 .3 0 .6-.1.8l-.3.6s-.3.3-.5.3-.4.1-.6.1-.4 0-.6-.1-.3-.2-.5-.3-.2-.3-.3-.6-.1-.5-.1-.8v-.7c0-.3 0-.6.1-.8l.3-.6s.3-.3.5-.3.4-.1.6-.1.4 0 .6.1c.2.1.3.2.5.3s.2.3.3.6.1.5.1.8v.7zm-.9-.8v-.5s-.1-.2-.1-.3-.1-.1-.2-.2-.2-.1-.3-.1-.2 0-.3.1l-.2.2s-.1.2-.1.3v2s.1.2.1.3.1.1.2.2.2.1.3.1.2 0 .3-.1l.2-.2s.1-.2.1-.3v-1.5z"></path>
                 </svg>
                 <!-- pause -->
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <g>
+                <div class="read2me-phone-pause-container">
+                    <svg style="width: 12px; height: 12px;" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="read2me-phone-pause">
                         <g>
-                            <rect x="16" width="8" height="24"></rect>
-                            <rect width="8" height="24"></rect>
+                            <g>
+                                <rect x="16" width="8" height="24"></rect>
+                                <rect width="8" height="24"></rect>
+                            </g>
                         </g>
-                    </g>
-                </svg>
+                    </svg>
+                </div>
                 <!-- forward -->
-                <svg style="width: 16px; height: 16px;" viewBox="0 0 24 24"
+                <svg style="width: 33px; height: 33px;" viewBox="0 0 24 24"
                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
                     <defs>
@@ -233,14 +236,16 @@
                 </svg>
             </div>
 
-            <div class="read2me-phone-remaining-time-container"><span>-6:30</span></div>
-            <div class="read2me-phone-scrubber-container">
-                <div class="read2me-phone-scrubber">
-                    <div class="read2me-phone-scrubber-progress"></div>
+            <div class="read2me-phone-controls">
+                <div class="read2me-phone-remaining-time-container"><span>-6:30</span></div>
+                <div class="read2me-phone-scrubber-container">
+                    <div class="read2me-phone-scrubber">
+                        <div class="read2me-phone-scrubber-progress"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="read2me-phone-speaking-rate-container">
-                <button type="button">1x</button>
+                <div class="read2me-phone-speaking-rate-container">
+                    <button type="button">1x</button>
+                </div>
             </div>
         </div>
     </div>

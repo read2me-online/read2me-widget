@@ -790,11 +790,21 @@ svg.read2me-player-speaking-rate {
 .read2me-phone-stage1 {
     transition: all 0.6s ease-in-out;
 }
+.read2me-phone-stage1.read2me-stage1-loading .read2me-phone-title {
+    display: none;
+}
+.read2me-phone-stage1.read2me-stage1-loading .read2me-phone-title-loading {
+    display: inline-block;
+}
 .read2me-phone-stage1.read2me-phone-stage1-inactive {
     margin-top: -67px;
 }
+.read2me-phone-title-loading {
+    display: none;
+}
 .read2me-phone-stage2 {
     margin-top: 17px;
+    flex-wrap: wrap;
 }
 .read2me-phone-stage1,
 .read2me-phone-stage2 {
@@ -802,7 +812,8 @@ svg.read2me-player-speaking-rate {
     display: flex;
     align-items: center;
 }
-.read2me-phone-play-container {
+.read2me-phone-play-container,
+.read2me-phone-pause-container {
     width: 33px;
     height: 33px;
     border-radius: 50%;
@@ -817,6 +828,9 @@ svg.read2me-player-speaking-rate {
     left: 8px;
     top: 7px;
 }
+.read2me-stage1-loading .read2me-phone-play-container {
+    opacity: 0.4;
+}
 .read2me-phone-title-container {
     display: inline-block;
     letter-spacing: 1px;
@@ -824,15 +838,13 @@ svg.read2me-player-speaking-rate {
 .read2me-phone-title-container strong {
     font-weight: 600;
 }
-.read2me-phone-title-container > div {
+.read2me-phone-title {
     display: inline-block;
 }
-
 .read2me-loading-dots:after {
     content: ' .';
     animation: dots 1s steps(5, end) infinite;
 }
-
 @keyframes dots {
     0%, 20% {
         color: rgba(0, 0, 0, 0);
@@ -852,4 +864,29 @@ svg.read2me-player-speaking-rate {
         text-shadow: .25em 0 0 #000000,
         .5em 0 0 #000000;
     }
+}
+.read2me-phone-playback {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+.read2me-phone-playback .read2me-phone-pause-container {
+    /* deliberately more specific to avoid !important */
+    margin-right: 0;
+}
+.read2me-phone-pause {
+    position: relative;
+    top: 7px;
+    left: 10px;
+}
+.read2me-phone-controls {
+    width: 100%;
+}
+.read2me-phone-controls div {
+    display: inline-block;
+}
+.read2me-phone-remaining-time-container {
+    width: 50px;
+    text-align: right;
 }

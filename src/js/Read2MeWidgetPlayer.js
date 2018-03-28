@@ -232,9 +232,10 @@ export default class Read2MeWidgetPlayer {
                 return false;
 
             this.isPhoneLoadingInitiated = true;
-            this.wrapper.querySelector('.read2me-phone-title').classList.add('hidden');
-            this.wrapper.querySelector('.read2me-phone-title-loading').classList.remove('hidden');
-            this.wrapper.querySelector('.read2me-loading-dots').classList.remove('hidden');
+            this.phoneStage1.classList.add('read2me-stage1-loading');
+            //this.wrapper.querySelector('.read2me-phone-title').classList.add('hidden');
+            //this.wrapper.querySelector('.read2me-phone-title-loading').classList.remove('hidden');
+            //this.wrapper.querySelector('.read2me-loading-dots').classList.remove('hidden');
 
             this.audioController.play();
         });
