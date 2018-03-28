@@ -881,12 +881,44 @@ svg.read2me-player-speaking-rate {
     left: 10px;
 }
 .read2me-phone-controls {
+    display: flex;
+    align-items: center;
     width: 100%;
 }
 .read2me-phone-controls div {
     display: inline-block;
 }
 .read2me-phone-remaining-time-container {
-    width: 50px;
+    flex: 0 1 auto;
     text-align: right;
+}
+.read2me-phone-scrubber-container {
+    flex: 1 1 auto;
+    width: 100%;
+    display: block;
+    padding: 6px 0 6px 0;
+}
+.read2me-phone-scrubber {
+    height: 4px;
+    width: 100%;
+    background: #eee;
+    border-radius: 2px;
+    overflow: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+.read2me-phone-scrubber-progress {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: #545454;
+    display: block;
+    -webkit-transition: transform .2s;
+    -webkit-transition: -webkit-transform .2s;
+    transition: -webkit-transform .2s;
+    transition: transform .2s;
+    transition: transform .2s,-webkit-transform .2s;
+}
+.read2me-phone-speaking-rate-container {
+    flex: 0 1 auto;
 }

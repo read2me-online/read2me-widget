@@ -41,6 +41,7 @@ export default class Read2MeWidgetPlayer {
         this.displayAnalyticsLink = this.player.querySelector('.read2me-dropdown-analytics');
         this.closeAnalyticsLink = this.analytics.querySelector('.read2me-analytics-menu-close');
         this.refreshContentLink = this.player.querySelector('.read2me-dropdown-refresh');
+        this.scrubberPhone = this.wrapper.querySelector('.read2me-phone-scrubber');
         widgetBlueprint.parentNode.replaceChild(this.wrapper, this.widgetBlueprint);
 
         // UI playback controllers for tablet and desktop
@@ -233,12 +234,10 @@ export default class Read2MeWidgetPlayer {
 
             this.isPhoneLoadingInitiated = true;
             this.phoneStage1.classList.add('read2me-stage1-loading');
-            //this.wrapper.querySelector('.read2me-phone-title').classList.add('hidden');
-            //this.wrapper.querySelector('.read2me-phone-title-loading').classList.remove('hidden');
-            //this.wrapper.querySelector('.read2me-loading-dots').classList.remove('hidden');
-
             this.audioController.play();
         });
+
+        // @TODO phone pause
     }
 
     handleQuickControls() {
@@ -265,6 +264,18 @@ export default class Read2MeWidgetPlayer {
 
             if (this.isReplayButtonShown() && newCurrentTime !== this.audioController.getDuration())
                 this.displayPlayButton();
+        });
+
+        this.scrubberPhone.addEventListener(this.clickHandlerType, (e) => {
+            let bar = this.wrapper.querySelector('.read2me-phone-scrubber');
+            let progress = this.wrapper.querySelector('.read2me-phone-scrubber-progress');
+
+            let pt = e.changedTouches && e.changedTouches[0] || e;
+            let barProperties = bar.getBoundingClientRect();
+            let percent = 1 - (pt.clientX - barProperties.left) / barProperties.width; // e.g. 0.82
+            percent = Math.round(percent * 100); // in real %, e.g. 82%
+
+            progress.style['transform'] = 'translateX(-' + percent + '%)';
         });
     }
 
