@@ -29,23 +29,23 @@ export default class Read2MeWidgetPlayer {
         this.width = width;
 
         this.wrapper = Read2MeHelpers.getWidgetTemplate();
-        this.player = this.wrapper.querySelector('.read2me-widget-player');
+        this.player = this.wrapper.querySelector('.read2me-player');
         this.analytics = this.wrapper.querySelector('.read2me-analytics');
-        this.playbackContainer = this.player.querySelector('.read2me-widget-player-playback');
+        this.playbackContainer = this.player.querySelector('.read2me-player-playback');
         this.loader = this.player.querySelector('.read2me-widget-loader');
-        this.titleContainer= this.player.querySelector('.read2me-widget-player-title');
+        this.titleContainer= this.player.querySelector('.read2me-player-title');
         this.titleTextContainer = this.titleContainer.querySelector('span');
-        this.rewind = this.player.querySelector('.read2me-widget-rewind');
-        this.forward = this.player.querySelector('.read2me-widget-forward');
+        this.rewind = this.player.querySelector('.read2me-player-rewind');
+        this.forward = this.player.querySelector('.read2me-player-forward');
         this.displayAnalyticsLink = this.player.querySelector('.read2me-dropdown-analytics');
         this.closeAnalyticsLink = this.analytics.querySelector('.read2me-analytics-menu-close');
         this.refreshContentLink = this.player.querySelector('.read2me-dropdown-refresh');
         widgetBlueprint.parentNode.replaceChild(this.wrapper, this.widgetBlueprint);
 
         // UI playback controllers
-        this.play = this.player.querySelector('.read2me-widget-player-playback-play');
-        this.pause = this.player.querySelector('.read2me-widget-player-playback-pause');
-        this.replay = this.player.querySelector('.read2me-widget-player-playback-replay');
+        this.play = this.player.querySelector('.read2me-player-playback-play');
+        this.pause = this.player.querySelector('.read2me-player-playback-pause');
+        this.replay = this.player.querySelector('.read2me-player-playback-replay');
 
         // set the player up
         this.setTitle();
@@ -94,10 +94,10 @@ export default class Read2MeWidgetPlayer {
 
     instantiateSlidersForTabletDesktop() {
         // make ID and data-slider-id attributes unique for scrubber and speaking rate inputs
-        // scrubber's node id: #read2me-widget-scrubber-player
-        // speaking rate's node id: #read2me-widget-player-speaking-rate
-        let scrubberId = 'read2me-widget-scrubber-player';
-        let speakingRateId = 'read2me-widget-player-speaking-rate';
+        // scrubber's node id: #read2me-player-scrubber-player
+        // speaking rate's node id: #read2me-player-speaking-rate
+        let scrubberId = 'read2me-player-scrubber-player';
+        let speakingRateId = 'read2me-player-speaking-rate';
 
         let newScrubberId = scrubberId + '-' + this.playerId;
         let newSpeakingRateId = speakingRateId + '-' + this.playerId;
@@ -151,7 +151,7 @@ export default class Read2MeWidgetPlayer {
     }
 
     setThumbnail() {
-        let container = this.player.querySelector('.read2me-widget-player-thumbnail');
+        let container = this.player.querySelector('.read2me-thumbnail');
         let ogImage = Read2MeHelpers.getOgImageUrl();
         let defaultThumbnail = 'https://d22fip447qchhd.cloudfront.net/api/widget/static/images/default-thumbnail.png';
 
