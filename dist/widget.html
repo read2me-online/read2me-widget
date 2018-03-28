@@ -227,6 +227,28 @@
     z-index: 999;
 }
 
+.read2me-phone-ui
+{
+    display: inline-block;
+}
+.read2me-tablet-ui,
+.read2me-desktop-ui
+{
+    display: none;
+}
+@media (min-width: 768px)
+{
+    .read2me-tablet-ui,
+    .read2me-desktop-ui
+    {
+        display: inline-block;
+    }
+    .read2me-phone-ui
+    {
+        display: none;
+    }
+}
+
 .read2me-widget-player,
 .read2me-analytics
 {
@@ -539,7 +561,7 @@ svg.read2me-widget-player-playback-replay
 .read2me-widget-player-speaking-rate-container
 {
     position: absolute;
-    top: 52px;
+    top: 54px;
     right: 21px;
 }
 svg.read2me-widget-speaking-rate
@@ -1242,7 +1264,7 @@ var c=a[b];if("number"!=typeof c)throw new Error(f.formatInvalidInputErrorMsg(c)
 
 
 <div class="read2me-widget-wrapper read2me-template">
-    <div class="read2me-flipper">
+    <div class="read2me-flipper read2me-tablet-ui read2me-desktop-ui">
         <div class="read2me-widget-player">
             <img src="" class="read2me-widget-player-thumbnail">
             <div class="read2me-widget-player-title">
@@ -1417,7 +1439,7 @@ var c=a[b];if("number"!=typeof c)throw new Error(f.formatInvalidInputErrorMsg(c)
             </div>
         </div>
     </div>
-    <div class="read2me-mobile-ui">
-
+    <div class="read2me-phone-ui">
+        MOBILE
     </div>
 </div>

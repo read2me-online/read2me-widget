@@ -12,6 +12,23 @@
     z-index: 999;
 }
 
+.read2me-phone-ui {
+    display: inline-block;
+}
+.read2me-tablet-ui,
+.read2me-desktop-ui {
+    display: none;
+}
+@media (min-width: 768px) {
+    .read2me-tablet-ui,
+    .read2me-desktop-ui {
+        display: inline-block;
+    }
+    .read2me-phone-ui {
+        display: none;
+    }
+}
+
 .read2me-widget-player,
 .read2me-analytics {
     -webkit-box-sizing: content-box;
@@ -249,7 +266,7 @@ svg.read2me-widget-player-playback-replay {
 }
 .read2me-widget-player-speaking-rate-container {
     position: absolute;
-    top: 52px;
+    top: 54px;
     right: 21px;
 }
 svg.read2me-widget-speaking-rate {
