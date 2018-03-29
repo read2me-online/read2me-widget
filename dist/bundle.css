@@ -1513,6 +1513,10 @@ svg.read2me-player-speaking-rate
     border-radius: 10px;
     background-color: white;
 }
+.read2me-phone-speaking-rate:after
+{
+    content: 'x';
+}
 .read2me-phone-remaining-time-container,
 .read2me-phone-speaking-rate-container
 {

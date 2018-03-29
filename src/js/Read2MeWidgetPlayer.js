@@ -313,10 +313,20 @@ export default class Read2MeWidgetPlayer {
     handleSpeakingRateChange() {
         this.speakingRate.on('change', (values) => {
             this.audioController.setPlaySpeed(values.newValue);
+            this.speakingRatePhone.textContent = (values.newValue).toString();
         });
 
         this.speakingRatePhone.addEventListener(this.clickHandlerType, () => {
+            // allow from 0.5 to 1.5 using .25 as increments:
+            // => 0.5, 0.75, 1, 1.25, 1.5
+            // when 1.5 is tapped then go to 0.5
+            this.speakingRatePhone.textContent = (parseFloat(this.speakingRatePhone.textContent) + 0.25).toString();
 
+            if (parseFloat(this.speakingRatePhone.textContent) > 1.5)
+                this.speakingRatePhone.textContent = '0.5';
+
+            this.audioController.setPlaySpeed(parseFloat(this.speakingRatePhone.textContent));
+            this.speakingRate.setValue(this.speakingRatePhone.textContent);
         });
     }
 

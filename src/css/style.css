@@ -966,6 +966,9 @@ svg.read2me-player-speaking-rate {
     text-align: center;
     line-height: 14px;
 }
+.read2me-phone-speaking-rate:after {
+    content: 'x';
+}
 .read2me-phone-remaining-time-container,
 .read2me-phone-speaking-rate-container {
     flex: 0 1 auto;
