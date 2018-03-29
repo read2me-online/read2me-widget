@@ -36,8 +36,6 @@ export default class Read2MeWidgetPlayer {
         this.loader = this.player.querySelector('.read2me-widget-loader');
         this.titleContainer= this.player.querySelector('.read2me-player-title');
         this.titleTextContainer = this.titleContainer.querySelector('span');
-        this.rewind = this.player.querySelector('.read2me-player-rewind');
-        this.forward = this.player.querySelector('.read2me-player-forward');
         this.displayAnalyticsLink = this.player.querySelector('.read2me-dropdown-analytics');
         this.closeAnalyticsLink = this.analytics.querySelector('.read2me-analytics-menu-close');
         this.refreshContentLink = this.player.querySelector('.read2me-dropdown-refresh');
@@ -52,6 +50,7 @@ export default class Read2MeWidgetPlayer {
         // phone UI playback controlls
         this.phoneStage1 = this.wrapper.querySelector('.read2me-phone-stage1');
         this.speakingRatePhone = this.wrapper.querySelector('.read2me-phone-speaking-rate');
+        this.phonePlaybackContainer = this.wrapper.querySelector('.read2me-phone-playback-container');
 
         // set the player up
         this.setTitle();
@@ -211,6 +210,7 @@ export default class Read2MeWidgetPlayer {
         this.play.classList.add('hidden');
         this.pause.classList.add('hidden');
         this.replay.classList.remove('hidden');
+        this.phonePlaybackContainer.classList.add('read2me-phone-playback-ended');
     }
 
     handlePlayback() {
@@ -229,6 +229,8 @@ export default class Read2MeWidgetPlayer {
             }
         });
 
+        // PHONE CONTROLS
+        // stage 1 to stage 2 transition
         this.phoneStage1.addEventListener(this.clickHandlerType, () => {
             if (this.isPhoneLoadingInitiated)
                 return false;
@@ -238,18 +240,38 @@ export default class Read2MeWidgetPlayer {
             this.audioController.play();
         });
 
-        // @TODO phone pause
+        // playback control
+        this.phonePlaybackContainer.addEventListener(this.clickHandlerType, () => {
+            let playingClass = 'read2me-phone-playback-playing';
+            let pausedClass = 'read2me-phone-playback-paused';
+            let finishedClass = 'read2me-phone-playback-ended';
+
+            if (this.phonePlaybackContainer.classList.contains(playingClass)) {
+                this.phonePlaybackContainer.classList.remove(playingClass);
+                this.phonePlaybackContainer.classList.add(pausedClass);
+                this.audioController.pause();
+            } else if (this.phonePlaybackContainer.classList.contains(pausedClass)) {
+                this.phonePlaybackContainer.classList.remove(pausedClass);
+                this.phonePlaybackContainer.classList.add(playingClass);
+                this.audioController.play();
+            } else if (this.phonePlaybackContainer.classList.contains(finishedClass)) {
+                this.phonePlaybackContainer.classList.remove(finishedClass);
+                this.phonePlaybackContainer.classList.add(playingClass);
+                this._setListeningSessionId();
+                this.play();
+            }
+        });
     }
 
     handleQuickControls() {
-        this.rewind.addEventListener(this.clickHandlerType, () => {
+        Read2MeHelpers.addEventListenerByClass(this.wrapper, 'read2me-player-rewind', this.clickHandlerType, () => {
             this.audioController.rewindForXSeconds(10);
 
             if (this.isReplayButtonShown())
                 this.displayPlayButton();
         });
 
-        this.forward.addEventListener(this.clickHandlerType, () => {
+        Read2MeHelpers.addEventListenerByClass(this.wrapper, 'read2me-player-forward', this.clickHandlerType, () => {
             this.audioController.forwardForXSeconds(10);
         });
     }

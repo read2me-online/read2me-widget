@@ -7,6 +7,14 @@ export default class Read2MeHelpers {
         }
     }
 
+    static addEventListenerByClass(context, className, event, fn) {
+        let list = context.getElementsByClassName(className);
+
+        for (let i = 0, len = list.length; i < len; i++) {
+            list[i].addEventListener(event, fn, false);
+        }
+    }
+
     static getElementsWidthWithoutPadding(elem) {
         // based on https://stackoverflow.com/a/29881817/1325575
         let computedStyle = getComputedStyle(elem);

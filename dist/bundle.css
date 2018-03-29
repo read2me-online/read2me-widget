@@ -1316,8 +1316,10 @@ svg.read2me-player-speaking-rate
     align-items: center;
 }
 .read2me-phone-play-container,
-.read2me-phone-pause-container
+.read2me-phone-playback-container
 {
+    position: relative;
+
     display: inline-block;
 
     width: 33px;
@@ -1329,7 +1331,33 @@ svg.read2me-player-speaking-rate
     border: 1px solid black;
     border-radius: 50%;
 }
-.read2me-phone-play
+.read2me-phone-stage2 .read2me-phone-play,
+.read2me-phone-pause,
+.read2me-phone-replay
+{
+    position: absolute;
+
+    -webkit-transition: opacity .2s ease-out;
+       -moz-transition: opacity .2s ease-out;
+        -ms-transition: opacity .2s ease-out;
+         -o-transition: opacity .2s ease-out;
+            transition: opacity .2s ease-out;
+
+    opacity: 0;
+}
+.read2me-phone-playback-container.read2me-phone-playback-playing .read2me-phone-pause
+{
+    opacity: 1;
+}
+.read2me-phone-playback-container.read2me-phone-playback-paused .read2me-phone-play
+{
+    opacity: 1;
+}
+.read2me-phone-playback-container.read2me-phone-playback-ended .read2me-phone-replay
+{
+    opacity: 1;
+}
+.read2me-phone-stage1 .read2me-phone-play
 {
     position: relative;
     top: 7px;
@@ -1397,17 +1425,27 @@ svg.read2me-player-speaking-rate
     align-items: flex-start;
     justify-content: space-evenly;
 }
-.read2me-phone-playback .read2me-phone-pause-container
+.read2me-phone-playback .read2me-phone-playback-container
 {
     /* deliberately more specific to avoid !important */
     margin-right: 0;
 }
+.read2me-phone-stage2 .read2me-phone-play
+{
+    top: 5px;
+    left: 6px;
+}
 .read2me-phone-pause
 {
-    position: relative;
-    top: 7px;
+    top: 10px;
     left: 10px;
 }
+.read2me-phone-replay
+{
+    top: 4px;
+    left: 4px;
+}
+
 .read2me-phone-controls
 {
     display: flex;
