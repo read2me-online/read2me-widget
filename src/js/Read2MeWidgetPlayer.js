@@ -260,7 +260,7 @@ export default class Read2MeWidgetPlayer {
                 this.phonePlaybackContainer.classList.remove(finishedClass);
                 this.phonePlaybackContainer.classList.add(playingClass);
                 this._setListeningSessionId();
-                this.play();
+                this.audioController.play();
             }
         });
     }
