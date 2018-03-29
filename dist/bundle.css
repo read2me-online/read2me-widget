@@ -1267,6 +1267,12 @@ svg.read2me-player-speaking-rate
 
     padding: 17px;
 
+    -webkit-transition: height .3s ease-in-out;
+       -moz-transition: height .3s ease-in-out;
+        -ms-transition: height .3s ease-in-out;
+         -o-transition: height .3s ease-in-out;
+            transition: height .3s ease-in-out;
+
     border: 1px solid #eee;
 }
 .read2me-phone-stage1
@@ -1281,9 +1287,14 @@ svg.read2me-player-speaking-rate
 {
     display: inline-block;
 }
-.read2me-phone-stage1.read2me-phone-stage1-inactive
+.read2me-widget-wrapper.read2me-phone-stage2-active,
+.read2me-widget-wrapper.read2me-phone-stage2-active .read2me-phone-ui
 {
-    margin-top: -67px;
+    height: 106px;
+}
+.read2me-widget-wrapper.read2me-phone-stage2-active .read2me-phone-stage1
+{
+    margin-top: -87px;
 }
 .read2me-phone-title-loading
 {
@@ -1381,6 +1392,7 @@ svg.read2me-player-speaking-rate
     display: flex;
 
     width: 100%;
+    margin-bottom: 20px;
 
     align-items: flex-start;
     justify-content: space-evenly;
@@ -1404,21 +1416,18 @@ svg.read2me-player-speaking-rate
 
     align-items: center;
 }
-.read2me-phone-controls div
-{
-    display: inline-block;
-}
 .read2me-phone-remaining-time-container
 {
-    text-align: right;
+    line-height: 18px;
 
-    flex: 0 1 auto;
+    text-align: right;
 }
 .read2me-phone-scrubber-container
 {
     display: block;
 
     width: 100%;
+    margin: 0 15px 0 15px;
     padding: 6px 0 6px 0;
 
     flex: 1 1 auto;
@@ -1450,10 +1459,30 @@ svg.read2me-player-speaking-rate
             transition: -webkit-transform .2s;
             transition:         transform .2s;
             transition:         transform .2s,-webkit-transform .2s;
+    transform: translateX(-100%);
 
     background: #545454;
 }
+.read2me-phone-speaking-rate
+{
+    line-height: 14px;
+
+    width: 100%;
+
+    text-align: center;
+
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    background-color: white;
+}
+.read2me-phone-remaining-time-container,
 .read2me-phone-speaking-rate-container
 {
+    font-size: 12px;
+
+    width: 60px;
+
+    border-radius: 2px;
+
     flex: 0 1 auto;
 }

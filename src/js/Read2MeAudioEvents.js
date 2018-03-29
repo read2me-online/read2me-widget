@@ -41,8 +41,7 @@ export default class Read2MeAudioEvents {
 
     canPlayPhone() {
         return () => {
-            this.widgetPlayerInstance.wrapper.
-                querySelector('.read2me-phone-stage1').classList.add('read2me-phone-stage1-inactive');
+            this.widgetPlayerInstance.wrapper.classList.add('read2me-phone-stage2-active');
         };
     }
 

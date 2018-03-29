@@ -51,6 +51,7 @@ export default class Read2MeWidgetPlayer {
 
         // phone UI playback controlls
         this.phoneStage1 = this.wrapper.querySelector('.read2me-phone-stage1');
+        this.speakingRatePhone = this.wrapper.querySelector('.read2me-phone-speaking-rate');
 
         // set the player up
         this.setTitle();
@@ -282,6 +283,10 @@ export default class Read2MeWidgetPlayer {
     handleSpeakingRateChange() {
         this.speakingRate.on('change', (values) => {
             this.audioController.setPlaySpeed(values.newValue);
+        });
+
+        this.speakingRatePhone.addEventListener(this.clickHandlerType, () => {
+
         });
     }
 
