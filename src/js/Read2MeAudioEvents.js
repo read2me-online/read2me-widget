@@ -99,8 +99,15 @@ export default class Read2MeAudioEvents {
             if (this.widgetPlayerInstance.isScrubberBeingDragged)
                 return false;
 
-            let currentScrubberTime = this.widgetPlayerInstance.audioController.getCurrentTime();
-            this.widgetPlayerInstance.scrubber.setValue(Math.round(currentScrubberTime));
+            let duration = this.widgetPlayerInstance.audioController.getDuration();
+            let currentAudioTime = this.widgetPlayerInstance.audioController.getCurrentTime();
+            this.widgetPlayerInstance.scrubber.setValue(Math.round(currentAudioTime));
+
+            // phone
+            let relativeDuration = 100 / duration;
+            let progress = 100 - currentAudioTime * relativeDuration;
+
+            this.widgetPlayerInstance.phoneScrubber.style['transform'] = 'translateX(-' + progress + '%)';
         };
     }
 

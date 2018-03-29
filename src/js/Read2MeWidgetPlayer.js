@@ -51,6 +51,7 @@ export default class Read2MeWidgetPlayer {
         this.phoneStage1 = this.wrapper.querySelector('.read2me-phone-stage1');
         this.speakingRatePhone = this.wrapper.querySelector('.read2me-phone-speaking-rate');
         this.phonePlaybackContainer = this.wrapper.querySelector('.read2me-phone-playback-container');
+        this.phoneScrubber = this.wrapper.querySelector('.read2me-phone-scrubber-progress');
 
         // set the player up
         this.setTitle();
@@ -210,6 +211,7 @@ export default class Read2MeWidgetPlayer {
         this.play.classList.add('hidden');
         this.pause.classList.add('hidden');
         this.replay.classList.remove('hidden');
+        this.phonePlaybackContainer.classList.remove('read2me-phone-playback-playing');
         this.phonePlaybackContainer.classList.add('read2me-phone-playback-ended');
     }
 
@@ -291,14 +293,13 @@ export default class Read2MeWidgetPlayer {
 
         this.scrubberPhone.addEventListener(this.clickHandlerType, (e) => {
             let bar = this.wrapper.querySelector('.read2me-phone-scrubber');
-            let progress = this.wrapper.querySelector('.read2me-phone-scrubber-progress');
 
             let pt = e.changedTouches && e.changedTouches[0] || e;
             let barProperties = bar.getBoundingClientRect();
             let percent = 1 - (pt.clientX - barProperties.left) / barProperties.width; // e.g. 0.82
             percent = Math.round(percent * 100); // in real %, e.g. 82%
 
-            progress.style['transform'] = 'translateX(-' + percent + '%)';
+            this.phoneScrubber.style['transform'] = 'translateX(-' + percent + '%)';
         });
     }
 
