@@ -108,16 +108,16 @@ export default class Read2MeAudioEvents {
             let duration = this.widgetPlayerInstance.audioController.getDuration();
             let currentAudioTime = this.widgetPlayerInstance.audioController.getCurrentTime();
 
-            if (Read2MeHelpers.isPhone()) {
-                let relativeDuration = 100 / duration;
-                let progress = 100 - currentAudioTime * relativeDuration;
-                let remainingTimeIndicator = Read2MeHelpers.getRemainingTime(duration, currentAudioTime);
+            // desktop
+            this.widgetPlayerInstance.scrubber.setValue(Math.round(currentAudioTime));
 
-                this.widgetPlayerInstance.phoneScrubber.style['transform'] = 'translateX(-' + progress + '%)';
-                this.widgetPlayerInstance.phoneRemainingTime.textContent = remainingTimeIndicator;
-            } else {
-                this.widgetPlayerInstance.scrubber.setValue(Math.round(currentAudioTime));
-            }
+            // phone
+            let relativeDuration = 100 / duration;
+            let progress = 100 - currentAudioTime * relativeDuration;
+            let remainingTimeIndicator = Read2MeHelpers.getRemainingTime(duration, currentAudioTime);
+
+            this.widgetPlayerInstance.phoneScrubber.style['transform'] = 'translateX(-' + progress + '%)';
+            this.widgetPlayerInstance.phoneRemainingTime.textContent = remainingTimeIndicator;
         };
     }
 

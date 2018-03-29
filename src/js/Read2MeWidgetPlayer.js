@@ -47,13 +47,17 @@ export default class Read2MeWidgetPlayer {
         this.pause = this.player.querySelector('.read2me-player-playback-pause');
         this.replay = this.player.querySelector('.read2me-player-playback-replay');
 
-        // phone UI playback controlls
+        // phone UI playback controls
         this.phoneUi = this.wrapper.querySelector('.read2me-phone-ui');
         this.phoneStage1 = this.phoneUi.querySelector('.read2me-phone-stage1');
         this.speakingRatePhone = this.phoneUi.querySelector('.read2me-phone-speaking-rate');
         this.phonePlaybackContainer = this.phoneUi.querySelector('.read2me-phone-playback-container');
         this.phoneScrubber = this.phoneUi.querySelector('.read2me-phone-scrubber-progress');
         this.phoneRemainingTime = this.phoneUi.querySelector('.read2me-phone-remaining-time-container span');
+
+        this.phonePlayingClass = 'read2me-phone-playback-playing';
+        this.phonePausedClass = 'read2me-phone-playback-paused';
+        this.phoneFinishedClass = 'read2me-phone-playback-ended';
 
         // set the player up
         this.setTitle();
@@ -186,51 +190,67 @@ export default class Read2MeWidgetPlayer {
     }
 
     isPlayButtonShown() {
-        return !this.play.classList.contains('hidden');
+        let isPhoneButtonShown = this.phonePlaybackContainer.classList.contains(this.phonePausedClass);
+        let isDesktopButtonShown = !this.play.classList.contains('hidden');
+
+        return isPhoneButtonShown && isDesktopButtonShown;
     }
 
     displayPlayButton() {
         this.play.classList.remove('hidden');
         this.pause.classList.add('hidden');
         this.replay.classList.add('hidden');
+        this.phonePlaybackContainer.classList.add(this.phonePausedClass);
+        this.phonePlaybackContainer.classList.remove(this.phonePlayingClass);
+        this.phonePlaybackContainer.classList.remove(this.phoneFinishedClass);
     }
 
     isPauseButtonShown() {
-        return !this.pause.classList.contains('hidden');
+        let phonePausedShown = this.phonePlaybackContainer.classList.contains(this.phonePlayingClass);
+        let desktopPauseShown = !this.pause.classList.contains('hidden');
+
+        return phonePausedShown && desktopPauseShown;
     }
 
     displayPauseButton() {
-        this.play.classList.add('hidden');
         this.pause.classList.remove('hidden');
+        this.play.classList.add('hidden');
         this.replay.classList.add('hidden');
+        this.phonePlaybackContainer.classList.add(this.phonePlayingClass);
+        this.phonePlaybackContainer.classList.remove(this.phonePausedClass);
+        this.phonePlaybackContainer.classList.remove(this.phoneFinishedClass);
     }
 
     isReplayButtonShown() {
-        return !this.replay.classList.contains('hidden');
+        let phoneReplayShown = this.phonePlaybackContainer.classList.contains(this.phoneFinishedClass);
+        let desktopReplayShown = !this.replay.classList.contains('hidden');
+
+        return phoneReplayShown && desktopReplayShown;
     }
 
     displayReplayButton() {
         this.play.classList.add('hidden');
         this.pause.classList.add('hidden');
         this.replay.classList.remove('hidden');
-        this.phonePlaybackContainer.classList.remove('read2me-phone-playback-playing');
-        this.phonePlaybackContainer.classList.add('read2me-phone-playback-ended');
+        this.phonePlaybackContainer.classList.remove(this.phonePlayingClass);
+        this.phonePlaybackContainer.classList.add(this.phoneFinishedClass);
     }
 
     handlePlayback() {
-        this.playbackContainer.addEventListener(this.clickHandlerType, () => {
-            if (this.isPlayButtonShown()) {
-                this.audioController.play();
-                this.displayLoader();
-                this.displayPauseButton();
-            } else if (this.isPauseButtonShown()) {
-                this.audioController.pause();
-                this.displayPlayButton();
-            } else {
-                this._setListeningSessionId();
-                this.audioController.replay();
-                this.displayPauseButton();
-            }
+        [this.playbackContainer, this.phonePlaybackContainer].forEach(elem => {
+            elem.addEventListener(this.clickHandlerType, () => {
+                if (this.isPlayButtonShown()) {
+                    this.audioController.play();
+                    this.displayPauseButton();
+                } else if (this.isPauseButtonShown()) {
+                    this.audioController.pause();
+                    this.displayPlayButton();
+                } else if (this.isReplayButtonShown()) {
+                    this._setListeningSessionId();
+                    this.audioController.replay();
+                    this.displayPauseButton();
+                }
+            });
         });
 
         // PHONE CONTROLS
@@ -243,36 +263,15 @@ export default class Read2MeWidgetPlayer {
             this.phoneStage1.classList.add('read2me-stage1-loading');
             this.audioController.play();
         });
-
-        // playback control
-        this.phonePlaybackContainer.addEventListener(this.clickHandlerType, () => {
-            let playingClass = 'read2me-phone-playback-playing';
-            let pausedClass = 'read2me-phone-playback-paused';
-            let finishedClass = 'read2me-phone-playback-ended';
-
-            if (this.phonePlaybackContainer.classList.contains(playingClass)) {
-                this.phonePlaybackContainer.classList.remove(playingClass);
-                this.phonePlaybackContainer.classList.add(pausedClass);
-                this.audioController.pause();
-            } else if (this.phonePlaybackContainer.classList.contains(pausedClass)) {
-                this.phonePlaybackContainer.classList.remove(pausedClass);
-                this.phonePlaybackContainer.classList.add(playingClass);
-                this.audioController.play();
-            } else if (this.phonePlaybackContainer.classList.contains(finishedClass)) {
-                this.phonePlaybackContainer.classList.remove(finishedClass);
-                this.phonePlaybackContainer.classList.add(playingClass);
-                this._setListeningSessionId();
-                this.audioController.play();
-            }
-        });
     }
 
     handleQuickControls() {
         Read2MeHelpers.addEventListenerByClass(this.wrapper, 'read2me-player-rewind', this.clickHandlerType, () => {
             this.audioController.rewindForXSeconds(10);
 
-            if (this.isReplayButtonShown())
-                this.displayPlayButton();
+            if (this.isReplayButtonShown()) {
+                this.displayPlayButton(); // tablet/desktop
+            }
         });
 
         Read2MeHelpers.addEventListenerByClass(this.wrapper, 'read2me-player-forward', this.clickHandlerType, () => {
