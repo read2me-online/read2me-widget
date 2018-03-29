@@ -359,12 +359,16 @@ svg.read2me-player-speaking-rate {
 .read2me-player.preset-blue svg.read2me-player-rewind,
 .read2me-player.preset-blue svg.read2me-player-forward,
 .read2me-player.preset-blue svg.read2me-player-speaking-rate {
-    fill: #3E8FAD;
+    fill: #307088;
 }
 
 .read2me-player.preset-blue svg.read2me-player-rewind:hover,
 .read2me-player.preset-blue svg.read2me-player-forward:hover {
     fill: #F4F4F4;
+}
+
+.read2me-player.preset-blue .read2me-player-title span {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
 }
 
 .read2me-player.preset-blue .slider-track {
