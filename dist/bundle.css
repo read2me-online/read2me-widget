@@ -300,9 +300,10 @@
 {
     position: relative;
 
+    width: 100%;
     height: 141px;
 
-    transition: .5s;
+    transition: .75s;
     transform-origin: right center;
 
     -webkit-transform-style: preserve-3d;

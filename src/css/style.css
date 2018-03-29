@@ -68,8 +68,9 @@
     -ms-transform: translateX( -100% ) rotateY( -180deg );
 }
 .read2me-flipper {
+    width: 100%;
     height: 141px;
-    transition: 0.5s;
+    transition: 0.75s;
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     -ms-transform-style: preserve-3d;

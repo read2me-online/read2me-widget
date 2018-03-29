@@ -192,7 +192,7 @@ export default class Read2MeWidgetPlayer {
         if (Read2MeHelpers.isPhone())
             width = '100%';
 
-        this.player.style.width = this.wrapper.style.width = this.flipper.style.width = width;
+        this.player.style.width = this.wrapper.style.width = width;
     }
 
     isPlayButtonShown() {
