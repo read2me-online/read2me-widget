@@ -971,8 +971,7 @@ svg.read2me-player-speaking-rate
 {
     opacity: .25;
 }
-.read2me-menu > svg:hover,
-.read2me-analytics .read2me-menu
+.read2me-menu > svg:hover
 {
     font-size: 12px;
 
@@ -982,27 +981,6 @@ svg.read2me-player-speaking-rate
     display: inline-block;
 
     opacity: .5;
-}
-.read2me-analytics .read2me-menu
-{
-    bottom: -2px;
-
-    width: 100%;
-
-    text-align: left;
-}
-.read2me-analytics .read2me-menu div
-{
-    font-size: 11px;
-
-    display: inline-block;
-
-    height: 18px;
-    padding: 0 5px 0 5px;
-}
-.read2me-analytics .read2me-menu div:hover
-{
-    opacity: .75;
 }
 .read2me-player:hover .read2me-menu
 {
