@@ -262,6 +262,7 @@ export default class Read2MeWidgetPlayer {
             this.isPhoneLoadingInitiated = true;
             this.phoneStage1.classList.add('read2me-stage1-loading');
             this.audioController.play();
+            this.displayPauseButton();
         });
     }
 
