@@ -30,6 +30,7 @@ export default class Read2MeWidgetPlayer {
         this.width = width;
 
         this.wrapper = Read2MeHelpers.getWidgetTemplate();
+        this.flipper = this.wrapper.querySelector('.read2me-flipper');
         this.player = this.wrapper.querySelector('.read2me-player');
         this.analytics = this.wrapper.querySelector('.read2me-analytics');
         this.playbackContainer = this.player.querySelector('.read2me-player-playback');
@@ -186,7 +187,12 @@ export default class Read2MeWidgetPlayer {
         if (this.width === null)
             return;
 
-        this.player.style.width = this.width;
+        let width = this.width;
+
+        if (Read2MeHelpers.isPhone())
+            width = '100%';
+
+        this.player.style.width = this.wrapper.style.width = this.flipper.style.width = width;
     }
 
     isPlayButtonShown() {
@@ -463,6 +469,7 @@ export default class Read2MeWidgetPlayer {
     handleViewportResize() {
         window.addEventListener('resize', () => {
             this._setClickHandlerType();
+            this.setWidth();
         });
     }
 }

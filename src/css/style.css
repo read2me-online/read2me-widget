@@ -26,7 +26,7 @@
 @media (min-width: 768px) {
     .read2me-widget-wrapper {
         display:inline-block;
-        width: 580px;
+        min-width: 580px;
         height: 147px;
     }
     .read2me-tablet-ui,
@@ -43,7 +43,7 @@
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
-    width: 570px;
+    min-width: 570px;
     height: 101px;
     margin: 30px 5px 10px 5px;
     display: inline-block;
