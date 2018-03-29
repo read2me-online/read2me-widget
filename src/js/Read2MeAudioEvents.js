@@ -1,4 +1,5 @@
 import Read2MeAnalyticsBackendWrapper from "./Read2MeAnalyticsBackendWrapper";
+import Read2MeHelpers from "./Read2MeHelpers";
 
 export default class Read2MeAudioEvents {
     constructor(widgetPlayerInstance) {
@@ -42,6 +43,11 @@ export default class Read2MeAudioEvents {
     canPlayPhone() {
         return () => {
             this.widgetPlayerInstance.wrapper.classList.add('read2me-phone-stage2-active');
+
+            this.widgetPlayerInstance.phoneRemainingTime.textContent = Read2MeHelpers.getRemainingTime(
+                this.widgetPlayerInstance.audioController.getDuration(),
+                this.widgetPlayerInstance.audioController.getCurrentTime()
+            );
         };
     }
 
@@ -101,13 +107,17 @@ export default class Read2MeAudioEvents {
 
             let duration = this.widgetPlayerInstance.audioController.getDuration();
             let currentAudioTime = this.widgetPlayerInstance.audioController.getCurrentTime();
-            this.widgetPlayerInstance.scrubber.setValue(Math.round(currentAudioTime));
 
-            // phone
-            let relativeDuration = 100 / duration;
-            let progress = 100 - currentAudioTime * relativeDuration;
+            if (Read2MeHelpers.isPhone()) {
+                let relativeDuration = 100 / duration;
+                let progress = 100 - currentAudioTime * relativeDuration;
+                let remainingTimeIndicator = Read2MeHelpers.getRemainingTime(duration, currentAudioTime);
 
-            this.widgetPlayerInstance.phoneScrubber.style['transform'] = 'translateX(-' + progress + '%)';
+                this.widgetPlayerInstance.phoneScrubber.style['transform'] = 'translateX(-' + progress + '%)';
+                this.widgetPlayerInstance.phoneRemainingTime.textContent = remainingTimeIndicator;
+            } else {
+                this.widgetPlayerInstance.scrubber.setValue(Math.round(currentAudioTime));
+            }
         };
     }
 

@@ -48,10 +48,12 @@ export default class Read2MeWidgetPlayer {
         this.replay = this.player.querySelector('.read2me-player-playback-replay');
 
         // phone UI playback controlls
-        this.phoneStage1 = this.wrapper.querySelector('.read2me-phone-stage1');
-        this.speakingRatePhone = this.wrapper.querySelector('.read2me-phone-speaking-rate');
-        this.phonePlaybackContainer = this.wrapper.querySelector('.read2me-phone-playback-container');
-        this.phoneScrubber = this.wrapper.querySelector('.read2me-phone-scrubber-progress');
+        this.phoneUi = this.wrapper.querySelector('.read2me-phone-ui');
+        this.phoneStage1 = this.phoneUi.querySelector('.read2me-phone-stage1');
+        this.speakingRatePhone = this.phoneUi.querySelector('.read2me-phone-speaking-rate');
+        this.phonePlaybackContainer = this.phoneUi.querySelector('.read2me-phone-playback-container');
+        this.phoneScrubber = this.phoneUi.querySelector('.read2me-phone-scrubber-progress');
+        this.phoneRemainingTime = this.phoneUi.querySelector('.read2me-phone-remaining-time-container span');
 
         // set the player up
         this.setTitle();
@@ -427,7 +429,6 @@ export default class Read2MeWidgetPlayer {
     handleAnalyticsMenuBindings() {
         let menuSlide1 = this.analytics.querySelector('.read2me-analytics-menu-slide1'); // trigger for playback & geo
         let menuSlide2 = this.analytics.querySelector('.read2me-analytics-menu-slide2'); // trigger for interest graph
-        let slide1 = this.analytics.querySelector('.read2me-analytics-slide1'); // playback & geo slide
         let slide2 = this.analytics.querySelector('.read2me-analytics-slide2'); // interest graph slide
 
         menuSlide1.addEventListener('click', () => {

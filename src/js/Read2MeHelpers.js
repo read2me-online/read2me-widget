@@ -15,15 +15,6 @@ export default class Read2MeHelpers {
         }
     }
 
-    static getElementsWidthWithoutPadding(elem) {
-        // based on https://stackoverflow.com/a/29881817/1325575
-        let computedStyle = getComputedStyle(elem);
-        let elementWidth = elem.clientWidth;   // width with padding
-        elementWidth -= parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle.paddingRight);
-
-        return elementWidth;
-    }
-
     static secondsToHumanReadableArray(durationInSeconds) {
         let hours, minutes, seconds;
 
@@ -57,6 +48,20 @@ export default class Read2MeHelpers {
         res += minutes + ':' + seconds;
 
         return res;
+    }
+
+    static getRemainingTime(duration, currentTime) {
+        let remainingSeconds = Math.floor(duration - currentTime);
+
+        if (remainingSeconds < 1)
+            return '00:00';
+
+        let remainingArray = Read2MeHelpers.secondsToHumanReadableArray(remainingSeconds);
+        let remaining = Read2MeHelpers.secondsMinutesHoursToHumanReadable(
+            remainingArray[0], remainingArray[1], remainingArray[2]
+        );
+
+        return '-' + remaining;
     }
 
     static getAllBlueprints() {
