@@ -9,7 +9,6 @@ export default class Read2MeWidgetPlayer {
         // sliders
         this.isScrubberBeingDragged = false;
         this.scrubber = null;
-        this.speakingRate = null;
         this.highchart = null;
         this.isHighchartsJsLoaded = false;
         this.isPhoneLoadingInitiated = false;
@@ -51,7 +50,7 @@ export default class Read2MeWidgetPlayer {
         // phone UI playback controls
         this.phoneUi = this.wrapper.querySelector('.read2me-phone-ui');
         this.phoneStage1 = this.phoneUi.querySelector('.read2me-phone-stage1');
-        this.speakingRatePhone = this.phoneUi.querySelector('.read2me-phone-speaking-rate');
+        this.speakingRate = this.phoneUi.querySelector('.read2me-phone-speaking-rate');
         this.phonePlaybackContainer = this.phoneUi.querySelector('.read2me-phone-playback-container');
         this.phoneScrubber = this.phoneUi.querySelector('.read2me-phone-scrubber-progress');
         this.phoneRemainingTime = this.phoneUi.querySelector('.read2me-phone-remaining-time-container span');
@@ -106,23 +105,16 @@ export default class Read2MeWidgetPlayer {
     }
 
     instantiateSlidersForTabletDesktop() {
-        // make ID and data-slider-id attributes unique for scrubber and speaking rate inputs
+        // make ID and data-slider-id attributes unique for scrubber
         // scrubber's node id: #read2me-player-scrubber-player
-        // speaking rate's node id: #read2me-player-speaking-rate
         let scrubberId = 'read2me-player-scrubber-player';
-        let speakingRateId = 'read2me-player-speaking-rate';
 
         let newScrubberId = scrubberId + '-' + this.playerId;
-        let newSpeakingRateId = speakingRateId + '-' + this.playerId;
 
         // append playerId to their IDs to make them unique
         let scrubber = this.player.querySelector('#' + scrubberId);
         scrubber.setAttribute('id', newScrubberId);
         scrubber.setAttribute('data-slider-id', newScrubberId);
-
-        let speakingRate = this.player.querySelector('#' + speakingRateId);
-        speakingRate.setAttribute('id', newSpeakingRateId);
-        speakingRate.setAttribute('data-slider-id', newSpeakingRateId);
 
         this.scrubber = new Slider('#' + newScrubberId, {
             tooltip_position: 'bottom',
@@ -133,14 +125,6 @@ export default class Read2MeWidgetPlayer {
                     currentTimeArray[0], currentTimeArray[1], currentTimeArray[2]
                 );
             },
-        });
-
-        this.speakingRate = new Slider('#' + newSpeakingRateId, {
-            tooltip_position: 'bottom',
-
-            formatter: function (value) {
-                return value + 'x';
-            }
         });
     }
 
@@ -317,22 +301,17 @@ export default class Read2MeWidgetPlayer {
     }
 
     handleSpeakingRateChange() {
-        this.speakingRate.on('change', (values) => {
-            this.audioController.setPlaySpeed(values.newValue);
-            this.speakingRatePhone.textContent = (values.newValue).toString();
-        });
-
-        this.speakingRatePhone.addEventListener(this.clickHandlerType, () => {
+        this.speakingRate.addEventListener(this.clickHandlerType, () => {
             // allow from 0.5 to 1.5 using .25 as increments:
             // => 0.5, 0.75, 1, 1.25, 1.5
             // when 1.5 is tapped then go to 0.5
-            this.speakingRatePhone.textContent = (parseFloat(this.speakingRatePhone.textContent) + 0.25).toString();
+            this.speakingRate.textContent = (parseFloat(this.speakingRate.textContent) + 0.25).toString();
 
-            if (parseFloat(this.speakingRatePhone.textContent) > 1.5)
-                this.speakingRatePhone.textContent = '0.5';
+            if (parseFloat(this.speakingRate.textContent) > 1.5)
+                this.speakingRate.textContent = '0.5';
 
-            this.audioController.setPlaySpeed(parseFloat(this.speakingRatePhone.textContent));
-            this.speakingRate.setValue(this.speakingRatePhone.textContent);
+            this.audioController.setPlaySpeed(parseFloat(this.speakingRate.textContent));
+            this.speakingRate.setValue(this.speakingRate.textContent);
         });
     }
 

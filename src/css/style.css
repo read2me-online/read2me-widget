@@ -228,12 +228,6 @@
     left: 142px;
 }
 /**
-Speaking rate container
- */
-.read2me-player-speaking-rate-container div:first-of-type {
-    width: 72px;
-}
-/**
 The round play/pause/replay container.
  */
 .read2me-player-playback {
@@ -608,9 +602,6 @@ svg.read2me-player-speaking-rate {
 }
 .read2me-player:hover .read2me-menu {
     display: inline-block;
-}
-.read2me-player .read2me-player-speaking-rate-container:hover ~ .read2me-menu {
-    display: none;
 }
 .read2me-dropdown {
     /*
