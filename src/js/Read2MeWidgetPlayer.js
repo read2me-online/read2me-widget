@@ -296,10 +296,15 @@ export default class Read2MeWidgetPlayer {
 
             let pt = e.changedTouches && e.changedTouches[0] || e;
             let barProperties = bar.getBoundingClientRect();
-            let percent = 1 - (pt.clientX - barProperties.left) / barProperties.width; // e.g. 0.82
-            percent = Math.round(percent * 100); // in real %, e.g. 82%
+            let percent = (pt.clientX - barProperties.left) / barProperties.width; // e.g. 0.82
+            let percentReversed = 1 - percent;
+            percentReversed = Math.round(percentReversed * 100); // in real %, e.g. 82%
 
-            this.phoneScrubber.style['transform'] = 'translateX(-' + percent + '%)';
+            // update scrubber progress
+            this.phoneScrubber.style['transform'] = 'translateX(-' + percentReversed + '%)';
+
+            // update audio time
+            this.audioController.setCurrentTime(Math.round(percent * this.audioController.getDuration()));
         });
     }
 
