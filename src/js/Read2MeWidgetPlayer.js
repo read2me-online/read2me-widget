@@ -339,6 +339,10 @@ export default class Read2MeWidgetPlayer {
             this.dropdown.classList.toggle('read2me-dropdown-visible');
         });
 
+        this.player.addEventListener('mouseleave', () => {
+            this.dropdown.classList.remove('read2me-dropdown-visible');
+        });
+
         this.displayAnalyticsLink.addEventListener('click', () => {
             if (this.highchart !== null) {
                 this.wrapper.classList.add('read2me-analytics-view');
