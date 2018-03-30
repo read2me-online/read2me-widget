@@ -431,12 +431,14 @@ export default class Read2MeWidgetPlayer {
         let menuSlide1 = this.analytics.querySelector('.read2me-analytics-menu-slide1'); // trigger for playback & geo
         let menuSlide2 = this.analytics.querySelector('.read2me-analytics-menu-slide2'); // trigger for interest graph
         let slide2 = this.analytics.querySelector('.read2me-analytics-slide2'); // interest graph slide
+        let title = this.analytics.querySelector('.read2me-analytics-title');
 
         menuSlide1.addEventListener('click', () => {
             // display interest graph
             slide2.classList.remove('read2me-analytics-slide2-visible');
             menuSlide1.classList.add('hidden');
             menuSlide2.classList.remove('hidden');
+            title.classList.toggle('hidden');
         });
 
         menuSlide2.addEventListener('click', () => {
@@ -444,6 +446,7 @@ export default class Read2MeWidgetPlayer {
             slide2.classList.add('read2me-analytics-slide2-visible');
             menuSlide2.classList.add('hidden');
             menuSlide1.classList.remove('hidden');
+            title.classList.toggle('hidden');
         });
 
         this.closeAnalyticsLink.addEventListener('click', () => {

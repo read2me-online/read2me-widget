@@ -724,6 +724,19 @@ svg.read2me-speaking-rate-icon {
     width: 100%;
     display: block;
 }
+.read2me-analytics-title {
+    position: absolute;
+    left: 199px;
+    top: 0;
+    z-index: 1;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    opacity: 0.66;
+    text-transform: uppercase;
+    background-color: rgba(112, 112, 112, 0.4);
+    padding: 0 7px 0 7px;
+}
 .read2me-analytics-slide2 {
     margin-top: -81px;
     transition: all 0.5s ease-out;
