@@ -685,6 +685,21 @@ svg.read2me-speaking-rate-icon
 {
     border-color: rgb(14, 209, 254);
 }
+.read2me-phone-ui.preset-blue
+{
+    color: #f4f4f4;
+    background-color: #0ed1fe;
+}
+.read2me-phone-ui.preset-blue .read2me-phone-scrubber-progress
+{
+    background-color: #0a93b3;
+}
+.read2me-phone-ui.preset-blue .read2me-speaking-rate
+{
+    color: #0a93b3;
+    border: none;
+    background-color: white;
+}
 
 .read2me-player.preset-blue svg.read2me-player-rewind,
 .read2me-player.preset-blue svg.read2me-player-forward,
@@ -788,7 +803,8 @@ svg.read2me-speaking-rate-icon
 /** Gray preset **/
 .read2me-player.preset-gray,
 .read2me-player.preset-gray .read2me-dropdown li,
-.read2me-player.preset-gray .read2me-speaking-rate
+.read2me-player.preset-gray .read2me-speaking-rate,
+.read2me-phone-ui.preset-gray
 {
     color: #3a3c3c;
     background-color: rgb(248, 248, 248);
@@ -844,6 +860,11 @@ svg.read2me-speaking-rate-icon
 {
     fill: #0ed1fe;
 }
+.read2me-phone-ui.preset-gray .read2me-speaking-rate
+{
+    border: 1px solid #e0e0e0;
+    background-color: #efefee;
+}
 .read2me-player.preset-gray .read2me-speaking-rate:hover
 {
     background-color: #e8e8e8;
@@ -880,6 +901,33 @@ svg.read2me-speaking-rate-icon
     color: #3a3c3c;
     background-color: rgb(255, 255, 255);
 }
+.read2me-phone-ui.preset-green
+{
+    background: #f9fffe;
+}
+.read2me-phone-ui.preset-green .read2me-phone-playback-container
+{
+    border: 1px solid white;
+    background: #5eead6;
+}
+.read2me-phone-ui.preset-green .read2me-phone-playback-container > svg
+{
+    fill: white;
+}
+.read2me-phone-ui.preset-green .read2me-phone-scrubber-progress
+{
+    background: rgb(94, 234, 214);
+}
+.read2me-phone-ui.preset-green .read2me-speaking-rate
+{
+    border: 1px solid #e8e8e8;
+    background: #f3f3f3;
+}
+.read2me-phone-ui.preset-green .read2me-phone-playback > svg
+{
+    fill: #4c4c4c;
+}
+
 .read2me-player.preset-green svg.read2me-player-rewind,
 .read2me-player.preset-green svg.read2me-player-forward,
 .read2me-player.preset-green svg.read2me-speaking-rate-icon
