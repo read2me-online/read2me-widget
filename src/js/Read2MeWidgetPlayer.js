@@ -52,6 +52,7 @@ export default class Read2MeWidgetPlayer {
         this.phoneUi = this.wrapper.querySelector('.read2me-phone-ui');
         this.phoneStage1 = this.phoneUi.querySelector('.read2me-phone-stage1');
         this.phonePlaybackContainer = this.phoneUi.querySelector('.read2me-phone-playback-container');
+        this.scrubberPhoneContainer = this.wrapper.querySelector('.read2me-phone-scrubber-container');
         this.scrubberPhone = this.wrapper.querySelector('.read2me-phone-scrubber');
         this.phoneScrubber = this.phoneUi.querySelector('.read2me-phone-scrubber-progress');
         this.phoneRemainingTime = this.phoneUi.querySelector('.read2me-phone-remaining-time-container span');
@@ -284,11 +285,9 @@ export default class Read2MeWidgetPlayer {
                 this.displayPlayButton();
         });
 
-        this.scrubberPhone.addEventListener(this.clickHandlerType, (e) => {
-            let bar = this.wrapper.querySelector('.read2me-phone-scrubber');
-
+        this.scrubberPhoneContainer.addEventListener(this.clickHandlerType, (e) => {
             let pt = e.changedTouches && e.changedTouches[0] || e;
-            let barProperties = bar.getBoundingClientRect();
+            let barProperties = this.scrubberPhone.getBoundingClientRect();
             let percent = (pt.clientX - barProperties.left) / barProperties.width; // e.g. 0.82
             let percentReversed = 1 - percent;
             percentReversed = Math.round(percentReversed * 100); // in real %, e.g. 82%

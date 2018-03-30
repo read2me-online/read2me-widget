@@ -1475,7 +1475,7 @@ svg.read2me-speaking-rate-icon
     display: flex;
 
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 
     align-items: flex-start;
     justify-content: space-evenly;
@@ -1521,7 +1521,7 @@ svg.read2me-speaking-rate-icon
 
     width: 100%;
     margin: 0 15px 0 15px;
-    padding: 6px 0 6px 0;
+    padding: 11px 0 11px 0;
 
     flex: 1 1 auto;
 }

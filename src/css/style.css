@@ -947,7 +947,7 @@ svg.read2me-speaking-rate-icon {
     display: flex;
     align-items: flex-start;
     justify-content: space-evenly;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 .read2me-phone-playback .read2me-phone-playback-container {
     /* deliberately more specific to avoid !important */
@@ -979,7 +979,7 @@ svg.read2me-speaking-rate-icon {
     flex: 1 1 auto;
     width: 100%;
     display: block;
-    padding: 6px 0 6px 0;
+    padding: 11px 0 11px 0;
     margin: 0 15px 0 15px;
 }
 .read2me-phone-scrubber {
