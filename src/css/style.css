@@ -273,7 +273,7 @@ svg.read2me-player-playback-replay {
     top: 54px;
     right: 21px;
 }
-svg.read2me-player-speaking-rate {
+svg.read2me-speaking-rate-icon {
     width: 20px;
 }
 
@@ -287,13 +287,13 @@ svg.read2me-player-speaking-rate {
 
 .read2me-player.preset-white svg.read2me-player-rewind,
 .read2me-player.preset-white svg.read2me-player-forward,
-.read2me-player.preset-white svg.read2me-player-speaking-rate {
+.read2me-player.preset-white svg.read2me-speaking-rate-icon {
     fill: #212529;
 }
 
 .read2me-player.preset-white svg.read2me-player-rewind:hover,
 .read2me-player.preset-white svg.read2me-player-forward:hover {
-    fill: #212529;
+    opacity: 0.85;
 }
 
 .read2me-player.preset-white .slider-track {
@@ -315,12 +315,15 @@ svg.read2me-player-speaking-rate {
 .read2me-player.preset-white .read2me-player-playback svg {
     fill: #212529;
 }
-.read2me-player.preset-white .read2me-player-playback:hover {
-    fill: #212529;
+.read2me-player.preset-white .read2me-speaking-rate {
+    border: 1px solid #e6e6e6;
+    background-color: white;
 }
-.read2me-player.preset-white .read2me-player-playback:hover svg {
-    fill: #212529;
+.read2me-player.preset-white .read2me-player-playback:hover,
+.read2me-player.preset-white .read2me-speaking-rate:hover {
+    background-color: #fbfbfb;
 }
+
 .read2me-player.preset-white .read2me-menu > svg {
     color: #212529;
 }
@@ -352,7 +355,7 @@ svg.read2me-player-speaking-rate {
 
 .read2me-player.preset-blue svg.read2me-player-rewind,
 .read2me-player.preset-blue svg.read2me-player-forward,
-.read2me-player.preset-blue svg.read2me-player-speaking-rate {
+.read2me-player.preset-blue svg.read2me-speaking-rate-icon {
     fill: #307088;
 }
 
@@ -390,6 +393,20 @@ svg.read2me-player-speaking-rate {
 .read2me-player.preset-blue .read2me-player-playback:hover svg {
     fill: white;
 }
+
+.read2me-player.preset-blue .read2me-speaking-rate {
+    background-color: #39daff;
+    border: 1px solid #78e6ff;
+    color: rgba(0,0,0, 0.7);
+    box-shadow: none;
+}
+.read2me-player.preset-blue .read2me-speaking-rate:hover {
+    background-color: #3eddff;
+}
+.read2me-player.preset-blue .read2me-speaking-rate:active {
+    background-color: #44e4ff;
+}
+
 .read2me-player.preset-blue .read2me-menu > svg {
     color: white;
 }
@@ -417,14 +434,15 @@ svg.read2me-player-speaking-rate {
 /** Gray preset **/
 .read2me-player.preset-gray,
 .read2me-player.preset-gray .read2me-dropdown li,
-.read2me-player.preset-gray .read2me-dropdown-clip {
+.read2me-player.preset-gray .read2me-dropdown-clip,
+.read2me-player.preset-gray .read2me-speaking-rate {
     background-color: rgb(248, 248, 248);
     color: #3A3C3C;
 }
 
 .read2me-player.preset-gray svg.read2me-player-rewind,
 .read2me-player.preset-gray svg.read2me-player-forward,
-.read2me-player.preset-gray svg.read2me-player-speaking-rate {
+.read2me-player.preset-gray svg.read2me-speaking-rate-icon {
     fill: #3A3C3C;
 }
 
@@ -458,6 +476,12 @@ svg.read2me-player-speaking-rate {
 .read2me-player.preset-gray .read2me-player-playback:hover svg {
     fill: #0ED1FE;
 }
+.read2me-player.preset-gray .read2me-speaking-rate:hover {
+    background-color: #e8e8e8;
+}
+.read2me-player.preset-gray .read2me-speaking-rate:active {
+    background-color: #d7d7d7;
+}
 .read2me-player.preset-gray .read2me-menu > svg {
     color: black;
 }
@@ -485,7 +509,7 @@ svg.read2me-player-speaking-rate {
 
 .read2me-player.preset-green svg.read2me-player-rewind,
 .read2me-player.preset-green svg.read2me-player-forward,
-.read2me-player.preset-green svg.read2me-player-speaking-rate {
+.read2me-player.preset-green svg.read2me-speaking-rate-icon {
     fill: #3A3C3C;
 }
 
@@ -519,6 +543,18 @@ svg.read2me-player-speaking-rate {
 .read2me-player.preset-green .read2me-player-playback:hover svg {
     fill: #5EEAD6;
 }
+
+.read2me-player.preset-green .read2me-speaking-rate {
+    border: none;
+    box-shadow: 0 0 1px 0 rgba(0,0,0,0.75);
+}
+.read2me-player.preset-green .read2me-speaking-rate:hover {
+    background-color: #fbfbfb;
+}
+.read2me-player.preset-green .read2me-speaking-rate:active {
+    background-color: #f2f2f2;
+}
+
 .read2me-player.preset-green .read2me-menu > svg {
     color: #5EEAD6;
 }
@@ -945,15 +981,17 @@ svg.read2me-player-speaking-rate {
     border-radius: 10px;
     text-align: center;
     line-height: 14px;
-    outline: none;
+    outline: none !important;
+    cursor: pointer;
+    width: 100%;
 }
 .read2me-tablet-ui .read2me-speaking-rate {
     width: 62px;
     position: relative;
-    top: -4px;
+    top: -5px;
     margin-left: 10px;
-    border: 1px solid #e6e6e6;
     font-size: 13px;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.19);
 }
 .read2me-speaking-rate:after {
     content: 'x';
