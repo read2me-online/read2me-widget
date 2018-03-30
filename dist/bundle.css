@@ -1127,7 +1127,7 @@ svg.read2me-speaking-rate-icon
             transform-origin: 0 0;
 
     border: 8px solid white;
-    box-shadow: 1px -1px 4px 0 rgba(0, 0, 0, .2);
+    box-shadow: 1px -1px 4px 0 rgba(0, 0, 0, .12);
 }
 .read2me-analytics-menu
 {

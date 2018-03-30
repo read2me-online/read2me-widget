@@ -692,7 +692,7 @@ svg.read2me-speaking-rate-icon {
     -webkit-transform-origin: 0 0;
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
-    box-shadow: 1px -1px 4px 0 rgba(0, 0, 0, .2);
+    box-shadow: 1px -1px 4px 0 rgba(0, 0, 0, .12);
 }
 .read2me-analytics-menu {
     width: 100%;
