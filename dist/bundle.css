@@ -575,8 +575,7 @@ svg.read2me-speaking-rate-icon
 
 /** White preset **/
 .read2me-player.preset-white,
-.read2me-player.preset-white .read2me-dropdown li,
-.read2me-player.preset-white .read2me-dropdown-clip
+.read2me-player.preset-white .read2me-dropdown li
 {
     color: #212529;
     background-color: rgb(255, 255, 255);
@@ -658,11 +657,14 @@ svg.read2me-speaking-rate-icon
 
 /** Blue preset **/
 .read2me-player.preset-blue,
-.read2me-player.preset-blue .read2me-dropdown li,
-.read2me-player.preset-blue .read2me-dropdown-clip
+.read2me-player.preset-blue .read2me-dropdown li
 {
     color: rgb(244, 244, 244);
     background-color: rgb(14, 209, 254);
+}
+.read2me-player.preset-blue .read2me-dropdown ul:before
+{
+    border-color: rgb(14, 209, 254);
 }
 
 .read2me-player.preset-blue svg.read2me-player-rewind,
@@ -767,11 +769,14 @@ svg.read2me-speaking-rate-icon
 /** Gray preset **/
 .read2me-player.preset-gray,
 .read2me-player.preset-gray .read2me-dropdown li,
-.read2me-player.preset-gray .read2me-dropdown-clip,
 .read2me-player.preset-gray .read2me-speaking-rate
 {
     color: #3a3c3c;
     background-color: rgb(248, 248, 248);
+}
+.read2me-player.preset-gray .read2me-dropdown ul:before
+{
+    border-color: rgb(248, 248, 248);
 }
 
 .read2me-player.preset-gray svg.read2me-player-rewind,
@@ -851,13 +856,11 @@ svg.read2me-speaking-rate-icon
 
 /** Green preset (aka read2me colors) */
 .read2me-player.preset-green,
-.read2me-player.preset-green .read2me-dropdown li,
-.read2me-player.preset-green .read2me-dropdown-clip
+.read2me-player.preset-green .read2me-dropdown li
 {
     color: #3a3c3c;
     background-color: rgb(255, 255, 255);
 }
-
 .read2me-player.preset-green svg.read2me-player-rewind,
 .read2me-player.preset-green svg.read2me-player-forward,
 .read2me-player.preset-green svg.read2me-speaking-rate-icon
@@ -1034,12 +1037,12 @@ svg.read2me-speaking-rate-icon
 {
     position: absolute;
     z-index: 999;
-    top: 30px;
     right: -20px;
 
     visibility: hidden;
 
     min-width: 170px;
+    padding-top: 17px;
 
     -webkit-transition: all .25s ease-out;
        -moz-transition: all .25s ease-out ;
@@ -1058,6 +1061,8 @@ svg.read2me-speaking-rate-icon
 {
     margin: 0;
     padding: 0;
+
+    box-shadow: 2px 4px 6px 0 rgba(0,0,0,.19);
 }
 .read2me-dropdown li
 {
@@ -1068,7 +1073,7 @@ svg.read2me-speaking-rate-icon
 
     text-align: right;
 
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2), 0 3px 10px 0 rgba(0, 0, 0, .19);
+    border: 1px solid rgba(197, 197, 197, .1);
 }
 .read2me-dropdown li a
 {
@@ -1105,24 +1110,24 @@ svg.read2me-speaking-rate-icon
     position: relative;
     top: 2.5px;
 }
-.read2me-dropdown-clip-container
+.read2me-dropdown ul:before
 {
-    padding-top: 5px;
+    position: absolute;
+    z-index: -1;
+    right: 27px;
 
-    background-color: transparent !important;
-    box-shadow: none !important;
-}
-.read2me-dropdown-clip
-{
-    position: relative;
-    right: -119px;
+    box-sizing: border-box;
+    width: 0;
+    height: 0;
 
-    display: block;
+    content: '';
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+    -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
 
-    width: 35px;
-    height: 15px;
-
-    clip-path: polygon(100% 100%, 50% 3%, 0 100%);
+    border: 8px solid white;
+    box-shadow: 1px -1px 4px 0 rgba(0, 0, 0, .2);
 }
 .read2me-analytics-menu
 {
