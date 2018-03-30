@@ -246,7 +246,7 @@ export default class Read2MeWidgetPlayer {
 
         // PHONE CONTROLS
         // stage 1 to stage 2 transition
-        this.phoneStage1.addEventListener(this.clickHandlerType, () => {
+        this.phoneStage1.addEventListener('click', (e) => {
             if (this.isPhoneLoadingInitiated)
                 return false;
 
@@ -258,7 +258,7 @@ export default class Read2MeWidgetPlayer {
     }
 
     handleQuickControls() {
-        Read2MeHelpers.addEventListenerByClass(this.wrapper, 'read2me-player-rewind', this.clickHandlerType, () => {
+        Read2MeHelpers.addEventListenerByClass(this.wrapper, 'read2me-player-rewind', 'click', () => {
             this.audioController.rewindForXSeconds(10);
 
             if (this.isReplayButtonShown()) {
@@ -266,7 +266,7 @@ export default class Read2MeWidgetPlayer {
             }
         });
 
-        Read2MeHelpers.addEventListenerByClass(this.wrapper, 'read2me-player-forward', this.clickHandlerType, () => {
+        Read2MeHelpers.addEventListenerByClass(this.wrapper, 'read2me-player-forward', 'click', () => {
             this.audioController.forwardForXSeconds(10);
         });
     }
