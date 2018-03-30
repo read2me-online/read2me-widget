@@ -1073,6 +1073,12 @@ svg.read2me-speaking-rate-icon
     opacity: 0;
     background: transparent;
 }
+.read2me-dropdown.read2me-dropdown-visible
+{
+    visibility: visible;
+
+    opacity: 1;
+}
 .read2me-dropdown ul
 {
     margin: 0;
@@ -1101,19 +1107,9 @@ svg.read2me-speaking-rate-icon
 
     text-decoration: none;
 }
-.read2me-dropdown-trigger:focus
+.read2me-dropdown-trigger
 {
-    pointer-events: none;
-
     outline: none;
-}
-.read2me-dropdown-trigger:focus + .read2me-dropdown
-{
-    visibility: visible;
-
-    pointer-events: auto;
-
-    opacity: 1;
 }
 .read2me-dropdown a svg
 {

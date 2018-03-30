@@ -36,6 +36,7 @@ export default class Read2MeWidgetPlayer {
         this.loader = this.player.querySelector('.read2me-widget-loader');
         this.titleContainer= this.player.querySelector('.read2me-player-title');
         this.titleTextContainer = this.titleContainer.querySelector('span');
+        this.dropdown = this.player.querySelector('.read2me-dropdown');
         this.displayAnalyticsLink = this.player.querySelector('.read2me-dropdown-analytics');
         this.closeAnalyticsLink = this.analytics.querySelector('.read2me-analytics-menu-close');
         this.refreshContentLink = this.player.querySelector('.read2me-dropdown-refresh');
@@ -334,6 +335,10 @@ export default class Read2MeWidgetPlayer {
     }
 
     handleDropdownBindings() {
+        this.player.querySelector('.read2me-dropdown-trigger').addEventListener('click', () => {
+            this.dropdown.classList.toggle('read2me-dropdown-visible');
+        });
+
         this.displayAnalyticsLink.addEventListener('click', () => {
             if (this.highchart !== null) {
                 this.wrapper.classList.add('read2me-analytics-view');
