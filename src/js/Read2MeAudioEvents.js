@@ -10,6 +10,7 @@ export default class Read2MeAudioEvents {
     getAll() {
         let events = {
             'canplay': [],
+            'canplaythrough': [],
             'playing': [],
             'pause': [],
             'ended': [],
@@ -22,7 +23,7 @@ export default class Read2MeAudioEvents {
         }
 
         events.canplay.push(this.canPlay());
-        events.canplay.push(this.canPlayPhone());
+        events.canplaythrough.push(this.canPlayPhone());
         events.playing.push(this.playingHideLoader());
         events.playing.push(this.startReportingAnalytics());
         events.pause.push(this.stopReportingAnalytics());

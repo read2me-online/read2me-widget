@@ -246,7 +246,7 @@ export default class Read2MeWidgetPlayer {
 
         // PHONE CONTROLS
         // stage 1 to stage 2 transition
-        this.phoneStage1.addEventListener('click', (e) => {
+        this.phoneStage1.addEventListener('click', () => {
             if (this.isPhoneLoadingInitiated)
                 return false;
 
