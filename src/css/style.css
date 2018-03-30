@@ -620,7 +620,7 @@ svg.read2me-speaking-rate-icon {
 .read2me-menu {
     display: none;
     position: absolute;
-    bottom: -5px;
+    bottom: -10px;
     right: 21px;
     cursor: pointer;
 }
@@ -648,7 +648,7 @@ svg.read2me-speaking-rate-icon {
     right: -20px;
     min-width: 170px;
     background: transparent;
-    padding-top: 17px;
+    padding-top: 10px;
     z-index: 999;
     -webkit-transition: all 0.25s ease-out;
     -moz-transition: all 0.25s ease-out ;
