@@ -88,6 +88,8 @@
 /* front */
 .read2me-player {
     z-index: 2;
+    /* for firefox */
+    transform: rotateY(0deg);
 }
 /* back */
 .read2me-analytics {
