@@ -39,7 +39,7 @@ export default class Read2MeWidgetPlayer {
         this.displayAnalyticsLink = this.player.querySelector('.read2me-dropdown-analytics');
         this.closeAnalyticsLink = this.analytics.querySelector('.read2me-analytics-menu-close');
         this.refreshContentLink = this.player.querySelector('.read2me-dropdown-refresh');
-        this.scrubberPhone = this.wrapper.querySelector('.read2me-phone-scrubber');
+        this.speakingRate = this.wrapper.querySelectorAll('.read2me-speaking-rate');
         widgetBlueprint.parentNode.replaceChild(this.wrapper, this.widgetBlueprint);
 
         // UI playback controllers for tablet and desktop
@@ -50,8 +50,8 @@ export default class Read2MeWidgetPlayer {
         // phone UI playback controls
         this.phoneUi = this.wrapper.querySelector('.read2me-phone-ui');
         this.phoneStage1 = this.phoneUi.querySelector('.read2me-phone-stage1');
-        this.speakingRate = this.phoneUi.querySelector('.read2me-phone-speaking-rate');
         this.phonePlaybackContainer = this.phoneUi.querySelector('.read2me-phone-playback-container');
+        this.scrubberPhone = this.wrapper.querySelector('.read2me-phone-scrubber');
         this.phoneScrubber = this.phoneUi.querySelector('.read2me-phone-scrubber-progress');
         this.phoneRemainingTime = this.phoneUi.querySelector('.read2me-phone-remaining-time-container span');
 
@@ -301,17 +301,23 @@ export default class Read2MeWidgetPlayer {
     }
 
     handleSpeakingRateChange() {
-        this.speakingRate.addEventListener(this.clickHandlerType, () => {
-            // allow from 0.5 to 1.5 using .25 as increments:
-            // => 0.5, 0.75, 1, 1.25, 1.5
-            // when 1.5 is tapped then go to 0.5
-            this.speakingRate.textContent = (parseFloat(this.speakingRate.textContent) + 0.25).toString();
+        Array.from(this.speakingRate).forEach(elem => {
+            elem.addEventListener(this.clickHandlerType, () => {
+                // allow from 0.5 to 1.5 using .25 as increments:
+                // => 0.5, 0.75, 1, 1.25, 1.5
+                // when 1.5 is tapped then go to 0.5
+                elem.textContent = (parseFloat(elem.textContent) + 0.25).toString();
 
-            if (parseFloat(this.speakingRate.textContent) > 1.5)
-                this.speakingRate.textContent = '0.5';
+                if (parseFloat(elem.textContent) > 1.5)
+                    elem.textContent = '0.5';
 
-            this.audioController.setPlaySpeed(parseFloat(this.speakingRate.textContent));
-            this.speakingRate.setValue(this.speakingRate.textContent);
+                let newSpeed = elem.textContent;
+
+                this.audioController.setPlaySpeed(parseFloat(newSpeed));
+                Array.from(this.speakingRate).forEach(elem => {
+                    elem.value = elem.innerHTML = newSpeed;
+                });
+            });
         });
     }
 

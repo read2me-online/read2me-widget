@@ -939,15 +939,23 @@ svg.read2me-player-speaking-rate {
     transition: transform .2s,-webkit-transform .2s;
     transform: translateX(-100%);
 }
-.read2me-phone-speaking-rate {
+.read2me-speaking-rate {
     background-color: white;
-    width: 100%;
     border: 1px solid whitesmoke;
     border-radius: 10px;
     text-align: center;
     line-height: 14px;
+    outline: none;
 }
-.read2me-phone-speaking-rate:after {
+.read2me-tablet-ui .read2me-speaking-rate {
+    width: 62px;
+    position: relative;
+    top: -4px;
+    margin-left: 10px;
+    border: 1px solid #e6e6e6;
+    font-size: 13px;
+}
+.read2me-speaking-rate:after {
     content: 'x';
 }
 .read2me-phone-remaining-time-container,

@@ -1474,19 +1474,30 @@ svg.read2me-player-speaking-rate
 
     background: #545454;
 }
-.read2me-phone-speaking-rate
+.read2me-speaking-rate
 {
     line-height: 14px;
-
-    width: 100%;
 
     text-align: center;
 
     border: 1px solid whitesmoke;
     border-radius: 10px;
+    outline: none;
     background-color: white;
 }
-.read2me-phone-speaking-rate:after
+.read2me-tablet-ui .read2me-speaking-rate
+{
+    font-size: 13px;
+
+    position: relative;
+    top: -4px;
+
+    width: 62px;
+    margin-left: 10px;
+
+    border: 1px solid #e6e6e6;
+}
+.read2me-speaking-rate:after
 {
     content: 'x';
 }
