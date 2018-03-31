@@ -1104,7 +1104,7 @@ svg.read2me-speaking-rate-icon
 {
     position: absolute;
     z-index: 999;
-    right: -20px;
+    right: 0;
 
     visibility: hidden;
 
@@ -1257,7 +1257,6 @@ svg.read2me-speaking-rate-icon
     padding: 0 7px 0 7px;
 
     letter-spacing: 1px;
-    text-transform: uppercase;
 
     opacity: .66;
     background-color: rgba(112, 112, 112, .4);
