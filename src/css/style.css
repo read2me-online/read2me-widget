@@ -15,6 +15,10 @@
     height: 86px;
     margin: 10px 0 10px 0;
 }
+.read2me-widget-wrapper.read2me-phone-stage2-active,
+.read2me-widget-wrapper.read2me-phone-stage2-active .read2me-phone-ui {
+    height: 106px;
+}
 
 .read2me-phone-ui {
     display: inline-block;
@@ -27,6 +31,10 @@
     .read2me-widget-wrapper {
         display:inline-block;
         min-width: 580px;
+    }
+    .read2me-widget-wrapper,
+    .read2me-widget-wrapper.read2me-phone-stage2-active,
+    .read2me-widget-wrapper.read2me-phone-stage2-active .read2me-phone-ui {
         height: 147px;
     }
     .read2me-tablet-ui,
@@ -886,10 +894,6 @@ svg.read2me-speaking-rate-icon {
 }
 .read2me-phone-stage1.read2me-stage1-loading .read2me-phone-title-loading {
     display: inline-block;
-}
-.read2me-widget-wrapper.read2me-phone-stage2-active,
-.read2me-widget-wrapper.read2me-phone-stage2-active .read2me-phone-ui {
-    height: 106px;
 }
 .read2me-widget-wrapper.read2me-phone-stage2-active .read2me-phone-stage1 {
     margin-top: -87px;
