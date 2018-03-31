@@ -232,8 +232,10 @@ export default class Read2MeWidgetPlayer {
     }
 
     handlePlayback() {
-        [this.playbackContainer, this.phonePlaybackContainer].forEach(elem => {
-            elem.addEventListener(this.clickHandlerType, () => {
+        [this.playbackContainer, this.phonePlaybackContainer].forEach( (elem, index) => {
+            let eventType = index === 0 ? 'click' : 'touchstart';
+
+            elem.addEventListener(eventType, () => {
                 if (this.isPlayButtonShown()) {
                     this.audioController.play();
                     this.displayPauseButton();
