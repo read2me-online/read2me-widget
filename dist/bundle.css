@@ -1074,7 +1074,7 @@ svg.read2me-speaking-rate-icon
 .read2me-menu
 {
     position: absolute;
-    right: 21px;
+    right: 0;
     bottom: -10px;
 
     display: none;
@@ -1160,6 +1160,11 @@ svg.read2me-speaking-rate-icon
 }
 .read2me-dropdown-trigger
 {
+    z-index: 1000;
+
+    box-sizing: content-box;
+    padding: 5px 3px 5px 5px;
+
     outline: none;
 }
 .read2me-dropdown a svg
@@ -1625,7 +1630,7 @@ svg.read2me-speaking-rate-icon
     position: relative;
     top: -5px;
 
-    width: 62px;
+    width: 52px;
     margin-left: 10px;
 
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.19);
