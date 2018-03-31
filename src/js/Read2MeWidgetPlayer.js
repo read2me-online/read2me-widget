@@ -421,7 +421,7 @@ export default class Read2MeWidgetPlayer {
 
     instantiateAnalytics(result) {
         this.highchart = Read2MeHelpers.getInterestDistributionHighchart(
-            result, this.analytics.querySelector('.read2me-highcharts')
+            result, this.analytics.querySelector('.read2me-highcharts'), this._getGraphColorForTheme()
         );
 
         let playbackCountContainer = this.analytics.
@@ -447,6 +447,23 @@ export default class Read2MeWidgetPlayer {
 
             countriesContainer.appendChild(container);
         });
+    }
+
+    _getGraphColorForTheme() {
+        let color;
+
+        switch (this.theme) {
+            case 'blue':
+                color = 'rgb(14,209,254)';
+                break;
+            case 'green':
+                color = 'rgb(94,234,214)';
+                break;
+            default:
+                color = 'rgb(0,0,0)';
+        }
+
+        return color;
     }
 
     handleAnalyticsMenuBindings() {

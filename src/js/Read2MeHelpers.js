@@ -137,7 +137,7 @@ export default class Read2MeHelpers {
         head.appendChild(link);
     }
 
-    static getInterestDistributionHighchart(result, container) {
+    static getInterestDistributionHighchart(result, container, colors) {
         let durationAxis = Object.keys(result.playback_count_per_second).map(Number);
         let countValues = Object.values(result.playback_count_per_second);
 
@@ -205,7 +205,7 @@ export default class Read2MeHelpers {
                     fontFamily: 'Raleway'
                 }
             },
-            colors: ['rgb(0,0,0)']
+            colors: [colors]
         });
     }
 }
