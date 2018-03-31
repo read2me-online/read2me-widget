@@ -343,8 +343,17 @@ export default class Read2MeWidgetPlayer {
             this.dropdown.classList.toggle('read2me-dropdown-visible');
         });
 
+        // close the dropdown when mouse leaves player
         this.player.addEventListener('mouseleave', () => {
             this.dropdown.classList.remove('read2me-dropdown-visible');
+        });
+
+        // close the dropdown when there's a click anywhere else on the player
+        this.player.addEventListener('click', (e) => {
+            let target = e.target || e.srcElement;
+
+            if (!target.classList.contains('read2me-dropdown-trigger'))
+                this.dropdown.classList.remove('read2me-dropdown-visible');
         });
 
         this.displayAnalyticsLink.addEventListener('click', () => {
