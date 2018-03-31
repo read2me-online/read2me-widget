@@ -464,6 +464,9 @@ svg.read2me-speaking-rate-icon {
 .read2me-player.preset-blue .read2me-dropdown li:hover svg {
     fill: #0ED1FE;
 }
+.read2me-player.preset-blue + .read2me-analytics .read2me-analytics-title {
+    background: rgba(14, 209, 254, 0.29);
+}
 
 
 /** Gray preset **/
@@ -632,6 +635,9 @@ svg.read2me-speaking-rate-icon {
 .read2me-player.preset-green .read2me-dropdown li:hover svg {
      fill: #fff;
 }
+.read2me-player.preset-green + .read2me-analytics .read2me-analytics-title {
+    background-color: rgba(94, 234, 214, 0.35);
+}
 
 
 /**
@@ -791,14 +797,14 @@ svg.read2me-speaking-rate-icon {
 }
 .read2me-analytics-title {
     position: absolute;
-    left: 226px;
+    left: 232px;
     top: 0;
     z-index: 1;
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 10px;
+    font-weight: normal;
     letter-spacing: 1px;
-    opacity: 0.66;
-    background-color: rgba(112, 112, 112, 0.4);
+    opacity: 1;
+    background-color: rgba(112, 112, 112, 0.18);
     padding: 0 7px 0 7px;
 }
 .read2me-analytics-slide2 {
