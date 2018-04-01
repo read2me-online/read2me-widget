@@ -7,14 +7,6 @@ export default class Read2MeHelpers {
         }
     }
 
-    static addEventListenerByClass(context, className, event, fn) {
-        let list = context.getElementsByClassName(className);
-
-        for (let i = 0, len = list.length; i < len; i++) {
-            list[i].addEventListener(event, fn, false);
-        }
-    }
-
     static secondsToHumanReadableArray(durationInSeconds) {
         let hours, minutes, seconds;
 

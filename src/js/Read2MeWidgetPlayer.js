@@ -13,10 +13,7 @@ export default class Read2MeWidgetPlayer {
         this.isHighchartsJsLoaded = false;
         this.isPhoneLoadingInitiated = false;
         this._highchartsLibraryWaiter = null;
-
-        // fixes #32
-        // https://github.com/NinoSkopac/read2me-widget/issues/32
-        this._setClickHandlerType();
+        this.lastPlaybackEvent = Date.now();
 
         // arguments
         this.widgetBlueprint = widgetBlueprint;
@@ -29,7 +26,6 @@ export default class Read2MeWidgetPlayer {
         this.width = width;
 
         this.wrapper = Read2MeHelpers.getWidgetTemplate();
-        this.flipper = this.wrapper.querySelector('.read2me-flipper');
         this.player = this.wrapper.querySelector('.read2me-player');
         this.analytics = this.wrapper.querySelector('.read2me-analytics');
         this.playbackContainer = this.player.querySelector('.read2me-player-playback');
@@ -40,7 +36,6 @@ export default class Read2MeWidgetPlayer {
         this.displayAnalyticsLink = this.player.querySelector('.read2me-dropdown-analytics');
         this.closeAnalyticsLink = this.analytics.querySelector('.read2me-analytics-menu-close');
         this.refreshContentLink = this.player.querySelector('.read2me-dropdown-refresh');
-        this.speakingRate = this.wrapper.querySelectorAll('.read2me-speaking-rate');
         widgetBlueprint.parentNode.replaceChild(this.wrapper, this.widgetBlueprint);
 
         // UI playback controllers for tablet and desktop
@@ -101,10 +96,6 @@ export default class Read2MeWidgetPlayer {
 
     _setListeningSessionId() {
         this.listeningSessionId = Read2MeHelpers.getRandom4ByteUnsignedInt();
-    }
-
-    _setClickHandlerType() {
-        this.clickHandlerType = 'ontouchstart' in document.documentElement ? "touchstart" : "click";
     }
 
     makeVisible() {
@@ -237,22 +228,41 @@ export default class Read2MeWidgetPlayer {
         this.phonePlaybackContainer.classList.add(this.phoneFinishedClass);
     }
 
+    _isPlaybackEventPermitted(time) {
+        // don't allow events to fire more than once per half a second
+        let isPermitted = true;
+
+        if (Date.now() - this.lastPlaybackEvent < time)
+            isPermitted = false;
+        else
+            this.lastPlaybackEvent = Date.now();
+
+        return isPermitted;
+    }
+
     handlePlayback() {
         [this.playbackContainer, this.phonePlaybackContainer].forEach( (elem, index) => {
-            let eventType = index === 0 ? 'click' : 'touchstart';
+            ['click', 'touchstart'].forEach(eventType => {
+                // dont bind click on phone container
+                if (index === 1 && eventType === 'click')
+                    return;
 
-            elem.addEventListener(eventType, () => {
-                if (this.isPlayButtonShown()) {
-                    this.audioController.play();
-                    this.displayPauseButton();
-                } else if (this.isPauseButtonShown()) {
-                    this.audioController.pause();
-                    this.displayPlayButton();
-                } else if (this.isReplayButtonShown()) {
-                    this._setListeningSessionId();
-                    this.audioController.replay();
-                    this.displayPauseButton();
-                }
+                elem.addEventListener(eventType, () => {
+                    if (!this._isPlaybackEventPermitted(500))
+                        return;
+
+                    if (this.isPlayButtonShown()) {
+                        this.audioController.play();
+                        this.displayPauseButton();
+                    } else if (this.isPauseButtonShown()) {
+                        this.audioController.pause();
+                        this.displayPlayButton();
+                    } else if (this.isReplayButtonShown()) {
+                        this._setListeningSessionId();
+                        this.audioController.replay();
+                        this.displayPauseButton();
+                    }
+                });
             });
         });
 
@@ -270,16 +280,40 @@ export default class Read2MeWidgetPlayer {
     }
 
     handleQuickControls() {
-        Read2MeHelpers.addEventListenerByClass(this.wrapper, 'read2me-player-rewind', 'click', () => {
+        let phoneRewind = this.phoneUi.querySelector('.read2me-player-rewind');
+        let phoneForward = this.phoneUi.querySelector('.read2me-player-forward');
+        let tabletDesktopRewind = this.player.querySelector('.read2me-player-rewind');
+        let tabletDesktopForward = this.player.querySelector('.read2me-player-forward');
+
+        phoneRewind.addEventListener('click', () => {
             this.audioController.rewindForXSeconds(10);
 
             if (this.isReplayButtonShown()) {
                 this.displayPlayButton(); // tablet/desktop
             }
         });
-
-        Read2MeHelpers.addEventListenerByClass(this.wrapper, 'read2me-player-forward', 'click', () => {
+        phoneForward.addEventListener('click', () => {
             this.audioController.forwardForXSeconds(10);
+        });
+
+        ['click', 'touchstart'].forEach(eventType => {
+            tabletDesktopRewind.addEventListener(eventType, () => {
+                if (!this._isPlaybackEventPermitted(250))
+                    return;
+
+                this.audioController.rewindForXSeconds(10);
+
+                if (this.isReplayButtonShown()) {
+                    this.displayPlayButton(); // tablet/desktop
+                }
+            });
+
+            tabletDesktopForward.addEventListener(eventType, () => {
+                if (!this._isPlaybackEventPermitted(250))
+                    return;
+
+                this.audioController.forwardForXSeconds(10);
+            });
         });
     }
 
@@ -296,7 +330,7 @@ export default class Read2MeWidgetPlayer {
                 this.displayPlayButton();
         });
 
-        this.scrubberPhoneContainer.addEventListener(this.clickHandlerType, (e) => {
+        this.scrubberPhoneContainer.addEventListener('click', (e) => {
             let pt = e.changedTouches && e.changedTouches[0] || e;
             let barProperties = this.scrubberPhone.getBoundingClientRect();
             let percent = (pt.clientX - barProperties.left) / barProperties.width; // e.g. 0.82
@@ -312,22 +346,35 @@ export default class Read2MeWidgetPlayer {
     }
 
     handleSpeakingRateChange() {
-        Array.from(this.speakingRate).forEach(elem => {
-            elem.addEventListener(this.clickHandlerType, () => {
-                // allow from 0.5 to 1.5 using .25 as increments:
-                // => 0.5, 0.75, 1, 1.25, 1.5
-                // when 1.5 is tapped then go to 0.5
-                elem.textContent = (parseFloat(elem.textContent) + 0.25).toString();
+        let phoneSpeakingRate = this.phoneUi.querySelector('.read2me-speaking-rate');
+        let tabletDesktopSpeakingRate = this.player.querySelector('.read2me-speaking-rate');
 
-                if (parseFloat(elem.textContent) > 1.5)
-                    elem.textContent = '0.5';
+        let callback = (elem) => {
+            // allow from 0.5 to 1.5 using .25 as increments:
+            // => 0.5, 0.75, 1, 1.25, 1.5
+            // when 1.5 is tapped then go to 0.5
+            elem.textContent = (parseFloat(elem.textContent) + 0.25).toString();
 
-                let newSpeed = elem.textContent;
+            if (parseFloat(elem.textContent) > 1.5)
+                elem.textContent = '0.5';
 
-                this.audioController.setPlaySpeed(parseFloat(newSpeed));
-                Array.from(this.speakingRate).forEach(elem => {
-                    elem.value = elem.innerHTML = newSpeed;
-                });
+            let newSpeed = elem.textContent;
+
+            this.audioController.setPlaySpeed(parseFloat(newSpeed));
+            phoneSpeakingRate.value = phoneSpeakingRate.innerHTML = newSpeed;
+            tabletDesktopSpeakingRate.value = tabletDesktopSpeakingRate.innerHTML = newSpeed;
+        };
+
+        phoneSpeakingRate.addEventListener('click', () => {
+            callback(phoneSpeakingRate);
+        });
+
+        ['click', 'touchstart'].forEach(eventType => {
+            tabletDesktopSpeakingRate.addEventListener(eventType, () => {
+                if (!this._isPlaybackEventPermitted(250))
+                    return;
+
+                callback(tabletDesktopSpeakingRate);
             });
         });
     }
@@ -504,7 +551,6 @@ export default class Read2MeWidgetPlayer {
 
     handleViewportResize() {
         window.addEventListener('resize', () => {
-            this._setClickHandlerType();
             this.setWidth();
         });
     }
