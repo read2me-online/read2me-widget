@@ -5,9 +5,7 @@
 .read2me-widget-wrapper .hidden {
     display:none !important;
 }
-.read2me-widget-wrapper:focus-within {
-    z-index: 999;
-}
+
 .read2me-widget-wrapper,
 .read2me-phone-ui {
     display:block;
@@ -31,6 +29,9 @@
     .read2me-widget-wrapper {
         display:inline-block;
         min-width: 580px;
+    }
+    .read2me-widget-wrapper:hover {
+        z-index: 1;
     }
     .read2me-widget-wrapper,
     .read2me-widget-wrapper.read2me-phone-stage2-active,
@@ -713,6 +714,7 @@ svg.read2me-speaking-rate-icon {
 .read2me-dropdown.read2me-dropdown-visible {
     opacity: 1;
     visibility: visible;
+    z-index: 2;
 }
 .read2me-dropdown ul {
     padding: 0;

@@ -216,10 +216,7 @@
 {
     display: none !important;
 }
-.read2me-widget-wrapper:focus-within
-{
-    z-index: 999;
-}
+
 .read2me-widget-wrapper,
 .read2me-phone-ui
 {
@@ -251,6 +248,10 @@
         display: inline-block;
 
         min-width: 580px;
+    }
+    .read2me-widget-wrapper:hover
+    {
+        z-index: 1;
     }
     .read2me-widget-wrapper,
     .read2me-widget-wrapper.read2me-phone-stage2-active,
@@ -1144,6 +1145,8 @@ svg.read2me-speaking-rate-icon
 }
 .read2me-dropdown.read2me-dropdown-visible
 {
+    z-index: 2;
+
     visibility: visible;
 
     opacity: 1;
