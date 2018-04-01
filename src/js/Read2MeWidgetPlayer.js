@@ -100,7 +100,7 @@ export default class Read2MeWidgetPlayer {
 
     makeVisible() {
         this.wrapper.classList.remove('read2me-template');
-        this.wrapper.style.display = 'block';
+        this.wrapper.style.display = 'inline-block';
     }
 
     instantiateSlidersForTabletDesktop() {
@@ -170,15 +170,18 @@ export default class Read2MeWidgetPlayer {
     }
 
     setWidth() {
-        if (this.width === null)
+        if (Read2MeHelpers.isPhone()) {
+            this.player.style.width = this.wrapper.style.width = '100%';
+
             return;
+        }
 
-        let width = this.width;
-
-        if (Read2MeHelpers.isPhone())
-            width = '100%';
-
-        this.player.style.width = this.wrapper.style.width = width;
+        if (this.width === null) {
+            this.player.style.width = '570px';
+            this.wrapper.style.width = '580px';
+        } else {
+            this.player.style.width = this.width;
+        }
     }
 
     isPlayButtonShown() {
