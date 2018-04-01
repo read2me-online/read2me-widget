@@ -208,4 +208,8 @@ export default class Read2MeHelpers {
             colors: [colors]
         });
     }
+
+    static isFirefox() {
+        return navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+    }
 }

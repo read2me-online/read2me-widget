@@ -66,10 +66,12 @@ export default class Read2MeWidgetPlayer {
         this.setThumbnail();
         this.setTheme();
         this.setWidth();
-        this.toggleVisibility();
         this.instantiateSlidersForTabletDesktop();
         this.handleViewportResize();
         this._setListeningSessionId();
+
+        if (!Read2MeHelpers.isFirefox())
+            this.makeVisible();
     }
 
     finishInitialisation(audioController, backendWrapper, apiResponse) {
@@ -78,6 +80,9 @@ export default class Read2MeWidgetPlayer {
 
         if (backendWrapper instanceof Read2MeBackendWrapper === false)
             throw new Error('Invalid second argument for Read2MeWidgetPlayer.finishInitialisation(); must be an instance of Read2MeBackendWrapper');
+
+        if (Read2MeHelpers.isFirefox())
+            this.makeVisible();
 
         this.audioController = audioController;
         this.backendWrapper = backendWrapper;
@@ -102,8 +107,9 @@ export default class Read2MeWidgetPlayer {
         this.clickHandlerType = 'ontouchstart' in document.documentElement ? "touchstart" : "click";
     }
 
-    toggleVisibility() {
-        this.wrapper.classList.toggle('read2me-template');
+    makeVisible() {
+        this.wrapper.classList.remove('read2me-template');
+        this.wrapper.style.display = 'block';
     }
 
     instantiateSlidersForTabletDesktop() {
@@ -375,7 +381,10 @@ export default class Read2MeWidgetPlayer {
             }
 
             // load flags
-            Read2MeHelpers.loadCss('https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css');
+            Read2MeHelpers.loadCss(
+                'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css',
+                'read2me-flag-icon'
+            );
 
             Read2MeAnalyticsBackendWrapper.getAnalytics(
                 this.apiResponse.id,
