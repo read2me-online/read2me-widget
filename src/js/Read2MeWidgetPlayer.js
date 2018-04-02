@@ -108,6 +108,7 @@ export default class Read2MeWidgetPlayer {
 
     hide() {
         this.wrapper.classList.add('read2me-template');
+        this.wrapper.style.display = 'none';
     }
 
     instantiateSlidersForTabletDesktop() {
