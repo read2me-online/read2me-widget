@@ -404,21 +404,24 @@ export default class Read2MeWidgetPlayer {
     }
 
     handleDropdownBindings() {
-        this.player.querySelector('.read2me-dropdown-trigger').addEventListener('click', () => {
-            this.dropdown.classList.toggle('read2me-dropdown-visible');
+        let menu = this.player.querySelector('.read2me-menu');
+
+        menu.addEventListener('click', () => {
+            menu.classList.toggle('read2me-dropdown-visible');
         });
 
-        // close the dropdown when mouse leaves player
-        this.player.addEventListener('mouseleave', () => {
-            this.dropdown.classList.remove('read2me-dropdown-visible');
-        });
-
-        // close the dropdown when there's a click anywhere else on the player
-        this.player.addEventListener('click', (e) => {
+        document.addEventListener('click', (e) => {
             let target = e.target || e.srcElement;
 
-            if (!target.classList.contains('read2me-dropdown-trigger'))
-                this.dropdown.classList.remove('read2me-dropdown-visible');
+            if (
+                !target.classList.contains('read2me-menu')
+                &&
+                !target.parentNode.classList.contains('read2me-menu')
+                &&
+                !target.parentNode.classList.contains('read2me-dropdown-trigger')
+            ) {
+                menu.classList.remove('read2me-dropdown-visible');
+            }
         });
 
         this.displayAnalyticsLink.addEventListener('click', () => {

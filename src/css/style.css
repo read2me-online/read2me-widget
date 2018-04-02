@@ -690,8 +690,13 @@ svg.read2me-speaking-rate-icon {
     opacity: 0.5;
     font-size: 12px;
 }
-.read2me-player:hover .read2me-menu {
+.read2me-player:hover .read2me-menu,
+.read2me-menu.read2me-dropdown-visible {
     display: inline-block;
+}
+.read2me-menu.read2me-dropdown-visible .read2me-dropdown {
+    opacity: 1;
+    visibility: visible;
 }
 .read2me-dropdown {
     /*
@@ -712,10 +717,6 @@ svg.read2me-speaking-rate-icon {
     -o-transition: all 0.25s ease-out ;
     transition: all 0.25s ease-out ;
 }
-.read2me-dropdown.read2me-dropdown-visible {
-    opacity: 1;
-    visibility: visible;
-}
 .read2me-dropdown ul {
     padding: 0;
     margin: 0;
@@ -735,7 +736,6 @@ svg.read2me-speaking-rate-icon {
     text-decoration: none;
 }
 .read2me-dropdown-trigger {
-    z-index: 201;
     box-sizing: content-box;
     padding: 5px 3px 5px 5px;
     outline: none;
