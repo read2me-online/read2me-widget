@@ -65,8 +65,11 @@ export default class Read2MeWidgetPlayer {
         this.handleViewportResize();
         this._setListeningSessionId();
 
-        if (!Read2MeHelpers.isFirefox())
+        if (!Read2MeHelpers.isFirefox() && !Read2MeHelpers.isSamsungBrowser())
             this.makeVisible();
+
+        if (Read2MeHelpers.isSamsungBrowser())
+            this.phoneUi.querySelector('.read2me-phone-playback').style['justify-content'] = 'space-around';
     }
 
     finishInitialisation(audioController, backendWrapper, apiResponse) {
@@ -76,7 +79,7 @@ export default class Read2MeWidgetPlayer {
         if (backendWrapper instanceof Read2MeBackendWrapper === false)
             throw new Error('Invalid second argument for Read2MeWidgetPlayer.finishInitialisation(); must be an instance of Read2MeBackendWrapper');
 
-        if (Read2MeHelpers.isFirefox())
+        if (Read2MeHelpers.isFirefox() || Read2MeHelpers.isSamsungBrowser())
             this.makeVisible();
 
         this.audioController = audioController;
@@ -245,7 +248,7 @@ export default class Read2MeWidgetPlayer {
 
     handlePlayback() {
         [this.playbackContainer, this.phonePlaybackContainer].forEach( (elem, index) => {
-            ['click', 'touchstart'].forEach(eventType => {
+            ['click', 'touchend'].forEach(eventType => {
                 // dont bind click on phone container
                 if (index === 1 && eventType === 'click')
                     return;
@@ -299,7 +302,7 @@ export default class Read2MeWidgetPlayer {
             this.audioController.forwardForXSeconds(10);
         });
 
-        ['click', 'touchstart'].forEach(eventType => {
+        ['click', 'touchend'].forEach(eventType => {
             tabletDesktopRewind.addEventListener(eventType, () => {
                 if (!this._isPlaybackEventPermitted(250))
                     return;
@@ -372,7 +375,7 @@ export default class Read2MeWidgetPlayer {
             callback(phoneSpeakingRate);
         });
 
-        ['click', 'touchstart'].forEach(eventType => {
+        ['click', 'touchend'].forEach(eventType => {
             tabletDesktopSpeakingRate.addEventListener(eventType, () => {
                 if (!this._isPlaybackEventPermitted(250))
                     return;

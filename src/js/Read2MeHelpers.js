@@ -96,6 +96,14 @@ export default class Read2MeHelpers {
         return window.outerWidth < 768;
     }
 
+    static isFirefox() {
+        return navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+    }
+
+    static isSamsungBrowser() {
+        return navigator.userAgent.indexOf('SamsungBrowser') > -1;
+    }
+
     // source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
     static getRandom4ByteUnsignedInt() {
         let min = 0;
@@ -199,9 +207,5 @@ export default class Read2MeHelpers {
             },
             colors: [colors]
         });
-    }
-
-    static isFirefox() {
-        return navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
     }
 }
