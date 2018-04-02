@@ -106,6 +106,10 @@ export default class Read2MeWidgetPlayer {
         this.wrapper.style.display = 'inline-block';
     }
 
+    hide() {
+        this.wrapper.classList.add('read2me-template');
+    }
+
     instantiateSlidersForTabletDesktop() {
         // make ID and data-slider-id attributes unique for scrubber
         // scrubber's node id: #read2me-player-scrubber-player

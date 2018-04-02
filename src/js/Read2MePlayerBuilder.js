@@ -55,7 +55,7 @@ export default class Read2MePlayerBuilder {
             this.playerInstances[playerId].finishInitialisation(audioController, backendWrapper, responseResult);
         }, (response) => {
             // error
-            this.playerInstances[playerId].toggleVisibility();
+            this.playerInstances[playerId].hide();
             console.warn(response);
         });
     }
