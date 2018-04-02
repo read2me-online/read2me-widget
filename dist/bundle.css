@@ -254,10 +254,6 @@
 
         min-width: 580px;
     }
-    .read2me-widget-wrapper:hover
-    {
-        z-index: 1;
-    }
     .read2me-widget-wrapper,
     .read2me-widget-wrapper.read2me-phone-stage2-active,
     .read2me-widget-wrapper.read2me-phone-stage2-active .read2me-phone-ui
@@ -338,7 +334,7 @@
 /* front */
 .read2me-player
 {
-    z-index: 2;
+    z-index: 201;
     /* for firefox */
 
     transform: rotateY(0deg);
@@ -451,7 +447,7 @@
     font-weight: 600;
 
     position: absolute;
-    z-index: 2;
+    z-index: 201;
     top: 25px;
     left: 142px;
 
@@ -485,7 +481,7 @@
 .read2me-player-quick-controls
 {
     position: absolute;
-    z-index: 2;
+    z-index: 201;
     top: 25px;
     right: 165px;
 }
@@ -512,7 +508,7 @@
 .read2me-player-sliders-container
 {
     position: absolute;
-    z-index: 1;
+    z-index: 100;
     top: 57px;
 }
 .read2me-player-sliders-container .slider-track
@@ -1127,7 +1123,7 @@ svg.read2me-speaking-rate-icon
 .read2me-dropdown
 {
     position: absolute;
-    z-index: 999;
+    z-index: 201;
     right: 0;
 
     visibility: hidden;
@@ -1150,8 +1146,6 @@ svg.read2me-speaking-rate-icon
 }
 .read2me-dropdown.read2me-dropdown-visible
 {
-    z-index: 2;
-
     visibility: visible;
 
     opacity: 1;
@@ -1186,7 +1180,7 @@ svg.read2me-speaking-rate-icon
 }
 .read2me-dropdown-trigger
 {
-    z-index: 1000;
+    z-index: 201;
 
     box-sizing: content-box;
     padding: 5px 3px 5px 5px;
@@ -1276,7 +1270,7 @@ svg.read2me-speaking-rate-icon
     font-weight: normal;
 
     position: absolute;
-    z-index: 1;
+    z-index: 200;
     top: 0;
     left: 232px;
 

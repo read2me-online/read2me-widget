@@ -34,9 +34,6 @@
         display:inline-block;
         min-width: 580px;
     }
-    .read2me-widget-wrapper:hover {
-        z-index: 1;
-    }
     .read2me-widget-wrapper,
     .read2me-widget-wrapper.read2me-phone-stage2-active,
     .read2me-widget-wrapper.read2me-phone-stage2-active .read2me-phone-ui {
@@ -100,7 +97,7 @@
 }
 /* front */
 .read2me-player {
-    z-index: 2;
+    z-index: 201;
     /* for firefox */
     transform: rotateY(0deg);
 }
@@ -194,7 +191,7 @@
     white-space:nowrap;
     overflow-x: hidden;
     margin-right: 5px;
-    z-index: 2;
+    z-index: 201;
     font-weight: 600;
 }
 .read2me-player-title:hover span.read2me-marquee {
@@ -211,7 +208,7 @@
     position: absolute;
     top: 25px;
     right: 165px;
-    z-index: 2;
+    z-index: 201;
 }
 .read2me-player-quick-controls svg.read2me-player-rewind,
 .read2me-player-quick-controls svg.read2me-player-forward {
@@ -231,7 +228,7 @@
 .read2me-player-sliders-container {
     position: absolute;
     top: 57px;
-    z-index: 1;
+    z-index: 100;
 }
 .read2me-player-sliders-container .slider-track {
     height: 2px !important;
@@ -708,7 +705,7 @@ svg.read2me-speaking-rate-icon {
     min-width: 170px;
     background: transparent;
     padding-top: 10px;
-    z-index: 999;
+    z-index: 201;
     -webkit-transition: all 0.25s ease-out;
     -moz-transition: all 0.25s ease-out ;
     -ms-transition: all 0.25s ease-out ;
@@ -718,7 +715,6 @@ svg.read2me-speaking-rate-icon {
 .read2me-dropdown.read2me-dropdown-visible {
     opacity: 1;
     visibility: visible;
-    z-index: 2;
 }
 .read2me-dropdown ul {
     padding: 0;
@@ -739,7 +735,7 @@ svg.read2me-speaking-rate-icon {
     text-decoration: none;
 }
 .read2me-dropdown-trigger {
-    z-index: 1000;
+    z-index: 201;
     box-sizing: content-box;
     padding: 5px 3px 5px 5px;
     outline: none;
@@ -805,7 +801,7 @@ svg.read2me-speaking-rate-icon {
     position: absolute;
     left: 232px;
     top: 0;
-    z-index: 1;
+    z-index: 200;
     font-size: 10px;
     font-weight: normal;
     letter-spacing: 1px;
