@@ -17,6 +17,10 @@
 .read2me-widget-wrapper.read2me-phone-stage2-active .read2me-phone-ui {
     height: 106px;
 }
+.read2me-widget-wrapper,
+.read2me-widget-wrapper * {
+    box-sizing: border-box;
+}
 
 .read2me-phone-ui {
     display: inline-block;
