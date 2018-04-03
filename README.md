@@ -13,6 +13,8 @@
 - listening time stats and demographics
 - ability to be specific about content using CSS selectors
 - numerous voices and supported languages
+- ability to choose whether or not the audio should update on content change (i.e. should the podcast keep up to date with your article text or just serve the first version)
+- graceful behaviour on package quota exhaustion: will continue serving existing podcasts and the widget will simply hide in case it's placed on a new article)
 
 # Browser support
 - Tested in Chrome, Firefox, Edge, Opera and Safari
