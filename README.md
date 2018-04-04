@@ -3,11 +3,18 @@
 # Features
 - four pre-made custom color presets (green, blue, white and white/black)
 - easy to create your own
-- fluid - will scale down on mobile
+- responsive deisgn - tablet, desktop and mobile UIs
 - adjustable width: minimum width is 570px, there is no maximum (support for percentages included)
 - supports autoplay (but can only autoplay on desktops due to mobile browsers' policies)
 - explicit or implicit title: if not set, it will use what it finds in \<title\> tag
 - explicit or implicit thumbnail: if not set, it will use what it finds in OG:Image property. An image with 1:1 aspect ratio is recommended. 
+- quota warnings at 70%, 80% and 90%
+- article focus
+- listening time stats and demographics
+- ability to be specific about content using CSS selectors
+- numerous voices and supported languages
+- ability to choose whether or not the audio should update on content change (i.e. should the podcast keep up to date with your article text or just serve the first version)
+- graceful behaviour on package quota exhaustion: will continue serving existing podcasts and the widget will simply hide in case it's placed on a new article)
 
 # Browser support
 - Tested in Chrome, Firefox, Edge, Opera and Safari
