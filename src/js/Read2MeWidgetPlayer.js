@@ -424,7 +424,7 @@ export default class Read2MeWidgetPlayer {
             }
         });
 
-        this.displayAnalyticsLink.addEventListener('click', () => {
+        this.displayAnalyticsLink.addEventListener('click', (e) => {
             if (this.highchart !== null) {
                 this.wrapper.classList.add('read2me-analytics-view');
 
@@ -466,9 +466,11 @@ export default class Read2MeWidgetPlayer {
                     this.hideLoader();
                 }
             );
+
+            e.preventDefault(); // prevents browser going to top
         });
 
-        this.refreshContentLink.addEventListener('click', () => {
+        this.refreshContentLink.addEventListener('click', (e) => {
             this.displayLoader();
 
             this.backendWrapper.refreshCreate(
@@ -487,6 +489,8 @@ export default class Read2MeWidgetPlayer {
                     console.warn(response);
                 }
             );
+
+            e.preventDefault(); // prevents browser going to top
         });
     }
 
