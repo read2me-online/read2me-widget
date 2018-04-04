@@ -9,7 +9,7 @@
     z-index: 201 !important;
 }
 .read2me-widget-wrapper:focus-within {
-    z-index: 201 !important;
+    z-index: 202 !important;
 }
 .read2me-widget-wrapper {
     margin: 10px 0 10px 0;
@@ -412,14 +412,14 @@ svg.read2me-speaking-rate-icon {
 .read2me-widget-wrapper.preset-blue .read2me-dropdown ul:before {
     border-color: rgb(14, 209, 254);
 }
-.read2me-phone-ui.preset-blue {
+.read2me-widget-wrapper.preset-blue .read2me-phone-ui {
     color: #f4f4f4;
     background-color: #0ed1fe;
 }
-.read2me-phone-ui.preset-blue .read2me-phone-scrubber-progress {
+.read2me-widget-wrapper.preset-blue .read2me-phone-scrubber-progress {
     background-color: #0a93b3;
 }
-.read2me-phone-ui.preset-blue .read2me-speaking-rate {
+.read2me-widget-wrapper.preset-blue .read2me-phone-ui .read2me-speaking-rate {
     background-color: white;
     border: none;
     color: #0a93b3;
@@ -510,8 +510,7 @@ svg.read2me-speaking-rate-icon {
 .read2me-widget-wrapper.preset-gray .read2me-player,
 .read2me-widget-wrapper.preset-gray .read2me-phone-ui,
 .read2me-widget-wrapper.preset-gray .read2me-dropdown li,
-.read2me-widget-wrapper.preset-gray .read2me-speaking-rate,
-.read2me-phone-ui.preset-gray {
+.read2me-widget-wrapper.preset-gray .read2me-speaking-rate {
     background-color: rgb(248, 248, 248);
     color: #3A3C3C;
 }
@@ -555,7 +554,7 @@ svg.read2me-speaking-rate-icon {
 .read2me-widget-wrapper.preset-gray .read2me-player-playback:hover svg {
     fill: #0ED1FE;
 }
-.read2me-phone-ui.preset-gray .read2me-speaking-rate {
+.read2me-widget-wrapper.preset-gray .read2me-phone-ui .read2me-speaking-rate {
     background-color: #EFEFEE;
     border: 1px solid #e0e0e0;
 }
@@ -589,24 +588,24 @@ svg.read2me-speaking-rate-icon {
     background-color: rgb(255, 255, 255);
     color: #3A3C3C;
 }
-.read2me-phone-ui.preset-green {
+.read2me-widget-wrapper.preset-green .read2me-phone-ui {
     background: #f9fffe;
 }
-.read2me-phone-ui.preset-green .read2me-phone-playback-container {
+.read2me-widget-wrapper.preset-green .read2me-phone-playback-container {
     border: 1px solid white;
     background: #5eead6;
 }
-.read2me-phone-ui.preset-green .read2me-phone-playback-container > svg {
+.read2me-widget-wrapper.preset-green .read2me-phone-playback-container > svg {
     fill: white;
 }
-.read2me-phone-ui.preset-green .read2me-phone-scrubber-progress {
+.read2me-widget-wrapper.preset-green .read2me-phone-scrubber-progress {
     background: rgb(94, 234, 214);
 }
-.read2me-phone-ui.preset-green .read2me-speaking-rate {
+.read2me-widget-wrapper.preset-green .read2me-phone-ui .read2me-speaking-rate {
     background: #f3f3f3;
     border: 1px solid #e8e8e8;
 }
-.read2me-phone-ui.preset-green .read2me-phone-playback > svg {
+.read2me-widget-wrapper.preset-green .read2me-phone-playback > svg {
     fill: #4c4c4c;
 }
 
