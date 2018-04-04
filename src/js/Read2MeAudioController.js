@@ -8,9 +8,14 @@ export default class Read2MeAudioController {
     constructor(audioFileUrl, events) {
         this.audio = new Audio(audioFileUrl);
         this.canPlay = false;
+        this.canPlayThrough = false;
 
         this.audio.addEventListener('canplay', () => {
             this.canPlay = true;
+        });
+
+        this.audio.addEventListener('canplaythrough', () => {
+            this.canPlayThrough = true;
         });
 
         if (typeof events === 'object') {
@@ -26,6 +31,10 @@ export default class Read2MeAudioController {
 
     isReadyToPlay() {
         return this.canPlay;
+    }
+
+    isCanPlayThrough() {
+        return this.canPlayThrough;
     }
 
     play() {

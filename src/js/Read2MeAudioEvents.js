@@ -43,12 +43,13 @@ export default class Read2MeAudioEvents {
 
     canPlayPhone() {
         return () => {
-            this.widgetPlayerInstance.wrapper.classList.add('read2me-phone-stage2-active');
-
             this.widgetPlayerInstance.phoneRemainingTime.textContent = Read2MeHelpers.getRemainingTime(
                 this.widgetPlayerInstance.audioController.getDuration(),
                 this.widgetPlayerInstance.audioController.getCurrentTime()
             );
+
+            if (Read2MeHelpers.isPhone())
+                this.widgetPlayerInstance.wrapper.classList.add('read2me-phone-stage2-active');
         };
     }
 

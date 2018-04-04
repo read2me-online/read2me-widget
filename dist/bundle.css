@@ -224,7 +224,10 @@
 {
     z-index: 201 !important;
 }
-
+.read2me-widget-wrapper
+{
+    margin: 10px 0 10px 0;
+}
 .read2me-widget-wrapper,
 .read2me-phone-ui
 {
@@ -232,7 +235,10 @@
 
     width: 100%;
     height: 86px;
-    margin: 10px 0 10px 0;
+}
+.read2me-phone-ui
+{
+    margin: 0;
 }
 .read2me-widget-wrapper.read2me-phone-stage2-active,
 .read2me-widget-wrapper.read2me-phone-stage2-active .read2me-phone-ui
@@ -273,9 +279,32 @@
     {
         display: inline-block;
     }
+    .read2me-widget-wrapper.read2me-design-minimal .read2me-tablet-ui,
+    .read2me-widget-wrapper.read2me-design-minimal .read2me-desktop-ui
+    {
+        display: none;
+    }
     .read2me-phone-ui
     {
         display: none;
+    }
+    .read2me-widget-wrapper.read2me-design-minimal .read2me-phone-ui
+    {
+        display: inline-block;
+    }
+    .read2me-widget-wrapper.read2me-design-minimal
+    {
+        min-width: 250px;
+        height: 86px;
+    }
+    .read2me-widget-wrapper.read2me-design-minimal .read2me-phone-ui
+    {
+        min-width: 250px;
+    }
+    .read2me-widget-wrapper.read2me-phone-stage2-active.read2me-design-minimal,
+    .read2me-widget-wrapper.read2me-phone-stage2-active.read2me-design-minimal .read2me-phone-ui
+    {
+        height: 100px;
     }
 }
 
@@ -1409,6 +1438,10 @@ svg.read2me-speaking-rate-icon
 
     border: 1px solid #eee;
 }
+.read2me-phone-ui svg
+{
+    cursor: pointer;
+}
 .read2me-phone-stage1
 {
     transition: all .6s ease-in-out;
@@ -1424,6 +1457,13 @@ svg.read2me-speaking-rate-icon
 .read2me-widget-wrapper.read2me-phone-stage2-active .read2me-phone-stage1
 {
     margin-top: -87px;
+}
+@media (min-width: 768px)
+{
+    .read2me-widget-wrapper.read2me-phone-stage2-active .read2me-phone-stage1
+    {
+        margin-top: -80px;
+    }
 }
 .read2me-phone-title-loading
 {
@@ -1511,6 +1551,8 @@ svg.read2me-speaking-rate-icon
 .read2me-phone-title
 {
     display: inline-block;
+
+    cursor: pointer;
 }
 .read2me-loading-dots:after
 {
@@ -1596,6 +1638,8 @@ svg.read2me-speaking-rate-icon
     width: 100%;
     margin: 0 15px 0 15px;
     padding: 11px 0 11px 0;
+
+    cursor: pointer;
 
     flex: 1 1 auto;
 }

@@ -5,7 +5,11 @@ import Read2MeAudioEvents from "./Read2MeAudioEvents";
 import Read2MeAnalyticsBackendWrapper from "./Read2MeAnalyticsBackendWrapper";
 
 export default class Read2MeWidgetPlayer {
-    constructor(widgetBlueprint, url, title = null, thumbnail = null, autoplay = false, playerId = 0, theme = null, width = null) {
+    constructor(
+        widgetBlueprint, url, title = null,
+        thumbnail = null, autoplay = false,
+        playerId = 0, theme = null, width = null,
+        design = null) {
         // sliders
         this.isScrubberBeingDragged = false;
         this.scrubber = null;
@@ -24,6 +28,7 @@ export default class Read2MeWidgetPlayer {
         this.playerId = playerId;
         this.theme = theme;
         this.width = width;
+        this.design = design === null ? 'standard' : 'minimal';
 
         this.wrapper = Read2MeHelpers.getWidgetTemplate();
         this.player = this.wrapper.querySelector('.read2me-player');
@@ -58,6 +63,7 @@ export default class Read2MeWidgetPlayer {
         // set the player up
         this.setTitle();
         this.setThumbnail();
+        this.setDesign();
         this.setTheme();
         this.setWidth();
         this.instantiateSlidersForTabletDesktop();
@@ -167,6 +173,10 @@ export default class Read2MeWidgetPlayer {
             container.setAttribute('src', defaultThumbnail);
     }
 
+    setDesign() {
+        this.wrapper.classList.add('read2me-design-' + this.design);
+    }
+
     setTheme() {
         if (this.theme === null) {
             this.player.classList.add('preset-white');
@@ -179,7 +189,7 @@ export default class Read2MeWidgetPlayer {
 
     setWidth() {
         if (Read2MeHelpers.isPhone()) {
-            this.player.style.width = this.wrapper.style.width = '100%';
+            this.player.style.width = this.wrapper.style.width = this.phoneUi.style.width = '100%';
 
             return;
         }
@@ -188,7 +198,7 @@ export default class Read2MeWidgetPlayer {
             this.player.style.width = '570px';
             this.wrapper.style.width = '580px';
         } else {
-            this.player.style.width = this.width;
+            this.player.style.width = this.phoneUi.style.width = this.width;
         }
     }
 
@@ -254,8 +264,8 @@ export default class Read2MeWidgetPlayer {
     handlePlayback() {
         [this.playbackContainer, this.phonePlaybackContainer].forEach( (elem, index) => {
             ['click', 'touchend'].forEach(eventType => {
-                // dont bind click on phone container
-                if (index === 1 && eventType === 'click')
+                // dont bind click on phone container unless it's using minimal theme
+                if (index === 1 && eventType === 'click' && this.design === 'standard')
                     return;
 
                 elem.addEventListener(eventType, () => {
@@ -287,6 +297,15 @@ export default class Read2MeWidgetPlayer {
             this.phoneStage1.classList.add('read2me-stage1-loading');
             this.audioController.play();
             this.displayPauseButton();
+
+            let canPlayDesktop;
+
+            canPlayDesktop = setInterval(() => {
+                if (this.audioController.isReadyToPlay()) {
+                    this.wrapper.classList.add('read2me-phone-stage2-active');
+                    clearInterval(canPlayDesktop);
+                }
+            }, 100);
         });
     }
 

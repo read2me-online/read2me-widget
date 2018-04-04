@@ -11,13 +11,17 @@
 .read2me-widget-wrapper:focus-within {
     z-index: 201 !important;
 }
-
+.read2me-widget-wrapper {
+    margin: 10px 0 10px 0;
+}
 .read2me-widget-wrapper,
 .read2me-phone-ui {
     display:block;
     width: 100%;
     height: 86px;
-    margin: 10px 0 10px 0;
+}
+.read2me-phone-ui {
+    margin: 0;
 }
 .read2me-widget-wrapper.read2me-phone-stage2-active,
 .read2me-widget-wrapper.read2me-phone-stage2-active .read2me-phone-ui {
@@ -49,8 +53,26 @@
     .read2me-desktop-ui {
         display: inline-block;
     }
+    .read2me-widget-wrapper.read2me-design-minimal .read2me-tablet-ui,
+    .read2me-widget-wrapper.read2me-design-minimal .read2me-desktop-ui {
+        display: none;
+    }
     .read2me-phone-ui {
         display: none;
+    }
+    .read2me-widget-wrapper.read2me-design-minimal .read2me-phone-ui {
+        display: inline-block;
+    }
+    .read2me-widget-wrapper.read2me-design-minimal {
+        height: 86px;
+        min-width: 250px;
+    }
+    .read2me-widget-wrapper.read2me-design-minimal .read2me-phone-ui {
+        min-width: 250px;
+    }
+    .read2me-widget-wrapper.read2me-phone-stage2-active.read2me-design-minimal,
+    .read2me-widget-wrapper.read2me-phone-stage2-active.read2me-design-minimal .read2me-phone-ui {
+        height: 100px;
     }
 }
 
@@ -900,6 +922,9 @@ svg.read2me-speaking-rate-icon {
     -o-transition: height 0.3s ease-in-out;
     transition: height 0.3s ease-in-out;
 }
+.read2me-phone-ui svg {
+    cursor: pointer;
+}
 .read2me-phone-stage1 {
     transition: all 0.6s ease-in-out;
 }
@@ -911,6 +936,11 @@ svg.read2me-speaking-rate-icon {
 }
 .read2me-widget-wrapper.read2me-phone-stage2-active .read2me-phone-stage1 {
     margin-top: -87px;
+}
+@media (min-width: 768px) {
+    .read2me-widget-wrapper.read2me-phone-stage2-active .read2me-phone-stage1 {
+        margin-top: -80px;
+    }
 }
 .read2me-phone-title-loading {
     display: none;
@@ -974,6 +1004,7 @@ svg.read2me-speaking-rate-icon {
     font-weight: 600;
 }
 .read2me-phone-title {
+    cursor: pointer;
     display: inline-block;
 }
 .read2me-loading-dots:after {
@@ -1039,6 +1070,7 @@ svg.read2me-speaking-rate-icon {
     display: block;
     padding: 11px 0 11px 0;
     margin: 0 15px 0 15px;
+    cursor: pointer;
 }
 .read2me-phone-scrubber {
     height: 4px;
