@@ -648,95 +648,97 @@ svg.read2me-speaking-rate-icon
 }
 
 /** White preset **/
-.read2me-player.preset-white,
-.read2me-player.preset-white .read2me-dropdown li
+.read2me-widget-wrapper.preset-white .read2me-player,
+.read2me-widget-wrapper.preset-white .read2me-phone-ui,
+.read2me-widget-wrapper.preset-white .read2me-dropdown li
 {
     color: #212529;
     background-color: rgb(255, 255, 255);
 }
 
-.read2me-player.preset-white svg.read2me-player-rewind,
-.read2me-player.preset-white svg.read2me-player-forward,
-.read2me-player.preset-white svg.read2me-speaking-rate-icon
+.read2me-widget-wrapper.preset-white svg.read2me-player-rewind,
+.read2me-widget-wrapper.preset-white svg.read2me-player-forward,
+.read2me-widget-wrapper.preset-white svg.read2me-speaking-rate-icon
 {
     fill: #212529;
 }
 
-.read2me-player.preset-white svg.read2me-player-rewind:hover,
-.read2me-player.preset-white svg.read2me-player-forward:hover
+.read2me-widget-wrapper.preset-white svg.read2me-player-rewind:hover,
+.read2me-widget-wrapper.preset-white svg.read2me-player-forward:hover
 {
     opacity: .85;
 }
 
-.read2me-player.preset-white .slider-track
+.read2me-widget-wrapper.preset-white .slider-track
 {
     background: transparent !important;
 }
-.read2me-player.preset-white .slider-selection
+.read2me-widget-wrapper.preset-white .slider-selection
 {
     background: transparent !important;
 }
-.read2me-player.preset-white .slider-track-high
+.read2me-widget-wrapper.preset-white .slider-track-high
 {
     background: transparent !important;
 }
-.read2me-player.preset-white .slider-handle
+.read2me-widget-wrapper.preset-white .slider-handle
 {
     background: #212529 !important;
 }
 
-.read2me-player.preset-white .read2me-player-playback
+.read2me-widget-wrapper.preset-white .read2me-player-playback
 {
     background-color: rgb(255, 255, 255);
 }
-.read2me-player.preset-white .read2me-player-playback svg
+.read2me-widget-wrapper.preset-white .read2me-player-playback svg
 {
     fill: #212529;
 }
-.read2me-player.preset-white .read2me-speaking-rate
+.read2me-widget-wrapper.preset-white .read2me-speaking-rate
 {
     border: 1px solid #e6e6e6;
     background-color: white;
 }
-.read2me-player.preset-white .read2me-player-playback:hover,
-.read2me-player.preset-white .read2me-speaking-rate:hover
+.read2me-widget-wrapper.preset-white .read2me-player-playback:hover,
+.read2me-widget-wrapper.preset-white .read2me-speaking-rate:hover
 {
     background-color: #fbfbfb;
 }
 
-.read2me-player.preset-white .read2me-menu > svg
+.read2me-widget-wrapper.preset-white .read2me-menu > svg
 {
     color: #212529;
 }
-.read2me-player.preset-white .read2me-widget-loader
+.read2me-widget-wrapper.preset-white .read2me-widget-loader
 {
     height: 4px;
 }
-.read2me-player.preset-white .read2me-dropdown a
+.read2me-widget-wrapper.preset-white .read2me-dropdown a
 {
     color: rgb(33,37,41);
 }
-.read2me-player.preset-white .read2me-dropdown a:hover
+.read2me-widget-wrapper.preset-white .read2me-dropdown a:hover
 {
     color: rgba(33,37,41,.6);
 }
-.read2me-player.preset-white .read2me-dropdown svg
+.read2me-widget-wrapper.preset-white .read2me-dropdown svg
 {
     fill: rgb(33,37,41);
 }
-.read2me-player.preset-white .read2me-dropdown li:hover svg
+.read2me-widget-wrapper.preset-white .read2me-dropdown li:hover svg
 {
     fill: rgba(33,37,41,.6);
 }
 
 /** Blue preset **/
-.read2me-player.preset-blue,
-.read2me-player.preset-blue .read2me-dropdown li
+.read2me-widget-wrapper.preset-blue .read2me-player,
+.read2me-widget-wrapper.preset-blue .read2me-phone-ui,
+.read2me-widget-wrapper.preset-blue .read2me-dropdown li
 {
     color: rgb(244, 244, 244);
     background-color: rgb(14, 209, 254);
 }
-.read2me-player.preset-blue .read2me-dropdown ul:before
+.read2me-widget-wrapper.preset-blue .read2me-dropdown ul:before
 {
     border-color: rgb(14, 209, 254);
 }
@@ -756,166 +758,167 @@ svg.read2me-speaking-rate-icon
     background-color: white;
 }
 
-.read2me-player.preset-blue svg.read2me-player-rewind,
-.read2me-player.preset-blue svg.read2me-player-forward,
-.read2me-player.preset-blue svg.read2me-speaking-rate-icon
+.read2me-widget-wrapper.preset-blue svg.read2me-player-rewind,
+.read2me-widget-wrapper.preset-blue svg.read2me-player-forward,
+.read2me-widget-wrapper.preset-blue svg.read2me-speaking-rate-icon
 {
     fill: #307088;
 }
 
-.read2me-player.preset-blue svg.read2me-player-rewind:hover,
-.read2me-player.preset-blue svg.read2me-player-forward:hover
+.read2me-widget-wrapper.preset-blue svg.read2me-player-rewind:hover,
+.read2me-widget-wrapper.preset-blue svg.read2me-player-forward:hover
 {
     fill: #f4f4f4;
 }
 
-.read2me-player.preset-blue .read2me-player-title span
+.read2me-widget-wrapper.preset-blue .read2me-player-title span
 {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, .25);
 }
 
-.read2me-player.preset-blue .slider-track
+.read2me-widget-wrapper.preset-blue .slider-track
 {
     background: transparent !important;
 }
-.read2me-player.preset-blue .slider-selection
+.read2me-widget-wrapper.preset-blue .slider-selection
 {
     background: rgba(255, 255, 255, 1) !important;
 }
-.read2me-player.preset-blue .slider-track-high
+.read2me-widget-wrapper.preset-blue .slider-track-high
 {
     background: rgba(255, 255, 255, .4) !important;
 }
-.read2me-player.preset-blue .slider-handle
+.read2me-widget-wrapper.preset-blue .slider-handle
 {
     background: white !important;
 }
 
-.read2me-player.preset-blue .read2me-player-playback
+.read2me-widget-wrapper.preset-blue .read2me-player-playback
 {
     background-color: white;
 }
-.read2me-player.preset-blue .read2me-player-playback svg
+.read2me-widget-wrapper.preset-blue .read2me-player-playback svg
 {
     fill: #0ed1fe;
 }
-.read2me-player.preset-blue .read2me-player-playback:hover
+.read2me-widget-wrapper.preset-blue .read2me-player-playback:hover
 {
     background-color: #0ed1fe;
 }
-.read2me-player.preset-blue .read2me-player-playback:hover svg
+.read2me-widget-wrapper.preset-blue .read2me-player-playback:hover svg
 {
     fill: white;
 }
 
-.read2me-player.preset-blue .read2me-speaking-rate
+.read2me-widget-wrapper.preset-blue .read2me-speaking-rate
 {
     color: rgba(0,0,0, .7);
     border: 1px solid #78e6ff;
     background-color: #39daff;
     box-shadow: none;
 }
-.read2me-player.preset-blue .read2me-speaking-rate:hover
+.read2me-widget-wrapper.preset-blue .read2me-speaking-rate:hover
 {
     background-color: #3eddff;
 }
-.read2me-player.preset-blue .read2me-speaking-rate:active
+.read2me-widget-wrapper.preset-blue .read2me-speaking-rate:active
 {
     background-color: #44e4ff;
 }
 
-.read2me-player.preset-blue .read2me-menu > svg
+.read2me-widget-wrapper.preset-blue .read2me-menu > svg
 {
     color: white;
 }
-.read2me-player.preset-blue .tooltip-inner
+.read2me-widget-wrapper.preset-blue .tooltip-inner
 {
     color: #3e8fad;
 }
-.read2me-player.preset-blue .read2me-dropdown a
+.read2me-widget-wrapper.preset-blue .read2me-dropdown a
 {
     color: #fff;
 }
-.read2me-player.preset-blue .read2me-dropdown a:hover
+.read2me-widget-wrapper.preset-blue .read2me-dropdown a:hover
 {
     color: #0ed1fe;
     background-color: #fff;
 }
-.read2me-player.preset-blue .read2me-widget-loader:before
+.read2me-widget-wrapper.preset-blue .read2me-widget-loader:before
 {
     background-color: #3e8fad;
 }
-.read2me-player.preset-blue .read2me-dropdown svg
+.read2me-widget-wrapper.preset-blue .read2me-dropdown svg
 {
     fill: #fff;
 }
-.read2me-player.preset-blue .read2me-dropdown li:hover svg
+.read2me-widget-wrapper.preset-blue .read2me-dropdown li:hover svg
 {
     fill: #0ed1fe;
 }
-.read2me-player.preset-blue + .read2me-analytics .read2me-analytics-title
+.read2me-widget-wrapper.preset-blue + .read2me-analytics .read2me-analytics-title
 {
     background: rgba(14, 209, 254, .29);
 }
 
 
 /** Gray preset **/
-.read2me-player.preset-gray,
-.read2me-player.preset-gray .read2me-dropdown li,
-.read2me-player.preset-gray .read2me-speaking-rate,
+.read2me-widget-wrapper.preset-gray .read2me-player,
+.read2me-widget-wrapper.preset-gray .read2me-phone-ui,
+.read2me-widget-wrapper.preset-gray .read2me-dropdown li,
+.read2me-widget-wrapper.preset-gray .read2me-speaking-rate,
 .read2me-phone-ui.preset-gray
 {
     color: #3a3c3c;
     background-color: rgb(248, 248, 248);
 }
-.read2me-player.preset-gray .read2me-dropdown ul:before
+.read2me-widget-wrapper.preset-gray .read2me-dropdown ul:before
 {
     border-color: rgb(248, 248, 248);
 }
 
-.read2me-player.preset-gray svg.read2me-player-rewind,
-.read2me-player.preset-gray svg.read2me-player-forward,
-.read2me-player.preset-gray svg.read2me-speaking-rate-icon
+.read2me-widget-wrapper.preset-gray svg.read2me-player-rewind,
+.read2me-widget-wrapper.preset-gray svg.read2me-player-forward,
+.read2me-widget-wrapper.preset-gray svg.read2me-speaking-rate-icon
 {
     fill: #3a3c3c;
 }
 
-.read2me-player.preset-gray svg.read2me-player-rewind:hover,
-.read2me-player.preset-gray svg.read2me-player-forward:hover
+.read2me-widget-wrapper.preset-gray svg.read2me-player-rewind:hover,
+.read2me-widget-wrapper.preset-gray svg.read2me-player-forward:hover
 {
     fill: #8fe3f7;
 }
 
-.read2me-player.preset-gray .slider-track
+.read2me-widget-wrapper.preset-gray .slider-track
 {
     background: transparent !important;
 }
-.read2me-player.preset-gray .slider-selection
+.read2me-widget-wrapper.preset-gray .slider-selection
 {
     background: #0ed1fe !important;
 }
-.read2me-player.preset-gray .slider-track-high
+.read2me-widget-wrapper.preset-gray .slider-track-high
 {
     background: #dadbdb !important;
 }
-.read2me-player.preset-gray .slider-handle
+.read2me-widget-wrapper.preset-gray .slider-handle
 {
     background: #0ed1fe !important;
 }
 
-.read2me-player.preset-gray .read2me-player-playback
+.read2me-widget-wrapper.preset-gray .read2me-player-playback
 {
     background-color: #0ed1fe;
 }
-.read2me-player.preset-gray .read2me-player-playback svg
+.read2me-widget-wrapper.preset-gray .read2me-player-playback svg
 {
     fill: white;
 }
-.read2me-player.preset-gray .read2me-player-playback:hover
+.read2me-widget-wrapper.preset-gray .read2me-player-playback:hover
 {
     background-color: white;
 }
-.read2me-player.preset-gray .read2me-player-playback:hover svg
+.read2me-widget-wrapper.preset-gray .read2me-player-playback:hover svg
 {
     fill: #0ed1fe;
 }
@@ -924,38 +927,39 @@ svg.read2me-speaking-rate-icon
     border: 1px solid #e0e0e0;
     background-color: #efefee;
 }
-.read2me-player.preset-gray .read2me-speaking-rate:hover
+.read2me-widget-wrapper.preset-gray .read2me-speaking-rate:hover
 {
     background-color: #e8e8e8;
 }
-.read2me-player.preset-gray .read2me-speaking-rate:active
+.read2me-widget-wrapper.preset-gray .read2me-speaking-rate:active
 {
     background-color: #d7d7d7;
 }
-.read2me-player.preset-gray .read2me-menu > svg
+.read2me-widget-wrapper.preset-gray .read2me-menu > svg
 {
     color: black;
 }
-.read2me-player.preset-gray .read2me-widget-loader
+.read2me-widget-wrapper.preset-gray .read2me-widget-loader
 {
     height: 2px;
 }
-.read2me-player.preset-gray .read2me-dropdown a
+.read2me-widget-wrapper.preset-gray .read2me-dropdown a
 {
     color: #3a3c3c;
 }
-.read2me-player.preset-gray .read2me-dropdown a:hover
+.read2me-widget-wrapper.preset-gray .read2me-dropdown a:hover
 {
     background-color: #fff;
 }
-.read2me-player.preset-gray .read2me-dropdown svg
+.read2me-widget-wrapper.preset-gray .read2me-dropdown svg
 {
     fill: #3a3c3c;
 }
 
 /** Green preset (aka read2me colors) */
-.read2me-player.preset-green,
-.read2me-player.preset-green .read2me-dropdown li
+.read2me-widget-wrapper.preset-green .read2me-player,
+.read2me-widget-wrapper.preset-green .read2me-phone-ui,
+.read2me-widget-wrapper.preset-green .read2me-dropdown li
 {
     color: #3a3c3c;
     background-color: rgb(255, 255, 255);
@@ -987,89 +991,89 @@ svg.read2me-speaking-rate-icon
     fill: #4c4c4c;
 }
 
-.read2me-player.preset-green svg.read2me-player-rewind,
-.read2me-player.preset-green svg.read2me-player-forward,
-.read2me-player.preset-green svg.read2me-speaking-rate-icon
+.read2me-widget-wrapper.preset-green svg.read2me-player-rewind,
+.read2me-widget-wrapper.preset-green svg.read2me-player-forward,
+.read2me-widget-wrapper.preset-green svg.read2me-speaking-rate-icon
 {
     fill: #3a3c3c;
 }
 
-.read2me-player.preset-green svg.read2me-player-rewind:hover,
-.read2me-player.preset-green svg.read2me-player-forward:hover
+.read2me-widget-wrapper.preset-green svg.read2me-player-rewind:hover,
+.read2me-widget-wrapper.preset-green svg.read2me-player-forward:hover
 {
     fill: #8fe3f7;
 }
 
-.read2me-player.preset-green .slider-track
+.read2me-widget-wrapper.preset-green .slider-track
 {
     background: transparent !important;
 }
-.read2me-player.preset-green .slider-selection
+.read2me-widget-wrapper.preset-green .slider-selection
 {
     background: #5eead6 !important;
 }
-.read2me-player.preset-green .slider-track-high
+.read2me-widget-wrapper.preset-green .slider-track-high
 {
     background: #dadbdb !important;
 }
-.read2me-player.preset-green .slider-handle
+.read2me-widget-wrapper.preset-green .slider-handle
 {
     background: #5eead6 !important;
 }
 
-.read2me-player.preset-green .read2me-player-playback
+.read2me-widget-wrapper.preset-green .read2me-player-playback
 {
     background-color: #5eead6;
 }
-.read2me-player.preset-green .read2me-player-playback svg
+.read2me-widget-wrapper.preset-green .read2me-player-playback svg
 {
     fill: white;
 }
-.read2me-player.preset-green .read2me-player-playback:hover
+.read2me-widget-wrapper.preset-green .read2me-player-playback:hover
 {
     background-color: white;
 }
-.read2me-player.preset-green .read2me-player-playback:hover svg
+.read2me-widget-wrapper.preset-green .read2me-player-playback:hover svg
 {
     fill: #5eead6;
 }
 
-.read2me-player.preset-green .read2me-speaking-rate
+.read2me-widget-wrapper.preset-green .read2me-speaking-rate
 {
     border: none;
     box-shadow: 0 0 1px 0 rgba(0,0,0,.75);
 }
-.read2me-player.preset-green .read2me-speaking-rate:hover
+.read2me-widget-wrapper.preset-green .read2me-speaking-rate:hover
 {
     background-color: #fbfbfb;
 }
-.read2me-player.preset-green .read2me-speaking-rate:active
+.read2me-widget-wrapper.preset-green .read2me-speaking-rate:active
 {
     background-color: #f2f2f2;
 }
 
-.read2me-player.preset-green .read2me-menu > svg
+.read2me-widget-wrapper.preset-green .read2me-menu > svg
 {
     color: #5eead6;
 }
-.read2me-player.preset-green .read2me-dropdown a
+.read2me-widget-wrapper.preset-green .read2me-dropdown a
 {
     color: #3a3c3c;
 }
-.read2me-player.preset-green .read2me-dropdown a:hover
+.read2me-widget-wrapper.preset-green .read2me-dropdown a:hover
 {
     color: #fff;
     background-color: #5eead6;
 }
-.read2me-player.preset-green .read2me-dropdown svg
+.read2me-widget-wrapper.preset-green .read2me-dropdown svg
 {
     fill: #3a3c3c;
 }
-.read2me-player.preset-green .read2me-dropdown li:hover svg
+.read2me-widget-wrapper.preset-green .read2me-dropdown li:hover svg
 {
     fill: #fff;
 }
-.read2me-player.preset-green + .read2me-analytics .read2me-analytics-title
+.read2me-widget-wrapper.preset-green + .read2me-analytics .read2me-analytics-title
 {
     background-color: rgba(94, 234, 214, .35);
 }
@@ -1137,12 +1141,17 @@ svg.read2me-speaking-rate-icon
 .read2me-menu
 {
     position: absolute;
-    right: 0;
-    bottom: -10px;
+    right: 2px;
+    bottom: 5px;
 
     display: none;
 
     cursor: pointer;
+}
+.read2me-widget-wrapper.read2me-design-minimal .read2me-menu
+{
+    right: 0;
+    bottom: -8px;
 }
 .read2me-menu > svg
 {
@@ -1159,10 +1168,17 @@ svg.read2me-speaking-rate-icon
 
     opacity: .5;
 }
-.read2me-player:hover .read2me-menu,
-.read2me-menu.read2me-dropdown-visible
+.read2me-widget-wrapper.read2me-phone-stage2-active .read2me-menu
 {
-    display: inline-block;
+    display: none !important;
+}
+@media (min-width: 768px)
+{
+    .read2me-widget-wrapper:hover .read2me-menu,
+    .read2me-menu.read2me-dropdown-visible
+    {
+        display: inline-block;
+    }
 }
 .read2me-menu.read2me-dropdown-visible .read2me-dropdown
 {

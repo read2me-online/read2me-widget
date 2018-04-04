@@ -30,6 +30,7 @@ export default class Read2MeWidgetPlayer {
         this.width = width;
         this.design = design === null ? 'standard' : 'minimal';
 
+        // desktop - standard design
         this.wrapper = Read2MeHelpers.getWidgetTemplate();
         this.player = this.wrapper.querySelector('.read2me-player');
         this.analytics = this.wrapper.querySelector('.read2me-analytics');
@@ -37,9 +38,6 @@ export default class Read2MeWidgetPlayer {
         this.loader = this.player.querySelector('.read2me-widget-loader');
         this.titleContainer= this.player.querySelector('.read2me-player-title');
         this.titleTextContainer = this.titleContainer.querySelector('span');
-        this.displayAnalyticsLink = this.player.querySelector('.read2me-dropdown-analytics');
-        this.closeAnalyticsLink = this.analytics.querySelector('.read2me-analytics-menu-close');
-        this.refreshContentLink = this.player.querySelector('.read2me-dropdown-refresh');
         widgetBlueprint.parentNode.replaceChild(this.wrapper, this.widgetBlueprint);
 
         // UI playback controllers for tablet and desktop
@@ -55,6 +53,14 @@ export default class Read2MeWidgetPlayer {
         this.scrubberPhone = this.wrapper.querySelector('.read2me-phone-scrubber');
         this.phoneScrubber = this.phoneUi.querySelector('.read2me-phone-scrubber-progress');
         this.phoneRemainingTime = this.phoneUi.querySelector('.read2me-phone-remaining-time-container span');
+
+        // dropdown menu
+        this.menu = this.wrapper.querySelector('.read2me-menu');
+        this.displayAnalyticsLink = this.menu.querySelector('.read2me-dropdown-analytics');
+        this.refreshContentLink = this.menu.querySelector('.read2me-dropdown-refresh');
+
+        // analytics
+        this.closeAnalyticsLink = this.analytics.querySelector('.read2me-analytics-menu-close');
 
         this.phonePlayingClass = 'read2me-phone-playback-playing';
         this.phonePausedClass = 'read2me-phone-playback-paused';
@@ -178,13 +184,10 @@ export default class Read2MeWidgetPlayer {
     }
 
     setTheme() {
-        if (this.theme === null) {
-            this.player.classList.add('preset-white');
-            this.phoneUi.classList.add('preset-white');
-        } else {
-            this.player.classList.add('preset-' + this.theme);
-            this.phoneUi.classList.add('preset-' + this.theme);
-        }
+        if (this.theme === null)
+            this.wrapper.classList.add('preset-white');
+        else
+            this.wrapper.classList.add('preset-' + this.theme);
     }
 
     setWidth() {
@@ -422,10 +425,8 @@ export default class Read2MeWidgetPlayer {
     }
 
     handleDropdownBindings() {
-        let menu = this.player.querySelector('.read2me-menu');
-
-        menu.addEventListener('click', () => {
-            menu.classList.toggle('read2me-dropdown-visible');
+        this.menu.addEventListener('click', () => {
+            this.menu.classList.toggle('read2me-dropdown-visible');
         });
 
         document.addEventListener('click', (e) => {
@@ -438,7 +439,7 @@ export default class Read2MeWidgetPlayer {
                 &&
                 !target.parentNode.classList.contains('read2me-dropdown-trigger')
             ) {
-                menu.classList.remove('read2me-dropdown-visible');
+                this.menu.classList.remove('read2me-dropdown-visible');
             }
         });
 
