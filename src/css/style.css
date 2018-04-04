@@ -944,6 +944,7 @@ svg.read2me-speaking-rate-icon {
 }
 .read2me-phone-stage1 {
     transition: all 0.6s ease-in-out;
+    cursor: pointer;
 }
 .read2me-phone-stage1.read2me-stage1-loading .read2me-phone-title {
     display: none;
