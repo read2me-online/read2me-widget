@@ -32,7 +32,6 @@ export default class Read2MeWidgetPlayer {
         this.loader = this.player.querySelector('.read2me-widget-loader');
         this.titleContainer= this.player.querySelector('.read2me-player-title');
         this.titleTextContainer = this.titleContainer.querySelector('span');
-        this.dropdown = this.player.querySelector('.read2me-dropdown');
         this.displayAnalyticsLink = this.player.querySelector('.read2me-dropdown-analytics');
         this.closeAnalyticsLink = this.analytics.querySelector('.read2me-analytics-menu-close');
         this.refreshContentLink = this.player.querySelector('.read2me-dropdown-refresh');
@@ -85,7 +84,7 @@ export default class Read2MeWidgetPlayer {
         this.audioController = audioController;
         this.backendWrapper = backendWrapper;
         this.apiResponse = apiResponse;
-        this.configureSliders();
+        this.configureSliders(this.apiResponse.audio_length_seconds);
         this.handlePlayback();
         this.handleQuickControls();
         this.handleScrubber();
@@ -136,8 +135,8 @@ export default class Read2MeWidgetPlayer {
         });
     }
 
-    configureSliders() {
-        this.scrubber.setAttribute('max', this.apiResponse.audio_length_seconds);
+    configureSliders(audioLengthSeconds) {
+        this.scrubber.setAttribute('max', audioLengthSeconds);
         this.scrubber.enable();
     }
 
@@ -476,12 +475,8 @@ export default class Read2MeWidgetPlayer {
             this.backendWrapper.refreshCreate(
                 (response) => {
                     // cache invalidated and audio created
-                    let events = new Read2MeAudioEvents(this).getAll();
-
                     this.apiResponse = response.result;
-                    this.audioController = new Read2MeAudioController(this.apiResponse.audio_url, events);
-                    this.configureSliders();
-                    // loader will be hidden automatically by audio canplay event
+                    this.changeAudioSource(this.apiResponse.audio_url, this.apiResponse.audio_length_seconds);
                 },
                 (response) => {
                     // error
@@ -492,6 +487,21 @@ export default class Read2MeWidgetPlayer {
 
             e.preventDefault(); // prevents browser going to top
         });
+    }
+
+    changeAudioSource(source, duration) {
+        let events = new Read2MeAudioEvents(this).getAll();
+
+        this.audioController.pause();
+        delete this.audioController;
+        this.audioController = new Read2MeAudioController(source, events);
+
+        this.configureSliders(duration);
+
+        if (this.isPauseButtonShown()) // means it was playing
+            this.audioController.play();
+
+        // loader will be hidden automatically by audio canplay event
     }
 
     instantiateAnalytics(result) {
