@@ -295,11 +295,17 @@
     .read2me-widget-wrapper.read2me-design-minimal
     {
         min-width: 250px;
-        height: 86px;
+        height: 50px;
     }
     .read2me-widget-wrapper.read2me-design-minimal .read2me-phone-ui
     {
         min-width: 250px;
+        height: 50px;
+        padding: 0 17px 0 17px;
+    }
+    .read2me-widget-wrapper.read2me-design-minimal.read2me-phone-stage2-active .read2me-phone-ui
+    {
+        padding: 17px;
     }
     .read2me-widget-wrapper.read2me-phone-stage2-active.read2me-design-minimal,
     .read2me-widget-wrapper.read2me-phone-stage2-active.read2me-design-minimal .read2me-phone-ui
