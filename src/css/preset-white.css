@@ -1,0 +1,67 @@
+/** White preset **/
+.read2me-widget-wrapper.preset-white .read2me-player,
+.read2me-widget-wrapper.preset-white .read2me-phone-ui,
+.read2me-widget-wrapper.preset-white .read2me-dropdown li {
+    background-color: rgb(255, 255, 255);
+    color: #212529;
+}
+
+.read2me-widget-wrapper.preset-white svg.read2me-player-rewind,
+.read2me-widget-wrapper.preset-white svg.read2me-player-forward,
+.read2me-widget-wrapper.preset-white svg.read2me-speaking-rate-icon {
+    fill: #212529;
+}
+
+.read2me-widget-wrapper.preset-white svg.read2me-player-rewind:hover,
+.read2me-widget-wrapper.preset-white svg.read2me-player-forward:hover {
+    opacity: 0.85;
+}
+
+.read2me-widget-wrapper.preset-white .slider-track {
+    background: transparent !important;
+}
+.read2me-widget-wrapper.preset-white .slider-selection {
+    background: transparent !important;
+}
+.read2me-widget-wrapper.preset-white .slider-track-high {
+    background: transparent !important;
+}
+.read2me-widget-wrapper.preset-white .slider-handle {
+    background: #212529 !important;
+}
+
+.read2me-widget-wrapper.preset-white .read2me-player-playback {
+    background-color: rgb(255, 255, 255);
+}
+.read2me-widget-wrapper.preset-white .read2me-player-playback svg {
+    fill: #212529;
+}
+.read2me-widget-wrapper.preset-white .read2me-speaking-rate {
+    border: 1px solid #e6e6e6;
+    background-color: white;
+}
+.read2me-widget-wrapper.preset-white .read2me-player-playback:hover,
+.read2me-widget-wrapper.preset-white .read2me-speaking-rate:hover {
+    background-color: #fbfbfb;
+}
+
+.read2me-widget-wrapper.preset-white .read2me-menu > svg {
+    color: #212529;
+}
+.read2me-widget-wrapper.preset-white .read2me-widget-loader {
+    height: 4px;
+}
+.read2me-widget-wrapper.preset-white .read2me-dropdown a {
+    color:rgb(33,37,41);
+}
+.read2me-widget-wrapper.preset-white .read2me-dropdown a:hover {
+    color:rgba(33,37,41,0.6);
+}
+.read2me-widget-wrapper.preset-white .read2me-dropdown svg
+{
+    fill: rgb(33,37,41);
+}
+.read2me-widget-wrapper.preset-white .read2me-dropdown li:hover svg
+{
+    fill: rgba(33,37,41,0.6);
+}

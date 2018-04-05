@@ -1,0 +1,74 @@
+/** Gray preset **/
+.read2me-widget-wrapper.preset-gray .read2me-player,
+.read2me-widget-wrapper.preset-gray .read2me-phone-ui,
+.read2me-widget-wrapper.preset-gray .read2me-dropdown li,
+.read2me-widget-wrapper.preset-gray .read2me-speaking-rate {
+    background-color: rgb(248, 248, 248);
+    color: #3A3C3C;
+}
+.read2me-widget-wrapper.preset-gray .read2me-dropdown ul:before {
+    border-color: rgb(248, 248, 248);
+}
+
+.read2me-widget-wrapper.preset-gray svg.read2me-player-rewind,
+.read2me-widget-wrapper.preset-gray svg.read2me-player-forward,
+.read2me-widget-wrapper.preset-gray svg.read2me-speaking-rate-icon {
+    fill: #3A3C3C;
+}
+
+.read2me-widget-wrapper.preset-gray svg.read2me-player-rewind:hover,
+.read2me-widget-wrapper.preset-gray svg.read2me-player-forward:hover {
+    fill: #8FE3F7;
+}
+
+.read2me-widget-wrapper.preset-gray .slider-track {
+    background: transparent !important;
+}
+.read2me-widget-wrapper.preset-gray .slider-selection {
+    background: #0ED1FE !important;
+}
+.read2me-widget-wrapper.preset-gray .slider-track-high {
+    background: #DADBDB !important;
+}
+.read2me-widget-wrapper.preset-gray .slider-handle {
+    background: #0ED1FE !important;
+}
+
+.read2me-widget-wrapper.preset-gray .read2me-player-playback {
+    background-color: #0ED1FE;
+}
+.read2me-widget-wrapper.preset-gray .read2me-player-playback svg {
+    fill: white;
+}
+.read2me-widget-wrapper.preset-gray .read2me-player-playback:hover {
+    background-color: white;
+}
+.read2me-widget-wrapper.preset-gray .read2me-player-playback:hover svg {
+    fill: #0ED1FE;
+}
+.read2me-widget-wrapper.preset-gray .read2me-phone-ui .read2me-speaking-rate {
+    background-color: #EFEFEE;
+    border: 1px solid #e0e0e0;
+}
+.read2me-widget-wrapper.preset-gray .read2me-speaking-rate:hover {
+    background-color: #e8e8e8;
+}
+.read2me-widget-wrapper.preset-gray .read2me-speaking-rate:active {
+    background-color: #d7d7d7;
+}
+.read2me-widget-wrapper.preset-gray .read2me-menu > svg {
+    color: black;
+}
+.read2me-widget-wrapper.preset-gray .read2me-widget-loader {
+    height: 2px;
+}
+.read2me-widget-wrapper.preset-gray .read2me-dropdown a {
+    color: #3A3C3C;
+}
+.read2me-widget-wrapper.preset-gray .read2me-dropdown a:hover {
+    background-color: #fff;
+}
+.read2me-widget-wrapper.preset-gray .read2me-dropdown svg
+{
+    fill: #3A3C3C;
+}

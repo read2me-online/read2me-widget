@@ -1,0 +1,95 @@
+/** Green preset (aka read2me colors) */
+.read2me-widget-wrapper.preset-green .read2me-player,
+.read2me-widget-wrapper.preset-green .read2me-phone-ui,
+.read2me-widget-wrapper.preset-green .read2me-dropdown li {
+    background-color: rgb(255, 255, 255);
+    color: #3A3C3C;
+}
+.read2me-widget-wrapper.preset-green .read2me-phone-ui {
+    background: #f9fffe;
+}
+.read2me-widget-wrapper.preset-green .read2me-phone-playback-container {
+    border: 1px solid white;
+    background: #5eead6;
+}
+.read2me-widget-wrapper.preset-green .read2me-phone-playback-container > svg {
+    fill: white;
+}
+.read2me-widget-wrapper.preset-green .read2me-phone-scrubber-progress {
+    background: rgb(94, 234, 214);
+}
+.read2me-widget-wrapper.preset-green .read2me-phone-ui .read2me-speaking-rate {
+    background: #f3f3f3;
+    border: 1px solid #e8e8e8;
+}
+.read2me-widget-wrapper.preset-green .read2me-phone-playback > svg {
+    fill: #4c4c4c;
+}
+
+.read2me-widget-wrapper.preset-green svg.read2me-player-rewind,
+.read2me-widget-wrapper.preset-green svg.read2me-player-forward,
+.read2me-widget-wrapper.preset-green svg.read2me-speaking-rate-icon {
+    fill: #3A3C3C;
+}
+
+.read2me-widget-wrapper.preset-green svg.read2me-player-rewind:hover,
+.read2me-widget-wrapper.preset-green svg.read2me-player-forward:hover {
+    fill: #8FE3F7;
+}
+
+.read2me-widget-wrapper.preset-green .slider-track {
+    background: transparent !important;
+}
+.read2me-widget-wrapper.preset-green .slider-selection {
+    background: #5EEAD6 !important;
+}
+.read2me-widget-wrapper.preset-green .slider-track-high {
+    background: #DADBDB !important;
+}
+.read2me-widget-wrapper.preset-green .slider-handle {
+    background: #5EEAD6 !important;
+}
+
+.read2me-widget-wrapper.preset-green .read2me-player-playback {
+    background-color: #5EEAD6;
+}
+.read2me-widget-wrapper.preset-green .read2me-player-playback svg {
+    fill: white;
+}
+.read2me-widget-wrapper.preset-green .read2me-player-playback:hover {
+    background-color: white;
+}
+.read2me-widget-wrapper.preset-green .read2me-player-playback:hover svg {
+    fill: #5EEAD6;
+}
+
+.read2me-widget-wrapper.preset-green .read2me-speaking-rate {
+    border: none;
+    box-shadow: 0 0 1px 0 rgba(0,0,0,0.75);
+}
+.read2me-widget-wrapper.preset-green .read2me-speaking-rate:hover {
+    background-color: #fbfbfb;
+}
+.read2me-widget-wrapper.preset-green .read2me-speaking-rate:active {
+    background-color: #f2f2f2;
+}
+
+.read2me-widget-wrapper.preset-green .read2me-menu > svg {
+    color: #5EEAD6;
+}
+.read2me-widget-wrapper.preset-green .read2me-dropdown a {
+    color: #3A3C3C;
+}
+.read2me-widget-wrapper.preset-green .read2me-dropdown a:hover {
+    background-color: #5EEAD6;
+    color: #fff;
+}
+.read2me-widget-wrapper.preset-green .read2me-dropdown svg {
+    fill: #3A3C3C;
+}
+.read2me-widget-wrapper.preset-green .read2me-dropdown li:hover svg {
+    fill: #fff;
+}
+.read2me-widget-wrapper.preset-green + .read2me-analytics .read2me-analytics-title {
+    background-color: rgba(94, 234, 214, 0.35);
+}
