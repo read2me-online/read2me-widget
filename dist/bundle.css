@@ -1,5 +1,173 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,600');
 
+
+/** ANALYTICS **/
+.read2me-analytics-menu
+{
+    font-size: 10px;
+
+    display: block;
+
+    width: 100%;
+    height: 20px;
+    padding: 0 10px 0 10px;
+}
+.read2me-analytics-menu > div
+{
+    display: inline-block;
+
+    cursor: pointer;
+
+    opacity: .7;
+}
+.read2me-analytics-menu > div:hover
+{
+    opacity: .9;
+}
+.read2me-analytics-menu svg
+{
+    position: relative;
+    top: 4px;
+
+    width: 16px;
+    height: 16px;
+}
+.read2me-analytics-menu-close
+{
+    float: right;
+}
+.read2me-analytics-pages
+{
+    overflow-y: hidden;
+}
+.read2me-analytics-pages,
+.read2me-analytics-slide1,
+.read2me-analytics-slide2
+{
+    display: block;
+
+    width: 100%;
+    height: 81px;
+}
+.read2me-analytics-title
+{
+    font-size: 10px;
+    font-weight: normal;
+
+    position: absolute;
+    z-index: 200;
+    top: 0;
+    left: 232px;
+
+    padding: 0 7px 0 7px;
+
+    letter-spacing: 1px;
+
+    opacity: 1;
+    background-color: rgba(112, 112, 112, .18);
+}
+.read2me-analytics-slide2
+{
+    margin-top: -81px;
+
+    transition: all .5s ease-out;
+}
+.read2me-analytics-slide2.read2me-analytics-slide2-visible
+{
+    margin-top: 0;
+}
+.read2me-analytics-playback
+{
+    font-size: 12px;
+
+    display: inline-block;
+    float: left;
+
+    width: 190px;
+    padding: 5px 10px 0 10px;
+}
+.read2me-analytics-countries
+{
+    display: inline-block;
+
+    width: 380px;
+    height: 77px;
+}
+.read2me-analytics-countries .flag-icon
+{
+    font-size: 28px;
+
+    display: block;
+
+    box-shadow: 1px 1px 1px 0 rgba(0,0,0,.75);
+}
+.read2me-analytics-country
+{
+    display: inline-block;
+
+    width: 70px;
+    height: 100%;
+}
+.read2me-analytics-country .flag-icon:hover
+{
+    opacity: .7;
+}
+.read2me-analytics-playback-heading,
+.read2me-analytics-playback-value
+{
+    display: block;
+}
+.read2me-analytics-playback-heading
+{
+    height: 14px;
+
+    opacity: .7;
+}
+.read2me-analytics-playback-count
+{
+    margin-bottom: 8px;
+}
+.read2me-analytics-country-playbacks
+{
+    font-size: 11px;
+
+    display: block;
+
+    width: 37.3px;
+    padding-top: 5px;
+
+    text-align: center;
+
+    opacity: .7;
+}
+.read2me-analytics-countries-heading
+{
+    font-size: 12px;
+
+    padding: 5px 0 2px 0;
+
+    opacity: .7;
+}
+.read2me-analytics-country .flag-icon:hover + .read2me-analytics-country-playbacks
+{
+    opacity: .9;
+}
+
+/** highchart */
+.read2me-highcharts
+{
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: .75;
+}
+.read2me-highcharts .highcharts-credits
+{
+    display: none;
+}
+
 /*! =======================================================
                       VERSION  10.0.0              
 ========================================================= */
@@ -1274,171 +1442,6 @@ svg.read2me-speaking-rate-icon
 
     border: 8px solid white;
     box-shadow: 1px -1px 4px 0 rgba(0, 0, 0, .12);
-}
-.read2me-analytics-menu
-{
-    font-size: 10px;
-
-    display: block;
-
-    width: 100%;
-    height: 20px;
-    padding: 0 10px 0 10px;
-}
-.read2me-analytics-menu > div
-{
-    display: inline-block;
-
-    cursor: pointer;
-
-    opacity: .7;
-}
-.read2me-analytics-menu > div:hover
-{
-    opacity: .9;
-}
-.read2me-analytics-menu svg
-{
-    position: relative;
-    top: 4px;
-
-    width: 16px;
-    height: 16px;
-}
-.read2me-analytics-menu-close
-{
-    float: right;
-}
-.read2me-analytics-pages
-{
-    overflow-y: hidden;
-}
-.read2me-analytics-pages,
-.read2me-analytics-slide1,
-.read2me-analytics-slide2
-{
-    display: block;
-
-    width: 100%;
-    height: 81px;
-}
-.read2me-analytics-title
-{
-    font-size: 10px;
-    font-weight: normal;
-
-    position: absolute;
-    z-index: 200;
-    top: 0;
-    left: 232px;
-
-    padding: 0 7px 0 7px;
-
-    letter-spacing: 1px;
-
-    opacity: 1;
-    background-color: rgba(112, 112, 112, .18);
-}
-.read2me-analytics-slide2
-{
-    margin-top: -81px;
-
-    transition: all .5s ease-out;
-}
-.read2me-analytics-slide2.read2me-analytics-slide2-visible
-{
-    margin-top: 0;
-}
-.read2me-analytics-playback
-{
-    font-size: 12px;
-
-    display: inline-block;
-    float: left;
-
-    width: 190px;
-    padding: 5px 10px 0 10px;
-}
-.read2me-analytics-countries
-{
-    display: inline-block;
-
-    width: 380px;
-    height: 77px;
-}
-.read2me-analytics-countries .flag-icon
-{
-    font-size: 28px;
-
-    display: block;
-
-    box-shadow: 1px 1px 1px 0 rgba(0,0,0,.75);
-}
-.read2me-analytics-country
-{
-    display: inline-block;
-
-    width: 70px;
-    height: 100%;
-}
-.read2me-analytics-country .flag-icon:hover
-{
-    opacity: .7;
-}
-.read2me-analytics-playback-heading,
-.read2me-analytics-playback-value
-{
-    display: block;
-}
-.read2me-analytics-playback-heading
-{
-    height: 14px;
-
-    opacity: .7;
-}
-.read2me-analytics-playback-count
-{
-    margin-bottom: 8px;
-}
-.read2me-analytics-country-playbacks
-{
-    font-size: 11px;
-
-    display: block;
-
-    width: 37.3px;
-    padding-top: 5px;
-
-    text-align: center;
-
-    opacity: .7;
-}
-.read2me-analytics-countries-heading
-{
-    font-size: 12px;
-
-    padding: 5px 0 2px 0;
-
-    opacity: .7;
-}
-.read2me-analytics-country .flag-icon:hover + .read2me-analytics-country-playbacks
-{
-    opacity: .9;
-}
-
-/** highchart */
-.read2me-highcharts
-{
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    opacity: .75;
-}
-.read2me-highcharts .highcharts-credits
-{
-    display: none;
 }
 
 /* MOBILE UI */
