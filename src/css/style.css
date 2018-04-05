@@ -42,7 +42,7 @@
 @media (min-width: 768px) {
     .read2me-widget-wrapper {
         display:inline-block;
-        min-width: 580px;
+        min-width: 570px;
     }
     .read2me-widget-wrapper,
     .read2me-widget-wrapper.read2me-phone-stage2-active,
@@ -88,7 +88,7 @@
     box-sizing: content-box;
     min-width: 570px;
     height: 101px;
-    margin: 30px 5px 10px 5px;
+    margin: 30px 0 10px 0;
     display: inline-block;
     font-family: 'Raleway', sans-serif;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2), 0 3px 10px 0 rgba(0, 0, 0, .19);
@@ -372,7 +372,7 @@ svg.read2me-speaking-rate-icon {
     display: none;
     position: absolute;
     bottom: 5px;
-    right: 2px;
+    right: -2px;
     cursor: pointer;
 }
 .read2me-widget-wrapper.read2me-design-minimal .read2me-menu {

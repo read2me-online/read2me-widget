@@ -198,10 +198,9 @@ export default class Read2MeWidgetPlayer {
         }
 
         if (this.width === null) {
-            this.player.style.width = '570px';
-            this.wrapper.style.width = '580px';
+            this.wrapper.style.width = this.player.style.width = '570px';
         } else {
-            this.player.style.width = this.phoneUi.style.width = this.width;
+            this.wrapper.style.width = this.player.style.width = this.phoneUi.style.width = this.width;
         }
     }
 
@@ -431,6 +430,9 @@ export default class Read2MeWidgetPlayer {
 
         document.addEventListener('click', (e) => {
             let target = e.target || e.srcElement;
+
+            if (!this.wrapper.contains(target))
+                this.menu.classList.remove('read2me-dropdown-visible');
 
             if (
                 !target.classList.contains('read2me-menu')
