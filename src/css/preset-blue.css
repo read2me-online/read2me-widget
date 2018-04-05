@@ -27,8 +27,8 @@
     fill: #307088;
 }
 
-.read2me-widget-wrapper.preset-blue svg.read2me-player-rewind:hover,
-.read2me-widget-wrapper.preset-blue svg.read2me-player-forward:hover {
+.read2me-widget-wrapper.preset-blue .read2me-player svg.read2me-player-rewind:hover,
+.read2me-widget-wrapper.preset-blue .read2me-player svg.read2me-player-forward:hover {
     fill: #F4F4F4;
 }
 

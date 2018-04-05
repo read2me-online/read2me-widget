@@ -16,8 +16,8 @@
     fill: #3A3C3C;
 }
 
-.read2me-widget-wrapper.preset-gray svg.read2me-player-rewind:hover,
-.read2me-widget-wrapper.preset-gray svg.read2me-player-forward:hover {
+.read2me-widget-wrapper.preset-gray .read2me-player svg.read2me-player-rewind:hover,
+.read2me-widget-wrapper.preset-gray .read2me-player svg.read2me-player-forward:hover {
     fill: #8FE3F7;
 }
 

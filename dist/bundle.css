@@ -1347,8 +1347,8 @@ svg.read2me-speaking-rate-icon
     fill: #307088;
 }
 
-.read2me-widget-wrapper.preset-blue svg.read2me-player-rewind:hover,
-.read2me-widget-wrapper.preset-blue svg.read2me-player-forward:hover
+.read2me-widget-wrapper.preset-blue .read2me-player svg.read2me-player-rewind:hover,
+.read2me-widget-wrapper.preset-blue .read2me-player svg.read2me-player-forward:hover
 {
     fill: #f4f4f4;
 }
@@ -1463,8 +1463,8 @@ svg.read2me-speaking-rate-icon
     fill: #3a3c3c;
 }
 
-.read2me-widget-wrapper.preset-gray svg.read2me-player-rewind:hover,
-.read2me-widget-wrapper.preset-gray svg.read2me-player-forward:hover
+.read2me-widget-wrapper.preset-gray .read2me-player svg.read2me-player-rewind:hover,
+.read2me-widget-wrapper.preset-gray .read2me-player svg.read2me-player-forward:hover
 {
     fill: #8fe3f7;
 }
@@ -1578,8 +1578,8 @@ svg.read2me-speaking-rate-icon
     fill: #3a3c3c;
 }
 
-.read2me-widget-wrapper.preset-green svg.read2me-player-rewind:hover,
-.read2me-widget-wrapper.preset-green svg.read2me-player-forward:hover
+.read2me-widget-wrapper.preset-green .read2me-player svg.read2me-player-rewind:hover,
+.read2me-widget-wrapper.preset-green .read2me-player svg.read2me-player-forward:hover
 {
     fill: #8fe3f7;
 }
