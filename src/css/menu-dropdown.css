@@ -1,0 +1,99 @@
+.read2me-menu {
+    display: none;
+    position: absolute;
+    bottom: 5px;
+    right: -2px;
+    cursor: pointer;
+}
+.read2me-widget-wrapper.read2me-design-minimal .read2me-menu {
+    right: 0;
+    bottom: -8px;
+}
+.read2me-menu > svg {
+    opacity: 0.25;
+}
+.read2me-menu > svg:hover {
+    display: inline-block;
+    bottom: 0;
+    right: 9px;
+    opacity: 0.5;
+    font-size: 12px;
+}
+.read2me-widget-wrapper.read2me-phone-stage2-active .read2me-menu {
+    display: none !important;
+}
+@media (min-width: 768px) {
+    .read2me-widget-wrapper:hover .read2me-menu,
+    .read2me-menu.read2me-dropdown-visible {
+        display: inline-block;
+    }
+}
+.read2me-menu.read2me-dropdown-visible .read2me-dropdown {
+    opacity: 1;
+    visibility: visible;
+}
+.read2me-dropdown {
+    /*
+        link colors are the same as widget text color
+        background color is the same as widget background color
+    */
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    right: 0;
+    min-width: 170px;
+    background: transparent;
+    padding-top: 10px;
+    z-index: 201;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out ;
+    -ms-transition: all 0.25s ease-out ;
+    -o-transition: all 0.25s ease-out ;
+    transition: all 0.25s ease-out ;
+}
+.read2me-dropdown ul {
+    padding: 0;
+    margin: 0;
+    box-shadow: 2px 4px 6px 0px rgba(0,0,0,.19)
+}
+.read2me-dropdown li {
+    margin: 0;
+    padding: 0;
+    display: block;
+    text-align: right;
+    border: 1px solid rgba(197, 197, 197, 0.1);
+}
+.read2me-dropdown li a {
+    display: block;
+    padding: 6px;
+    font-size: 9px;
+    text-decoration: none;
+}
+.read2me-dropdown-trigger {
+    box-sizing: content-box;
+    padding: 5px 3px 5px 5px;
+    outline: none;
+}
+.read2me-dropdown a svg {
+    position: relative;
+    margin-left: 5px;
+}
+.read2me-dropdown svg {
+    position: relative;
+    top: 2.5px;
+}
+.read2me-dropdown ul:before {
+    content: "";
+    border: 8px solid white;
+    position: absolute;
+    width: 0;
+    height: 0;
+    box-sizing: border-box;
+    right: 27px;
+    z-index: -1;
+    transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    box-shadow: 1px -1px 4px 0 rgba(0, 0, 0, .12);
+}

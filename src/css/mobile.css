@@ -1,0 +1,194 @@
+/* MOBILE UI */
+.read2me-phone-ui {
+    padding: 17px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Raleway', sans-serif;
+    -webkit-transition: height 0.3s ease-in-out;
+    -moz-transition: height 0.3s ease-in-out;
+    -ms-transition: height 0.3s ease-in-out;
+    -o-transition: height 0.3s ease-in-out;
+    transition: height 0.3s ease-in-out;
+}
+.read2me-phone-ui svg {
+    cursor: pointer;
+}
+.read2me-phone-stage1 {
+    transition: all 0.6s ease-in-out;
+    cursor: pointer;
+}
+.read2me-phone-stage1.read2me-stage1-loading .read2me-phone-title {
+    display: none;
+}
+.read2me-phone-stage1.read2me-stage1-loading .read2me-phone-title-loading {
+    display: inline-block;
+}
+.read2me-widget-wrapper.read2me-phone-stage2-active .read2me-phone-stage1 {
+    margin-top: -87px;
+}
+@media (min-width: 768px) {
+    .read2me-widget-wrapper.read2me-phone-stage2-active .read2me-phone-stage1 {
+        margin-top: -80px;
+    }
+}
+.read2me-phone-title-loading {
+    display: none;
+}
+.read2me-phone-stage2 {
+    margin-top: 17px;
+    flex-wrap: wrap;
+}
+.read2me-phone-stage1,
+.read2me-phone-stage2 {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.read2me-phone-play-container,
+.read2me-phone-playback-container {
+    position: relative;
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    border: 1px solid black;
+    display: inline-block;
+    margin-right: 17px;
+    cursor: pointer;
+}
+.read2me-phone-stage2 .read2me-phone-play,
+.read2me-phone-pause,
+.read2me-phone-replay {
+    -webkit-transition: opacity 0.2s ease-out;
+    -moz-transition: opacity 0.2s ease-out;
+    -ms-transition: opacity 0.2s ease-out;
+    -o-transition: opacity 0.2s ease-out;
+    transition: opacity 0.2s ease-out;
+
+    opacity: 0;
+    position: absolute;
+}
+.read2me-phone-playback-container.read2me-phone-playback-playing .read2me-phone-pause {
+    opacity: 1;
+}
+.read2me-phone-playback-container.read2me-phone-playback-paused .read2me-phone-play {
+    opacity: 1;
+}
+.read2me-phone-playback-container.read2me-phone-playback-ended .read2me-phone-replay {
+    opacity: 1;
+}
+.read2me-phone-stage1 .read2me-phone-play {
+    display: block;
+    position: relative;
+    left: 8px;
+    top: 7px;
+}
+.read2me-stage1-loading .read2me-phone-play-container {
+    opacity: 0.4;
+}
+.read2me-phone-title-container {
+    display: inline-block;
+    letter-spacing: 1px;
+}
+.read2me-phone-title-container strong {
+    font-weight: 600;
+}
+.read2me-phone-title {
+    cursor: pointer;
+    display: inline-block;
+}
+.read2me-loading-dots:after {
+    content: ' .';
+    animation: dots 1s steps(5, end) infinite;
+}
+@keyframes dots {
+    0%, 20% {
+        color: rgba(0, 0, 0, 0);
+        text-shadow: .25em 0 0 rgba(0, 0, 0, 0),
+        .5em 0 0 rgba(0, 0, 0, 0);
+    }
+    40% {
+        color: #000000;
+        text-shadow: .25em 0 0 rgba(0, 0, 0, 0),
+        .5em 0 0 rgba(0, 0, 0, 0);
+    }
+    60% {
+        text-shadow: .25em 0 0 #000000,
+        .5em 0 0 rgba(0, 0, 0, 0);
+    }
+    80%, 100% {
+        text-shadow: .25em 0 0 #000000,
+        .5em 0 0 #000000;
+    }
+}
+.read2me-phone-playback {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    margin-bottom: 15px;
+}
+.read2me-phone-playback .read2me-phone-playback-container {
+    /* deliberately more specific to avoid !important */
+    margin-right: 0;
+}
+.read2me-phone-stage2 .read2me-phone-play {
+    left: 6px;
+    top: 5px;
+}
+.read2me-phone-pause {
+    top: 10px;
+    left: 10px;
+}
+.read2me-phone-replay {
+    top: 4px;
+    left: 4px;
+}
+
+.read2me-phone-controls {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.read2me-phone-remaining-time-container {
+    text-align: right;
+    line-height: 18px;
+}
+.read2me-phone-scrubber-container {
+    flex: 1 1 auto;
+    width: 100%;
+    display: block;
+    padding: 11px 0 11px 0;
+    margin: 0 15px 0 15px;
+    cursor: pointer;
+}
+.read2me-phone-scrubber {
+    height: 4px;
+    width: 100%;
+    background: #eee;
+    border-radius: 2px;
+    overflow: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+.read2me-phone-scrubber-progress {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: #545454;
+    display: block;
+    -webkit-transition: transform .2s;
+    -webkit-transition: -webkit-transform .2s;
+    transition: -webkit-transform .2s;
+    transition: transform .2s;
+    transition: transform .2s,-webkit-transform .2s;
+    transform: translateX(-100%);
+}
+.read2me-phone-remaining-time-container,
+.read2me-phone-speaking-rate-container {
+    flex: 0 1 auto;
+    width: 60px;
+    font-size: 12px;
+    border-radius: 2px;
+}
