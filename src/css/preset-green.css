@@ -90,6 +90,6 @@
 .read2me-widget-wrapper.preset-green .read2me-dropdown li:hover svg {
     fill: #fff;
 }
-.read2me-widget-wrapper.preset-green + .read2me-analytics .read2me-analytics-title {
+.read2me-widget-wrapper.preset-green .read2me-analytics-title {
     background-color: rgba(94, 234, 214, 0.35);
 }

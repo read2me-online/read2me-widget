@@ -97,3 +97,8 @@
     -webkit-transform: rotate(-45deg);
     box-shadow: 1px -1px 4px 0 rgba(0, 0, 0, .12);
 }
+
+/** hide in analytics view */
+.read2me-widget-wrapper.read2me-analytics-view .read2me-menu {
+    display: none;
+}

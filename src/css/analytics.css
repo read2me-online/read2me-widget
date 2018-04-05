@@ -116,3 +116,17 @@
 .read2me-highcharts .highcharts-credits {
     display: none;
 }
+
+/* analytics shown for minimal view (on desktop) */
+.read2me-widget-wrapper.read2me-design-minimal.read2me-analytics-view {
+    height: 101px;
+}
+.read2me-widget-wrapper.read2me-design-minimal.read2me-analytics-view .read2me-flipper {
+    display: block;
+}
+.read2me-widget-wrapper.read2me-design-minimal.read2me-analytics-view .read2me-analytics {
+    margin-top: 0;
+}
+.read2me-widget-wrapper.read2me-design-minimal.read2me-analytics-view .read2me-phone-ui {
+    display: none;
+}

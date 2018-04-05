@@ -97,6 +97,6 @@
 .read2me-widget-wrapper.preset-blue .read2me-dropdown li:hover svg {
     fill: #0ED1FE;
 }
-.read2me-widget-wrapper.preset-blue + .read2me-analytics .read2me-analytics-title {
+.read2me-widget-wrapper.preset-blue .read2me-analytics-title {
     background: rgba(14, 209, 254, 0.29);
 }
