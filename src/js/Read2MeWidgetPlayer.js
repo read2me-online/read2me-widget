@@ -45,7 +45,7 @@ export default class Read2MeWidgetPlayer {
         this.pause = this.player.querySelector('.read2me-player-playback-pause');
         this.replay = this.player.querySelector('.read2me-player-playback-replay');
 
-        // phone UI playback controls
+        // phone UI/minimal playback controls
         this.phoneUi = this.wrapper.querySelector('.read2me-phone-ui');
         this.phoneStage1 = this.phoneUi.querySelector('.read2me-phone-stage1');
         this.phonePlaybackContainer = this.phoneUi.querySelector('.read2me-phone-playback-container');
@@ -449,6 +449,7 @@ export default class Read2MeWidgetPlayer {
             if (this.highchart !== null) {
                 this.wrapper.classList.add('read2me-analytics-view');
 
+                e.preventDefault(); // prevents the browser from going to the top
                 return;
             }
 
@@ -488,7 +489,7 @@ export default class Read2MeWidgetPlayer {
                 }
             );
 
-            e.preventDefault(); // prevents browser going to top
+            e.preventDefault(); // prevents the browser from going to the top
         });
 
         this.refreshContentLink.addEventListener('click', (e) => {
