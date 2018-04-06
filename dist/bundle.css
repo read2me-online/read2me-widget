@@ -9,7 +9,7 @@
 
     display: block;
 
-    width: 100%;
+    min-width: 570px;
     height: 20px;
     padding: 0 10px 0 10px;
 }
@@ -39,6 +39,7 @@
 }
 .read2me-analytics-pages
 {
+    overflow-x: scroll;
     overflow-y: hidden;
 }
 .read2me-analytics-pages,
@@ -47,7 +48,7 @@
 {
     display: block;
 
-    width: 100%;
+    min-width: 570px;
     height: 81px;
 }
 .read2me-analytics-title
@@ -60,6 +61,7 @@
     top: 0;
     left: 232px;
 
+    width: 105px;
     padding: 0 7px 0 7px;
 
     letter-spacing: 1px;
@@ -69,6 +71,8 @@
 }
 .read2me-analytics-slide2
 {
+    position: relative;
+
     margin-top: -81px;
 
     transition: all .5s ease-out;
@@ -89,6 +93,10 @@
 }
 .read2me-analytics-countries
 {
+    position: absolute;
+    top: 0;
+    left: 190px;
+
     display: inline-block;
 
     width: 380px;
@@ -222,10 +230,6 @@
 {
     box-sizing: border-box;
 }
-.read2me-widget-wrapper.read2me-analytics-view
-{
-    min-width: 570px !important;
-}
 
 .read2me-phone-ui
 {
@@ -307,6 +311,10 @@
 
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2), 0 3px 10px 0 rgba(0, 0, 0, .19);
 }
+.read2me-design-minimal.read2me-analytics-view .read2me-analytics
+{
+    min-width: 250px;
+}
 
 /* 3D rules */
 .read2me-widget-wrapper
@@ -371,10 +379,17 @@
     right: 0;
     left: auto;
 
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    width: 100%;
+
     -webkit-transform: rotateY(180deg);
        -moz-transform: rotateY(180deg);
         -ms-transform: rotateY(180deg);
             transform: rotateY(180deg);
+
+    background-color: white;
 }
 
 /**

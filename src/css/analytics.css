@@ -1,7 +1,7 @@
 
 /** ANALYTICS **/
 .read2me-analytics-menu {
-    width: 100%;
+    min-width: 570px;
     height: 20px;
     display: block;
     font-size: 10px;
@@ -25,13 +25,14 @@
     float: right;
 }
 .read2me-analytics-pages {
+    overflow-x: scroll;
     overflow-y: hidden;
 }
 .read2me-analytics-pages,
 .read2me-analytics-slide1,
 .read2me-analytics-slide2 {
     height: 81px;
-    width: 100%;
+    min-width: 570px;
     display: block;
 }
 .read2me-analytics-title {
@@ -45,10 +46,12 @@
     opacity: 1;
     background-color: rgba(112, 112, 112, 0.18);
     padding: 0 7px 0 7px;
+    width: 105px;
 }
 .read2me-analytics-slide2 {
     margin-top: -81px;
     transition: all 0.5s ease-out;
+    position: relative;
 }
 .read2me-analytics-slide2.read2me-analytics-slide2-visible {
     margin-top: 0;
@@ -61,9 +64,12 @@
     padding: 5px 10px 0 10px;
 }
 .read2me-analytics-countries {
-    display: inline-block;
     width: 380px;
     height: 77px;
+    position: absolute;
+    top: 0;
+    left: 190px;
+    display: inline-block;
 }
 .read2me-analytics-countries .flag-icon {
     font-size: 28px;

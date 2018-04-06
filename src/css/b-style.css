@@ -28,9 +28,6 @@
 .read2me-widget-wrapper * {
     box-sizing: border-box;
 }
-.read2me-widget-wrapper.read2me-analytics-view {
-    min-width: 570px !important;
-}
 
 .read2me-phone-ui {
     display: inline-block;
@@ -93,6 +90,9 @@
     top: 0;
     left: 0;
 }
+.read2me-design-minimal.read2me-analytics-view .read2me-analytics {
+    min-width: 250px;
+}
 
 /* 3D rules */
 .read2me-widget-wrapper {
@@ -147,6 +147,10 @@
     -ms-transform: rotateY(180deg);
     left: auto;
     right: 0;
+    background-color: white;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 100%;
 }
 
 /**
