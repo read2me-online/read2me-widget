@@ -694,6 +694,7 @@ svg.read2me-speaking-rate-icon
 
     cursor: pointer;
     text-align: center;
+    word-break: keep-all;
 
     border: 1px solid whitesmoke;
     border-radius: 10px;

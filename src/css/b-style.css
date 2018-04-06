@@ -375,6 +375,7 @@ svg.read2me-speaking-rate-icon {
     outline: none !important;
     cursor: pointer;
     width: 100%;
+    word-break: keep-all;
 }
 .read2me-tablet-ui .read2me-speaking-rate {
     width: 52px;
