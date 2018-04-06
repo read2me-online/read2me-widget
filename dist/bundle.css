@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,600');
 
 
@@ -181,10 +182,6 @@
 {
     margin-top: 0;
 }
-.read2me-widget-wrapper.read2me-design-minimal.read2me-analytics-view .read2me-phone-ui
-{
-    display: none;
-}
 
 .read2me-widget-wrapper.read2me-template
 {
@@ -225,6 +222,10 @@
 {
     box-sizing: border-box;
 }
+.read2me-widget-wrapper.read2me-analytics-view
+{
+    min-width: 570px !important;
+}
 
 .read2me-phone-ui
 {
@@ -232,7 +233,6 @@
 
     margin: 0;
 }
-.read2me-tablet-ui,
 .read2me-desktop-ui
 {
     display: none;
@@ -251,12 +251,10 @@
     {
         height: 147px;
     }
-    .read2me-tablet-ui,
     .read2me-desktop-ui
     {
         display: inline-block;
     }
-    .read2me-widget-wrapper.read2me-design-minimal .read2me-tablet-ui,
     .read2me-widget-wrapper.read2me-design-minimal .read2me-desktop-ui
     {
         display: none;
@@ -267,7 +265,7 @@
     }
     .read2me-widget-wrapper.read2me-design-minimal .read2me-phone-ui
     {
-        display: inline-block;
+        display: block;
     }
     .read2me-widget-wrapper.read2me-design-minimal
     {
@@ -299,8 +297,6 @@
     position: absolute;
     top: 0;
     left: 0;
-
-    display: inline-block;
 
     -webkit-box-sizing: content-box;
        -moz-box-sizing: content-box;
@@ -343,7 +339,16 @@
         -ms-transform-style: preserve-3d;
             transform-style: preserve-3d;
 }
+.read2me-design-minimal .read2me-flipper
+{
+    height: 50px;
+}
+.read2me-design-minimal.read2me-analytics-view .read2me-flipper
+{
+    height: 101px;
+}
 .read2me-player,
+.read2me-phone-ui,
 .read2me-analytics
 {
     -webkit-backface-visibility: hidden;
@@ -352,7 +357,8 @@
             backface-visibility: hidden;
 }
 /* front */
-.read2me-player
+.read2me-player,
+.read2me-phone-ui
 {
     z-index: 201;
     /* for firefox */
@@ -624,9 +630,6 @@ svg.read2me-speaking-rate-icon
     width: 20px;
 }
 
-
-
-
 /**
  A great loader from https://codepen.io/brunjo/pen/XJmbNz
  */
@@ -701,7 +704,7 @@ svg.read2me-speaking-rate-icon
     outline: none !important;
     background-color: white;
 }
-.read2me-tablet-ui .read2me-speaking-rate
+.read2me-desktop-ui .read2me-speaking-rate
 {
     font-size: 13px;
 

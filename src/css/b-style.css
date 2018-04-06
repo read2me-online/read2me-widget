@@ -28,12 +28,14 @@
 .read2me-widget-wrapper * {
     box-sizing: border-box;
 }
+.read2me-widget-wrapper.read2me-analytics-view {
+    min-width: 570px !important;
+}
 
 .read2me-phone-ui {
     display: inline-block;
     margin: 0;
 }
-.read2me-tablet-ui,
 .read2me-desktop-ui {
     display: none;
 }
@@ -47,11 +49,9 @@
     .read2me-widget-wrapper.read2me-phone-stage2-active .read2me-phone-ui {
         height: 147px;
     }
-    .read2me-tablet-ui,
     .read2me-desktop-ui {
         display: inline-block;
     }
-    .read2me-widget-wrapper.read2me-design-minimal .read2me-tablet-ui,
     .read2me-widget-wrapper.read2me-design-minimal .read2me-desktop-ui {
         display: none;
     }
@@ -59,7 +59,7 @@
         display: none;
     }
     .read2me-widget-wrapper.read2me-design-minimal .read2me-phone-ui {
-        display: inline-block;
+        display: block;
     }
     .read2me-widget-wrapper.read2me-design-minimal {
         height: 50px;
@@ -87,7 +87,6 @@
     min-width: 570px;
     height: 101px;
     margin: 30px 0 10px 0;
-    display: inline-block;
     font-family: 'Raleway', sans-serif;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2), 0 3px 10px 0 rgba(0, 0, 0, .19);
     position: absolute;
@@ -119,7 +118,14 @@
     transform-origin: right center;
     position: relative;
 }
+.read2me-design-minimal .read2me-flipper {
+    height: 50px;
+}
+.read2me-design-minimal.read2me-analytics-view .read2me-flipper {
+    height: 101px;
+}
 .read2me-player,
+.read2me-phone-ui,
 .read2me-analytics {
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
@@ -127,7 +133,8 @@
     backface-visibility: hidden;
 }
 /* front */
-.read2me-player {
+.read2me-player,
+.read2me-phone-ui {
     z-index: 201;
     /* for firefox */
     transform: rotateY(0deg);
@@ -332,9 +339,6 @@ svg.read2me-speaking-rate-icon {
     width: 20px;
 }
 
-
-
-
 /**
  A great loader from https://codepen.io/brunjo/pen/XJmbNz
  */
@@ -377,7 +381,7 @@ svg.read2me-speaking-rate-icon {
     width: 100%;
     word-break: keep-all;
 }
-.read2me-tablet-ui .read2me-speaking-rate {
+.read2me-desktop-ui .read2me-speaking-rate {
     width: 52px;
     position: relative;
     top: -5px;

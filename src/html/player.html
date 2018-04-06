@@ -1,7 +1,9 @@
 <div class="read2me-widget-wrapper read2me-template" style="display: none;">
-    <!-- STARTS TABLET AND DESKTOP UI -->
-    <div class="read2me-flipper read2me-tablet-ui read2me-desktop-ui">
-        <div class="read2me-player">
+    <!-- STARTS FLIPPER -->
+    <div class="read2me-flipper">
+        <!-- STARTS FRONT SIDE -->
+        <!-- STARTS TABLET/DESKTOP UI -->
+        <div class="read2me-player read2me-desktop-ui">
             <img src="" class="read2me-thumbnail">
             <div class="read2me-player-title">
                 <span>Listen to this article</span>
@@ -74,6 +76,102 @@
             </div>
             <div class="read2me-widget-loader"></div>
         </div>
+        <!-- ENDS TABLET/DESKTOP UI -->
+
+        <!-- STARTS PHONE UI/MINIMAL DESIGN -->
+        <div class="read2me-phone-ui">
+            <!-- STAGE 1 -->
+            <div class="read2me-phone-stage1">
+                <div class="read2me-phone-play-container">
+                    <!-- play -->
+                    <svg style="width: 18px; height: 18px;"
+                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" class="read2me-phone-play">
+                        <path d="M10,5.251v39.497L43.572,25L10,5.251z"></path>
+                    </svg>
+                </div>
+                <div class="read2me-phone-title-container">
+                    <div class="read2me-phone-title">
+                        <strong>Listen</strong> to the article
+                    </div>
+                    <div class="read2me-phone-title-loading">
+                        <strong>Loading</strong> audio<span class="read2me-loading-dots"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- STAGE 2 -->
+            <div class="read2me-phone-stage2">
+                <div class="read2me-phone-playback">
+                    <!-- rewind -->
+                    <svg style="width: 33px; height: 33px;" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                         class="read2me-player-rewind"
+                    >
+                        <defs>
+                            <path d="M0 0h24v24H0V0z" id="a"></path>
+                        </defs>
+                        <clipPath id="b">
+                            <use overflow="visible" xlink:href="#a"></use>
+                        </clipPath>
+                        <path clip-path="url(#b)"
+                              d="M12 5V1L7 6l5 5V7c3.3 0 6 2.7 6 6s-2.7 6-6 6-6-2.7-6-6H4c0 4.4 3.6 8 8 8s8-3.6 8-8-3.6-8-8-8zm-1.1 11H10v-3.3L9 13v-.7l1.8-.6h.1V16zm4.3-1.8c0 .3 0 .6-.1.8l-.3.6s-.3.3-.5.3-.4.1-.6.1-.4 0-.6-.1-.3-.2-.5-.3-.2-.3-.3-.6-.1-.5-.1-.8v-.7c0-.3 0-.6.1-.8l.3-.6s.3-.3.5-.3.4-.1.6-.1.4 0 .6.1c.2.1.3.2.5.3s.2.3.3.6.1.5.1.8v.7zm-.9-.8v-.5s-.1-.2-.1-.3-.1-.1-.2-.2-.2-.1-.3-.1-.2 0-.3.1l-.2.2s-.1.2-.1.3v2s.1.2.1.3.1.1.2.2.2.1.3.1.2 0 .3-.1l.2-.2s.1-.2.1-.3v-1.5z"></path>
+                    </svg>
+                    <!-- PLAY / PAUSE / REPLAY -->
+                    <div class="read2me-phone-playback-container read2me-phone-playback-paused">
+                        <!-- play -->
+                        <svg style="width: 27px; height: 27px;"
+                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" class="read2me-phone-play">
+                            <path d="M10,5.251v39.497L43.572,25L10,5.251z"></path>
+                        </svg>
+                        <!-- pause -->
+                        <svg style="width: 17px; height: 17px;" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="read2me-phone-pause">
+                            <g>
+                                <g>
+                                    <rect x="16" width="8" height="24"></rect>
+                                    <rect width="8" height="24"></rect>
+                                </g>
+                            </g>
+                        </svg>
+                        <!-- replay -->
+                        <svg fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 28px; height: 28px;"
+                             class="read2me-phone-replay">
+                            <path d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"></path>
+                        </svg>
+                    </div>
+                    <!-- forward -->
+                    <svg style="width: 33px; height: 33px;" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                         class="read2me-player-forward"
+                    >
+                        <defs>
+                            <path d="M24 24H0V0h24v24z" id="a"></path>
+                        </defs>
+                        <clipPath id="b">
+                            <use overflow="visible" xlink:href="#a"></use>
+                        </clipPath>
+                        <path clip-path="url(#b)"
+                              d="M4 13c0 4.4 3.6 8 8 8s8-3.6 8-8h-2c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6v4l5-5-5-5v4c-4.4 0-8 3.6-8 8zm6.8 3H10v-3.3L9 13v-.7l1.8-.6h.1V16zm4.3-1.8c0 .3 0 .6-.1.8l-.3.6s-.3.3-.5.3-.4.1-.6.1-.4 0-.6-.1-.3-.2-.5-.3-.2-.3-.3-.6-.1-.5-.1-.8v-.7c0-.3 0-.6.1-.8l.3-.6s.3-.3.5-.3.4-.1.6-.1.4 0 .6.1.3.2.5.3.2.3.3.6.1.5.1.8v.7zm-.8-.8v-.5s-.1-.2-.1-.3-.1-.1-.2-.2-.2-.1-.3-.1-.2 0-.3.1l-.2.2s-.1.2-.1.3v2s.1.2.1.3.1.1.2.2.2.1.3.1.2 0 .3-.1l.2-.2s.1-.2.1-.3v-1.5z"></path>
+                    </svg>
+                </div>
+
+                <div class="read2me-phone-controls">
+                    <div class="read2me-phone-remaining-time-container"><span></span></div>
+                    <div class="read2me-phone-scrubber-container">
+                        <div class="read2me-phone-scrubber">
+                            <div class="read2me-phone-scrubber-progress"></div>
+                        </div>
+                    </div>
+                    <div class="read2me-phone-speaking-rate-container">
+                        <button type="button" class="read2me-speaking-rate">1</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ENDS PHONE UI/MINIMAL DESIGN -->
+        <!-- ENDS FRONT SIDE -->
+
+        <!-- STARTS ANALYTICS -->
+        <!-- STARTS BACK SIDE -->
         <div class="read2me-analytics">
             <div class="read2me-analytics-menu">
                 <div class="read2me-analytics-menu-slide1 hidden">
@@ -123,101 +221,12 @@
                 </div>
             </div>
         </div>
+        <!-- ENDS BACK SIDE -->
+        <!-- ENDS ANALYTICS -->
     </div>
-    <!-- ENDS TABLET AND DESKTOP UI -->
+    <!-- ENDS FLIPPER -->
 
-    <!-- STARTS PHONE UI -->
-    <div class="read2me-phone-ui">
-        <!-- STAGE 1 -->
-        <div class="read2me-phone-stage1">
-            <div class="read2me-phone-play-container">
-                <!-- play -->
-                <svg style="width: 18px; height: 18px;"
-                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" class="read2me-phone-play">
-                    <path d="M10,5.251v39.497L43.572,25L10,5.251z"></path>
-                </svg>
-            </div>
-            <div class="read2me-phone-title-container">
-                <div class="read2me-phone-title">
-                    <strong>Listen</strong> to the article
-                </div>
-                <div class="read2me-phone-title-loading">
-                    <strong>Loading</strong> audio<span class="read2me-loading-dots"></span>
-                </div>
-            </div>
-        </div>
-        <!-- STAGE 2 -->
-        <div class="read2me-phone-stage2">
-            <div class="read2me-phone-playback">
-                <!-- rewind -->
-                <svg style="width: 33px; height: 33px;" viewBox="0 0 24 24"
-                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                     class="read2me-player-rewind"
-                >
-                    <defs>
-                        <path d="M0 0h24v24H0V0z" id="a"></path>
-                    </defs>
-                    <clipPath id="b">
-                        <use overflow="visible" xlink:href="#a"></use>
-                    </clipPath>
-                    <path clip-path="url(#b)"
-                          d="M12 5V1L7 6l5 5V7c3.3 0 6 2.7 6 6s-2.7 6-6 6-6-2.7-6-6H4c0 4.4 3.6 8 8 8s8-3.6 8-8-3.6-8-8-8zm-1.1 11H10v-3.3L9 13v-.7l1.8-.6h.1V16zm4.3-1.8c0 .3 0 .6-.1.8l-.3.6s-.3.3-.5.3-.4.1-.6.1-.4 0-.6-.1-.3-.2-.5-.3-.2-.3-.3-.6-.1-.5-.1-.8v-.7c0-.3 0-.6.1-.8l.3-.6s.3-.3.5-.3.4-.1.6-.1.4 0 .6.1c.2.1.3.2.5.3s.2.3.3.6.1.5.1.8v.7zm-.9-.8v-.5s-.1-.2-.1-.3-.1-.1-.2-.2-.2-.1-.3-.1-.2 0-.3.1l-.2.2s-.1.2-.1.3v2s.1.2.1.3.1.1.2.2.2.1.3.1.2 0 .3-.1l.2-.2s.1-.2.1-.3v-1.5z"></path>
-                </svg>
-                <!-- PLAY / PAUSE / REPLAY -->
-                <div class="read2me-phone-playback-container read2me-phone-playback-paused">
-                    <!-- play -->
-                    <svg style="width: 27px; height: 27px;"
-                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" class="read2me-phone-play">
-                        <path d="M10,5.251v39.497L43.572,25L10,5.251z"></path>
-                    </svg>
-                    <!-- pause -->
-                    <svg style="width: 17px; height: 17px;" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="read2me-phone-pause">
-                        <g>
-                            <g>
-                                <rect x="16" width="8" height="24"></rect>
-                                <rect width="8" height="24"></rect>
-                            </g>
-                        </g>
-                    </svg>
-                    <!-- replay -->
-                    <svg fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 28px; height: 28px;"
-                         class="read2me-phone-replay">
-                        <path d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"></path>
-                    </svg>
-                </div>
-                <!-- forward -->
-                <svg style="width: 33px; height: 33px;" viewBox="0 0 24 24"
-                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                     class="read2me-player-forward"
-                >
-                    <defs>
-                        <path d="M24 24H0V0h24v24z" id="a"></path>
-                    </defs>
-                    <clipPath id="b">
-                        <use overflow="visible" xlink:href="#a"></use>
-                    </clipPath>
-                    <path clip-path="url(#b)"
-                          d="M4 13c0 4.4 3.6 8 8 8s8-3.6 8-8h-2c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6v4l5-5-5-5v4c-4.4 0-8 3.6-8 8zm6.8 3H10v-3.3L9 13v-.7l1.8-.6h.1V16zm4.3-1.8c0 .3 0 .6-.1.8l-.3.6s-.3.3-.5.3-.4.1-.6.1-.4 0-.6-.1-.3-.2-.5-.3-.2-.3-.3-.6-.1-.5-.1-.8v-.7c0-.3 0-.6.1-.8l.3-.6s.3-.3.5-.3.4-.1.6-.1.4 0 .6.1.3.2.5.3.2.3.3.6.1.5.1.8v.7zm-.8-.8v-.5s-.1-.2-.1-.3-.1-.1-.2-.2-.2-.1-.3-.1-.2 0-.3.1l-.2.2s-.1.2-.1.3v2s.1.2.1.3.1.1.2.2.2.1.3.1.2 0 .3-.1l.2-.2s.1-.2.1-.3v-1.5z"></path>
-                </svg>
-            </div>
-
-            <div class="read2me-phone-controls">
-                <div class="read2me-phone-remaining-time-container"><span></span></div>
-                <div class="read2me-phone-scrubber-container">
-                    <div class="read2me-phone-scrubber">
-                        <div class="read2me-phone-scrubber-progress"></div>
-                    </div>
-                </div>
-                <div class="read2me-phone-speaking-rate-container">
-                    <button type="button" class="read2me-speaking-rate">1</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ENDS PHONE UI -->
-
-    <!-- STARTS DROPDOWN -->
+    <!-- STARTS DROPDOWN (only visible on tablet and desktop) -->
     <div class="read2me-menu">
         <svg fill="#000000" height="14" viewBox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg" class="read2me-dropdown-trigger" tabindex="-1">
             <path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/>
@@ -264,4 +273,5 @@
             </ul>
         </div>
     </div>
+    <!-- ENDS DROPDOWN -->
 </div>
