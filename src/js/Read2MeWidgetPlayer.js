@@ -106,6 +106,9 @@ export default class Read2MeWidgetPlayer {
         this.removePlaybackBufferingStyles();
         this.setMarqueeForTitle();
         this.handleAnalyticsMenuBindings();
+
+        if (parseInt(getComputedStyle(this.wrapper).width) > 570)
+            this.analytics.querySelector('.read2me-analytics-title').style.left = '42.5%';
     }
 
     _setListeningSessionId() {
