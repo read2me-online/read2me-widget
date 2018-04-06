@@ -49,13 +49,19 @@
 .read2me-phone-play-container,
 .read2me-phone-playback-container {
     position: relative;
-    width: 33px;
-    height: 33px;
     border-radius: 50%;
     border: 1px solid black;
     display: inline-block;
     margin-right: 17px;
     cursor: pointer;
+}
+.read2me-phone-play-container {
+    width: 33px;
+    height: 33px;
+}
+.read2me-phone-playback-container {
+    width: 40px;
+    height: 40px;
 }
 .read2me-phone-stage2 .read2me-phone-play,
 .read2me-phone-pause,
@@ -125,25 +131,25 @@
 .read2me-phone-playback {
     width: 100%;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-evenly;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 .read2me-phone-playback .read2me-phone-playback-container {
     /* deliberately more specific to avoid !important */
     margin-right: 0;
 }
 .read2me-phone-stage2 .read2me-phone-play {
-    left: 6px;
-    top: 5px;
+    top: 6px;
+    left: 7px;
 }
 .read2me-phone-pause {
-    top: 10px;
-    left: 10px;
+    top: 11px;
+    left: 11px;
 }
 .read2me-phone-replay {
-    top: 4px;
-    left: 4px;
+    top: 5px;
+    left: 6px;
 }
 
 .read2me-phone-controls {
