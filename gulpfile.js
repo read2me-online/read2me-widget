@@ -61,38 +61,56 @@ const AWSOptionsDev = {
     }
 };
 
+const apiEndpoint = () => global.publishIsRunning ? AWS_Prod.api_endpoint : AWS_Devel.api_endpoint;
+
 const appendVersion = () => {
     fs.appendFileSync('./.published', version + "\n");
 };
 
-const isVersionPublished = () => {
-    return fs.readFileSync('./.published', 'utf8').indexOf(version) !== -1;
-};
+const isVersionPublished = () => fs.readFileSync('./.published', 'utf8').indexOf(version) !== -1;
+
+gulp.task('config', function() {
+    const config = {
+        config: JSON.stringify({
+            apiEndpoint: apiEndpoint()
+        })
+    };
+
+    return gulp.src('config.tmpl.js')
+        .pipe(template(config))
+        .pipe(rename({
+            basename: 'config',
+            extname: '.js'
+        }))
+        .pipe(gulp.dest('dist/'));
+});
 
 gulp.task('publish', () => {
-    if (isDev) {
-        const error = new Error('VERSION is -dev, use publishDev for that, EXITING...');
-        console.error(error);
+    global.publishIsRunning = true;
 
-        return error;
-    }
+    runSequence(
+        ['wipeDist'],
+        ['config'],
+        ['js', 'backendClassOnly', 'css', 'html'],
+        ['concatenateFiles'],
+        ['concatenateFilesMinified'],
+        () => {
+            if (isDev)
+                throw new Error('VERSION is -dev, use publishDev for that, EXITING...');
 
-    // unfortunately S3 doesn't support a IAM role or a bucket policy where
-    // one can upload, but not overwrite a file, so we have to track published
-    // versions in a local file
-    if (isVersionPublished()) {
-        const error = new Error('This version has already been published, EXITING...');
-        console.error(error);
+            // unfortunately S3 doesn't support a IAM role or a bucket policy where
+            // one can upload, but not overwrite a file, so we have to track published
+            // versions in a local file
+            if (isVersionPublished())
+                throw new Error('This version has already been published, EXITING...');
 
-        return error;
-    }
+            let upload = gulp.src(['./dist/read2me-backend.js', './dist/widget.min.html'])
+                .pipe(s3(AWS_Prod, AWSOptions));
 
-    let upload = gulp.src(['./dist/read2me-backend.js', './dist/widget.min.html'])
-        .pipe(s3(AWS_Prod, AWSOptions));
+            appendVersion();
 
-    appendVersion();
-
-    return upload;
+            return upload;
+        });
 });
 
 gulp.task('publishDev', () => {
@@ -104,22 +122,6 @@ gulp.task('wipeDist', function () {
     return del([
         'dist/**/*',
     ]);
-});
-
-gulp.task('config', function() {
-    let apiEndpoint = this.tasks.publish.running === true ? AWS_Prod.api_endpoint : AWS_Devel.api_endpoint;
-
-    return gulp.src('config.tmpl.js')
-        .pipe(template(
-            {config: JSON.stringify({
-                apiEndpoint: apiEndpoint
-            })
-            }))
-        .pipe(rename({
-            basename: 'config',
-            extname: '.js'
-        }))
-        .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('css', function () {
