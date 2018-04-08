@@ -4,6 +4,8 @@
     bottom: 5px;
     right: -2px;
     cursor: pointer;
+    height: 30px;
+    width: 22px;
 }
 .read2me-widget-wrapper.read2me-design-minimal .read2me-menu {
     right: 0;

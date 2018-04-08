@@ -392,87 +392,6 @@
     background-color: white;
 }
 
-/**
-    Tooltip code by Bootstrap: https://github.com/twbs/bootstrap/blob/v3.3.7/dist/css/bootstrap.css#L5989
-**/
-.read2me-widget-wrapper .tooltip
-{
-    font-family: 'Raleway', sans-serif;
-    font-size: 12px;
-    font-weight: normal;
-    font-style: normal;
-    line-height: 1.42857143;
-
-    position: absolute;
-    z-index: 1070;
-    top: 15px !important;
-
-    display: block;
-
-    margin-left: -4px;
-
-    text-align: left;
-    text-align: start;
-    white-space: normal;
-    text-decoration: none;
-    letter-spacing: normal;
-    word-spacing: normal;
-    text-transform: none;
-    word-wrap: normal;
-    word-break: normal;
-
-    opacity: 0;
-    text-shadow: none;
-
-    filter: alpha(opacity=0);
-    line-break: auto;
-}
-.read2me-widget-wrapper .tooltip.in
-{
-    opacity: .9;
-
-    filter: alpha(opacity=90);
-}
-.read2me-widget-wrapper .tooltip.bottom
-{
-    margin-top: 3px;
-    padding: 5px 0;
-}
-.read2me-widget-wrapper .tooltip-inner
-{
-    font-size: 11px;
-
-    max-width: 200px;
-    padding: 1px 5px;
-
-    text-align: center;
-
-    color: black;
-    border-radius: 4px;
-    background-color: #000;
-    background-color: rgba(255, 255, 255, .7);
-}
-.read2me-widget-wrapper .tooltip-arrow
-{
-    position: absolute;
-
-    width: 0;
-    height: 0;
-
-    border-style: solid;
-    border-color: transparent;
-}
-.read2me-widget-wrapper .tooltip.bottom .tooltip-arrow
-{
-    top: 0;
-    left: 50%;
-
-    margin-left: -5px;
-
-    border-width: 0 5px 5px;
-    border-bottom-color: #000;
-}
-
 .read2me-thumbnail
 {
     position: absolute;
@@ -523,14 +442,17 @@
 {
     position: absolute;
     z-index: 201;
-    top: 25px;
+    top: 28px;
     right: 165px;
+
+    width: 84px;
+    height: 16px;
 }
 .read2me-player-quick-controls svg.read2me-player-rewind,
 .read2me-player-quick-controls svg.read2me-player-forward
 {
     position: relative;
-    top: 2px;
+    top: 0;
 
     width: 16px;
     height: 16px;
@@ -950,6 +872,9 @@ svg.read2me-speaking-rate-icon
     bottom: 5px;
 
     display: none;
+
+    width: 22px;
+    height: 30px;
 
     cursor: pointer;
 }
