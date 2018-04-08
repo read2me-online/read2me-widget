@@ -15,6 +15,7 @@
 - graceful behaviour on package quota exhaustion: will continue serving existing podcasts and the widget will simply hide in case it's placed on a new article)
 - for developers: widget(s) are exposed through `window.Read2Me.PlayerInstances` and the core backend API wrappers are exposed through `window.Read2Me.BackendWrapper` and `window.Read2Me.AnalyticsBackendWrapper`
 - API is [publicly documented](https://swaggerhub.com/apis/Read2Me/)
+- serve ads that are immune to adblockers
 
 # Browser support
 - Tested in Chrome, Firefox, Edge, Opera and Safari
