@@ -55,8 +55,12 @@ export default class Read2MeAudioEvents {
 
     canPlayHandleAutoplay() {
         return () => {
+            if (Read2MeHelpers.isPhone())
+                return;
+
             this.widgetPlayerInstance.audioController.play();
             this.widgetPlayerInstance.displayPauseButton();
+            this.widgetPlayerInstance.wrapper.classList.add('read2me-phone-stage2-active');
         };
     }
 
