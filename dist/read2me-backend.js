@@ -10,6 +10,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var config = require('../../dist/config.js');
+
 var Read2MeBackendWrapper = function () {
     function Read2MeBackendWrapper(appId, url) {
         var cssSelectors = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
@@ -171,7 +173,7 @@ var Read2MeBackendWrapper = function () {
     }], [{
         key: 'getBaseUrl',
         value: function getBaseUrl() {
-            return 'https://api-dev.read2me.online/convert/1.0.0/webpage/'; //@TODO change
+            return config.apiEndpoint + 'convert/1.0.0/webpage/';
         }
     }]);
 

@@ -13,6 +13,7 @@ const gulpMerge = require('gulp-merge');
 const del = require('del');
 const runSequence = require('gulp-sequence');
 const s3 = require('gulp-s3');
+const template = require('gulp-template');
 
 var browserify  = require('browserify');
 var babelify    = require('babelify');
@@ -33,11 +34,13 @@ const AWS_Credentials = {
 };
 const AWS_Devel = {
     "bucket": "s3-sg.read2me.online",
-    "region": "ap-southeast-1"
+    "region": "ap-southeast-1",
+    "api_endpoint": 'https://api-dev.read2me.online/'
 };
 const AWS_Prod = {
     "bucket": "s3.read2me.online",
-    "region": "eu-west-1"
+    "region": "eu-west-1",
+    "api_endpoint": 'https://api.read2me.online/'
 };
 
 Object.assign(AWS_Devel, AWS_Credentials);
@@ -101,6 +104,22 @@ gulp.task('wipeDist', function () {
     return del([
         'dist/**/*',
     ]);
+});
+
+gulp.task('config', function() {
+    let apiEndpoint = this.tasks.publish.running === true ? AWS_Prod.api_endpoint : AWS_Devel.api_endpoint;
+
+    return gulp.src('config.tmpl.js')
+        .pipe(template(
+            {config: JSON.stringify({
+                apiEndpoint: apiEndpoint
+            })
+            }))
+        .pipe(rename({
+            basename: 'config',
+            extname: '.js'
+        }))
+        .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('css', function () {
@@ -202,6 +221,7 @@ const html = 'src/**/*.html';
 gulp.task('_sequence', () => {
     runSequence(
         ['wipeDist'],
+        ['config'],
         ['js', 'backendClassOnly', 'css', 'html'],
         ['concatenateFiles'],
         ['concatenateFilesMinified'],

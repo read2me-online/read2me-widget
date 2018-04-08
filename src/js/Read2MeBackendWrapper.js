@@ -1,3 +1,5 @@
+const config = require('../../dist/config.js');
+
 export default class Read2MeBackendWrapper {
     constructor(appId, url, cssSelectors = null, voice = null, ignoreContentChange = false, requestSource = 'custom') {
         this.apiUrl = Read2MeBackendWrapper.getBaseUrl();
@@ -16,7 +18,7 @@ export default class Read2MeBackendWrapper {
     }
 
     static getBaseUrl() {
-        return 'https://api-dev.read2me.online/convert/1.0.0/webpage/'; //@TODO change
+        return config.apiEndpoint + 'convert/1.0.0/webpage/';
     }
 
     _validateRequiredParams() {

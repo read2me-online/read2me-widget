@@ -35,6 +35,7 @@
         "gulp-self-execute": "^1.0.3",
         "gulp-sequence": "^0.4.6",
         "gulp-sourcemaps": "^2.6.4",
+        "gulp-template": "^5.0.0",
         "gulp-uglify": "^3.0.0",
         "gulp-watch": "^4.3.11",
         "jshint": "*",

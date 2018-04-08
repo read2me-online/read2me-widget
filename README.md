@@ -18,7 +18,7 @@
 - serve ads that are immune to adblockers
 
 # Browser support
-- Tested in Chrome, Firefox, Edge, Opera and Safari
+- Tested in Chrome, Firefox, Edge, Opera, Safari and Samsung Browser
 - No IE support, but will fail gracefully by simply not showing ([IE has a worldwide distribution of only 2.1% and decreasing](https://www.w3schools.com/browsers/browsers_explorer.asp)
 
 @TODO PLAYER screenshots

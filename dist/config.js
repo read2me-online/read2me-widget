@@ -1,0 +1,1 @@
+module.exports = {"apiEndpoint":"https://api-dev.read2me.online/"}
