@@ -27,12 +27,22 @@ const fs = require('fs');
 const version = fs.readFileSync('./VERSION', 'utf8');
 const isDev = version.indexOf('-dev') !== -1;
 
-const AWS = {
+const AWS_Credentials = {
     "key":    process.env.AWS_ACCESS_KEY_ID,
-    "secret": process.env.AWS_SECRET_ACCESS_KEY,
-    "bucket": "s3-sg.read2me.online", // s3.read2me.online, s3-sg.read2me.online for SEA
-    "region": "ap-southeast-1" // eu-west-1 for EU, ap-southeast-1 for SEA
+    "secret": process.env.AWS_SECRET_ACCESS_KEY
 };
+const AWS_Devel = {
+    "bucket": "s3-sg.read2me.online",
+    "region": "ap-southeast-1"
+};
+const AWS_Prod = {
+    "bucket": "s3.read2me.online",
+    "region": "eu-west-1"
+};
+
+Object.assign(AWS_Devel, AWS_Credentials);
+Object.assign(AWS_Prod, AWS_Credentials);
+
 const AWSOptions = {
     uploadPath: 'api/widget/' + version + '/',
     failOnError: true,
@@ -75,7 +85,7 @@ gulp.task('publish', () => {
     }
 
     let upload = gulp.src(['./dist/read2me-backend.js', './dist/widget.min.html'])
-        .pipe(s3(AWS, AWSOptions));
+        .pipe(s3(AWS_Prod, AWSOptions));
 
     appendVersion();
 
@@ -84,7 +94,7 @@ gulp.task('publish', () => {
 
 gulp.task('publishDev', () => {
     return gulp.src(['./dist/read2me-backend.js', './dist/widget.min.html'])
-        .pipe(s3(AWS, AWSOptionsDev));
+        .pipe(s3(AWS_Devel, AWSOptionsDev));
 });
 
 gulp.task('wipeDist', function () {
