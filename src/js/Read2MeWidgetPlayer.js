@@ -477,6 +477,13 @@ export default class Read2MeWidgetPlayer {
                 this.apiResponse.id,
                 (response) => {
                     // success
+                    if (response.result === 'no_data') {
+                        this.hideLoader();
+                        alert('Analytics will be available after the first playback');
+
+                        return;
+                    }
+
                     this._highchartsLibraryWaiter = setInterval(() => {
                         if (this.isHighchartsJsLoaded) {
                             this.wrapper.classList.add('read2me-analytics-view'); // do the flip
