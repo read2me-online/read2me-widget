@@ -21,7 +21,7 @@
     opacity: 0.5;
     font-size: 12px;
 }
-.read2me-widget-wrapper.read2me-phone-stage2-active .read2me-menu {
+.read2me-design-minimal.read2me-phone-stage2-active .read2me-menu {
     display: none !important;
 }
 @media (min-width: 768px) {
