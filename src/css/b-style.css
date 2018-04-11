@@ -173,6 +173,7 @@
     margin-right: 5px;
     z-index: 201;
     font-weight: 600;
+    line-height: 22px;
 }
 .read2me-player-title:hover span.read2me-marquee {
     position: relative;
