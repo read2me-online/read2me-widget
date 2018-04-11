@@ -100,6 +100,10 @@ export default class Read2MeHelpers {
         return navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
     }
 
+    static isEdge() {
+        return navigator.userAgent.indexOf('Edge') > -1;
+    }
+
     static isSamsungBrowser() {
         return navigator.userAgent.indexOf('SamsungBrowser') > -1;
     }

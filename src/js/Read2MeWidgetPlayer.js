@@ -79,7 +79,7 @@ export default class Read2MeWidgetPlayer {
         if (!Read2MeHelpers.isFirefox() && !Read2MeHelpers.isSamsungBrowser())
             this.makeVisible();
 
-        if (Read2MeHelpers.isSamsungBrowser())
+        if (Read2MeHelpers.isSamsungBrowser() || Read2MeHelpers.isEdge())
             this.phoneUi.querySelector('.read2me-phone-playback').style['justify-content'] = 'space-around';
     }
 
