@@ -37,9 +37,9 @@ export default class Read2MePlayerBuilder {
         let voice = elem.getAttribute('data-voice');
         let design = elem.getAttribute('data-design');
 
-        autoplay = this._booleanStringToBoolean(autoplay);
+        autoplay = autoplay === null ? false : this._booleanStringToBoolean(autoplay);
         cssSelectors = this._cssSelectorsStringToArray(cssSelectors);
-        ignoreContentChange = this._booleanStringToBoolean(ignoreContentChange);
+        ignoreContentChange = ignoreContentChange === null ? false : this._booleanStringToBoolean(ignoreContentChange);
 
         let backendWrapper = new Read2MeBackendWrapper(appId, url, cssSelectors, voice, ignoreContentChange, 'widget');
         let playerId = this.playerInstances.length;
