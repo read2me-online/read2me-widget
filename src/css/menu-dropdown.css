@@ -53,26 +53,22 @@
     -o-transition: all 0.25s ease-out ;
     transition: all 0.25s ease-out ;
 }
-.read2me-dropdown ul {
+.read2me-widget-wrapper .read2me-dropdown ul {
     padding: 0;
     margin: 0;
     box-shadow: 2px 4px 6px 0px rgba(0,0,0,.19)
 }
-.read2me-dropdown li {
+.read2me-widget-wrapper .read2me-dropdown li {
     margin: 0;
     padding: 0;
     display: block;
     text-align: right;
     border: 1px solid rgba(197, 197, 197, 0.1);
-}
-.read2me-dropdown li {
     line-height: 12px;
-    margin: 0;
-    padding: 0;
     font-weight: 400;
     font-family: 'Raleway', sans-serif;
 }
-.read2me-dropdown li a {
+.read2me-widget-wrapper .read2me-dropdown li a {
     display: block;
     padding: 6px;
     font-size: 9px;
@@ -83,15 +79,15 @@
     padding: 5px 3px 5px 5px;
     outline: none;
 }
-.read2me-dropdown a svg {
+.read2me-widget-wrapper .read2me-dropdown a svg {
     position: relative;
     margin-left: 5px;
 }
-.read2me-dropdown svg {
+.read2me-widget-wrapper .read2me-dropdown svg {
     position: relative;
     top: 2.5px;
 }
-.read2me-dropdown ul:before {
+.read2me-widget-wrapper .read2me-dropdown ul:before {
     content: "";
     border: 8px solid white;
     position: absolute;
