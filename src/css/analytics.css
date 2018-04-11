@@ -34,6 +34,7 @@
     height: 81px;
     min-width: 570px;
     display: block;
+    line-height: 18px;
 }
 .read2me-analytics-title {
     position: absolute;
