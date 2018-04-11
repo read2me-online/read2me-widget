@@ -32,6 +32,9 @@ export default class Read2MeAnalyticsBackendWrapper {
         currentPlaybackTime = Math.round(currentPlaybackTime);
         audioDuration = Math.round(audioDuration);
 
+        if (Read2MeAnalyticsBackendWrapper._logContains(listeningSessionId, currentPlaybackTime))
+            return;
+
         if (currentPlaybackTime % interval !== 0 && currentPlaybackTime !== audioDuration)
             return;
 
@@ -43,5 +46,31 @@ export default class Read2MeAnalyticsBackendWrapper {
         const request = new XMLHttpRequest();
         request.open('POST', requestUri, true);
         request.send();
+
+        Read2MeAnalyticsBackendWrapper._addToLog(listeningSessionId, currentPlaybackTime);
     }
+
+    static _addToLog(listeningSessionId, currentPlaybackTime) {
+        if (!Read2MeAnalyticsBackendWrapper._log)
+            Read2MeAnalyticsBackendWrapper._log = {};
+
+        if (!Read2MeAnalyticsBackendWrapper._log[listeningSessionId])
+            Read2MeAnalyticsBackendWrapper._log[listeningSessionId] = [];
+
+        Read2MeAnalyticsBackendWrapper._log[listeningSessionId].push(currentPlaybackTime);
+    }
+
+    static _logContains(listeningSessionId, currentPlaybackTime) {
+        if (!Read2MeAnalyticsBackendWrapper._log)
+            return false;
+
+        if (!Read2MeAnalyticsBackendWrapper._log[listeningSessionId])
+            return false;
+
+        if (Read2MeAnalyticsBackendWrapper._log[listeningSessionId].indexOf(currentPlaybackTime) === -1)
+            return false;
+
+        return true;
+    }
+
 }

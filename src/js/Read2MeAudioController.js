@@ -46,6 +46,7 @@ export default class Read2MeAudioController {
     }
 
     stop() {
+        this.pause();
         this.setCurrentTime(0);
     }
 

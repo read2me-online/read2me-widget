@@ -4,7 +4,6 @@ import Read2MeHelpers from "./Read2MeHelpers";
 export default class Read2MeAudioEvents {
     constructor(widgetPlayerInstance) {
         this.widgetPlayerInstance = widgetPlayerInstance;
-        this.analyticsReportingInterval = null;
     }
 
     getAll() {
@@ -25,10 +24,7 @@ export default class Read2MeAudioEvents {
         events.canplay.push(this.canPlay());
         events.canplaythrough.push(this.canPlayPhone());
         events.playing.push(this.playingHideLoader());
-        events.playing.push(this.startReportingAnalytics());
-        events.pause.push(this.stopReportingAnalytics());
         events.ended.push(this.ended());
-        events.ended.push(this.stopReportingAnalytics());
         events.stalled.push(this.stalled());
         events.timeupdate.push(this.timeUpdate());
 
@@ -70,30 +66,6 @@ export default class Read2MeAudioEvents {
         };
     }
 
-    startReportingAnalytics() {
-        return () => {
-            this.stopReportingAnalytics()();
-            this._sendAnalytics();
-
-            this.analyticsReportingInterval = setInterval(() => {
-                if (this.widgetPlayerInstance.audioController.audio.currentTime < 1.5)
-                    return;
-
-                this._sendAnalytics();
-            }, 1000);
-        };
-    }
-
-    stopReportingAnalytics() {
-        return () => {
-            if (this.analyticsReportingInterval === null)
-                return;
-
-            clearInterval(this.analyticsReportingInterval);
-            this.analyticsReportingInterval = null;
-        };
-    }
-
     ended() {
         return () => {
             this.widgetPlayerInstance.displayReplayButton();
@@ -108,6 +80,8 @@ export default class Read2MeAudioEvents {
 
     timeUpdate() {
         return () => {
+            this._sendAnalytics();
+
             if (this.widgetPlayerInstance.isScrubberBeingDragged)
                 return false;
 

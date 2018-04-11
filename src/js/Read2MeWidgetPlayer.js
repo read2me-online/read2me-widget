@@ -534,7 +534,7 @@ export default class Read2MeWidgetPlayer {
         if (this.isPauseButtonShown()) // means it was playing
             this.audioController.play();
 
-        // loader will be hidden automatically by audio canplay event
+        // loader will be hidden automatically by the audio's canplay event
     }
 
     instantiateAnalytics(result) {
