@@ -193,6 +193,7 @@
     top: 29px;
     right: 165px;
     z-index: 201;
+    line-height: 10px;
 }
 .read2me-player-quick-controls svg.read2me-player-rewind,
 .read2me-player-quick-controls svg.read2me-player-forward {

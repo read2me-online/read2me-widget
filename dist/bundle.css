@@ -446,6 +446,8 @@
 /** Rewind and Forward icons */
 .read2me-player-quick-controls
 {
+    line-height: 10px;
+
     position: absolute;
     z-index: 201;
     top: 29px;
