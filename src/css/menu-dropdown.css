@@ -67,6 +67,7 @@
     line-height: 12px;
     font-weight: 400;
     font-family: 'Raleway', sans-serif;
+    letter-spacing: 0;
 }
 .read2me-widget-wrapper .read2me-dropdown li:before {
     content: '';
