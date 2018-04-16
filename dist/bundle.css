@@ -396,14 +396,15 @@
     background-color: white;
 }
 
-.read2me-thumbnail
+.read2me-widget-wrapper .read2me-thumbnail
 {
     position: absolute;
     top: -20px;
     left: 21px;
 
-    width: 101px;
-    height: 101px;
+    width: 101px !important;
+    height: 101px !important;
+    margin: 0;
 }
 .read2me-player-title
 {
@@ -947,8 +948,8 @@ svg.read2me-speaking-rate-icon
 }
 .read2me-widget-wrapper .read2me-dropdown ul
 {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
 
     box-shadow: 2px 4px 6px 0 rgba(0,0,0,.19);
 }
@@ -966,6 +967,10 @@ svg.read2me-speaking-rate-icon
     text-align: right;
 
     border: 1px solid rgba(197, 197, 197, .1);
+}
+.read2me-widget-wrapper .read2me-dropdown li:before
+{
+    content: '';
 }
 .read2me-widget-wrapper .read2me-dropdown li a
 {

@@ -154,12 +154,13 @@
     width: 100%;
 }
 
-.read2me-thumbnail {
+.read2me-widget-wrapper .read2me-thumbnail {
     position: absolute;
     top: -20px;
     left: 21px;
-    width: 101px;
-    height: 101px;
+    width: 101px !important;
+    height: 101px !important;
+    margin: 0;
 }
 .read2me-player-title {
     position: absolute;

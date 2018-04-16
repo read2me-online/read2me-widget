@@ -54,9 +54,9 @@
     transition: all 0.25s ease-out ;
 }
 .read2me-widget-wrapper .read2me-dropdown ul {
-    padding: 0;
-    margin: 0;
-    box-shadow: 2px 4px 6px 0px rgba(0,0,0,.19)
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: 2px 4px 6px 0px rgba(0,0,0,.19);
 }
 .read2me-widget-wrapper .read2me-dropdown li {
     margin: 0;
@@ -67,6 +67,9 @@
     line-height: 12px;
     font-weight: 400;
     font-family: 'Raleway', sans-serif;
+}
+.read2me-widget-wrapper .read2me-dropdown li:before {
+    content: '';
 }
 .read2me-widget-wrapper .read2me-dropdown li a {
     display: block;
