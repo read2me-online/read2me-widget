@@ -45,7 +45,7 @@ export default class Read2MeAudioEvents {
             );
 
             if (Read2MeHelpers.isPhone())
-                this.widgetPlayerInstance.wrapper.classList.add('read2me-phone-stage2-active');
+                this.widgetPlayerInstance.activatePhoneStage2();
         };
     }
 
@@ -56,7 +56,7 @@ export default class Read2MeAudioEvents {
 
             this.widgetPlayerInstance.audioController.play();
             this.widgetPlayerInstance.displayPauseButton();
-            this.widgetPlayerInstance.wrapper.classList.add('read2me-phone-stage2-active');
+            this.widgetPlayerInstance.activatePhoneStage2();
         };
     }
 

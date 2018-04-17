@@ -280,6 +280,11 @@ export default class Read2MeWidgetPlayer {
                     if (this.isPlayButtonShown()) {
                         this.audioController.play();
                         this.displayPauseButton();
+
+                        // if there's a click on standard design player and
+                        // the stage2 view is not active, activate it
+                        if (index === 0 && eventType === 'click' && !this.isPhoneStage2Active())
+                            this.activatePhoneStage2();
                     } else if (this.isPauseButtonShown()) {
                         this.audioController.pause();
                         this.displayPlayButton();
@@ -307,7 +312,7 @@ export default class Read2MeWidgetPlayer {
 
             canPlayDesktop = setInterval(() => {
                 if (this.audioController.isReadyToPlay()) {
-                    this.wrapper.classList.add('read2me-phone-stage2-active');
+                    this.activatePhoneStage2();
                     clearInterval(canPlayDesktop);
                 }
             }, 100);
@@ -615,5 +620,13 @@ export default class Read2MeWidgetPlayer {
         window.addEventListener('resize', () => {
             this.setWidth();
         });
+    }
+
+    isPhoneStage2Active() {
+        return this.wrapper.classList.contains('read2me-phone-stage2-active');
+    }
+
+    activatePhoneStage2() {
+        this.wrapper.classList.add('read2me-phone-stage2-active');
     }
 }
