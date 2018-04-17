@@ -1518,7 +1518,7 @@ svg.read2me-speaking-rate-icon
 }
 .read2me-widget-wrapper.preset-gray .read2me-dropdown a
 {
-    color: #3a3c3c;
+    color: #3a3c3c !important;
 }
 .read2me-widget-wrapper.preset-gray .read2me-dropdown a:hover
 {

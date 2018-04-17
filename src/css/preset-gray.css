@@ -63,7 +63,7 @@
     height: 2px;
 }
 .read2me-widget-wrapper.preset-gray .read2me-dropdown a {
-    color: #3A3C3C;
+    color: #3A3C3C !important;
 }
 .read2me-widget-wrapper.preset-gray .read2me-dropdown a:hover {
     background-color: #fff;

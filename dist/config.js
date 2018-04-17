@@ -1,1 +1,1 @@
-module.exports = {"apiEndpoint":"https://api-dev.read2me.online/"}
+module.exports = {"apiEndpoint":"https://api.read2me.online/"}
