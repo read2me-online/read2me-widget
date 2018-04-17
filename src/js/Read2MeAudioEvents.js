@@ -44,7 +44,8 @@ export default class Read2MeAudioEvents {
                 this.widgetPlayerInstance.audioController.getCurrentTime()
             );
 
-            this.widgetPlayerInstance.wrapper.classList.add('read2me-phone-stage2-active');
+            if (Read2MeHelpers.isPhone())
+                this.widgetPlayerInstance.wrapper.classList.add('read2me-phone-stage2-active');
         };
     }
 
