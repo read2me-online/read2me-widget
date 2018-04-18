@@ -3,8 +3,7 @@ import Read2MeBackendWrapper from "./Read2MeBackendWrapper";
 export default class Read2MeAnalyticsBackendWrapper {
     static getAnalytics(audioId, successCallback, errorCallback) {
         let requestUri =
-            Read2MeBackendWrapper.getBaseUrl() + 'analytics/?' +
-            'aid=' + audioId;
+            Read2MeBackendWrapper.getBaseUrl() + 'analytics/' + audioId;
 
         const request = new XMLHttpRequest();
         request.open('GET', requestUri, true);
@@ -38,9 +37,8 @@ export default class Read2MeAnalyticsBackendWrapper {
         if (currentPlaybackTime % interval !== 0 && currentPlaybackTime !== audioDuration)
             return;
 
-        let requestUri = Read2MeBackendWrapper.getBaseUrl() + 'analytics/?' +
-            'aid=' + audioId +
-            '&pt=' + currentPlaybackTime +
+        let requestUri = Read2MeBackendWrapper.getBaseUrl() + 'analytics/' + audioId + '?' +
+            'pt=' + currentPlaybackTime +
             '&lsid=' + listeningSessionId;
 
         const request = new XMLHttpRequest();
