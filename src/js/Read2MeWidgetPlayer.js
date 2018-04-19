@@ -617,6 +617,9 @@ export default class Read2MeWidgetPlayer {
     _getGraphColorForTheme() {
         let color;
 
+        if (this.hasColors)
+            return this.primaryColor;
+
         switch (this.theme) {
             case 'blue':
                 color = 'rgb(14,209,254)';
