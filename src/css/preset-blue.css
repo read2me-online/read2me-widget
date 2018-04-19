@@ -37,13 +37,13 @@
 }
 
 .read2me-widget-wrapper.preset-blue .slider-track {
-    background: transparent !important;
+    background: transparent;
 }
 .read2me-widget-wrapper.preset-blue .slider-selection {
     background: rgba(255, 255, 255, 1);
 }
 .read2me-widget-wrapper.preset-blue .slider-track-high {
-    background: rgba(255, 255, 255, 0.4) !important;
+    background: rgba(255, 255, 255, 0.4);
 }
 .read2me-widget-wrapper.preset-blue .slider-handle {
     background: white;

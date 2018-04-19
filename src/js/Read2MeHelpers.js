@@ -250,7 +250,7 @@ export default class Read2MeHelpers {
                     let secondsToArray = Read2MeHelpers.secondsToHumanReadableArray(this.x);
                     let timeScrubberFormat = Read2MeHelpers.secondsMinutesHoursToHumanReadable(...secondsToArray);
                     
-                    return 'Time: ' + timeScrubberFormat + '<br />Amount of people listened: ' + count;
+                    return 'Time: ' + timeScrubberFormat + '<br />' + count + ' listeners';
                 }
             },
             chart: {

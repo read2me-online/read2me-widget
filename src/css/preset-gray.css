@@ -22,13 +22,13 @@
 }
 
 .read2me-widget-wrapper.preset-gray .slider-track {
-    background: transparent !important;
+    background: transparent;
 }
 .read2me-widget-wrapper.preset-gray .slider-selection {
     background: #0ED1FE;
 }
 .read2me-widget-wrapper.preset-gray .slider-track-high {
-    background: #DADBDB !important;
+    background: #DADBDB;
 }
 .read2me-widget-wrapper.preset-gray .slider-handle {
     background: #0ED1FE;

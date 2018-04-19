@@ -1353,7 +1353,7 @@ svg.read2me-speaking-rate-icon
 
 .read2me-widget-wrapper.preset-blue .slider-track
 {
-    background: transparent !important;
+    background: transparent;
 }
 .read2me-widget-wrapper.preset-blue .slider-selection
 {
@@ -1361,7 +1361,7 @@ svg.read2me-speaking-rate-icon
 }
 .read2me-widget-wrapper.preset-blue .slider-track-high
 {
-    background: rgba(255, 255, 255, .4) !important;
+    background: rgba(255, 255, 255, .4);
 }
 .read2me-widget-wrapper.preset-blue .slider-handle
 {
@@ -1464,7 +1464,7 @@ svg.read2me-speaking-rate-icon
 
 .read2me-widget-wrapper.preset-gray .slider-track
 {
-    background: transparent !important;
+    background: transparent;
 }
 .read2me-widget-wrapper.preset-gray .slider-selection
 {
@@ -1472,7 +1472,7 @@ svg.read2me-speaking-rate-icon
 }
 .read2me-widget-wrapper.preset-gray .slider-track-high
 {
-    background: #dadbdb !important;
+    background: #dadbdb;
 }
 .read2me-widget-wrapper.preset-gray .slider-handle
 {
@@ -1579,7 +1579,7 @@ svg.read2me-speaking-rate-icon
 
 .read2me-widget-wrapper.preset-green .slider-track
 {
-    background: transparent !important;
+    background: transparent;
 }
 .read2me-widget-wrapper.preset-green .slider-selection
 {
@@ -1587,7 +1587,7 @@ svg.read2me-speaking-rate-icon
 }
 .read2me-widget-wrapper.preset-green .slider-track-high
 {
-    background: #dadbdb !important;
+    background: #dadbdb;
 }
 .read2me-widget-wrapper.preset-green .slider-handle
 {

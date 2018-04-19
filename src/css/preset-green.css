@@ -38,13 +38,13 @@
 }
 
 .read2me-widget-wrapper.preset-green .slider-track {
-    background: transparent !important;
+    background: transparent;
 }
 .read2me-widget-wrapper.preset-green .slider-selection {
     background: #5EEAD6;
 }
 .read2me-widget-wrapper.preset-green .slider-track-high {
-    background: #DADBDB !important;
+    background: #DADBDB;
 }
 .read2me-widget-wrapper.preset-green .slider-handle {
     background: #5EEAD6;
