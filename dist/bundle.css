@@ -192,6 +192,10 @@
 {
     margin-top: 0;
 }
+.read2me-widget-wrapper .highcharts-markers
+{
+    display: none;
+}
 
 .read2me-widget-wrapper.read2me-template
 {
