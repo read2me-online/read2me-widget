@@ -583,7 +583,7 @@ export default class Read2MeWidgetPlayer {
                 color = 'rgb(94,234,214)';
                 break;
             default:
-                color = 'rgba(112,112,112)';
+                color = 'rgb(112,112,112)';
         }
 
         return color;
