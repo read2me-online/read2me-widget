@@ -141,7 +141,7 @@ export default class Read2MeHelpers {
         head.appendChild(link);
     }
 
-    static getInterestDistributionHighchart(result, container, colors) {
+    static getInterestDistributionHighchart(result, container, areaColor) {
         let durationAxis = Object.keys(result.playback_count_per_second).map(Number);
         let countValues = Object.values(result.playback_count_per_second);
 
@@ -202,7 +202,14 @@ export default class Read2MeHelpers {
             },
             series: [{
                 data: countValues,
-                type: 'areaspline'
+                type: 'areaspline',
+                fillColor : {
+                    linearGradient : [0, 0, 0, 250],
+                    stops : [
+                        [0, areaColor],
+                        [1, 'rgba(255,255,255,0)']
+                    ]
+                }
             }],
             tooltip: {
                 formatter: function() {
@@ -225,7 +232,7 @@ export default class Read2MeHelpers {
                     fontFamily: 'Raleway'
                 }
             },
-            colors: [colors]
+            colors: [areaColor]
         });
     }
 }
