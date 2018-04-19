@@ -9,7 +9,7 @@ export default class Read2MeWidgetPlayer {
         widgetBlueprint, url, title = null,
         thumbnail = null, autoplay = false,
         playerId = 0, theme = null, width = null,
-        design = null) {
+        design = null, colors = null) {
         // sliders
         this.isScrubberBeingDragged = false;
         this.scrubber = null;
@@ -29,9 +29,14 @@ export default class Read2MeWidgetPlayer {
         this.theme = theme;
         this.width = width;
         this.design = design === null ? 'standard' : 'minimal';
+        this.colors = colors; // array|null
+        this.hasColors = this.colors !== null && this.colors.length > 0;
+        this.primaryColor = this.hasColors ? this.colors[0] : null;
+        this.secondaryColor = this.hasColors ? this.colors[1] : null;
 
         // desktop - standard design
         this.wrapper = Read2MeHelpers.getWidgetTemplate();
+        this.wrapper.id = 'read2me-widget-wrapper-' + this.playerId;
         this.player = this.wrapper.querySelector('.read2me-player');
         this.analytics = this.wrapper.querySelector('.read2me-analytics');
         this.playbackContainer = this.player.querySelector('.read2me-player-playback');
@@ -71,6 +76,7 @@ export default class Read2MeWidgetPlayer {
         this.setThumbnail();
         this.setDesign();
         this.setTheme();
+        this.setColors();
         this.setWidth();
         this.instantiateSlidersForTabletDesktop();
         this.handleViewportResize();
@@ -132,9 +138,10 @@ export default class Read2MeWidgetPlayer {
         let scrubberId = 'read2me-player-scrubber-player';
 
         let newScrubberId = scrubberId + '-' + this.playerId;
+        let newScrubberIdSelectable = '#' + scrubberId;
 
         // append playerId to their IDs to make them unique
-        let scrubber = this.player.querySelector('#' + scrubberId);
+        let scrubber = this.player.querySelector(newScrubberIdSelectable);
         scrubber.setAttribute('id', newScrubberId);
         scrubber.setAttribute('data-slider-id', newScrubberId);
 
@@ -148,6 +155,11 @@ export default class Read2MeWidgetPlayer {
                 );
             },
         });
+
+        if (this.hasColors) {
+            this.wrapper.querySelector('.slider-selection').style.background = this.primaryColor;
+            this.wrapper.querySelector('.slider-handle').style.background = this.primaryColor;
+        }
     }
 
     configureSliders(audioLengthSeconds) {
@@ -191,6 +203,36 @@ export default class Read2MeWidgetPlayer {
             this.wrapper.classList.add('preset-white');
         else
             this.wrapper.classList.add('preset-' + this.theme);
+    }
+
+    setColors() {
+        if (!this.colors)
+            return;
+
+        let primaryRgb = Read2MeHelpers.hexToRgb(this.primaryColor);
+        let secondaryRgb = Read2MeHelpers.hexToRgb(this.secondaryColor);
+
+        if (primaryRgb === null || secondaryRgb === null)
+            throw new Error('data-colors must be in hexadecimal format');
+
+        let analyticsTitleBackground = 'rgba(' + primaryRgb.r + ',' + primaryRgb.g + ',' + primaryRgb.b + ',0.2)';
+
+        this.playbackContainer.style['background-color'] = this.primaryColor;
+        this.analytics.querySelector('.read2me-analytics-title').style.background = analyticsTitleBackground;
+
+        let hoverCss =
+            '#' + this.wrapper.id + ' .read2me-player-playback:hover {' +
+                'background-color: ' + this.secondaryColor + ' !important;' +
+            '}' +
+            '#' + this.wrapper.id + ' .read2me-player-playback:hover svg,' +
+            '#' + this.wrapper.id + ' .read2me-player svg.read2me-player-rewind:hover,' +
+            '#' + this.wrapper.id + ' .read2me-player svg.read2me-player-forward:hover {' +
+                'fill: ' + this.primaryColor + ' !important;' +
+            '}';
+
+        let style = document.createElement('style');
+        style.appendChild(document.createTextNode(hoverCss));
+        document.getElementsByTagName('head')[0].appendChild(style);
     }
 
     setWidth() {

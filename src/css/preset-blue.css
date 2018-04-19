@@ -40,13 +40,13 @@
     background: transparent !important;
 }
 .read2me-widget-wrapper.preset-blue .slider-selection {
-    background: rgba(255, 255, 255, 1) !important;
+    background: rgba(255, 255, 255, 1);
 }
 .read2me-widget-wrapper.preset-blue .slider-track-high {
     background: rgba(255, 255, 255, 0.4) !important;
 }
 .read2me-widget-wrapper.preset-blue .slider-handle {
-    background: white !important;
+    background: white;
 }
 
 .read2me-widget-wrapper.preset-blue .read2me-player-playback {

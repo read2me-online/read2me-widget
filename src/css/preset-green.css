@@ -41,13 +41,13 @@
     background: transparent !important;
 }
 .read2me-widget-wrapper.preset-green .slider-selection {
-    background: #5EEAD6 !important;
+    background: #5EEAD6;
 }
 .read2me-widget-wrapper.preset-green .slider-track-high {
     background: #DADBDB !important;
 }
 .read2me-widget-wrapper.preset-green .slider-handle {
-    background: #5EEAD6 !important;
+    background: #5EEAD6;
 }
 
 .read2me-widget-wrapper.preset-green .read2me-player-playback {

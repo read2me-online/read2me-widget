@@ -25,13 +25,13 @@
     background: transparent !important;
 }
 .read2me-widget-wrapper.preset-gray .slider-selection {
-    background: #0ED1FE !important;
+    background: #0ED1FE;
 }
 .read2me-widget-wrapper.preset-gray .slider-track-high {
     background: #DADBDB !important;
 }
 .read2me-widget-wrapper.preset-gray .slider-handle {
-    background: #0ED1FE !important;
+    background: #0ED1FE;
 }
 
 .read2me-widget-wrapper.preset-gray .read2me-player-playback {

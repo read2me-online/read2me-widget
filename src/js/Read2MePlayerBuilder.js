@@ -36,15 +36,19 @@ export default class Read2MePlayerBuilder {
         let width = elem.getAttribute('data-width');
         let voice = elem.getAttribute('data-voice');
         let design = elem.getAttribute('data-design');
+        let colors = elem.getAttribute('data-colors');
 
         autoplay = autoplay === null ? false : Read2MeHelpers.booleanStringToBoolean(autoplay);
+        ignoreContentChange = ignoreContentChange === null
+                            ? false : Read2MeHelpers.booleanStringToBoolean(ignoreContentChange);
+
         cssSelectors = Read2MeHelpers.arrayStringToArray(cssSelectors);
-        ignoreContentChange = ignoreContentChange === null ? false : Read2MeHelpers.booleanStringToBoolean(ignoreContentChange);
+        colors = Read2MeHelpers.arrayStringToArray(colors);
 
         let backendWrapper = new Read2MeBackendWrapper(appId, url, cssSelectors, voice, ignoreContentChange, 'widget');
         let playerId = this.playerInstances.length;
         this.playerInstances[playerId] =
-            new Read2MeWidgetPlayer(elem, url, title, thumbnail, autoplay, playerId, theme, width, design);
+            new Read2MeWidgetPlayer(elem, url, title, thumbnail, autoplay, playerId, theme, width, design, colors);
 
         this._makeApiCalls(backendWrapper, (responseResult) => {
             // success

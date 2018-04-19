@@ -493,7 +493,7 @@
 
     cursor: pointer;
 
-    background: black !important;
+    background: black;
 }
 /**
  Scrubber container
@@ -1357,7 +1357,7 @@ svg.read2me-speaking-rate-icon
 }
 .read2me-widget-wrapper.preset-blue .slider-selection
 {
-    background: rgba(255, 255, 255, 1) !important;
+    background: rgba(255, 255, 255, 1);
 }
 .read2me-widget-wrapper.preset-blue .slider-track-high
 {
@@ -1365,7 +1365,7 @@ svg.read2me-speaking-rate-icon
 }
 .read2me-widget-wrapper.preset-blue .slider-handle
 {
-    background: white !important;
+    background: white;
 }
 
 .read2me-widget-wrapper.preset-blue .read2me-player-playback
@@ -1468,7 +1468,7 @@ svg.read2me-speaking-rate-icon
 }
 .read2me-widget-wrapper.preset-gray .slider-selection
 {
-    background: #0ed1fe !important;
+    background: #0ed1fe;
 }
 .read2me-widget-wrapper.preset-gray .slider-track-high
 {
@@ -1476,7 +1476,7 @@ svg.read2me-speaking-rate-icon
 }
 .read2me-widget-wrapper.preset-gray .slider-handle
 {
-    background: #0ed1fe !important;
+    background: #0ed1fe;
 }
 
 .read2me-widget-wrapper.preset-gray .read2me-player-playback
@@ -1583,7 +1583,7 @@ svg.read2me-speaking-rate-icon
 }
 .read2me-widget-wrapper.preset-green .slider-selection
 {
-    background: #5eead6 !important;
+    background: #5eead6;
 }
 .read2me-widget-wrapper.preset-green .slider-track-high
 {
@@ -1591,7 +1591,7 @@ svg.read2me-speaking-rate-icon
 }
 .read2me-widget-wrapper.preset-green .slider-handle
 {
-    background: #5eead6 !important;
+    background: #5eead6;
 }
 
 .read2me-widget-wrapper.preset-green .read2me-player-playback
@@ -1679,7 +1679,7 @@ svg.read2me-speaking-rate-icon
 }
 .read2me-widget-wrapper.preset-white .slider-selection
 {
-    background: transparent !important;
+    background: transparent;
 }
 .read2me-widget-wrapper.preset-white .slider-track-high
 {
@@ -1687,7 +1687,7 @@ svg.read2me-speaking-rate-icon
 }
 .read2me-widget-wrapper.preset-white .slider-handle
 {
-    background: #212529 !important;
+    background: #212529;
 }
 
 .read2me-widget-wrapper.preset-white .read2me-player-playback

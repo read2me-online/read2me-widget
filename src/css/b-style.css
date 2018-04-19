@@ -222,7 +222,7 @@
     width: 11px !important;
     height: 11px !important;
     cursor: pointer;
-    background: black !important;
+    background: black;
 }
 /**
  Scrubber container

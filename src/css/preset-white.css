@@ -21,13 +21,13 @@
     background: transparent !important;
 }
 .read2me-widget-wrapper.preset-white .slider-selection {
-    background: transparent !important;
+    background: transparent;
 }
 .read2me-widget-wrapper.preset-white .slider-track-high {
     background: transparent !important;
 }
 .read2me-widget-wrapper.preset-white .slider-handle {
-    background: #212529 !important;
+    background: #212529;
 }
 
 .read2me-widget-wrapper.preset-white .read2me-player-playback {
