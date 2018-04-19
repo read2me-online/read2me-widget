@@ -465,7 +465,7 @@ export default class Read2MeWidgetPlayer {
 
             // load Highcharts if doesn't already exist
             if (typeof Highcharts === 'undefined') {
-                Read2MeHelpers.loadJs('https://code.highcharts.com/6.0/highcharts.js', () => {
+                Read2MeHelpers.loadJs('https://code.highcharts.com/6.1/highcharts.js', () => {
                     this.isHighchartsJsLoaded = true;
                 });
             } else {
