@@ -141,6 +141,37 @@ export default class Read2MeHelpers {
         head.appendChild(link);
     }
 
+    static arrayStringToArray(cssSelectors) {
+        if (!cssSelectors)
+            return;
+
+        cssSelectors = cssSelectors.substring(1, cssSelectors.length - 1).split(',');
+        cssSelectors = cssSelectors.map(selector => selector.trim());
+        cssSelectors = cssSelectors.map(selector => Read2MeHelpers.trimByChar(selector, '"'));
+        cssSelectors = cssSelectors.map(selector => Read2MeHelpers.trimByChar(selector, "'"));
+
+        return cssSelectors;
+    }
+
+    static booleanStringToBoolean(value) {
+        if (value === 'true')
+            value = true;
+        else if (value === 'false')
+            value = false;
+        else
+            throw 'can be only "true" or "false", as a string';
+
+        return value;
+    }
+
+    // https://stackoverflow.com/a/43333491/1325575
+    static trimByChar(string, character) {
+        const first = [...string].findIndex(char => char !== character);
+        const last = [...string].reverse().findIndex(char => char !== character);
+
+        return string.substring(first, string.length - last);
+    }
+
     static getInterestDistributionHighchart(result, container, areaColor) {
         let durationAxis = Object.keys(result.playback_count_per_second).map(Number);
         let countValues = Object.values(result.playback_count_per_second);

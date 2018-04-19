@@ -37,9 +37,9 @@ export default class Read2MePlayerBuilder {
         let voice = elem.getAttribute('data-voice');
         let design = elem.getAttribute('data-design');
 
-        autoplay = autoplay === null ? false : this._booleanStringToBoolean(autoplay);
-        cssSelectors = this._cssSelectorsStringToArray(cssSelectors);
-        ignoreContentChange = ignoreContentChange === null ? false : this._booleanStringToBoolean(ignoreContentChange);
+        autoplay = autoplay === null ? false : Read2MeHelpers.booleanStringToBoolean(autoplay);
+        cssSelectors = Read2MeHelpers.arrayStringToArray(cssSelectors);
+        ignoreContentChange = ignoreContentChange === null ? false : Read2MeHelpers.booleanStringToBoolean(ignoreContentChange);
 
         let backendWrapper = new Read2MeBackendWrapper(appId, url, cssSelectors, voice, ignoreContentChange, 'widget');
         let playerId = this.playerInstances.length;
@@ -94,36 +94,5 @@ export default class Read2MePlayerBuilder {
                 error(response);
             }
         );
-    }
-
-    _cssSelectorsStringToArray(cssSelectors) {
-        if (!cssSelectors)
-            return;
-
-        cssSelectors = cssSelectors.substring(1, cssSelectors.length - 1).split(',');
-        cssSelectors = cssSelectors.map(selector => selector.trim());
-        cssSelectors = cssSelectors.map(selector => this._trimByChar(selector, '"'));
-        cssSelectors = cssSelectors.map(selector => this._trimByChar(selector, "'"));
-
-        return cssSelectors;
-    }
-
-    _booleanStringToBoolean(value) {
-        if (value === 'true')
-            value = true;
-        else if (value === 'false')
-            value = false;
-        else
-            throw 'Unsupported value for ignoreContentChange (can be "true" or "false", as a string)';
-
-        return value;
-    }
-
-    // https://stackoverflow.com/a/43333491/1325575
-    _trimByChar(string, character) {
-        const first = [...string].findIndex(char => char !== character);
-        const last = [...string].reverse().findIndex(char => char !== character);
-
-        return string.substring(first, string.length - last);
     }
 }
