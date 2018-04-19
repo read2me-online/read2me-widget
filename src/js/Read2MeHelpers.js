@@ -184,6 +184,22 @@ export default class Read2MeHelpers {
                 tickLength: 0,
                 gridLineColor: 'transparent'
             },
+            plotOptions: {
+                series: {
+                    marker: {
+                        radius: 0,
+                        lineColor: null, // inherit from series
+                        symbol: 'circle',
+                        states: {
+                            hover: {
+                                fillColor: null,
+                                lineWidth: 2,
+                                radius: 6
+                            }
+                        }
+                    }
+                }
+            },
             series: [{
                 data: countValues,
                 type: 'areaspline'
