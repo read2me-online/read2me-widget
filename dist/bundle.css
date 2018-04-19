@@ -383,7 +383,7 @@
     right: 0;
     left: auto;
 
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden;
 
     width: 100%;
