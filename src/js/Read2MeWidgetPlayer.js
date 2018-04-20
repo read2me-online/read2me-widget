@@ -252,6 +252,9 @@ export default class Read2MeWidgetPlayer {
             '#' + this.wrapper.id + ' .read2me-player svg.read2me-player-rewind:hover,' +
             '#' + this.wrapper.id + ' .read2me-player svg.read2me-player-forward:hover {' +
                 'fill: ' + this.primaryColor + ' !important;' +
+            '}' +
+            '.read2me-widget-wrapper.preset-green .read2me-dropdown a:hover {' +
+                'background-color: #fbb99d !important;' +
             '}';
 
         let style = document.createElement('style');

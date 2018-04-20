@@ -34,6 +34,11 @@
 .read2me-widget-wrapper.read2me-design-minimal .read2me-phone-ui {
     max-width: 100%;
 }
+.read2me-widget-wrapper.read2me-design-minimal,
+.read2me-widget-wrapper.read2me-design-minimal .read2me-phone-ui,
+.read2me-design-minimal.read2me-analytics-view .read2me-analytics {
+    min-width: 250px;
+}
 
 .read2me-phone-ui {
     display: inline-block;
@@ -67,10 +72,8 @@
     }
     .read2me-widget-wrapper.read2me-design-minimal {
         height: 50px;
-        min-width: 250px;
     }
     .read2me-widget-wrapper.read2me-design-minimal .read2me-phone-ui {
-        min-width: 250px;
         padding: 0 17px 0 17px;
         height: 50px;
     }
@@ -96,9 +99,6 @@
     position: absolute;
     top: 0;
     left: 0;
-}
-.read2me-design-minimal.read2me-analytics-view .read2me-analytics {
-    min-width: 250px;
 }
 
 /* 3D rules */
