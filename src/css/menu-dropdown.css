@@ -69,14 +69,18 @@
     font-family: 'Raleway', sans-serif;
     letter-spacing: 0;
 }
-.read2me-widget-wrapper .read2me-dropdown li:before {
+.read2me-widget-wrapper .read2me-dropdown li:before,
+.read2me-widget-wrapper .read2me-dropdown li:after {
+    /* fixes #111 */
     content: '';
+    display: none;
 }
 .read2me-widget-wrapper .read2me-dropdown li a {
     display: block;
     padding: 6px;
     font-size: 9px;
     text-decoration: none;
+    transition: unset;
 }
 .read2me-dropdown-trigger {
     box-sizing: content-box;

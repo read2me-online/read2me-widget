@@ -971,8 +971,12 @@ svg.read2me-speaking-rate-icon
 
     border: 1px solid rgba(197, 197, 197, .1);
 }
-.read2me-widget-wrapper .read2me-dropdown li:before
+.read2me-widget-wrapper .read2me-dropdown li:before,
+.read2me-widget-wrapper .read2me-dropdown li:after
 {
+    display: none;
+    /* fixes #111 */
+
     content: '';
 }
 .read2me-widget-wrapper .read2me-dropdown li a
@@ -983,6 +987,7 @@ svg.read2me-speaking-rate-icon
 
     padding: 6px;
 
+    transition: unset;
     text-decoration: none;
 }
 .read2me-dropdown-trigger
