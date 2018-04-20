@@ -282,4 +282,13 @@ export default class Read2MeHelpers {
             b: parseInt(result[3], 16)
         } : null;
     }
+
+    static getElementsWidthWithoutPadding(elem) {
+        // based on https://stackoverflow.com/a/29881817/1325575
+        let computedStyle = getComputedStyle(elem);
+        let elementWidth = elem.clientWidth;   // width with padding
+        elementWidth -= parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle.paddingRight);
+
+        return elementWidth;
+    }
 }

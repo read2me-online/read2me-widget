@@ -75,6 +75,7 @@ export default class Read2MeWidgetPlayer {
         this.setTitle();
         this.setThumbnail();
         this.setDesign();
+        this.switchToMinimalDesignIfContainerTooNarrow();
         this.setTheme();
         this.setColors();
         this.setWidth();
@@ -115,6 +116,9 @@ export default class Read2MeWidgetPlayer {
 
         if (parseInt(getComputedStyle(this.wrapper).width) > 570)
             this.analytics.querySelector('.read2me-analytics-title').style.left = '42.5%';
+
+        // in case the container wasn't properly rendered during construct
+        this.switchToMinimalDesignIfContainerTooNarrow();
     }
 
     _setListeningSessionId() {
@@ -196,6 +200,26 @@ export default class Read2MeWidgetPlayer {
 
     setDesign() {
         this.wrapper.classList.add('read2me-design-' + this.design);
+    }
+
+    switchToMinimalDesignIfContainerTooNarrow() {
+        // no action required if design is minimal or if it's a phone, cause that's handled by CSS
+        if (this.design === 'minimal' || Read2MeHelpers.isPhone())
+            return;
+
+        let standard = 'read2me-design-standard';
+        let minimal = 'read2me-design-minimal';
+        let parentWidth = Read2MeHelpers.getElementsWidthWithoutPadding(this.wrapper.parentNode);
+        let activeDesign = this.wrapper.classList.contains(standard) ? 'standard' : 'minimal';
+
+        if (parentWidth < 570 && activeDesign === 'standard') {
+            this.wrapper.classList.remove(standard);
+            this.wrapper.classList.add(minimal);
+        } else if (parentWidth > 570 && activeDesign === 'minimal') {
+            // take it back to what it was set to in case parent's width increases
+            this.wrapper.classList.remove(minimal);
+            this.wrapper.classList.add(standard);
+        }
     }
 
     setTheme() {
@@ -664,6 +688,7 @@ export default class Read2MeWidgetPlayer {
     handleViewportResize() {
         window.addEventListener('resize', () => {
             this.setWidth();
+            this.switchToMinimalDesignIfContainerTooNarrow();
         });
     }
 
