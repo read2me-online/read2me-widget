@@ -235,6 +235,12 @@
     box-sizing: border-box;
 }
 
+.read2me-widget-wrapper.read2me-design-minimal,
+.read2me-widget-wrapper.read2me-design-minimal .read2me-phone-ui
+{
+    max-width: 100%;
+}
+
 .read2me-phone-ui
 {
     display: inline-block;
@@ -245,6 +251,7 @@
 {
     display: none;
 }
+
 @media (min-width: 768px)
 {
     .read2me-widget-wrapper
