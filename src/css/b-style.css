@@ -152,6 +152,7 @@
     overflow-x: auto;
     overflow-y: hidden;
     width: 100%;
+    line-height: 12px;
 }
 
 .read2me-widget-wrapper .read2me-thumbnail {
