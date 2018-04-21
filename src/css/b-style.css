@@ -5,11 +5,8 @@
 .read2me-widget-wrapper .hidden {
     display:none !important;
 }
-.read2me-widget-wrapper:hover {
-    z-index: 201 !important;
-}
 .read2me-widget-wrapper:focus-within {
-    z-index: 202 !important;
+    z-index: 2;
 }
 .read2me-widget-wrapper {
     font-size: 12px;

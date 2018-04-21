@@ -126,7 +126,6 @@ export default class Read2MeWidgetPlayer {
     makeVisible() {
         this.wrapper.classList.remove('read2me-template');
         this.wrapper.style.display = 'inline-block';
-        this.wrapper.style['z-index'] = 200;
     }
 
     hide() {
