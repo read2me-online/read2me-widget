@@ -997,7 +997,7 @@ svg.read2me-speaking-rate-icon
     padding: 6px;
 
     transition: unset;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 .read2me-dropdown-trigger
 {

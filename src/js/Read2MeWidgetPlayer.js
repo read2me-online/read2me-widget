@@ -114,11 +114,9 @@ export default class Read2MeWidgetPlayer {
         this.setMarqueeForTitle();
         this.handleAnalyticsMenuBindings();
 
-        if (parseInt(getComputedStyle(this.wrapper).width) > 570)
-            this.analytics.querySelector('.read2me-analytics-title').style.left = '42.5%';
-
         // in case the container wasn't properly rendered during construct
         this.switchToMinimalDesignIfContainerTooNarrow();
+        this.positionArticleFocusTitle();
     }
 
     _setListeningSessionId() {
@@ -343,10 +341,6 @@ export default class Read2MeWidgetPlayer {
     handlePlayback() {
         [this.playbackContainer, this.phonePlaybackContainer].forEach( (elem, index) => {
             ['click', 'touchend'].forEach(eventType => {
-                // dont bind click on phone container unless it's using minimal theme
-                if (index === 1 && eventType === 'click' && this.design === 'standard')
-                    return;
-
                 elem.addEventListener(eventType, () => {
                     if (!this._isPlaybackEventPermitted(500))
                         return;
@@ -693,10 +687,16 @@ export default class Read2MeWidgetPlayer {
         });
     }
 
+    positionArticleFocusTitle() {
+        if (parseInt(getComputedStyle(this.wrapper).width) > 570)
+            this.analytics.querySelector('.read2me-analytics-title').style.left = '42.5%';
+    }
+
     handleViewportResize() {
         window.addEventListener('resize', () => {
             this.setWidth();
             this.switchToMinimalDesignIfContainerTooNarrow();
+            this.positionArticleFocusTitle();
         });
     }
 

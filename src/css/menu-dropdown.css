@@ -79,7 +79,7 @@
     display: block;
     padding: 6px;
     font-size: 9px;
-    text-decoration: none;
+    text-decoration: none !important;
     transition: unset;
 }
 .read2me-dropdown-trigger {
