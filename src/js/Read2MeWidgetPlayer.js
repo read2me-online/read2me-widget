@@ -43,6 +43,7 @@ export default class Read2MeWidgetPlayer {
         this.loader = this.player.querySelector('.read2me-widget-loader');
         this.titleContainer= this.player.querySelector('.read2me-player-title');
         this.titleTextContainer = this.titleContainer.querySelector('span');
+        this.desktopSpeakingRate = this.player.querySelector('.read2me-speaking-rate');
         widgetBlueprint.parentNode.replaceChild(this.wrapper, this.widgetBlueprint);
 
         // UI playback controllers for tablet and desktop
@@ -56,8 +57,9 @@ export default class Read2MeWidgetPlayer {
         this.phonePlaybackContainer = this.phoneUi.querySelector('.read2me-phone-playback-container');
         this.scrubberPhoneContainer = this.wrapper.querySelector('.read2me-phone-scrubber-container');
         this.scrubberPhone = this.wrapper.querySelector('.read2me-phone-scrubber');
-        this.phoneScrubber = this.phoneUi.querySelector('.read2me-phone-scrubber-progress');
+        this.scrubberPhoneProgress = this.phoneUi.querySelector('.read2me-phone-scrubber-progress');
         this.phoneRemainingTime = this.phoneUi.querySelector('.read2me-phone-remaining-time-container span');
+        this.phoneSpeakingRate = this.phoneUi.querySelector('.read2me-speaking-rate');
 
         // dropdown menu
         this.menu = this.wrapper.querySelector('.read2me-menu');
@@ -238,7 +240,13 @@ export default class Read2MeWidgetPlayer {
 
         this.playbackContainer.style['background-color'] = this.primaryColor;
         this.phonePlaybackContainer.style['background-color'] = this.primaryColor;
-        this.phoneScrubber.style['background-color'] = this.primaryColor;
+        this.phonePlaybackContainer.style['border'] = '1px solid ' + this.secondaryColor;
+        this.phonePlaybackContainer.querySelectorAll('svg').forEach(elem => {
+            elem.style['fill'] = this.secondaryColor;
+        });
+        this.scrubberPhoneProgress.style['background-color'] = this.primaryColor;
+        this.scrubberPhone.style['background-color'] = this.secondaryColor;
+        this.phoneSpeakingRate.style['background-color'] = this.secondaryColor;
 
         let analyticsTitleBackground = 'rgba(' + primaryRgb.r + ',' + primaryRgb.g + ',' + primaryRgb.b + ',0.2)';
         this.analytics.querySelector('.read2me-analytics-title').style.background = analyticsTitleBackground;
@@ -445,7 +453,7 @@ export default class Read2MeWidgetPlayer {
             percentReversed = Math.round(percentReversed * 100); // in real %, e.g. 82%
 
             // update scrubber progress
-            this.phoneScrubber.style['transform'] = 'translateX(-' + percentReversed + '%)';
+            this.scrubberPhoneProgress.style['transform'] = 'translateX(-' + percentReversed + '%)';
 
             // update audio time
             this.audioController.setCurrentTime(Math.round(percent * this.audioController.getDuration()));
@@ -453,9 +461,6 @@ export default class Read2MeWidgetPlayer {
     }
 
     handleSpeakingRateChange() {
-        let phoneSpeakingRate = this.phoneUi.querySelector('.read2me-speaking-rate');
-        let tabletDesktopSpeakingRate = this.player.querySelector('.read2me-speaking-rate');
-
         let callback = (elem) => {
             // allow from 0.5 to 1.5 using .25 as increments:
             // => 0.5, 0.75, 1, 1.25, 1.5
@@ -468,20 +473,20 @@ export default class Read2MeWidgetPlayer {
             let newSpeed = elem.textContent;
 
             this.audioController.setPlaySpeed(parseFloat(newSpeed));
-            phoneSpeakingRate.value = phoneSpeakingRate.innerHTML = newSpeed;
-            tabletDesktopSpeakingRate.value = tabletDesktopSpeakingRate.innerHTML = newSpeed;
+            this.phoneSpeakingRate.value = this.phoneSpeakingRate.innerHTML = newSpeed;
+            this.desktopSpeakingRate.value = this.desktopSpeakingRate.innerHTML = newSpeed;
         };
 
-        phoneSpeakingRate.addEventListener('click', () => {
-            callback(phoneSpeakingRate);
+        this.phoneSpeakingRate.addEventListener('click', () => {
+            callback(this.phoneSpeakingRate);
         });
 
         ['click', 'touchend'].forEach(eventType => {
-            tabletDesktopSpeakingRate.addEventListener(eventType, () => {
+            this.desktopSpeakingRate.addEventListener(eventType, () => {
                 if (!this._isPlaybackEventPermitted(250))
                     return;
 
-                callback(tabletDesktopSpeakingRate);
+                callback(this.desktopSpeakingRate);
             });
         });
     }

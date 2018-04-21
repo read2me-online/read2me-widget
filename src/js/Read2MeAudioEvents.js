@@ -96,7 +96,7 @@ export default class Read2MeAudioEvents {
             let progress = 100 - currentAudioTime * relativeDuration;
             let remainingTimeIndicator = Read2MeHelpers.getRemainingTime(duration, currentAudioTime);
 
-            this.widgetPlayerInstance.phoneScrubber.style['transform'] = 'translateX(-' + progress + '%)';
+            this.widgetPlayerInstance.scrubberPhoneProgress.style['transform'] = 'translateX(-' + progress + '%)';
             this.widgetPlayerInstance.phoneRemainingTime.textContent = remainingTimeIndicator;
         };
     }
