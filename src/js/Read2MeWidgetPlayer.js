@@ -239,10 +239,15 @@ export default class Read2MeWidgetPlayer {
         if (primaryRgb === null || secondaryRgb === null)
             throw new Error('data-colors must be in hexadecimal format');
 
-        let analyticsTitleBackground = 'rgba(' + primaryRgb.r + ',' + primaryRgb.g + ',' + primaryRgb.b + ',0.2)';
-
         this.playbackContainer.style['background-color'] = this.primaryColor;
+        this.phonePlaybackContainer.style['background-color'] = this.primaryColor;
+        this.phoneScrubber.style['background-color'] = this.primaryColor;
+
+        let analyticsTitleBackground = 'rgba(' + primaryRgb.r + ',' + primaryRgb.g + ',' + primaryRgb.b + ',0.2)';
         this.analytics.querySelector('.read2me-analytics-title').style.background = analyticsTitleBackground;
+
+        let phoneUiBackground = 'rgba(' + primaryRgb.r + ',' + primaryRgb.g + ',' + primaryRgb.b + ',0.1)';
+        this.phoneUi.style['background-color'] = phoneUiBackground;
 
         let hoverCss =
             '#' + this.wrapper.id + ' .read2me-player-playback:hover {' +
@@ -253,7 +258,7 @@ export default class Read2MeWidgetPlayer {
             '#' + this.wrapper.id + ' .read2me-player svg.read2me-player-forward:hover {' +
                 'fill: ' + this.primaryColor + ' !important;' +
             '}' +
-            '.read2me-widget-wrapper.preset-green .read2me-dropdown a:hover {' +
+            '#' + this.wrapper.id + '.preset-green .read2me-dropdown a:hover {' +
                 'background-color: #fbb99d !important;' +
             '}';
 
