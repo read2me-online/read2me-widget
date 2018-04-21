@@ -9,6 +9,7 @@ export default class Read2MeAudioController {
         this.audio = new Audio(audioFileUrl);
         this.canPlay = false;
         this.canPlayThrough = false;
+        this._isPlaying = false;
 
         this.audio.addEventListener('canplay', () => {
             this.canPlay = true;
@@ -39,10 +40,16 @@ export default class Read2MeAudioController {
 
     play() {
         this.audio.play();
+        this._isPlaying = true;
     }
 
     pause() {
         this.audio.pause();
+        this._isPlaying = false;
+    }
+
+    isPlaying() {
+        return this._isPlaying;
     }
 
     stop() {

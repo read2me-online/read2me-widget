@@ -74,7 +74,8 @@ export default class Read2MeAudioEvents {
 
     stalled() {
         return () => {
-            this.widgetPlayerInstance.displayLoader();
+            if (this.widgetPlayerInstance.audioController.isPlaying())
+                this.widgetPlayerInstance.displayLoader();
         };
     }
 
