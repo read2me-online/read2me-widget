@@ -107,7 +107,7 @@ Here's what is checked:
 - No IE support, but will fail gracefully by simply not showing ([IE has a worldwide distribution of only 2.1% and decreasing](https://www.w3schools.com/browsers/browsers_explorer.asp)
 
 # Acknowledgments
-- standard design based on https://www.uplabs.com/posts/music-player-2814ecbb-e0e3-4de1-b488-364455ec8cc5
+- standard design based on [this design](https://www.uplabs.com/posts/music-player-2814ecbb-e0e3-4de1-b488-364455ec8cc5) by [easiblu](https://www.uplabs.com/easiblu)
 - [@rafamel](https://github.com/rafamel) for creating a [Preact](https://github.com/read2me-online/read2me-widget/tree/preact) version and advice
 
 # Contact
