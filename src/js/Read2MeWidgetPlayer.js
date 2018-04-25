@@ -245,14 +245,18 @@ export default class Read2MeWidgetPlayer {
             elem.style['fill'] = this.secondaryColor;
         });
         this.scrubberPhoneProgress.style['background-color'] = this.primaryColor;
-        this.scrubberPhone.style['background-color'] = this.secondaryColor;
         this.phoneSpeakingRate.style['background-color'] = this.secondaryColor;
 
-        let analyticsTitleBackground = 'rgba(' + primaryRgb.r + ',' + primaryRgb.g + ',' + primaryRgb.b + ',0.2)';
-        this.analytics.querySelector('.read2me-analytics-title').style.background = analyticsTitleBackground;
-
-        let phoneUiBackground = 'rgba(' + primaryRgb.r + ',' + primaryRgb.g + ',' + primaryRgb.b + ',0.1)';
-        this.phoneUi.style['background-color'] = phoneUiBackground;
+        Read2MeHelpers.setRgbaProperty(
+            this.analytics.querySelector('.read2me-analytics-title'),
+            'background', primaryRgb.r, primaryRgb.g, primaryRgb.b, 0.2
+        );
+        Read2MeHelpers.setRgbaProperty(
+            this.phoneUi, 'background-color', primaryRgb.r, primaryRgb.g, primaryRgb.b, 0.015
+        );
+        Read2MeHelpers.setRgbaProperty(
+            this.scrubberPhone, 'background-color', primaryRgb.r, primaryRgb.g, primaryRgb.b, 0.15
+        );
 
         let hoverCss =
             '#' + this.wrapper.id + ' .read2me-player-playback:hover {' +

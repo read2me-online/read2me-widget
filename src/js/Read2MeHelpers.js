@@ -283,6 +283,10 @@ export default class Read2MeHelpers {
         } : null;
     }
 
+    static setRgbaProperty(elem, property, r, g, b, opacity) {
+        elem.style[property] = 'rgba(' + r + ',' + g + ',' + b + ',' + opacity + ')';
+    }
+
     static getElementsWidthWithoutPadding(elem) {
         // based on https://stackoverflow.com/a/29881817/1325575
         let computedStyle = getComputedStyle(elem);
