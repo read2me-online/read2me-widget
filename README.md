@@ -1,3 +1,6 @@
+![demos](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/standard%20player%20custom%20colors%20red%203%20in%201.png)
+
+
 # Features
 - four pre-made custom color presets (green, blue, white and white/black), all of which are customizable
 - analytics: easily figure out where are you dropping your readers by looking at `Focus Chart`, get playback stats and listener demographics
