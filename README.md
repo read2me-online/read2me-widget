@@ -95,7 +95,7 @@ Since there's no backend integration and private key authentication,
 how do I stop villains from converting articles I don't want to convert and therefore depleting
 my credit/monthly quota using HTTP clients (e.g. Postman)? 
 
-The answer is **validation**. Every time you issue an audio creation request, the target website is checked.
+The answer is **validation**. Every time you issue an audio creation request, backend API validates the target website.
 Here's what is checked:
 
 1. Is the hostname whitelisted for App ID?
