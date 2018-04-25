@@ -1,5 +1,32 @@
 ![demos](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/standard%20custom%20colors%20red%20stacked.png)
 
+# Installation
+Add this in your page, ideally immediately after `<body>`:
+
+```html
+<script>(function(d, t, id) {
+    var s, r, div, c, js, h, sT, sI;
+    if (d.getElementById(id)) return;
+    div = d.createElement(t); div.id = id;
+    d.body.insertBefore(div, d.body.firstChild);
+    s = 'https://d22fip447qchhd.cloudfront.net/api/widget/1.1.0-beta5/widget.min.html';
+    r = new XMLHttpRequest(); r.responseType = 'document'; r.open('GET', s, true);
+    r.onload = function(e) {
+        c = e.target.response.querySelector('style');
+        js = e.target.response.querySelector('script');
+        h = e.target.response.querySelector('div');
+        div.outerHTML = "";
+        div = d.createElement(t); div.id = id;
+        sT = d.createElement('script');
+        sI = d.createTextNode(js.text);
+        sT.appendChild(sI); div.appendChild(sT); div.appendChild(c); div.appendChild(h);
+        d.body.insertBefore(div, d.body.firstChild);
+    };
+    r.send();
+}(document, 'div', 'read2me-root'));</script>
+```
+
+
 
 # Features
 - four pre-made custom color presets (green, blue, white and white/black), all of which are customizable
@@ -36,10 +63,8 @@
 - Tested in Chrome, Firefox, Edge, Opera, Safari and Samsung Browser
 - No IE support, but will fail gracefully by simply not showing ([IE has a worldwide distribution of only 2.1% and decreasing](https://www.w3schools.com/browsers/browsers_explorer.asp)
 
-@TODO PLAYER screenshots
-
 # Advanced API usage
-@TODO snippets
+Advanced integration means that you won't be using any pre-existing designs, and you just want to be able to use Read2Me's API. 
 
 # Credits
 - standard design based on https://www.uplabs.com/posts/music-player-2814ecbb-e0e3-4de1-b488-364455ec8cc5
