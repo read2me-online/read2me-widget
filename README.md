@@ -71,7 +71,7 @@ Advanced integration means that you won't be using any pre-existing designs, and
 
 You're advised to use ReadMe's SDK:
 1. Import the `widget.min.html` as mentioned above (or however you prefer)
-2. Declare a widget with `data-only-instantiate="true"` attribute
+2. Declare a widget inside the HTML document (`data-only-instantiate="true"` might come in handy)
 3. Write some code:
 
 ```javascript
