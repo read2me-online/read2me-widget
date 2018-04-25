@@ -98,8 +98,8 @@ my credit/monthly quota using HTTP clients (e.g. Postman)?
 The answer is **validation**. Every time you issue an audio creation request, the target website is checked.
 Here's what is checked:
 
-1. Is the hostname validated for App ID?
-2. Does the URL contain widget code with exactly the same params as the API request (URL, CSS selectors, voice and ignore-content-change values)
+1. Is the hostname whitelisted for App ID?
+2. Does the URL contain widget code with exactly the same params as the API request (`url`, `css_selectors`, `voice` and `ignore_content_change` values)
 
 
 # Browser support
