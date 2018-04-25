@@ -26,7 +26,18 @@ Add this in your page, ideally immediately after `<body>`:
 }(document, 'div', 'read2me-root'));</script>
 ```
 
-
+Add this where you want the player to appear:
+```html
+<div class="read2me-widget"
+     data-app-id="YOUR APP ID"
+     data-url="https://canonical.url/to/your/page"
+     data-autoplay="false"
+     data-css-selectors="['h1', 'p.content']"
+     data-voice="matthew"
+     data-ignore-content-change="false"
+>
+</div>
+```
 
 # Features
 - four pre-made custom color presets (green, blue, white and white/black), all of which are customizable
