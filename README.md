@@ -72,7 +72,22 @@ Add this where you want the player to appear:
 - No IE support, but will fail gracefully by simply not showing ([IE has a worldwide distribution of only 2.1% and decreasing](https://www.w3schools.com/browsers/browsers_explorer.asp)
 
 # Advanced API usage
-Advanced integration means that you won't be using any pre-existing designs, and you just want to be able to use Read2Me's API. 
+Advanced integration means that you won't be using any pre-existing designs, and you just want to be able to use Read2Me's API.
+
+You're advised to use ReadMe's SDK:
+1. Import the `widget.min.html` as mentioned above (or however you prefer)
+2. Declare a widget with `data-only-instantiate="true"` attribute
+3. Write some code:
+
+```javascript
+let appId = 123;
+leturl = 'https://canonical.url/to/your/page';
+let read2meBackend = new Read2Me.BackendWrapper(appId, url);
+```
+
+`BackendWrapper` has a few methods: `get()`, `create()`, `deleteCache()` and `refreshCreate()`
+
+To send analytics, you'll be using `Read2Me.AnalyticsBackendWrapper` which is a class with static methods. 
 
 # Credits
 - standard design based on https://www.uplabs.com/posts/music-player-2814ecbb-e0e3-4de1-b488-364455ec8cc5
