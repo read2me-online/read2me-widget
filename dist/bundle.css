@@ -1333,8 +1333,8 @@ svg.read2me-speaking-rate-icon
 }
 .read2me-widget-wrapper.preset-blue .read2me-phone-ui
 {
-    color: #f4f4f4;
-    background-color: #0ed1fe;
+    color: black;
+    background-color: rgba(14, 209, 254, .015);
 }
 .read2me-widget-wrapper.preset-blue .read2me-phone-scrubber-progress
 {
@@ -1342,8 +1342,7 @@ svg.read2me-speaking-rate-icon
 }
 .read2me-widget-wrapper.preset-blue .read2me-phone-ui .read2me-speaking-rate
 {
-    color: #0a93b3;
-    border: none;
+    border: 1px solid #eee;
     background-color: white;
 }
 
