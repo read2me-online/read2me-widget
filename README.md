@@ -39,7 +39,7 @@ Add this where you want the player to appear:
 # Features
 - four pre-made custom color presets (green, blue, white and white/black), all of which are customizable
 - analytics: easily figure out where are you dropping your readers by looking at `Focus Chart`, get playback stats and listener demographics
-- responsive deisgn - tablet, desktop and mobile UIs
+- responsive design - tablet, desktop and mobile UIs
 - adjustable width in any unit (e.g. `px` or `%`)
 - supports autoplay (but can only autoplay on desktops due to mobile browsers' policies)
 - explicit or implicit title: if not set, it will use what it finds in \<title\> tag
@@ -49,7 +49,6 @@ Add this where you want the player to appear:
 - numerous voices and supported languages ([see here for a full list](https://app.swaggerhub.com/apis/Read2Me/convert/1.0.0#/default/get_convert_1_0_0_voices))
 - ability to choose whether or not the audio should update on content change (i.e. should the podcast keep up to date with your article text or just serve the first version)
 - graceful behaviour on package quota exhaustion: will continue serving existing podcasts and the widget will simply self-destruct in case it's placed on a new article
-- for developers: widget(s) are exposed through `window.Read2Me.PlayerInstances` and the core backend API wrappers are exposed through `window.Read2Me.BackendWrapper` and `window.Read2Me.AnalyticsBackendWrapper`
 - API is [publicly documented](https://swaggerhub.com/apis/Read2Me/)
 - serve ads that are immune to adblockers by inlining text into the content and hiding it from viewers using CSS
 
@@ -88,7 +87,9 @@ let read2meBackend = new Read2Me.BackendWrapper(appId, url, css);
 
 `BackendWrapper` has a few methods: `get()`, `create()`, `deleteCache()` and `refreshCreate()`
 
-To send analytics, you'll be using `Read2Me.AnalyticsBackendWrapper` which is a class with static methods. 
+To send analytics, you'll be using `Read2Me.AnalyticsBackendWrapper` which is a class with static methods.
+
+Widgets created using the simple setup are exposed through `Read2Me.PlayerInstances`. 
 
 # Credits
 - standard design based on https://www.uplabs.com/posts/music-player-2814ecbb-e0e3-4de1-b488-364455ec8cc5
