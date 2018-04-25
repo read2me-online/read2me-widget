@@ -71,7 +71,7 @@ Add this where you want the player to appear:
 - Tested in Chrome, Firefox, Edge, Opera, Safari and Samsung Browser
 - No IE support, but will fail gracefully by simply not showing ([IE has a worldwide distribution of only 2.1% and decreasing](https://www.w3schools.com/browsers/browsers_explorer.asp)
 
-# Advanced API usage
+# Advanced usage
 Advanced integration means that you won't be using any pre-existing designs, and you just want to be able to use Read2Me's API.
 
 You're advised to use ReadMe's SDK:
