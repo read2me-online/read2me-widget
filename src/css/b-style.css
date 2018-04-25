@@ -340,6 +340,9 @@ svg.read2me-speaking-rate-icon {
     font-size: 13px;
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.19);
 }
+.read2me-desktop-ui .read2me-speaking-rate:active {
+    border: 1px inset !important;
+}
 .read2me-speaking-rate:after {
     content: 'x';
 }
