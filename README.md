@@ -31,10 +31,7 @@ Add this where you want the player to appear:
 <div class="read2me-widget"
      data-app-id="YOUR APP ID"
      data-url="https://canonical.url/to/your/page"
-     data-autoplay="false"
      data-css-selectors="['h1', 'p.content']"
-     data-voice="matthew"
-     data-ignore-content-change="false"
 >
 </div>
 ```
@@ -59,7 +56,7 @@ Add this where you want the player to appear:
 # API
 - `data-app-id` - your App ID, **required**
 - `data-url` - URL you are converting, **required**
-- `data-css-selectors` - manually select content you want to convert to a podcast using CSS selectors. optional, defaults to an intelligent guess. example: `['h1', 'p.content']`
+- `data-css-selectors` - manually select content you want to convert to a podcast using CSS selectors. optional, but when manually set it yields a higher quality page-to-podcast conversion. defaults to an intelligent guess. example: `['h1', 'p.content']`
 - `data-autoplay` - should the audio autoplay on page load? optional, default is _false_ (only works for desktop)
 - `data-voice` - voice you want to use for podcast. optional, defaults to Matthew, an American male voice.
 - `data-ignore-content-change` - optional. by default, the created podcast will keep in sync with any revisions you might do on an article. if you want to ignore those changes, set this attribute to _true_
