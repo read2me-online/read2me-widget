@@ -94,3 +94,6 @@ Widgets created using the simple setup are exposed through `Read2Me.PlayerInstan
 # Acknowledgments
 - standard design based on https://www.uplabs.com/posts/music-player-2814ecbb-e0e3-4de1-b488-364455ec8cc5
 - [@rafamel](https://github.com/rafamel) for creating a [Preact](https://github.com/read2me-online/read2me-widget/tree/preact) version and advice
+
+# Contact
+Shoot an email to `hello@read2me.online`
