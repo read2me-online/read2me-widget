@@ -1,5 +1,3 @@
-[![Maintainability](https://api.codeclimate.com/v1/badges/36dd4efdd375a4b23b70/maintainability)](https://codeclimate.com/repos/5a4794df0602e102940006eb/maintainability)
-
 # Features
 - four pre-made custom color presets (green, blue, white and white/black), all of which are customizable
 - analytics: easily figure out where are you dropping your readers by looking at `Focus Chart`, get playback stats and listener demographics
@@ -27,4 +25,4 @@
 @TODO snippets
 
 # Credits
-- design based on https://www.uplabs.com/posts/music-player-2814ecbb-e0e3-4de1-b488-364455ec8cc5
+- standard design based on https://www.uplabs.com/posts/music-player-2814ecbb-e0e3-4de1-b488-364455ec8cc5
