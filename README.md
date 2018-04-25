@@ -1,4 +1,4 @@
-![demos](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/standard%20player%20custom%20colors%20red%203%20in%201.png)
+![demos](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/standard%20custom%20colors%20red%20stacked.png)
 
 
 # Features
