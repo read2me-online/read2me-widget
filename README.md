@@ -66,10 +66,6 @@ Add this where you want the player to appear:
 - `data-width` - sets a custom width for the widget. for standard design the minimum is 570 px, and for minimal 250 px. if you use a standard design but the container is less than 570px wide, it'll automatically apply the minimal design. optional, defaults to 570px for tablets and desktops and 100% for phones 
 - `data-only-instantiate` - only use the widget code for validation, don't instantiate the player. this should be used when you don't want to use any of the available players, but instead you want to code your own solution against [the API](https://app.swaggerhub.com/apis/Read2Me/convert/1.0.0)). optional, defaults to false
 
-# Browser support
-- Tested in Chrome, Firefox, Edge, Opera, Safari and Samsung Browser
-- No IE support, but will fail gracefully by simply not showing ([IE has a worldwide distribution of only 2.1% and decreasing](https://www.w3schools.com/browsers/browsers_explorer.asp)
-
 # Advanced usage
 Advanced integration means that you won't be using any pre-existing designs, and you just want to be able to use Read2Me's API.
 
@@ -91,5 +87,10 @@ To send analytics, you'll be using `Read2Me.AnalyticsBackendWrapper` which is a 
 
 Widgets created using the simple setup are exposed through `Read2Me.PlayerInstances`. 
 
-# Credits
+# Browser support
+- Tested in Chrome, Firefox, Edge, Opera, Safari and Samsung Browser
+- No IE support, but will fail gracefully by simply not showing ([IE has a worldwide distribution of only 2.1% and decreasing](https://www.w3schools.com/browsers/browsers_explorer.asp)
+
+# Acknowledgments
 - standard design based on https://www.uplabs.com/posts/music-player-2814ecbb-e0e3-4de1-b488-364455ec8cc5
+- [@rafamel](https://github.com/rafamel) for creating a [Preact](https://github.com/read2me-online/read2me-widget/tree/preact) version and advice
