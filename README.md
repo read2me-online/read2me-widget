@@ -6,7 +6,7 @@
 - supports autoplay (but can only autoplay on desktops due to mobile browsers' policies)
 - explicit or implicit title: if not set, it will use what it finds in \<title\> tag
 - explicit or implicit thumbnail: if not set, it will use what it finds in OG:Image property. An image with 1:1 aspect ratio is recommended. 
-- quota warnings at 70%, 80% and 90%
+- quota warnings at 70%, 80% and 90% via email
 - ability to be specific about content using CSS selectors
 - numerous voices and supported languages
 - ability to choose whether or not the audio should update on content change (i.e. should the podcast keep up to date with your article text or just serve the first version)
