@@ -82,7 +82,8 @@ You're advised to use ReadMe's SDK:
 ```javascript
 let appId = 123;
 let url = 'https://canonical.url/to/your/page';
-let read2meBackend = new Read2Me.BackendWrapper(appId, url);
+let css = ['h1', 'p.content'];
+let read2meBackend = new Read2Me.BackendWrapper(appId, url, css);
 ```
 
 `BackendWrapper` has a few methods: `get()`, `create()`, `deleteCache()` and `refreshCreate()`
