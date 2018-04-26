@@ -8,6 +8,7 @@
 ![demos](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/standard%20custom%20colors%20red%20stacked.png)
 
 ###### Minimal design with green theme
+![demos](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/minimal%20designs%20green.png)
 
 # Installation
 Add this in your page, ideally immediately after `<body>`:
