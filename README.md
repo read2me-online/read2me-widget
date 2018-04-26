@@ -83,7 +83,7 @@ let read2meBackend = new Read2Me.BackendWrapper(appId, url, css);
 
 `BackendWrapper` has a few methods: `get()`, `create()`, `deleteCache()` and `refreshCreate()`. Take a look at [class API](https://github.com/read2me-online/read2me-widget/blob/master/src/js/Read2MeBackendWrapper.js).
 
-To send analytics, you'll be using `Read2Me.AnalyticsBackendWrapper` which is a class with static methods. Again, take a look at [class API](https://github.com/read2me-online/read2me-widget/blob/master/src/js/Read2MeAnalyticsBackendWrapper.js).
+To send analytics, you'll be using `Read2Me.AnalyticsBackendWrapper` which is a class with static methods. Again, take a look at [class API](https://github.com/read2me-online/read2me-widget/blob/master/src/js/Read2MeAnalyticsBackendWrapper.js).    
 
 Widgets created using the simple setup are exposed through `Read2Me.PlayerInstances`. 
 
@@ -111,4 +111,4 @@ Here's what is checked:
 - [@rafamel](https://github.com/rafamel) for creating a [Preact](https://github.com/read2me-online/read2me-widget/tree/preact) version and advice
 
 # Onboarding
-Shoot an email to `hello@read2me.online`
+Onboarding is manual. If you're interested please send an email to `hello@read2me.online`.  
