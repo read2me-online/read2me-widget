@@ -1,3 +1,4 @@
+Standard design with custom coloring (i.e. custom-colors attribute)
 ![demos](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/standard%20custom%20colors%20red%20stacked.png)
 
 # Installation
