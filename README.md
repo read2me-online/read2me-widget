@@ -103,8 +103,8 @@ Widgets created using the simple setup are exposed through `Read2Me.PlayerInstan
 
 You might be thinking - what if I don't want to convert all my articles? 
 Since there's no backend integration and private key authentication,
-how do I stop villains from converting articles I don't want to convert and therefore depleting
-my credit/monthly quota using HTTP clients (e.g. Postman)? 
+how do I stop villains from converting articles using HTTP clients (e.g. Postman) I don't want to convert and therefore depleting
+my credit/monthly quota? 
 
 The answer is **validation**. Every time you issue an audio creation request, backend API validates the target website.
 Here's what is checked:
