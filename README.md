@@ -11,7 +11,7 @@
 ![demos](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/minimal%20designs%20green.png)
 
 # Installation
-Add this in your page, ideally immediately after `<body>`:
+Add this to your page, ideally immediately after `<body>`:
 
 ```html
 <script>(function(d, t, id) {
