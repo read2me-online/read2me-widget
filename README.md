@@ -81,14 +81,14 @@ let css = ['h1', 'p.content'];
 let read2meBackend = new Read2Me.BackendWrapper(appId, url, css);
 ```
 
-`BackendWrapper` has a few methods: `get()`, `create()`, `deleteCache()` and `refreshCreate()`
+`BackendWrapper` has a few methods: `get()`, `create()`, `deleteCache()` and `refreshCreate()`. Take a look at [class API](https://github.com/read2me-online/read2me-widget/blob/master/src/js/Read2MeBackendWrapper.js).
 
-To send analytics, you'll be using `Read2Me.AnalyticsBackendWrapper` which is a class with static methods.
+To send analytics, you'll be using `Read2Me.AnalyticsBackendWrapper` which is a class with static methods. Again, take a look at [class API](https://github.com/read2me-online/read2me-widget/blob/master/src/js/Read2MeAnalyticsBackendWrapper.js).
 
 Widgets created using the simple setup are exposed through `Read2Me.PlayerInstances`. 
 
 # How does it work ?
-**(i.e. how does backend API validate genuine requests)**
+**(i.e. how can an backend-less integration be secure?)**
 
 You might be thinking - what if I don't want to convert all my articles? 
 Since there's no backend integration and private key authentication,
@@ -110,5 +110,5 @@ Here's what is checked:
 - standard design based on [this design](https://www.uplabs.com/posts/music-player-2814ecbb-e0e3-4de1-b488-364455ec8cc5) by [easiblu](https://www.uplabs.com/easiblu)
 - [@rafamel](https://github.com/rafamel) for creating a [Preact](https://github.com/read2me-online/read2me-widget/tree/preact) version and advice
 
-# Contact
+# Onboarding
 Shoot an email to `hello@read2me.online`
