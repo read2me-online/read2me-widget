@@ -1,5 +1,7 @@
 # Samples
 ##### Minimal design with gray theme demo
+![Minimal design with gray theme demo](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/minimal%20gray%20stage1.png)
+
 [Demo link](https://widget-demos.read2me.online/zenhabits.net/annoying/index.html)
 
 ###### Standard design with gray theme and custom coloring
