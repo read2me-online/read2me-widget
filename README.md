@@ -1,4 +1,7 @@
 # Samples
+##### Minimal design with gray theme demo
+[Demo link](https://widget-demos.read2me.online/zenhabits.net/annoying/index.html)
+
 ###### Standard design with gray theme and custom coloring
 
 | data-theme  | data-colors |
