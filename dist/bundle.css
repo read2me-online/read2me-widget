@@ -641,6 +641,9 @@ svg.read2me-speaking-rate-icon
 
 .read2me-speaking-rate
 {
+    font-family: Raleway,sans-serif;
+    font-size: 12px;
+    font-weight: normal;
     line-height: 14px;
 
     width: 100%;
@@ -649,6 +652,7 @@ svg.read2me-speaking-rate-icon
     text-align: center;
     word-break: keep-all;
 
+    color: black;
     border: 1px solid whitesmoke;
     border-radius: 10px;
     outline: none !important;
