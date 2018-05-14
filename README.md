@@ -66,6 +66,7 @@ Add this where you want the player to appear:
 - graceful behaviour on package quota exhaustion: will continue serving existing podcasts and the widget will simply self-destruct in case it's placed on a new article
 - API is [publicly documented](https://swaggerhub.com/apis/Read2Me/)
 - serve ads that are immune to adblockers by inlining text into the content and hiding it from viewers using CSS
+- create iTunes-compatible RSS feeds using the [RSS API endpoint](https://app.swaggerhub.com/apis/Read2Me/RSS/1.0.0). you can create multiple feeds, each with its their own settings. [This](https://read2me.online/rss/daily-curated-articles.php) is an example of such feed, and [here](https://itunes.apple.com/hr/podcast/read2me-daily-curated-articles/id1378984368) is the same feed after being submitted to iTunes.
 
 # API
 - `data-app-id` - your App ID, **required**
