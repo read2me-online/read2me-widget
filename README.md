@@ -121,7 +121,7 @@ Here's what is checked:
 
 # Browser support
 - Tested in Chrome, Firefox, Edge, Opera, Safari and Samsung Browser
-- No IE support, but will fail gracefully by simply not showing ([IE has a worldwide distribution of only 2% and decreasing](https://www.w3schools.com/browsers/browsers_explorer.asp)
+- No IE support, but will fail gracefully by simply not showing ([IE has a worldwide distribution of only 1.9% and decreasing](https://www.w3schools.com/browsers/browsers_explorer.asp))
 
 # Onboarding
 Onboarding is manual. If you're interested please send an email to `hello@read2me.online`
