@@ -1,20 +1,3 @@
-# Samples
-##### Minimal design with gray theme demo
-![Minimal design with gray theme demo](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/minimal%20gray%20stage1.png)
-
-[Demo link](https://widget-demos.read2me.online/zenhabits.net/annoying/index.html)
-
-###### Standard design with gray theme and custom coloring
-
-| data-theme  | data-colors |
-| ------------- | ------------- |
-| gray  | ['#EE1932', '#ffffff']  |
-
-![demos](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/standard%20custom%20colors%20red%20stacked.png)
-
-###### Minimal design with green theme
-![demos](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/minimal%20designs%20green.png)
-
 # Installation
 Add this to your page, ideally immediately after `<body>`:
 
@@ -104,24 +87,27 @@ To send analytics, you'll be using `Read2Me.AnalyticsBackendWrapper` which is a 
 
 Widgets created using the simple setup are exposed through `Read2Me.PlayerInstances`. 
 
-# How does it work ?
-**(i.e. how can an backend-less integration be secure?)**
-
-You might be thinking - what if I don't want to convert all my articles? 
-Since there's no backend integration and private key authentication,
-how do I stop villains from converting articles using HTTP clients (e.g. Postman) I don't want to convert and therefore depleting
-my credit/monthly quota? 
-
-The answer is **validation**. Every time you issue an audio creation request, backend API validates the target website.
-Here's what is checked:
-
-1. Is the hostname whitelisted for App ID?
-2. Does the URL contain widget code with exactly the same params as the API request (`url`, `css_selectors`, `voice` and `ignore_content_change` values)
-
-
 # Browser support
 - Tested in Chrome, Firefox, Edge, Opera, Safari and Samsung Browser
 - No IE support, but will fail gracefully by simply not showing ([IE has a worldwide distribution of only 1.9% and decreasing](https://www.w3schools.com/browsers/browsers_explorer.asp))
+
+# Samples
+##### Minimal design with gray theme demo
+![Minimal design with gray theme demo](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/minimal%20gray%20stage1.png)
+
+[Demo link](https://widget-demos.read2me.online/zenhabits.net/annoying/index.html)
+
+###### Standard design with gray theme and custom coloring
+
+| data-theme  | data-colors |
+| ------------- | ------------- |
+| gray  | ['#EE1932', '#ffffff']  |
+
+![demos](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/standard%20custom%20colors%20red%20stacked.png)
+
+###### Minimal design with green theme
+![demos](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/minimal%20designs%20green.png)
+
 
 # Onboarding
 Onboarding is manual. If you're interested please send an email to `hello@read2me.online`
