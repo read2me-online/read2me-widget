@@ -56,7 +56,7 @@ Add this where you want the player to appear:
 - `data-url` - URL you are converting, **required**
 - `data-css-selectors` - manually select content you want to convert to a podcast using CSS selectors. optional, but when manually set it yields a higher quality page-to-podcast conversion. defaults to an intelligent guess. example: `['h1', 'p.content']`
 - `data-autoplay` - should the audio autoplay on page load? optional, default is _false_ (only works for desktop)
-- `data-voice` - voice you want to use for podcast. optional, defaults to Matthew, an American male voice.
+- `data-voice` - voice you want to use for podcast. optional, defaults to `en-US-Wavenet-D`, an American male voice.
 - `data-ignore-content-change` - optional. by default, the created podcast will keep in sync with any revisions you might do on an article. if you want to ignore those changes, set this attribute to _true_
 - `data-title` - the title you want to use, only applies to Standard design. optional, defaults to page title
 - `data-thumbnail` - URL to an image you want to display, only applies to Standard design. recommended is 1:1 ratio. optional, defaults to OG:Image, and if that is not set either, it'll use an Read2Me image.
