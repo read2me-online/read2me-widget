@@ -1,20 +1,3 @@
-# Samples
-##### Minimal design with gray theme demo
-![Minimal design with gray theme demo](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/minimal%20gray%20stage1.png)
-
-[Demo link](https://widget-demos.read2me.online/zenhabits.net/annoying/index.html)
-
-###### Standard design with gray theme and custom coloring
-
-| data-theme  | data-colors |
-| ------------- | ------------- |
-| gray  | ['#EE1932', '#ffffff']  |
-
-![demos](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/standard%20custom%20colors%20red%20stacked.png)
-
-###### Minimal design with green theme
-![demos](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/minimal%20designs%20green.png)
-
 # Installation
 Add this to your page, ideally immediately after `<body>`:
 
@@ -73,7 +56,7 @@ Add this where you want the player to appear:
 - `data-url` - URL you are converting, **required**
 - `data-css-selectors` - manually select content you want to convert to a podcast using CSS selectors. optional, but when manually set it yields a higher quality page-to-podcast conversion. defaults to an intelligent guess. example: `['h1', 'p.content']`
 - `data-autoplay` - should the audio autoplay on page load? optional, default is _false_ (only works for desktop)
-- `data-voice` - voice you want to use for podcast. optional, defaults to Matthew, an American male voice.
+- `data-voice` - voice you want to use for podcast. optional, defaults to `en-US-Wavenet-D`, an American male voice.
 - `data-ignore-content-change` - optional. by default, the created podcast will keep in sync with any revisions you might do on an article. if you want to ignore those changes, set this attribute to _true_
 - `data-title` - the title you want to use, only applies to Standard design. optional, defaults to page title
 - `data-thumbnail` - URL to an image you want to display, only applies to Standard design. recommended is 1:1 ratio. optional, defaults to OG:Image, and if that is not set either, it'll use an Read2Me image.
@@ -81,7 +64,7 @@ Add this where you want the player to appear:
 - `data-theme` - color preset. optional, defaults to _white_. available presets are: white, gray, blue and green.
 - `data-colors` - set primary and secondary colors on top of the theme as an array (e.g. `data-colors="['#EE1932', '#ffffff']"`). optional, but if passed, must be in hex format. 
 - `data-width` - sets a custom width for the widget. for standard design the minimum is 570 px, and for minimal 250 px. if you use a standard design but the container is less than 570px wide, it'll automatically apply the minimal design. optional, defaults to 570px for tablets and desktops and 100% for phones 
-- `data-only-instantiate` - only use the widget code for validation, don't instantiate the player. this should be used when you don't want to use any of the available players, but instead you want to code your own solution against [the API](https://app.swaggerhub.com/apis/Read2Me/convert/1.0.0)). optional, defaults to false
+- `data-only-instantiate` - only use the widget code for validation, don't instantiate the player. this should be used when you don't want to use any of the available players, but instead you want to code your own solution against [the API](https://app.swaggerhub.com/apis/Read2Me/convert/1.0.0). optional, defaults to false
 
 # Advanced usage
 Advanced integration means that you won't be using any pre-existing designs, and you just want to be able to use Read2Me's API.
@@ -106,7 +89,25 @@ Widgets created using the simple setup are exposed through `Read2Me.PlayerInstan
 
 # Browser support
 - Tested in Chrome, Firefox, Edge, Opera, Safari and Samsung Browser
-- No IE support, but will fail gracefully by simply not showing ([IE has a worldwide distribution of only 2.1% and decreasing](https://www.w3schools.com/browsers/browsers_explorer.asp)
+- No IE support, but will fail gracefully by simply not showing ([IE has a worldwide distribution of only 1.8% and decreasing](https://www.w3schools.com/browsers/browsers_explorer.asp))
+
+# Samples
+##### Minimal design with gray theme demo
+![Minimal design with gray theme demo](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/minimal%20gray%20stage1.png)
+
+[Demo link](https://widget-demos.read2me.online/zenhabits.net/annoying/index.html)
+
+###### Standard design with gray theme and custom coloring
+
+| data-theme  | data-colors |
+| ------------- | ------------- |
+| gray  | ['#EE1932', '#ffffff']  |
+
+![demos](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/standard%20custom%20colors%20red%20stacked.png)
+
+###### Minimal design with green theme
+![demos](https://raw.githubusercontent.com/read2me-online/read2me-widget/master/demos/screenshots/minimal%20designs%20green.png)
+
 
 # Onboarding
 Onboarding is manual. If you're interested please send an email to `hello@read2me.online`
