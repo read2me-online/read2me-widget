@@ -117,6 +117,6 @@ Onboarding is manual. If you're interested please send an email to `hello@read2m
 - [@rafamel](https://github.com/rafamel) for creating a [Preact](https://github.com/read2me-online/read2me-widget/tree/preact) version and advice
 
 # Development
-1. Create .aws file and set `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
+1. Set `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` env variables (with S3 permissions)
 2. For development: `gulp default` (by default, Gulp will use Read2Me's S3 buckets - you can change that in gulpfile.js)
 3. Production versioning: change VERSION file and execute `gulp publish` (which uploads to production S3)
