@@ -104,21 +104,6 @@ To send analytics, you'll be using `Read2Me.AnalyticsBackendWrapper` which is a 
 
 Widgets created using the simple setup are exposed through `Read2Me.PlayerInstances`. 
 
-# How does it work ?
-**(i.e. how can an backend-less integration be secure?)**
-
-You might be thinking - what if I don't want to convert all my articles? 
-Since there's no backend integration and private key authentication,
-how do I stop villains from converting articles using HTTP clients (e.g. Postman) I don't want to convert and therefore depleting
-my credit/monthly quota? 
-
-The answer is **validation**. Every time you issue an audio creation request, backend API validates the target website.
-Here's what is checked:
-
-1. Is the hostname whitelisted for App ID?
-2. Does the URL contain widget code with exactly the same params as the API request (`url`, `css_selectors`, `voice` and `ignore_content_change` values)
-
-
 # Browser support
 - Tested in Chrome, Firefox, Edge, Opera, Safari and Samsung Browser
 - No IE support, but will fail gracefully by simply not showing ([IE has a worldwide distribution of only 2.1% and decreasing](https://www.w3schools.com/browsers/browsers_explorer.asp)
