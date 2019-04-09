@@ -129,3 +129,8 @@ Onboarding is manual. If you're interested please send an email to `hello@read2m
 # Acknowledgments
 - standard design based on [this design](https://www.uplabs.com/posts/music-player-2814ecbb-e0e3-4de1-b488-364455ec8cc5) by [easiblu](https://www.uplabs.com/easiblu)
 - [@rafamel](https://github.com/rafamel) for creating a [Preact](https://github.com/read2me-online/read2me-widget/tree/preact) version and advice
+
+# Development
+1. Create .aws file and set `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
+2. For development: `gulp default` (by default, Gulp will use Read2Me's S3 buckets - you can change that in gulpfile.js)
+3. Production versioning: change VERSION file and execute `gulp publish` (which uploads to production S3)
