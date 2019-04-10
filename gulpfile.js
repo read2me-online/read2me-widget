@@ -216,10 +216,6 @@ gulp.task('concatenateFilesMinified', function() {
         .pipe(gulp.dest('dist/'));
 });
 
-const js = 'src/**/*.js';
-const css = 'src/**/*.css';
-const html = 'src/**/*.html';
-
 gulp.task('_sequence', () => {
     runSequence(
         ['wipeDist'],
@@ -230,6 +226,10 @@ gulp.task('_sequence', () => {
         ['publishDev'],
         () => {});
 });
+
+const js = 'src/**/*.js';
+const css = 'src/**/*.css';
+const html = 'src/**/*.html';
 
 gulp.task('default', () => {
     runSequence(['_sequence'], () => {
