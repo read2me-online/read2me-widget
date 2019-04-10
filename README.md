@@ -7,7 +7,7 @@ Add this to your page, ideally immediately after `<body>`:
     if (d.getElementById(id)) return;
     div = d.createElement(t); div.id = id;
     d.body.insertBefore(div, d.body.firstChild);
-    s = 'https://d22fip447qchhd.cloudfront.net/api/widget/1.1.0-beta5r2/widget.min.html';
+    s = 'https://d22fip447qchhd.cloudfront.net/api/widget/1.1.0-beta5r4/widget.min.html';
     r = new XMLHttpRequest(); r.responseType = 'document'; r.open('GET', s, true);
     r.onload = function(e) {
         c = e.target.response.querySelector('style');
