@@ -679,213 +679,6 @@ svg.read2me-speaking-rate-icon
     content: 'x';
 }
 
-/*! =======================================================
-                      VERSION  10.0.0              
-========================================================= */
-/*! =========================================================
- * bootstrap-slider.js
- *
- * Maintainers:
- *		Kyle Kemp
- *			- Twitter: @seiyria
- *			- Github:  seiyria
- *		Rohit Kalkur
- *			- Twitter: @Rovolutionary
- *			- Github:  rovolution
- *
- * =========================================================
-  *
- * bootstrap-slider is released under the MIT License
- * Copyright (c) 2017 Kyle Kemp, Rohit Kalkur, and contributors
- * 
- * Permission is hereby granted, free of charge, to any person
- * obtaining a copy of this software and associated documentation
- * files (the "Software"), to deal in the Software without
- * restriction, including without limitation the rights to use,
- * copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the
- * Software is furnished to do so, subject to the following
- * conditions:
- * 
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
- * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
- * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
- * OTHER DEALINGS IN THE SOFTWARE.
- *
- * ========================================================= */.slider
-{position: relative;
-
-    display: inline-block;vertical-align: middle;
-}.slider.slider-horizontal
-{
-    width: 210px;height: 20px;
-}.slider.slider-horizontal .slider-track
-{top: 50%;left: 0;width: 100%;
-    height: 10px;margin-top: -5px;
-}.slider.slider-horizontal .slider-selection,
-.slider.slider-horizontal .slider-track-low,
-.slider.slider-horizontal .slider-track-high
-{top: 0;bottom: 0;
-
-    height: 100%;
-}.slider.slider-horizontal .slider-tick,
-.slider.slider-horizontal .slider-handle
-{
-    margin-left: -10px;
-}.slider.slider-horizontal .slider-tick.triangle,
-.slider.slider-horizontal .slider-handle.triangle
-{
-    position: relative;top: 50%;width: 0;height: 0;margin-top: 0;-ms-transform: translateY(-50%);transform: translateY(-50%);border-width: 0 10px 10px 10px;border-bottom-color: #2e6da4;
-}.slider.slider-horizontal .slider-tick-container
-{position: absolute;top: 0;left: 0;width: 100%;
-
-    white-space: nowrap;
-}.slider.slider-horizontal .slider-tick-label-container
-{margin-top: 20px;
-
-    white-space: nowrap;
-}.slider.slider-horizontal .slider-tick-label-container .slider-tick-label
-{display: inline-block;
-
-    padding-top: 4px;text-align: center;
-}.slider.slider-horizontal .tooltip
-{
-    -ms-transform: translateX(-50%)                ;transform: translateX(-50%);
-}.slider.slider-horizontal.slider-rtl .slider-track
-{right: 0;
-    left: initial;
-}.slider.slider-horizontal.slider-rtl .slider-tick,
-.slider.slider-horizontal.slider-rtl .slider-handle
-{margin-right: -10px;
-    margin-left: initial;
-}.slider.slider-horizontal.slider-rtl .slider-tick-container
-{right: 0;
-    left: initial;
-}.slider.slider-horizontal.slider-rtl .tooltip
-{
-    -ms-transform: translateX(50%)                ;transform: translateX(50%);
-}.slider.slider-vertical
-{width: 20px;
-    height: 210px;
-}.slider.slider-vertical .slider-track
-{top: 0;left: 25%;
-
-    width: 10px;height: 100%;
-}.slider.slider-vertical .slider-selection
-{top: 0;bottom: 0;left: 0;
-
-    width: 100%;
-}.slider.slider-vertical .slider-track-low,
-.slider.slider-vertical .slider-track-high
-{right: 0;left: 0;
-
-    width: 100%;
-}.slider.slider-vertical .slider-tick,
-.slider.slider-vertical .slider-handle
-{
-    margin-top: -10px;
-}.slider.slider-vertical .slider-tick.triangle,
-.slider.slider-vertical .slider-handle.triangle
-{width: 1px;height: 1px;margin-right: 0;margin-left: 0;
-
-    border-width: 10px 0 10px 10px;border-right-color: #2e6da4;border-left-color: #2e6da4;
-}.slider.slider-vertical .slider-tick-label-container
-{
-    white-space: nowrap;
-}.slider.slider-vertical .slider-tick-label-container .slider-tick-label
-{
-    padding-left: 4px;
-}.slider.slider-vertical .tooltip
-{
-    -ms-transform: translateY(-50%)                ;transform: translateY(-50%);
-}.slider.slider-vertical.slider-rtl .slider-track
-{right: 25%;
-    left: initial;
-}.slider.slider-vertical.slider-rtl .slider-selection
-{right: 0;
-    left: initial;
-}.slider.slider-vertical.slider-rtl .slider-tick.triangle,
-.slider.slider-vertical.slider-rtl .slider-handle.triangle
-{
-    border-width: 10px 10px 10px 0;
-}.slider.slider-vertical.slider-rtl .slider-tick-label-container .slider-tick-label
-{padding-right: 4px;
-    padding-left: initial;
-}.slider.slider-disabled .slider-handle
-{
-    background-image: -webkit-linear-gradient(top,#dfdfdf 0,#bebebe 100%)                                ;background-image:      -o-linear-gradient(top,#dfdfdf 0,#bebebe 100%);background-image:         linear-gradient(to bottom,#dfdfdf 0,#bebebe 100%);background-repeat: repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffdfdfdf',endColorstr='#ffbebebe',GradientType=0)
-}.slider.slider-disabled .slider-track
-{cursor: not-allowed;
-
-    background-image: -webkit-linear-gradient(top,#e5e5e5 0,#e9e9e9 100%)                                    ;background-image:      -o-linear-gradient(top,#e5e5e5 0,#e9e9e9 100%);background-image:         linear-gradient(to bottom,#e5e5e5 0,#e9e9e9 100%);background-repeat: repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffe5e5e5',endColorstr='#ffe9e9e9',GradientType=0);
-}.slider input
-{
-    display: none;
-}.slider .tooltip.top
-{
-    margin-top: -36px;
-}.slider .tooltip-inner
-{max-width: none;
-
-    white-space: nowrap;
-}.slider .hide
-{
-    display: none;
-}.slider-track
-{
-    position: absolute;cursor: pointer;border-radius: 4px;background-image: -webkit-linear-gradient(top,#f5f5f5 0,#f9f9f9 100%);background-image:      -o-linear-gradient(top,#f5f5f5 0,#f9f9f9 100%);background-image:         linear-gradient(to bottom,#f5f5f5 0,#f9f9f9 100%);background-repeat: repeat-x;-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);box-shadow: inset 0 1px 2px rgba(0,0,0,.1);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5',endColorstr='#fff9f9f9',GradientType=0);
-}.slider-selection
-{
-    position: absolute;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;border-radius: 4px;background-image: -webkit-linear-gradient(top,#f9f9f9 0,#f5f5f5 100%);background-image:      -o-linear-gradient(top,#f9f9f9 0,#f5f5f5 100%);background-image:         linear-gradient(to bottom,#f9f9f9 0,#f5f5f5 100%);background-repeat: repeat-x;-webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff9f9f9',endColorstr='#fff5f5f5',GradientType=0);
-}.slider-selection.tick-slider-selection
-{
-    background-image: -webkit-linear-gradient(top,#8ac1ef 0,#82b3de 100%)                                ;background-image:      -o-linear-gradient(top,#8ac1ef 0,#82b3de 100%);background-image:         linear-gradient(to bottom,#8ac1ef 0,#82b3de 100%);background-repeat: repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8ac1ef',endColorstr='#ff82b3de',GradientType=0)
-}.slider-track-low,
-.slider-track-high
-{
-    position: absolute;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;border-radius: 4px;background: transparent;
-}.slider-handle
-{
-    position: absolute;top: 0;width: 20px;height: 20px;border: 0 solid transparent;background-color: #337ab7;background-image: -webkit-linear-gradient(top,#337ab7 0,#2e6da4 100%);background-image:      -o-linear-gradient(top,#337ab7 0,#2e6da4 100%);background-image:         linear-gradient(to bottom,#337ab7 0,#2e6da4 100%);background-repeat: repeat-x;-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.2),0 1px 2px rgba(0,0,0,.05);box-shadow: inset 0 1px 0 rgba(255,255,255,.2),0 1px 2px rgba(0,0,0,.05);filter: none;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff337ab7',endColorstr='#ff2e6da4',GradientType=0);
-}.slider-handle.round
-{
-    border-radius: 50%;
-}.slider-handle.triangle
-{
-    background: transparent none;
-}.slider-handle.custom
-{
-    background: transparent none;
-}.slider-handle.custom::before
-{font-size: 20px;
-    line-height: 20px;content: '\2605';color: #726204;
-}.slider-tick
-{
-    position: absolute;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;width: 20px;height: 20px;opacity: .8;border: 0 solid transparent;background-image: -webkit-linear-gradient(top,#f9f9f9 0,#f5f5f5 100%);background-image:      -o-linear-gradient(top,#f9f9f9 0,#f5f5f5 100%);background-image:         linear-gradient(to bottom,#f9f9f9 0,#f5f5f5 100%);background-repeat: repeat-x;-webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);filter: none;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff9f9f9',endColorstr='#fff5f5f5',GradientType=0);
-}.slider-tick.round
-{
-    border-radius: 50%;
-}.slider-tick.triangle
-{
-    background: transparent none;
-}.slider-tick.custom
-{
-    background: transparent none;
-}.slider-tick.custom::before
-{font-size: 20px;
-    line-height: 20px;content: '\2605';color: #726204;
-}.slider-tick.in-selection
-{opacity: 1;
-    background-image: -webkit-linear-gradient(top,#8ac1ef 0,#82b3de 100%)                                    ;background-image:      -o-linear-gradient(top,#8ac1ef 0,#82b3de 100%);background-image:         linear-gradient(to bottom,#8ac1ef 0,#82b3de 100%);background-repeat: repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8ac1ef',endColorstr='#ff82b3de',GradientType=0);
-}
-
 .read2me-menu
 {
     position: absolute;
@@ -1829,4 +1622,217 @@ svg.read2me-speaking-rate-icon
 
     border-width: 0 5px 5px;
     border-bottom-color: #000;
+}
+
+/*! =======================================================
+                      VERSION  10.6.1              
+========================================================= */
+/*! =========================================================
+ * bootstrap-slider.js
+ *
+ * Maintainers:
+ *		Kyle Kemp
+ *			- Twitter: @seiyria
+ *			- Github:  seiyria
+ *		Rohit Kalkur
+ *			- Twitter: @Rovolutionary
+ *			- Github:  rovolution
+ *
+ * =========================================================
+  *
+ * bootstrap-slider is released under the MIT License
+ * Copyright (c) 2019 Kyle Kemp, Rohit Kalkur, and contributors
+ * 
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ========================================================= */.slider
+{position: relative;
+
+    display: inline-block;vertical-align: middle;
+}.slider.slider-horizontal
+{
+    width: 210px;height: 20px;
+}.slider.slider-horizontal .slider-track
+{top: 50%;left: 0;width: 100%;
+    height: 10px;margin-top: -5px;
+}.slider.slider-horizontal .slider-selection,
+.slider.slider-horizontal .slider-track-low,
+.slider.slider-horizontal .slider-track-high
+{top: 0;bottom: 0;
+
+    height: 100%;
+}.slider.slider-horizontal .slider-tick,
+.slider.slider-horizontal .slider-handle
+{
+    margin-left: -10px;
+}.slider.slider-horizontal .slider-tick.triangle,
+.slider.slider-horizontal .slider-handle.triangle
+{
+    position: relative;top: 50%;width: 0;height: 0;margin-top: 0;-ms-transform: translateY(-50%);transform: translateY(-50%);border-width: 0 10px 10px 10px;border-bottom-color: #2e6da4;
+}.slider.slider-horizontal .slider-tick-container
+{position: absolute;top: 0;left: 0;width: 100%;
+
+    white-space: nowrap;
+}.slider.slider-horizontal .slider-tick-label-container
+{margin-top: 20px;
+
+    white-space: nowrap;
+}.slider.slider-horizontal .slider-tick-label-container .slider-tick-label
+{display: inline-block;
+
+    padding-top: 4px;text-align: center;
+}.slider.slider-horizontal .tooltip
+{
+    -ms-transform: translateX(-50%)                ;transform: translateX(-50%);
+}.slider.slider-horizontal.slider-rtl .slider-track
+{right: 0;
+    left: initial;
+}.slider.slider-horizontal.slider-rtl .slider-tick,
+.slider.slider-horizontal.slider-rtl .slider-handle
+{margin-right: -10px;
+    margin-left: initial;
+}.slider.slider-horizontal.slider-rtl .slider-tick-container
+{right: 0;
+    left: initial;
+}.slider.slider-horizontal.slider-rtl .tooltip
+{
+    -ms-transform: translateX(50%)                ;transform: translateX(50%);
+}.slider.slider-vertical
+{width: 20px;
+    height: 210px;
+}.slider.slider-vertical .slider-track
+{top: 0;left: 25%;
+
+    width: 10px;height: 100%;
+}.slider.slider-vertical .slider-selection
+{top: 0;bottom: 0;left: 0;
+
+    width: 100%;
+}.slider.slider-vertical .slider-track-low,
+.slider.slider-vertical .slider-track-high
+{right: 0;left: 0;
+
+    width: 100%;
+}.slider.slider-vertical .slider-tick,
+.slider.slider-vertical .slider-handle
+{
+    margin-top: -10px;
+}.slider.slider-vertical .slider-tick.triangle,
+.slider.slider-vertical .slider-handle.triangle
+{width: 1px;height: 1px;margin-right: 0;margin-left: 0;
+
+    border-width: 10px 0 10px 10px;border-right-color: #2e6da4;border-left-color: #2e6da4;
+}.slider.slider-vertical .slider-tick-label-container
+{
+    white-space: nowrap;
+}.slider.slider-vertical .slider-tick-label-container .slider-tick-label
+{
+    padding-left: 4px;
+}.slider.slider-vertical .tooltip
+{
+    -ms-transform: translateY(-50%)                ;transform: translateY(-50%);
+}.slider.slider-vertical.slider-rtl .slider-track
+{right: 25%;
+    left: initial;
+}.slider.slider-vertical.slider-rtl .slider-selection
+{right: 0;
+    left: initial;
+}.slider.slider-vertical.slider-rtl .slider-tick.triangle,
+.slider.slider-vertical.slider-rtl .slider-handle.triangle
+{
+    border-width: 10px 10px 10px 0;
+}.slider.slider-vertical.slider-rtl .slider-tick-label-container .slider-tick-label
+{padding-right: 4px;
+    padding-left: initial;
+}.slider.slider-disabled .slider-handle
+{
+    background-image: -webkit-linear-gradient(top,#dfdfdf 0,#bebebe 100%)                                ;background-image:      -o-linear-gradient(top,#dfdfdf 0,#bebebe 100%);background-image:         linear-gradient(to bottom,#dfdfdf 0,#bebebe 100%);background-repeat: repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffdfdfdf',endColorstr='#ffbebebe',GradientType=0)
+}.slider.slider-disabled .slider-track
+{cursor: not-allowed;
+
+    background-image: -webkit-linear-gradient(top,#e5e5e5 0,#e9e9e9 100%)                                    ;background-image:      -o-linear-gradient(top,#e5e5e5 0,#e9e9e9 100%);background-image:         linear-gradient(to bottom,#e5e5e5 0,#e9e9e9 100%);background-repeat: repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffe5e5e5',endColorstr='#ffe9e9e9',GradientType=0);
+}.slider input
+{
+    display: none;
+}.slider .tooltip
+{
+    pointer-events: none;
+}.slider .tooltip.top
+{
+    margin-top: -36px;
+}.slider .tooltip-inner
+{max-width: none;
+
+    white-space: nowrap;
+}.slider .hide
+{
+    display: none;
+}.slider-track
+{
+    position: absolute;cursor: pointer;border-radius: 4px;background-image: -webkit-linear-gradient(top,#f5f5f5 0,#f9f9f9 100%);background-image:      -o-linear-gradient(top,#f5f5f5 0,#f9f9f9 100%);background-image:         linear-gradient(to bottom,#f5f5f5 0,#f9f9f9 100%);background-repeat: repeat-x;-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);box-shadow: inset 0 1px 2px rgba(0,0,0,.1);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5',endColorstr='#fff9f9f9',GradientType=0);
+}.slider-selection
+{
+    position: absolute;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;border-radius: 4px;background-image: -webkit-linear-gradient(top,#f9f9f9 0,#f5f5f5 100%);background-image:      -o-linear-gradient(top,#f9f9f9 0,#f5f5f5 100%);background-image:         linear-gradient(to bottom,#f9f9f9 0,#f5f5f5 100%);background-repeat: repeat-x;-webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff9f9f9',endColorstr='#fff5f5f5',GradientType=0);
+}.slider-selection.tick-slider-selection
+{
+    background-image: -webkit-linear-gradient(top,#8ac1ef 0,#82b3de 100%)                                ;background-image:      -o-linear-gradient(top,#8ac1ef 0,#82b3de 100%);background-image:         linear-gradient(to bottom,#8ac1ef 0,#82b3de 100%);background-repeat: repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8ac1ef',endColorstr='#ff82b3de',GradientType=0)
+}.slider-track-low,
+.slider-track-high
+{
+    position: absolute;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;border-radius: 4px;background: transparent;
+}.slider-handle
+{
+    position: absolute;top: 0;width: 20px;height: 20px;border: 0 solid transparent;background-color: #337ab7;background-image: -webkit-linear-gradient(top,#337ab7 0,#2e6da4 100%);background-image:      -o-linear-gradient(top,#337ab7 0,#2e6da4 100%);background-image:         linear-gradient(to bottom,#337ab7 0,#2e6da4 100%);background-repeat: repeat-x;-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.2),0 1px 2px rgba(0,0,0,.05);box-shadow: inset 0 1px 0 rgba(255,255,255,.2),0 1px 2px rgba(0,0,0,.05);filter: none;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff337ab7',endColorstr='#ff2e6da4',GradientType=0);
+}.slider-handle:hover
+{
+    cursor: pointer;
+}.slider-handle.round
+{
+    border-radius: 50%;
+}.slider-handle.triangle
+{
+    background: transparent none;
+}.slider-handle.custom
+{
+    background: transparent none;
+}.slider-handle.custom::before
+{font-size: 20px;
+    line-height: 20px;content: '\2605';color: #726204;
+}.slider-tick
+{
+    position: absolute;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;width: 20px;height: 20px;cursor: pointer;opacity: .8;border: 0 solid transparent;background-image: -webkit-linear-gradient(top,#f9f9f9 0,#f5f5f5 100%);background-image:      -o-linear-gradient(top,#f9f9f9 0,#f5f5f5 100%);background-image:         linear-gradient(to bottom,#f9f9f9 0,#f5f5f5 100%);background-repeat: repeat-x;-webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);filter: none;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff9f9f9',endColorstr='#fff5f5f5',GradientType=0);
+}.slider-tick.round
+{
+    border-radius: 50%;
+}.slider-tick.triangle
+{
+    background: transparent none;
+}.slider-tick.custom
+{
+    background: transparent none;
+}.slider-tick.custom::before
+{font-size: 20px;
+    line-height: 20px;content: '\2605';color: #726204;
+}.slider-tick.in-selection
+{opacity: 1;
+    background-image: -webkit-linear-gradient(top,#8ac1ef 0,#82b3de 100%)                                    ;background-image:      -o-linear-gradient(top,#8ac1ef 0,#82b3de 100%);background-image:         linear-gradient(to bottom,#8ac1ef 0,#82b3de 100%);background-repeat: repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8ac1ef',endColorstr='#ff82b3de',GradientType=0);
 }

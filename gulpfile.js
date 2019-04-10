@@ -33,8 +33,8 @@ const AWS_Credentials = {
     "secret": process.env.AWS_SECRET_ACCESS_KEY
 };
 const AWS_Devel = {
-    "bucket": "s3-sg.read2me.online",
-    "region": "ap-southeast-1",
+    "bucket": "s3-staging.read2me.online",
+    "region": "eu-west-1",
     "api_endpoint": 'https://api-dev.read2me.online/'
 };
 const AWS_Prod = {
@@ -125,7 +125,7 @@ gulp.task('wipeDist', function () {
 });
 
 gulp.task('css', function () {
-    return gulp.src(['src/**/*.css'])
+    return gulp.src(['src/**/*.css', 'node_modules/bootstrap-slider/dist/css/bootstrap-slider.min.css'])
         .pipe(plumber())
         .pipe(cssComb())
         .pipe(csslint.formatter())
