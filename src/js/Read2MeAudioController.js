@@ -4,9 +4,11 @@ export default class Read2MeAudioController {
      *
      * @param audioFileUrl
      * @param events
+     * @param preload string
      */
-    constructor(audioFileUrl, events) {
+    constructor(audioFileUrl, events, preload = null) {
         this.audio = new Audio(audioFileUrl);
+        this.audio.preload = preload === null ? 'auto' : preload;
         this.canPlay = false;
         this.canPlayThrough = false;
         this._isPlaying = false;

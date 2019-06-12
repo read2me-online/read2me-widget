@@ -7,7 +7,7 @@ Add this to your page, ideally immediately after `<body>`:
     if (d.getElementById(id)) return;
     div = d.createElement(t); div.id = id;
     d.body.insertBefore(div, d.body.firstChild);
-    s = 'https://d22fip447qchhd.cloudfront.net/api/widget/1.1.0-beta5r4/widget.min.html';
+    s = 'https://d22fip447qchhd.cloudfront.net/api/widget/1.1.0-beta5r5/widget.min.html';
     r = new XMLHttpRequest(); r.responseType = 'document'; r.open('GET', s, true);
     r.onload = function(e) {
         c = e.target.response.querySelector('style');
@@ -63,7 +63,8 @@ Add this where you want the player to appear:
 - `data-design` - design type. optional, defaults to _standard_. available choices are: standard, minimal
 - `data-theme` - color preset. optional, defaults to _white_. available presets are: white, gray, blue and green.
 - `data-colors` - set primary and secondary colors on top of the theme as an array (e.g. `data-colors="['#EE1932', '#ffffff']"`). optional, but if passed, must be in hex format. 
-- `data-width` - sets a custom width for the widget. for standard design the minimum is 570 px, and for minimal 250 px. if you use a standard design but the container is less than 570px wide, it'll automatically apply the minimal design. optional, defaults to 570px for tablets and desktops and 100% for phones 
+- `data-width` - sets a custom width for the widget. for standard design the minimum is 570 px, and for minimal 250 px. if you use a standard design but the container is less than 570px wide, it'll automatically apply the minimal design. optional, defaults to 570px for tablets and desktops and 100% for phones
+- `data-preload` - set if audio should be preloaded (auto|metadata|none) 
 - `data-only-instantiate` - only use the widget code for validation, don't instantiate the player. this should be used when you don't want to use any of the available players, but instead you want to code your own solution against [the API](https://app.swaggerhub.com/apis/Read2Me/convert/1.0.0). optional, defaults to false
 
 # Advanced usage
@@ -120,3 +121,4 @@ Onboarding is manual. If you're interested please send an email to `hello@read2m
 1. Set `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` env variables (with S3 permissions)
 2. For development: `gulp default` (by default, Gulp will use Read2Me's S3 buckets - you can change that in gulpfile.js)
 3. Production versioning: change VERSION file and execute `gulp publish` (which uploads to production S3)
+4. Change the sample JS snippet at the top of this document so it reflects the new version 
