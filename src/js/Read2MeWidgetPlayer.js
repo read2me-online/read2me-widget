@@ -9,7 +9,8 @@ export default class Read2MeWidgetPlayer {
         widgetBlueprint, url, title = null,
         thumbnail = null, autoplay = false,
         playerId = 0, theme = null, width = null,
-        design = null, colors = null) {
+        design = null, colors = null, preload = null
+    ) {
         // sliders
         this.isScrubberBeingDragged = false;
         this.scrubber = null;
@@ -30,6 +31,7 @@ export default class Read2MeWidgetPlayer {
         this.width = width;
         this.design = design === null ? 'standard' : 'minimal';
         this.colors = colors; // array|null
+        this.preload = preload;
         this.hasColors = this.colors !== null && this.colors.length > 0;
         this.primaryColor = this.hasColors ? this.colors[0] : null;
         this.secondaryColor = this.hasColors ? this.colors[1] : null;
@@ -608,7 +610,7 @@ export default class Read2MeWidgetPlayer {
 
         this.audioController.pause();
         delete this.audioController;
-        this.audioController = new Read2MeAudioController(source, events);
+        this.audioController = new Read2MeAudioController(source, events, this.preload);
 
         this.configureSliders(duration);
 
