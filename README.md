@@ -7,7 +7,7 @@ Add this to your page, ideally immediately after `<body>`:
     if (d.getElementById(id)) return;
     div = d.createElement(t); div.id = id;
     d.body.insertBefore(div, d.body.firstChild);
-    s = 'https://d22fip447qchhd.cloudfront.net/api/widget/1.1.0-beta5r4/widget.min.html';
+    s = 'https://d22fip447qchhd.cloudfront.net/api/widget/1.1.0-beta5r5/widget.min.html';
     r = new XMLHttpRequest(); r.responseType = 'document'; r.open('GET', s, true);
     r.onload = function(e) {
         c = e.target.response.querySelector('style');
@@ -121,3 +121,4 @@ Onboarding is manual. If you're interested please send an email to `hello@read2m
 1. Set `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` env variables (with S3 permissions)
 2. For development: `gulp default` (by default, Gulp will use Read2Me's S3 buckets - you can change that in gulpfile.js)
 3. Production versioning: change VERSION file and execute `gulp publish` (which uploads to production S3)
+4. Change the sample JS snippet at the top of this document so it reflects the new version 
