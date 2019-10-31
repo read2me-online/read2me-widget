@@ -29,7 +29,6 @@ Add this where you want the player to appear:
 <div class="read2me-widget"
      data-app-id="YOUR APP ID"
      data-url="https://canonical.url/to/your/page"
-     data-css-selectors="['h1', 'p.content']"
 >
 </div>
 ```
