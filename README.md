@@ -10,6 +10,8 @@ Looking for Read2Me API?
 - [Account API](https://app.swaggerhub.com/apis-docs/Read2Me/Account/1.0.0)
 
 # Widget 
+The widget creates audio for every page where the following JavaScript and HTML are put.
+
 ## Installation
 Add this to your page, ideally immediately after `<body>`:
 
