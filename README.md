@@ -1,4 +1,16 @@
-# Installation
+# Objective
+This document explains Read2Me Widget, which is a plug and play implementation of Read2Me API. 
+It lets you convert any of your web pages into audio. 
+Emphasis is put on quality, ease of use and usefulness. 
+
+# Read2Me API
+Looking for Read2Me API?
+- [Convert API](https://app.swaggerhub.com/apis-docs/Read2Me/convert/1.0.0)
+- [RSS API](https://app.swaggerhub.com/apis-docs/Read2Me/RSS/1.0.0)
+- [Account API](https://app.swaggerhub.com/apis-docs/Read2Me/Account/1.0.0)
+
+# Widget 
+## Installation
 Add this to your page, ideally immediately after `<body>`:
 
 ```html
@@ -33,7 +45,7 @@ Add this where you want the player to appear:
 </div>
 ```
 
-# Features
+## Features
 - four pre-made custom color presets (green, blue, white and white/black), all of which are customizable
 - analytics: easily figure out where are you dropping your readers by looking at `Focus Chart`, get playback stats and listener demographics
 - responsive design - tablet, desktop and mobile UIs
@@ -46,11 +58,12 @@ Add this where you want the player to appear:
 - numerous voices and supported languages ([see here for a full list](https://app.swaggerhub.com/apis/Read2Me/convert/1.0.0#/default/get_convert_1_0_0_voices))
 - ability to choose whether or not the audio should update on content change (i.e. should the podcast keep up to date with your article text or just serve the first version)
 - graceful behaviour on package quota exhaustion: will continue serving existing podcasts and the widget will simply self-destruct in case it's placed on a new article
-- API is [publicly documented](https://swaggerhub.com/apis/Read2Me/)
 - serve ads that are immune to adblockers by inlining text into the content and hiding it from viewers using CSS
-- create iTunes-compatible RSS feeds using the [RSS API endpoint](https://app.swaggerhub.com/apis/Read2Me/RSS/1.0.0). you can create multiple feeds, each with its their own settings. [This](https://read2me.online/rss/daily-curated-articles.php) is an example of such feed, and [here](https://itunes.apple.com/hr/podcast/read2me-daily-curated-articles/id1378984368) is the same feed after being submitted to iTunes.
+- create iTunes-compatible RSS feeds using the RSS API endpoint. you can create multiple feeds, each with its their own settings. 
 
-# API
+## API
+Widget API.
+
 - `data-app-id` - your App ID, **required**
 - `data-url` - URL you are converting, **required**
 - `data-css-selectors` - manually select content you want to convert to a podcast using CSS selectors. optional, but when manually set it yields a higher quality page-to-podcast conversion. defaults to an intelligent guess. example: `['h1', 'p.content']`
@@ -64,7 +77,7 @@ Add this where you want the player to appear:
 - `data-colors` - set primary and secondary colors on top of the theme as an array (e.g. `data-colors="['#EE1932', '#ffffff']"`). optional, but if passed, must be in hex format. 
 - `data-width` - sets a custom width for the widget. for standard design the minimum is 570 px, and for minimal 250 px. if you use a standard design but the container is less than 570px wide, it'll automatically apply the minimal design. optional, defaults to 570px for tablets and desktops and 100% for phones
 - `data-preload` - set if audio should be preloaded (auto|metadata|none) 
-- `data-only-instantiate` - only use the widget code for validation, don't instantiate the player. this should be used when you don't want to use any of the available players, but instead you want to code your own solution against [the API](https://app.swaggerhub.com/apis/Read2Me/convert/1.0.0). optional, defaults to false
+- `data-only-instantiate` - only use the widget code for validation, don't instantiate the player. this should be used when you don't want to use any of the available players, but instead you want to code your own solution against the API. optional, defaults to false
 
 # Advanced usage
 Advanced integration means that you won't be using any pre-existing designs, and you just want to be able to use Read2Me's API.
@@ -89,7 +102,7 @@ Widgets created using the simple setup are exposed through `Read2Me.PlayerInstan
 
 # Browser support
 - Tested in Chrome, Firefox, Edge, Opera, Safari and Samsung Browser
-- No IE support, but will fail gracefully by simply not showing ([IE has a worldwide distribution of only 1.8% and decreasing](https://www.w3schools.com/browsers/browsers_explorer.asp))
+- No IE support, but will fail gracefully by simply not showing
 
 # Samples
 ##### Minimal design with gray theme demo
