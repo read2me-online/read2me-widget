@@ -57,7 +57,7 @@ Add this where you want the player to appear:
 - explicit or implicit thumbnail: if not set, it will use what it finds in OG:Image property. An image with 1:1 aspect ratio is recommended. 
 - quota warnings at 70%, 80% and 90% via email
 - ability to be specific about content using CSS selectors
-- numerous voices and supported languages ([see here for a full list](https://app.swaggerhub.com/apis/Read2Me/convert/1.0.0#/default/get_convert_1_0_0_voices))
+- numerous voices and supported languages
 - ability to choose whether or not the audio should update on content change (i.e. should the podcast keep up to date with your article text or just serve the first version)
 - graceful behaviour on package quota exhaustion: will continue serving existing podcasts and the widget will simply self-destruct in case it's placed on a new article
 - serve ads that are immune to adblockers by inlining text into the content and hiding it from viewers using CSS
